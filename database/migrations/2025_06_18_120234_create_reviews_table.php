@@ -11,12 +11,10 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('beach_id');
-            $table->tinyInteger('rating')->unsigned();
-            $table->text('comment')->nullable();
+            $table->foreignId('beach_id')->constrained()->onDelete('cascade');
+            $table->tinyInteger('rating')->unsigned(); // 1 - 5
+            $table->text('comment');
             $table->timestamps();
-
-            $table->foreign('beach_id')->references('id')->on('beaches')->onDelete('cascade');
         });
     }
 

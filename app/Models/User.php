@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -50,5 +51,29 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class, 'ceo_id');
+    }
+
+    public function tourBookings()
+    {
+        return $this->hasMany(TourBooking::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isCEO()
+    {
+        return $this->role === 'ceo';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
     }
 }
