@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "beach_id": 1,
+    "title": "Bai Chay Adventure Tour",
+    "description": "Explore the beautiful Bai Chay beach with guided tour",
+    "duration": "1 DAY",
+    "price": 61.41,
+    "original_price": 80.18,
+    "capacity": 40,
+    "departure_time": "08:00:00",
+    "return_time": "18:00:00",
+    "included_services": [
+      "Transportation",
+      "Lunch",
+      "Guide",
+      "Equipment"
+    ],
+    "excluded_services": [
+      "Personal expenses",
+      "Tips"
+    ],
+    "highlights": [
+      "Golden sand beach",
+      "Water sports",
+      "Local seafood",
+      "Sunset viewing"
+    ],
+    "status": "active",
+    "created_at": "2025-01-01 00:00:00",
+    "updated_at": "2025-01-01 00:00:00"
+  },
+  {
+    "id": 2,
+    "beach_id": 2,
+    "title": "Do Son Cultural Tour",
+    "description": "Discover the cultural heritage of Do Son beach",
+    "duration": "1 DAY",
+    "price": 40.32,
+    "original_price": 82.2,
+    "capacity": 40,
+    "departure_time": "09:00:00",
+    "return_time": "17:00:00",
+    "included_services": [
+      "Transportation",
+      "Lunch",
+      "Cultural guide",
+      "Temple visits"
+    ],
+    "excluded_services": [
+      "Personal expenses",
+      "Tips"
+    ],
+    "highlights": [
+      "Historical temples",
+      "Local culture",
+      "Traditional food",
+      "Ocean walks"
+    ],
+    "status": "active",
+    "created_at": "2025-01-01 00:00:00",
+    "updated_at": "2025-01-01 00:00:00"
+  }
+] 

@@ -1,0 +1,48 @@
+/* CSS riêng cho trang Queries */
+.contact-banner {
+    background-image: url('http://localhost:8000/assets/img1/haha.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+    overflow: visible;
+  }
+.contact-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.contact-banner h1 {
+    color: white;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Ảnh brush viền dưới */
+.brush-bottom {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------- */
+/* css cho phần support box */
+.support-box {
+    background-color: #ffffff;
+}
+
+#previewBox {
+    transition: all 0.3s ease;
+}

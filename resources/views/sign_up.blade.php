@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="card shadow-sm w-75">
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Create your account</h2>
                     <p class="text-center text-muted mb-4">Join Beautiful Beaches today</p>
 
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST" class="w-100">
                         @csrf
 
                         <div class="mb-3">

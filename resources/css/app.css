@@ -1,4 +1,11 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import './welcome.css';
+@import './about.css';
+@import './gallery.css';
+@import './contact.css';
+@import './explore.css';
+@import './admin.css';
 
 /* Custom CSS ở đây nếu muốn */
 body {
@@ -6,3 +13,229 @@ body {
 }
 
 
+/* --------------------------------------------------------------------------------------- */
+/* css phần media */
+.topbar-link:hover,
+.topbar-link:focus,
+.social-icon:hover,
+.social-icon:focus,
+#searchBtn:hover,
+#searchBtn:focus {
+  color: var(--bs-primary) !important;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------------- */
+/* css header */
+/* Xoay mũi tên khi hover vào nav-item */
+.nav-item.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+}
+
+/* Xóa mũi tên mặc định trong dropdown-toggle */
+.nav-link.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Làm mờ khi hover */
+.custom-hover:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+/* Gốc: không xoay */
+.dropdown-icon {
+  transform: rotate(0deg);
+  transition: transform 0.4s ease-in-out, color 0.3s ease;
+  color: inherit;
+}
+
+/* Hiển thị menu khi hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+/* Đổi màu chữ Home và icon sang đỏ khi hover vào nav-item.dropdown */
+.nav-item.dropdown:hover>.nav-link,
+.nav-item.dropdown:hover>.nav-link .dropdown-icon {
+  color: red;
+}
+
+.nav-link-hover:hover {
+  color: red !important;
+  transition: color 0.3s ease;
+  /* Thêm hiệu ứng chuyển màu mượt */
+}
+
+/* Viền đỏ phía trên menu dropdown và viền dưới */
+.dropdown-menu {
+  border: 1px solid #ccc;
+  border-top: 3px solid red;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu .dropdown-item {
+  border-bottom: 1px solid #eee;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Đổi màu chữ khi hover vào buy now */
+.btn-danger:hover {
+  background-color: #1d0aee;
+}
+
+nav.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 444444;
+  background-color: white;
+  /* Đảm bảo header có nền để không bị trong suốt */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Tùy chọn: thêm bóng để header nổi bật */
+}
+
+/* bo tròn logo */
+.botron {
+  border-radius: 50%;
+  width: 50px;
+  /* Chiều rộng của logo */
+  height: 50px;
+  /* Chiều cao của logo */
+  overflow: hidden;
+  /* Đảm bảo nội dung không tràn ra ngoài */
+}
+
+/* css cho header để cuộn trang */
+nav.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 444444;
+  background-color: white;
+}
+
+/* --------------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------------- */
+/* css phần footer */
+.footer-section {
+    background-color: #33373a;
+    /* Màu nền tối tương tự ảnh */
+    color: #fff;
+  }
+  
+  .footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 50px;
+    /* Độ dài đường gạch dưới */
+    background-color: var(--bs-primary);
+    /* Sử dụng màu primary của Bootstrap */
+  }
+  
+  .footer-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .footer-contact-list li,
+  .footer-latest-post li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-contact-list li i {
+    color: var(--bs-primary);
+    /* Màu icon tương tự ảnh */
+  }
+  
+  .footer-latest-post a {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+  }
+  
+  .footer-latest-post a:hover {
+    color: var(--bs-primary);
+    /* Màu hover */
+  }
+  
+  .footer-latest-post .text-muted {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  .footer-subscribe-form .form-control {
+    border-radius: 4px;
+    /* Bo tròn input */
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .footer-subscribe-form .btn-subscribe {
+    background-color: #e84133;
+    /* Màu nút subscribe */
+    border-color: #e84133;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .footer-subscribe-form .btn-subscribe:hover {
+    background-color: #c83125;
+    /* Màu hover nút subscribe */
+    border-color: #c83125;
+  }
+  
+  .footer-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-links li a {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links li a:hover {
+    color: var(--bs-primary);
+    /* Màu hover */
+  }
+  
+  .footer-links li {
+    vertical-align: middle;
+  }
+  
+  @media (max-width: 767.98px) {
+    .footer-title {
+      margin-top: 20px;
+    }
+  
+    .footer-badges img {
+      max-width: 60px !important;
+    }
+  }
+  
+  .botron {
+    border-radius: 50%;
+    width: 50px;
+    /* Chiều rộng của logo */
+    height: 50px;
+    /* Chiều cao của logo */
+    overflow: hidden;
+    /* Đảm bảo nội dung không tràn ra ngoài */
+  }

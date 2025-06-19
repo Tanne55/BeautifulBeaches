@@ -1,0 +1,462 @@
+/* CSS riêng cho trang Explore */ 
+.contact-banner {
+    background-image: url('http://localhost:8000/assets/img1/haha.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+    overflow: visible;
+  }
+.contact-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.contact-banner h1 {
+    color: white;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Ảnh brush viền dưới */
+.brush-bottom {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------------------------- */
+
+/* css main content */
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+}
+
+/* Search Sidebar */
+.search-sidebar {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.search-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ef4444;
+}
+
+.search-group {
+    margin-bottom: 24px;
+}
+
+.search-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.search-input,
+.search-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus,
+.search-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.search-select {
+    background: white;
+    cursor: pointer;
+}
+
+.clear-filters {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.clear-filters:hover {
+    background: #4b5563;
+}
+
+/* Tours Container */
+.tours-container {
+    flex: 1;
+}
+
+.tours-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tours-count {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.clear-link {
+    color: #3b82f6;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.clear-link:hover {
+    text-decoration: underline;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sort-label {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 4px;
+}
+
+.view-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.tours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* Tour Card Styles */
+.tour-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tour-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tour-image {
+    width: 40%;
+    position: relative;
+    min-height: 280px;
+}
+
+.tour-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #2563eb;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.heart-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.heart-btn:hover {
+    background: white;
+}
+
+.media-buttons {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    gap: 8px;
+}
+
+.media-btn {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.2s;
+}
+
+.media-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.tour-content {
+    width: 60%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tour-main {
+    flex: 1;
+}
+
+.tour-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.tour-title:hover {
+    color: #0dcaf0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+
+.tour-region {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.location-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.tour-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    width: 16px;
+    height: 16px;
+    fill: #fbbf24;
+}
+
+.reviews {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.tour-description {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.tour-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tour-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #f0f9ff;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.meta-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.tour-price {
+    text-align: right;
+}
+
+.price-current {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.price-original {
+    font-size: 16px;
+    color: #9ca3af;
+    text-decoration: line-through;
+    margin-left: 8px;
+}
+
+.explore-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+    font-size: 14px;
+}
+
+.explore-btn:hover {
+    background: #0dcaf0;
+    transition: 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .search-sidebar {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .tour-card {
+        flex-direction: column;
+    }
+
+    .tour-image,
+    .tour-content {
+        width: 100%;
+    }
+
+    .tour-image {
+        min-height: 200px;
+    }
+
+    .tour-content {
+        padding: 20px;
+    }
+
+    .tour-title {
+        font-size: 20px;
+    }
+
+    .tours-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}

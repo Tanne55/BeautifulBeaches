@@ -1,0 +1,27 @@
+.management-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.icon-wrapper {
+    transition: all 0.3s ease;
+}
+
+.management-card:hover .icon-wrapper {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+}
