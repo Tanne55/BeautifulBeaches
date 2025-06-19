@@ -32,4 +32,7 @@ class Beach extends Model
     {
         return $this->hasMany(Tour::class);
     }
+    public function get(){
+        
+    }
 }

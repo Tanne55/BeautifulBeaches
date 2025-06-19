@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeachController;
 use App\Models\Beach;
+use App\Http\Middleware\IsAdmin;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,7 +35,11 @@ Route::middleware('auth')->group(function () {
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/contact', 'pages.contact')->name('contact');
-Route::view('/explore', 'pages.explore')->name('explore');
+// Route::view('/explore', 'pages.explore')->name('explore');
+Route::get('/explore', function () {
+        $beaches = Beach::all();
+        return view('pages.explore', compact('beaches'));
+    })->name('explore');
 Route::view('/queries', 'pages.queries')->name('queries');
 
 
@@ -44,7 +49,7 @@ Route::get('/beach/{id}', [BeachController::class, 'show'])->name('beach.show');
 
 
 // CRUD của admin về beaches
-Route::middleware(['auth', 'is_admin'])->group(function () {
+Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/admin/beaches', [BeachController::class, 'index'])->name('admin.beaches.index');
     Route::get('/admin/beaches/create', [BeachController::class, 'create'])->name('admin.beaches.create');
     Route::post('/admin/beaches', [BeachController::class, 'store'])->name('admin.beaches.store');

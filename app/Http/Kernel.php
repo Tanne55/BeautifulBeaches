@@ -52,7 +52,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         // Thêm các middleware khác nếu có
     ];

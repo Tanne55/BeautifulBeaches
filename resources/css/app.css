@@ -84,7 +84,7 @@ body {
 
 /* Đổi màu chữ khi hover vào buy now */
 .btn-danger:hover {
-  background-color: #1d0aee;
+  background-color: #1d0aee ;
 }
 
 nav.navbar {
@@ -200,6 +200,11 @@ nav.navbar {
     background-color: #c83125;
     /* Màu hover nút subscribe */
     border-color: #c83125;
+  }
+
+  .btn-link:hover{
+    background-color: var(--bs-danger) !important;
+    color: white !important;
   }
   
   .footer-divider {
