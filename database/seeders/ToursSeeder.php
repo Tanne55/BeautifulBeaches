@@ -25,26 +25,39 @@ class ToursSeeder extends Seeder
             return;
         }
 
+        $insertedCount = 0;
         foreach ($tours as $tour) {
-            DB::table('tours')->insert([
-                'beach_id' => $tour['beach_id'],
-                'title' => $tour['title'],
-                'description' => $tour['description'],
-                'duration' => $tour['duration'],
-                'price' => $tour['price'],
-                'original_price' => $tour['original_price'],
-                'capacity' => $tour['capacity'],
-                'departure_time' => $tour['departure_time'],
-                'return_time' => $tour['return_time'],
-                'included_services' => json_encode($tour['included_services']),
-                'excluded_services' => json_encode($tour['excluded_services']),
-                'highlights' => json_encode($tour['highlights']),
-                'status' => $tour['status'],
-                'created_at' => $tour['created_at'],
-                'updated_at' => $tour['updated_at'],
-            ]);
+            try {
+                // Insert vào bảng tours
+                $tourId = DB::table('tours')->insertGetId([
+                    'beach_id' => $tour['beach_id'],
+                    'title' => $tour['title'],
+                    'price' => $tour['price'],
+                    'original_price' => $tour['original_price'],
+                    'capacity' => $tour['capacity'],
+                    'duration' => $tour['duration'],
+                    'status' => $tour['status'],
+                    'created_at' => $tour['created_at'] ?? now(),
+                    'updated_at' => $tour['updated_at'] ?? now(),
+                ]);
+
+                // Insert vào bảng tour_details
+                DB::table('tour_details')->insert([
+                    'tour_id' => $tourId,
+                    'departure_time' => $tour['departure_time'],
+                    'return_time' => $tour['return_time'],
+                    'included_services' => json_encode($tour['included_services']),
+                    'excluded_services' => json_encode($tour['excluded_services']),
+                    'highlights' => json_encode($tour['highlights']),
+                    'created_at' => $tour['created_at'] ?? now(),
+                    'updated_at' => $tour['updated_at'] ?? now(),
+                ]);
+                $insertedCount++;
+            } catch (\Exception $e) {
+                $this->command->error('Lỗi khi insert tour hoặc tour_details cho "' . $tour['title'] . '": ' . $e->getMessage());
+            }
         }
 
-        $this->command->info('Đã seed ' . count($tours) . ' tours thành công.');
+        $this->command->info('Đã seed ' . $insertedCount . ' tours và tour_details thành công.');
     }
 }

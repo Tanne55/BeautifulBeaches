@@ -28,30 +28,32 @@ class BeachesSeeder extends Seeder
         $insertedCount = 0;
         foreach ($beaches as $beach) {
             try {
-                DB::table('beaches')->insert([
-                    'region' => $beach['region'],
-                    'image' => $beach['image'],
+                // Insert vào bảng beaches
+                $beachId = DB::table('beaches')->insertGetId([
                     'title' => $beach['title'],
+                    'image' => $beach['image'],
+                    'region' => $beach['region'],
                     'short_description' => $beach['shortDescription'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+                // Insert vào bảng beach_details
+                DB::table('beach_details')->insert([
+                    'beach_id' => $beachId,
                     'long_description' => $beach['longDescription'],
-                    'long_description_2' => $beach['longDescription2'],
                     'highlight_quote' => $beach['highlightQuote'],
+                    'long_description2' => $beach['longDescription2'],
                     'tags' => json_encode($beach['tags']),
-                    'price' => $beach['price'],
-                    'original_price' => $beach['originalPrice'],
-                    'capacity' => $beach['capacity'],
-                    'duration' => $beach['duration'],
-                    'rating' => $beach['rating'],
-                    'reviews' => $beach['reviews'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
                 $insertedCount++;
             } catch (\Exception $e) {
-                $this->command->error('Lỗi khi insert beach "' . $beach['title'] . '": ' . $e->getMessage());
+                $this->command->error('Lỗi khi insert beach hoặc beach_details cho "' . $beach['title'] . '": ' . $e->getMessage());
             }
         }
 
-        $this->command->info('Đã seed ' . $insertedCount . ' beaches thành công.');
+        $this->command->info('Đã seed ' . $insertedCount . ' beaches và beach_details thành công.');
     }
 }

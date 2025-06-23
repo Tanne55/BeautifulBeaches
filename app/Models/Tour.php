@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tour extends Model
 {
-    protected $fillable = ['ceo_id', 'beach_id', 'title', 'price', 'schedule', 'description'];
+    protected $fillable = [
+        'beach_id',
+        'title',
+        'price',
+        'original_price',
+        'capacity',
+        'duration',
+        'status',
+    ];
 
     public function ceo()
     {
@@ -21,5 +29,15 @@ class Tour extends Model
     public function bookings()
     {
         return $this->hasMany(TourBooking::class);
+    }
+
+    public function detail()
+    {
+        return $this->hasOne(TourDetail::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ReviewTour::class);
     }
 }

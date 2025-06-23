@@ -1,14 +1,20 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class ReviewBeach extends Model
 {
-    protected $fillable = ['user_id', 'beach_id', 'rating', 'comment'];
+    use HasFactory;
+    protected $table = 'review_beach';
+    protected $fillable = [
+        'user_id',
+        'beach_id',
+        'rating',
+        'comment',
+    ];
 
     public function user()
     {
@@ -19,4 +25,4 @@ class Review extends Model
     {
         return $this->belongsTo(Beach::class);
     }
-}
+} 

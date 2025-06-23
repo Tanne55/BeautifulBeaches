@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeachController;
@@ -33,9 +32,7 @@ Route::middleware('auth')->group(function () {
         $beaches = Beach::all();
         return view('dashboard', compact('beaches'));
     })->name('dashboard');
-
-    Route::get('/reviews', [ReviewController::class, 'index']);
-    Route::post('/reviews', [ReviewController::class, 'store']);
+;
 });
 
 // Điều hướng của các pages
@@ -44,7 +41,16 @@ Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/contact', 'pages.contact')->name('contact');
 // Route::view('/explore', 'pages.explore')->name('explore');
 Route::get('/explore', function () {
-    $beaches = Beach::all();
+    $beaches = Beach::with('detail')->get()->map(function ($beach) {
+        return [
+            'id' => $beach->id,
+            'region' => $beach->region,
+            'image' => $beach->image,
+            'title' => $beach->title,
+            'short_description' => $beach->short_description,
+            'tags' => $beach->detail ? json_decode($beach->detail->tags, true) : [],
+        ];
+    });
     return view('pages.explore', compact('beaches'));
 })->name('explore');
 Route::view('/queries', 'pages.queries')->name('queries');

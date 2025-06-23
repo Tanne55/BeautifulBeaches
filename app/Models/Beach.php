@@ -11,27 +11,23 @@ class Beach extends Model
         'image',
         'title',
         'short_description',
-        'long_description',
-        'long_description_2',
-        'highlight_quote',
-        'tags',
-        'price',
-        'original_price',
-        'capacity',
-        'duration',
-        'rating',
-        'reviews'
     ];
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(ReviewBeach::class);
     }
 
     public function tours()
     {
         return $this->hasMany(Tour::class);
     }
+
+    public function detail()
+    {
+        return $this->hasOne(BeachDetail::class);
+    }
+
     public function get(){
         
     }

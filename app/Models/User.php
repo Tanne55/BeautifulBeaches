@@ -48,10 +48,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
 
     public function tours()
     {
@@ -62,6 +58,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(TourBooking::class);
     }
+
     public function isAdmin()
     {
         return $this->role === 'admin';
@@ -75,5 +72,15 @@ class User extends Authenticatable
     public function isUser()
     {
         return $this->role === 'user';
+    }
+
+    public function reviewBeaches()
+    {
+        return $this->hasMany(\App\Models\ReviewBeach::class);
+    }
+
+    public function reviewTours()
+    {
+        return $this->hasMany(\App\Models\ReviewTour::class);
     }
 }

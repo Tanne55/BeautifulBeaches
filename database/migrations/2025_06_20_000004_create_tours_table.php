@@ -4,30 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ceo_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('beach_id')->constrained()->onDelete('cascade');
+            $table->foreignId('beach_id')->constrained('beaches')->onDelete('cascade');
             $table->string('title');
-            $table->decimal('price', 10, 2);
-            $table->text('schedule');
-            $table->text('description')->nullable();
+            $table->decimal('price', 8, 2);
+            $table->decimal('original_price', 8, 2)->nullable();
+            $table->integer('capacity');
+            $table->string('duration');
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('tours');
     }
-};
+}; 

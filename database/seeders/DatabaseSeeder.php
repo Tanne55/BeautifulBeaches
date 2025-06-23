@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             BeachesSeeder::class,
-            // ToursSeeder::class,      // Uncomment khi có
+            ToursSeeder::class,
             // ReviewsSeeder::class,    // Uncomment khi có
         ]);
     }
