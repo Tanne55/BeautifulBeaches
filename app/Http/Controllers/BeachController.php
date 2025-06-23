@@ -31,29 +31,10 @@ class BeachController extends Controller
 
         return response()->json($beaches);
     }
-    public function show($id)
+    public function show(Beach $beach)
     {
-        $beach = Beach::findOrFail($id);
 
-        return view('pages.beach-details', [
-            'beach' => [
-                'id' => $beach->id,
-                'region' => $beach->region,
-                'image' => $beach->image,
-                'title' => $beach->title,
-                'shortDescription' => $beach->short_description,
-                'longDescription' => $beach->long_description,
-                'longDescription2' => $beach->long_description_2,
-                'highlightQuote' => $beach->highlight_quote,
-                'tags' => json_decode($beach->tags, true),
-                'price' => $beach->price,
-                'originalPrice' => $beach->original_price,
-                'capacity' => $beach->capacity,
-                'duration' => $beach->duration,
-                'rating' => $beach->rating,
-                'reviews' => $beach->reviews,
-            ]
-        ]);
+        return view('pages.detail', compact('beach'));
     }
 
     // Hiển thị danh sách bãi biển cho admin

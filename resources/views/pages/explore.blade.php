@@ -1,13 +1,16 @@
-@extends('layouts.app')
+@php
+    $layout = Auth::check() ? 'layouts.auth' : 'layouts.guest';
+@endphp
+
+
+@extends($layout)
 
 @section('title', 'Explore')
 
 @section('content')
     <!-- banner container -->
-    <section class="contact-banner mb-5">
-        <div class="overlay">
-            <h1 id="banner-title">Explore Tours</h1>
-        </div>
+    <section class="contact-banner mb-5 ">
+        <h1 id="banner-title">Explore Tour</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>
 
@@ -48,7 +51,7 @@
             <div class="tours-container">
                 <div class="tours-header">
                     <div>
-                        <span class="tours-count" id="tours-count">0 Tours found</span>
+                        <span class="tours-count" id="tours-count">15 Tours found</span>
                         <a href="#" class="clear-link" onclick="clearFilters()">Clear filter</a>
                     </div>
                     <div class="sort-controls">
@@ -67,7 +70,6 @@
                 </div>
 
                 <div class="tours-list" id="tours-list">
-
                     <!-- Tours will be rendered here -->
                     @foreach($beaches as $beach)
                         <div class="tour-card">
@@ -122,9 +124,14 @@
                                         <span class="reviews">{{ $beach->reviews ?? 0 }} Reviews</span>
                                     </div>
 
-                                    <p class="tour-description">{{ $beach->short_description ?? 'No description available' }}
+                                    <p class="tour-description mb-2">
+                                        {{ $beach->short_description ?? 'No description available' }}
                                     </p>
-                                    <p class="cursor-pointer"><i class="bi bi-tags-fill"></i> {{ is_array($beach->tags) ? implode(', ', $beach->tags) : $beach->tags }}
+                                    <div>
+                                        @foreach (json_decode($beach->tags) as $tag)
+                                            <span class="tag"><i class="fas fa-tag"></i> {{ $tag }}</span>
+                                        @endforeach
+                                    </div>
                                     </p>
                                 </div>
 

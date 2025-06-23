@@ -8,9 +8,16 @@ use App\Http\Controllers\BeachController;
 use App\Models\Beach;
 use App\Http\Middleware\IsAdmin;
 
+
 Route::get('/', function () {
-    return view('welcome');
+    $beaches = Beach::all();
+    return view('welcome', compact('beaches'));
 })->name('home');
+
+
+
+
+
 
 // Authentication Routes
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
@@ -37,23 +44,24 @@ Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/contact', 'pages.contact')->name('contact');
 // Route::view('/explore', 'pages.explore')->name('explore');
 Route::get('/explore', function () {
-        $beaches = Beach::all();
-        return view('pages.explore', compact('beaches'));
-    })->name('explore');
+    $beaches = Beach::all();
+    return view('pages.explore', compact('beaches'));
+})->name('explore');
 Route::view('/queries', 'pages.queries')->name('queries');
+Route::view('/detail', 'pages.detail')->name('detail');
 
 
 
 Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
-Route::get('/beach/{id}', [BeachController::class, 'show'])->name('beach.show');
+Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
 
 
 // CRUD của admin về beaches
-Route::middleware(['auth', IsAdmin::class])->group(function () {
-    Route::get('/admin/beaches', [BeachController::class, 'index'])->name('admin.beaches.index');
-    Route::get('/admin/beaches/create', [BeachController::class, 'create'])->name('admin.beaches.create');
-    Route::post('/admin/beaches', [BeachController::class, 'store'])->name('admin.beaches.store');
-    Route::get('/admin/beaches/{beach}/edit', [BeachController::class, 'edit'])->name('admin.beaches.edit');
-    Route::put('/admin/beaches/{beach}', [BeachController::class, 'update'])->name('admin.beaches.update');
-    Route::delete('/admin/beaches/{beach}', [BeachController::class, 'destroy'])->name('admin.beaches.destroy');
+Route::middleware(['auth', IsAdmin::class])->prefix('admin/beaches')->name('admin.beaches.')->group(function () {
+    Route::get('/', [BeachController::class, 'index'])->name('index');
+    Route::get('/create', [BeachController::class, 'create'])->name('create');
+    Route::post('/', [BeachController::class, 'store'])->name('store');
+    Route::get('/{beach}/edit', [BeachController::class, 'edit'])->name('edit');
+    Route::put('/{beach}', [BeachController::class, 'update'])->name('update');
+    Route::delete('/{beach}', [BeachController::class, 'destroy'])->name('destroy');
 });

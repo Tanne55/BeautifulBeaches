@@ -1,0 +1,328 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import './welcome.css';
+@import './about.css';
+@import './gallery.css';
+@import './contact.css';
+@import './explore.css';
+@import './admin.css';
+@import './detail.css';
+
+/* css phần sidebar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #dfe9f3 0%, #f6f3ff 100%);
+  min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar:hover {
+    width: 280px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333  ;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.logo-text {
+    color: #333333 ;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.sidebar:hover .logo-text {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+.nav-menu {
+    padding: 20px 0;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 8px 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+.nav-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #333333 ;
+}
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.nav-icon {
+  
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    background-size: contain;
+    color: 	#4a4e69;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover .nav-icon {
+    opacity: 1;
+    
+}
+.nav-link:hover .nav-text {
+  color: #f06292;
+}
+
+.sidebar:hover .nav-text {
+    opacity: 1;
+    transition-delay: 0.1s;
+    
+}
+
+.main-content {
+    margin-left: 80px;
+    padding: 40px;
+    transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Icon styles */
+.icon-home {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>');
+}
+
+.icon-user {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+}
+
+.icon-settings {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m20-7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4z"/></svg>');
+}
+
+.icon-chart {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>');
+}
+
+.icon-mail {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>');
+}
+
+.icon-help {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>');
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar:hover {
+        width: 240px;
+    }
+
+    .main-content {
+        margin-left: 60px;
+        padding: 20px;
+    }
+}
+/* ---------------------------------------------------------------- */
+
+/* css phần footer */
+.footer-section {
+    background-color: #33373a;
+    /* Màu nền tối tương tự ảnh */
+    color: #fff;
+  }
+  
+  .footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 50px;
+    /* Độ dài đường gạch dưới */
+    background-color: var(--bs-primary);
+    /* Sử dụng màu primary của Bootstrap */
+  }
+  
+  .footer-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .footer-contact-list li,
+  .footer-latest-post li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-contact-list li i {
+    color: var(--bs-primary);
+    /* Màu icon tương tự ảnh */
+  }
+  
+  .footer-latest-post a {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+  }
+  
+  .footer-latest-post a:hover {
+    color: var(--bs-primary);
+    /* Màu hover */
+  }
+  
+  .footer-latest-post .text-muted {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  .footer-subscribe-form .form-control {
+    border-radius: 4px;
+    /* Bo tròn input */
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .footer-subscribe-form .btn-subscribe {
+    background-color: #e84133;
+    /* Màu nút subscribe */
+    border-color: #e84133;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .footer-subscribe-form .btn-subscribe:hover {
+    background-color: #c83125;
+    /* Màu hover nút subscribe */
+    border-color: #c83125;
+  }
+
+  .btn-link:hover{
+    background-color: var(--bs-danger) !important;
+    color: white !important;
+  }
+  
+  .footer-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-links li a {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links li a:hover {
+    color: var(--bs-primary);
+    /* Màu hover */
+  }
+  
+  .footer-links li {
+    vertical-align: middle;
+  }
+  
+  @media (max-width: 767.98px) {
+    .footer-title {
+      margin-top: 20px;
+    }
+  
+    .footer-badges img {
+      max-width: 60px !important;
+    }
+  }
+  
+  .botron {
+    border-radius: 50%;
+    width: 50px;
+    /* Chiều rộng của logo */
+    height: 50px;
+    /* Chiều cao của logo */
+    overflow: hidden;
+    /* Đảm bảo nội dung không tràn ra ngoài */
+  }

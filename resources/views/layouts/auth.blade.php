@@ -8,23 +8,20 @@
     <title>Beautiful Beaches</title>
     <!-- Scripts and Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/auth.css', 'resources/js/auth.js'])
 
 </head>
 
 <body>
-    {{-- Social Media --}}
-    @include('layouts.social_media')
 
-
-    {{-- Header --}}
-    @include('layouts.header')
+    {{-- sidebar --}}
+    @include('layouts.sidebar')
 
 
 
     {{-- Nội dung động của từng trang --}}
-    <main class="py-4">
-        <div class="container-fluid">
+    <main>
+        <div>
             @yield('content')
         </div>
     </main>

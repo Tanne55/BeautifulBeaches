@@ -1,13 +1,16 @@
-@extends('layouts.app')
+@php
+    $layout = Auth::check() ? 'layouts.auth' : 'layouts.guest';
+@endphp
+
+
+@extends($layout)
 
 @section('title', 'About Us')
 
 @section('content')
     <!-- banner container -->
-    <section class="contact-banner mb-5">
-        <div class="overlay">
-            <h1 id="banner-title">About Us</h1>
-        </div>
+    <section class="contact-banner mb-5 ">
+        <h1 id="banner-title">About us</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>
 

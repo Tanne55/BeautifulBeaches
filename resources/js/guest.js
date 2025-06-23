@@ -1,4 +1,4 @@
-import './bootstrap';
+import './bootstrap.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // Import Bootstrap's JavaScript
@@ -11,3 +11,5 @@ import './gallery.js';
 import './contact.js';
 import './explore.js';
 import './queries.js';
+import './detail.js';
+
