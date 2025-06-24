@@ -23,8 +23,8 @@
 
 
     {{-- Nội dung động của từng trang --}}
-    <main class="py-4">
-        <div class="container-fluid">
+    <main class="">
+        <div class="">
             @yield('content')
         </div>
     </main>

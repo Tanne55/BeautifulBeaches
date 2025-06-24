@@ -50,35 +50,37 @@
                 <span class="visually-hidden">Tiếp</span>
             </button>
         </div>
+
+        <!-- Form tìm kiếm -->
+        <div class="container position-absolute start-50 translate-middle-x"
+            style="bottom:-10%; z-index:2; max-width:1100px;">
+            <form action="/Pages/Explore/explore.html"
+                class="bg-white rounded shadow p-5 row g-3 align-items-end banner-search-form">
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Tìm Điểm Đến*</label>
+                    <input type="text" class="form-control" placeholder="Nhập Điểm Đến"
+                        style="background-color:#F8F8F8; border:none;">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Số Khách*</label>
+                    <input type="number" class="form-control" placeholder="Số Người"
+                        style="background-color:#F8F8F8; border:none;">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Ngày Đến*</label>
+                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-semibold">Ngày Về*</label>
+                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-danger btn-lg banner-search-btn">TƯ VẤN NGAY</button>
+                </div>
+            </form>
+        </div>
     </section>
-    <!-- Form tìm kiếm -->
-    <div class="container position-absolute start-50 translate-middle-x"
-        style="bottom:-60px; z-index:2; max-width:1100px; top: 75%;">
-        <form action="/Pages/Explore/explore.html"
-            class="bg-white rounded shadow p-5 row g-3 align-items-end banner-search-form">
-            <div class="col-md-3">
-                <label class="form-label fw-semibold">Tìm Điểm Đến*</label>
-                <input type="text" class="form-control" placeholder="Nhập Điểm Đến"
-                    style="background-color:#F8F8F8; border:none;">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label fw-semibold">Số Khách*</label>
-                <input type="number" class="form-control" placeholder="Số Người"
-                    style="background-color:#F8F8F8; border:none;">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label fw-semibold">Ngày Đến*</label>
-                <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label fw-semibold">Ngày Về*</label>
-                <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
-            </div>
-            <div class="col-md-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-danger btn-lg banner-search-btn">TƯ VẤN NGAY</button>
-            </div>
-        </form>
-    </div>
+
 
 
 
@@ -108,12 +110,12 @@
                 <div class="col-sm-3">
                     <div class="position-relative rounded overflow-hidden destination-card"
                         style="
-                                                                                                                                                                                    background-image: url('/assets/img2/bien-ha-long.jpg');
-                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                    background-position: center;
-                                                                                                                                                                                    height: 500px;
-                                                                                                                                                                                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                  ">
+                                                                                                                                                                                                        background-image: url('/assets/img2/bien-ha-long.jpg');
+                                                                                                                                                                                                        background-size: cover;
+                                                                                                                                                                                                        background-position: center;
+                                                                                                                                                                                                        height: 500px;
+                                                                                                                                                                                                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                                                                                                                                                                      ">
 
                         <!-- Lớp overlay làm tối nền -->
                         <div class="position-absolute top-0 start-0 w-100 h-100"
@@ -139,12 +141,12 @@
                 <div class="col-sm-3 ">
                     <div class="position-relative rounded overflow-hidden destination-card"
                         style="
-                                                                                                                                                                                    background-image: url('/assets/img2/bien-sam-son.jpg');
-                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                    background-position: center;
-                                                                                                                                                                                    height:  500px;
-                                                                                                                                                                                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                  ">
+                                                                                                                                                                                                        background-image: url('/assets/img2/bien-sam-son.jpg');
+                                                                                                                                                                                                        background-size: cover;
+                                                                                                                                                                                                        background-position: center;
+                                                                                                                                                                                                        height:  500px;
+                                                                                                                                                                                                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                                                                                                                                                                      ">
 
                         <!-- Lớp overlay làm tối nền -->
                         <div class="position-absolute top-0 start-0 w-100 h-100"
@@ -170,9 +172,9 @@
                     <!-- Ảnh 1 -->
                     <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
                         style="
-                                                                                                                                                                                    background-image: url('/assets/img2/cat-ba.jpg');
-                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                    background-position: center;">
+                                                                                                                                                                                                        background-image: url('/assets/img2/cat-ba.jpg');
+                                                                                                                                                                                                        background-size: cover;
+                                                                                                                                                                                                        background-position: center;">
                         <!-- Overlay -->
                         <div class="position-absolute top-0 start-0 w-100 h-100"
                             style="background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
@@ -190,9 +192,9 @@
                     <!-- Ảnh 2 -->
                     <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
                         style="
-                                                                                                                                                                                    background-image: url('/assets/img2/nha-trang.jpg');
-                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                    background-position: center;">
+                                                                                                                                                                                                        background-image: url('/assets/img2/nha-trang.jpg');
+                                                                                                                                                                                                        background-size: cover;
+                                                                                                                                                                                                        background-position: center;">
                         <!-- Overlay -->
                         <div class="position-absolute top-0 start-0 w-100 h-100"
                             style="background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
@@ -370,21 +372,21 @@
     <!-- Quảng cáo giữa trang Home -->
     <div
         style="
-                                                                                                                                                                            background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
-                                                                                                                                                                            background-size: cover;
-                                                                                                                                                                            background-position: center;
-                                                                                                                                                                            padding: 60px 20px;
-                                                                                                                                                                            position: relative;
-                                                                                                                                                                            color: white;
-                                                                                                                                                                          ">
+                                                                                                                                                                                                background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
+                                                                                                                                                                                                background-size: cover;
+                                                                                                                                                                                                background-position: center;
+                                                                                                                                                                                                padding: 60px 20px;
+                                                                                                                                                                                                position: relative;
+                                                                                                                                                                                                color: white;
+                                                                                                                                                                                              ">
         <!-- Lớp phủ tối để dễ đọc chữ -->
         <div
             style="
-                                                                                                                                                                            position: absolute;
-                                                                                                                                                                            top: 0; left: 0; right: 0; bottom: 0;
-                                                                                                                                                                            background-color: rgba(0, 0, 0, 0.5);
-                                                                                                                                                                            z-index: 1;
-                                                                                                                                                                          ">
+                                                                                                                                                                                                position: absolute;
+                                                                                                                                                                                                top: 0; left: 0; right: 0; bottom: 0;
+                                                                                                                                                                                                background-color: rgba(0, 0, 0, 0.5);
+                                                                                                                                                                                                z-index: 1;
+                                                                                                                                                                                              ">
         </div>
 
         <!-- Nội dung quảng cáo -->

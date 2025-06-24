@@ -1,7 +1,7 @@
 .hh {
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
+
   position: relative;
 }
 
@@ -230,13 +230,15 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border-color: #0d6efd;
 }
+
 .activity-detail-box {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) translateY(20px); /* Dịch xuống 20px để dùng cho hiệu ứng */
+  transform: translate(-50%, -50%) translateY(20px);
+  /* Dịch xuống 20px để dùng cho hiệu ứng */
   background: rgba(255, 255, 255, 0.75);
- 
+
   max-height: 500px;
   z-index: 999;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -250,17 +252,21 @@
 /* Hiển thị */
 .activity-detail-box.show {
   opacity: 1;
-  transform: translate(-50%, -50%) translateY(0); /* Hiệu ứng trượt lên */
+  transform: translate(-50%, -50%) translateY(0);
+  /* Hiệu ứng trượt lên */
   pointer-events: auto;
 }
+
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* mờ tối */
-  backdrop-filter: blur(1px); /* hiệu ứng mờ */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* mờ tối */
+  backdrop-filter: blur(1px);
+  /* hiệu ứng mờ */
   z-index: 998;
   opacity: 0;
   pointer-events: none;

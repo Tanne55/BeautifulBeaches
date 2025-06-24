@@ -8,19 +8,17 @@
 @import './admin.css';
 @import './detail.css';
 
-/* css phần sidebar */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+/* --------------------------------------------------------------------------------- */
 
 body {
-  background: linear-gradient(135deg, #dfe9f3 0%, #f6f3ff 100%);
-  min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
+/* Sidebar styling */
 .sidebar {
     position: fixed;
     left: 0;
@@ -33,6 +31,9 @@ body {
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 1000;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .sidebar:hover {
@@ -59,7 +60,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #333333  ;
+    color: white;
     font-weight: bold;
     font-size: 18px;
     flex-shrink: 0;
@@ -67,7 +68,7 @@ body {
 }
 
 .logo-text {
-    color: #333333 ;
+    color: black;
     font-size: 20px;
     font-weight: 600;
     opacity: 0;
@@ -80,20 +81,30 @@ body {
     transition-delay: 0.1s;
 }
 
+/* Nav items styling */
+.nav-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .nav-menu {
     padding: 20px 0;
     list-style: none;
+    flex: 1;
+    margin: 0;
 }
 
 .nav-item {
     margin: 8px 0;
+    position: relative;
 }
 
 .nav-link {
     display: flex;
     align-items: center;
     padding: 15px 20px;
-    color: rgba(255, 255, 255, 0.8);
+    color: black;
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: 0 25px 25px 0;
@@ -117,75 +128,212 @@ body {
 .nav-link:hover::before {
     width: 100%;
 }
-.nav-text {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-  font-weight: 500;
-  color: #333333 ;
-}
+
 .nav-link:hover {
+    color: #ff6b81;
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(5px);
 }
 
 .nav-icon {
-  
     width: 24px;
     height: 24px;
     margin-right: 15px;
     flex-shrink: 0;
-    background-size: contain;
-    color: 	#4a4e69;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
 
 .nav-link:hover .nav-icon {
     opacity: 1;
-    
 }
-.nav-link:hover .nav-text {
-  color: #f06292;
+
+.nav-text {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    flex: 1;
 }
 
 .sidebar:hover .nav-text {
     opacity: 1;
     transition-delay: 0.1s;
-    
 }
 
-.main-content {
-    margin-left: 80px;
-    padding: 40px;
-    transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Collapse styles */
+.collapse {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin: 0 20px;
+    padding: 0;
+    overflow: hidden;
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    display: block !important;
+    /* Override Bootstrap */
 }
 
-/* Icon styles */
-.icon-home {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>');
+.nav-item:hover .collapse {
+    max-height: 500px;
+    /* Đủ lớn để chứa nội dung */
+    transition: max-height 0.5s ease-in;
 }
 
-.icon-user {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+.dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    /* color: rgba(255, 255, 255, 0.9) !important; */
+    color: #2c3e50 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 4px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.icon-settings {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m20-7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4z"/></svg>');
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: black !important;
+    font-weight: bold;
+    transform: translateX(5px);
 }
 
-.icon-chart {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>');
+.dropdown-item:first-child {
+    margin-top: 8px;
 }
 
-.icon-mail {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>');
+.dropdown-item:last-child {
+    margin-bottom: 8px;
 }
 
-.icon-help {
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>');
+.dropdown-toggle::after {
+    display: none;
 }
 
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar:hover .dropdown-arrow {
+    opacity: 0.8;
+}
+
+.nav-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Logout section */
+.logout-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.logout-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(220, 53, 69, 0.2), rgba(220, 53, 69, 0.1));
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.logout-link:hover::before {
+    width: 100%;
+}
+
+.logout-link:hover {
+    color: #ff4757 !important;
+    background: rgba(220, 53, 69, 0.1);
+    transform: translateX(5px);
+}
+
+.logout-icon {
+    color: black;
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.logout-link:hover .logout-icon {
+    opacity: 1;
+    color: #ff4757 !important;
+}
+
+.logout-text {
+    color: black;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    flex: 1;
+}
+
+.logout-text:hover {
+    color: #ff4757;
+}
+
+.sidebar:hover .logout-text {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* Active state */
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: white !important;
+    transform: translateX(5px);
+}
+
+/* Ripple effect */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .sidebar {
         width: 60px;
@@ -200,24 +348,25 @@ body {
         padding: 20px;
     }
 }
-/* ---------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------- */
 
 /* css phần footer */
 .footer-section {
     background-color: #33373a;
     /* Màu nền tối tương tự ảnh */
     color: #fff;
-  }
-  
-  .footer-title {
+}
+
+.footer-title {
     font-size: 1.2rem;
     margin-bottom: 20px;
     color: #fff;
     position: relative;
     padding-bottom: 10px;
-  }
-  
-  .footer-title::after {
+}
+
+.footer-title::after {
     content: '';
     position: absolute;
     left: 0;
@@ -227,48 +376,48 @@ body {
     /* Độ dài đường gạch dưới */
     background-color: var(--bs-primary);
     /* Sử dụng màu primary của Bootstrap */
-  }
-  
-  .footer-text {
+}
+
+.footer-text {
     font-size: 0.9rem;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .footer-contact-list li,
-  .footer-latest-post li {
+}
+
+.footer-contact-list li,
+.footer-latest-post li {
     margin-bottom: 10px;
-  }
-  
-  .footer-contact-list li i {
+}
+
+.footer-contact-list li i {
     color: var(--bs-primary);
     /* Màu icon tương tự ảnh */
-  }
-  
-  .footer-latest-post a {
+}
+
+.footer-latest-post a {
     color: rgba(255, 255, 255, 0.9);
     transition: color 0.3s ease;
-  }
-  
-  .footer-latest-post a:hover {
+}
+
+.footer-latest-post a:hover {
     color: var(--bs-primary);
     /* Màu hover */
-  }
-  
-  .footer-latest-post .text-muted {
+}
+
+.footer-latest-post .text-muted {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.6) !important;
-  }
-  
-  .footer-subscribe-form .form-control {
+}
+
+.footer-subscribe-form .form-control {
     border-radius: 4px;
     /* Bo tròn input */
     border: none;
     padding: 10px 15px;
     font-size: 0.9rem;
-  }
-  
-  .footer-subscribe-form .btn-subscribe {
+}
+
+.footer-subscribe-form .btn-subscribe {
     background-color: #e84133;
     /* Màu nút subscribe */
     border-color: #e84133;
@@ -276,48 +425,48 @@ body {
     font-weight: bold;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-  }
-  
-  .footer-subscribe-form .btn-subscribe:hover {
+}
+
+.footer-subscribe-form .btn-subscribe:hover {
     background-color: #c83125;
     /* Màu hover nút subscribe */
     border-color: #c83125;
-  }
+}
 
-  .btn-link:hover{
+.btn-link:hover {
     background-color: var(--bs-danger) !important;
     color: white !important;
-  }
-  
-  .footer-divider {
+}
+
+.footer-divider {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .footer-links li a {
+}
+
+.footer-links li a {
     color: rgba(255, 255, 255, 0.9);
     transition: color 0.3s ease;
-  }
-  
-  .footer-links li a:hover {
+}
+
+.footer-links li a:hover {
     color: var(--bs-primary);
     /* Màu hover */
-  }
-  
-  .footer-links li {
+}
+
+.footer-links li {
     vertical-align: middle;
-  }
-  
-  @media (max-width: 767.98px) {
+}
+
+@media (max-width: 767.98px) {
     .footer-title {
-      margin-top: 20px;
+        margin-top: 20px;
     }
-  
+
     .footer-badges img {
-      max-width: 60px !important;
+        max-width: 60px !important;
     }
-  }
-  
-  .botron {
+}
+
+.botron {
     border-radius: 50%;
     width: 50px;
     /* Chiều rộng của logo */
@@ -325,4 +474,4 @@ body {
     /* Chiều cao của logo */
     overflow: hidden;
     /* Đảm bảo nội dung không tràn ra ngoài */
-  }
+}

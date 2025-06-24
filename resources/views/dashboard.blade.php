@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="min-vh-100 main-content" style="background: linear-gradient(135deg, #ffffff 0%, #c2e9fb 100%);">
+    <div class="min-vh-100" style="background: linear-gradient(135deg, #ffffff 0%, #c2e9fb 100%);">
         <div class="container py-5">
             <!-- Header Section -->
             <div class="text-center mb-5">

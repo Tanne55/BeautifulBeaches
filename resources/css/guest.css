@@ -53,10 +53,10 @@ body {
 }
 
 /* Hiển thị menu khi hover */
-/* .nav-item.dropdown:hover .dropdown-menu {
+.nav-item.dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;
-} */
+}
 
 /* Đổi màu chữ Home và icon sang đỏ khi hover vào nav-item.dropdown */
 .nav-item.dropdown:hover>.nav-link,
