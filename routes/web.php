@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeachController;
 use App\Models\Beach;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsCeo;
+use App\Http\Middleware\IsUser;
+
 
 
 Route::get('/', function () {
@@ -27,12 +30,38 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Protected Routes
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        $beaches = Beach::all();
-        return view('dashboard', compact('beaches'));
-    })->name('dashboard');
-;
+// Route::middleware('auth')->group(function () {
+//     Route::get('/dashboard', function () {
+//         $beaches = Beach::all();
+//         return view('dashboard', compact('beaches'));
+//     })->name('dashboard');
+// ;
+// });
+
+// Dashboard & CRUD Admin
+Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+    // CRUD của admin về beaches
+    Route::prefix('beaches')->name('beaches.')->group(function () {
+        Route::get('/', [BeachController::class, 'index'])->name('index');
+        Route::get('/create', [BeachController::class, 'create'])->name('create');
+        Route::post('/', [BeachController::class, 'store'])->name('store');
+        Route::get('/{beach}/edit', [BeachController::class, 'edit'])->name('edit');
+        Route::put('/{beach}', [BeachController::class, 'update'])->name('update');
+        Route::delete('/{beach}', [BeachController::class, 'destroy'])->name('destroy');
+    });
+});
+
+// Dashboard & CRUD Ceo
+Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\CeoController::class, 'dashboard'])->name('dashboard');
+    
+});
+
+// Dashboard & CRUD User
+Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
+    
 });
 
 // Điều hướng của các pages
@@ -60,14 +89,3 @@ Route::view('/detail', 'pages.detail')->name('detail');
 
 Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
-
-
-// CRUD của admin về beaches
-Route::middleware(['auth', IsAdmin::class])->prefix('admin/beaches')->name('admin.beaches.')->group(function () {
-    Route::get('/', [BeachController::class, 'index'])->name('index');
-    Route::get('/create', [BeachController::class, 'create'])->name('create');
-    Route::post('/', [BeachController::class, 'store'])->name('store');
-    Route::get('/{beach}/edit', [BeachController::class, 'edit'])->name('edit');
-    Route::put('/{beach}', [BeachController::class, 'update'])->name('update');
-    Route::delete('/{beach}', [BeachController::class, 'destroy'])->name('destroy');
-});

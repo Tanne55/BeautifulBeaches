@@ -11,7 +11,7 @@
                 <p class="lead text-black-50">Quản lý hệ thống một cách hiệu quả và chuyên nghiệp</p>
             </div>
 
-            @if(auth()->user() && auth()->user()->isAdmin())
+            @if(auth()->user() && auth()->user()->isUser())
                 <!-- Stats Cards -->
                 <div class="row g-4 mb-5">
                     <div class="col-lg-3 col-md-6">
@@ -74,157 +74,51 @@
 
                 <!-- Management Cards -->
                 <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-umbrella-beach fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý bãi biển</h5>
-                                        <small class="text-muted">Thêm, sửa, xóa bãi biển</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Quản lý thông tin chi tiết về các bãi biển, cập nhật trạng
-                                    thái và thông tin du lịch.</p>
-                                <a href="{{ route('admin.beaches.index') }}" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102,126,234,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý bãi biển
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-users fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý người dùng</h5>
-                                        <small class="text-muted">Quản lý tài khoản người dùng</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Quản lý thông tin người dùng, phân quyền và theo dõi hoạt
-                                    động của hệ thống.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #f093fb, #f5576c); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(240,147,251,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý người dùng
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-6 col-md-12">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="icon-wrapper me-3"
                                         style="width: 60px; height: 60px; background: linear-gradient(45deg, #4facfe, #00f2fe); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-calendar-alt fa-lg text-white"></i>
+                                        <i class="fas fa-calendar-plus fa-lg text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý đặt chỗ</h5>
-                                        <small class="text-muted">Theo dõi và xử lý đặt chỗ</small>
+                                        <h5 class="card-title mb-1 fw-bold text-dark">Đặt tour</h5>
+                                        <small class="text-muted">Đặt tour du lịch mới</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Quản lý các yêu cầu đặt chỗ, xác nhận và theo dõi trạng
-                                    thái đặt chỗ của khách hàng.</p>
+                                <p class="card-text text-muted mb-4">Đặt tour du lịch đến các bãi biển nổi tiếng, trải nghiệm dịch vụ tốt nhất.</p>
                                 <a href="#" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý đặt chỗ
+                                    <i class="fas fa-arrow-right me-2"></i>Đặt tour
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-6 col-md-12">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="icon-wrapper me-3"
                                         style="width: 60px; height: 60px; background: linear-gradient(45deg, #43e97b, #38f9d7); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-chart-bar fa-lg text-white"></i>
+                                        <i class="fas fa-history fa-lg text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Thống kê báo cáo</h5>
-                                        <small class="text-muted">Xem báo cáo và thống kê</small>
+                                        <h5 class="card-title mb-1 fw-bold text-dark">Lịch sử đặt tour</h5>
+                                        <small class="text-muted">Xem lịch sử đặt tour</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Xem các báo cáo chi tiết về doanh thu, lượt truy cập và
-                                    hiệu suất hệ thống.</p>
+                                <p class="card-text text-muted mb-4">Xem lại các tour đã đặt, trạng thái và chi tiết từng chuyến đi.</p>
                                 <a href="#" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #43e97b, #38f9d7); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(67,233,123,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Xem báo cáo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #fa709a, #fee140); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-cog fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Cài đặt hệ thống</h5>
-                                        <small class="text-muted">Cấu hình và thiết lập</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Cấu hình các thiết lập chung của hệ thống, email template
-                                    và các tùy chọn khác.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #fa709a, #fee140); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(250,112,154,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Cài đặt hệ thống
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #a8edea, #fed6e3); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-bell fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Thông báo</h5>
-                                        <small class="text-muted">Quản lý thông báo hệ thống</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Gửi thông báo đến người dùng và quản lý các thông báo quan
-                                    trọng của hệ thống.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #a8edea, #fed6e3); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(168,237,234,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý thông báo
+                                    <i class="fas fa-arrow-right me-2"></i>Xem lịch sử
                                 </a>
                             </div>
                         </div>

@@ -46,16 +46,6 @@
                                 class="form-control" required autocomplete="new-password">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="role" class="form-label">Role</label>
-                            <select id="role" name="role" class="form-select" required>
-                                <option value="" disabled selected>-- Chọn vai trò --</option>
-                                <option value="user">User</option>
-                                <option value="ceo">CEO</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
-
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">

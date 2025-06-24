@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('content')
     <div class="container">
         <h1>Danh sách bãi biển</h1>
@@ -12,7 +12,6 @@
                     <th>ID</th>
                     <th>Tiêu đề</th>
                     <th>Khu vực</th>
-                    <th>Giá</th>
                     <th>Hành động</th>
                 </tr>
             </thead>
@@ -22,7 +21,6 @@
                         <td>{{ $beach->id }}</td>
                         <td>{{ $beach->title }}</td>
                         <td>{{ $beach->region }}</td>
-                        <td>{{ $beach->price }}</td>
                         <td>
                             <a href="{{ route('admin.beaches.edit', $beach->id) }}" class="btn btn-warning btn-sm">Sửa</a>
                             <form action="{{ route('admin.beaches.destroy', $beach->id) }}" method="POST"

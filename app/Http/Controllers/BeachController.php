@@ -7,23 +7,24 @@ use App\Models\Beach;
 
 class BeachController extends Controller
 {
-    public function getBeaches()
+    // Hàm xử lý dữ liệu bãi biển, dùng cho view
+    protected function getBeachesData()
     {
-        $beaches = Beach::with('detail')->get()->map(function ($beach) {
-            return [
+        return Beach::with('detail')->get()->map(function ($beach) {
+            return (object) [
                 'id' => $beach->id,
                 'region' => $beach->region,
                 'image' => $beach->image,
                 'title' => $beach->title,
-                'shortDescription' => $beach->short_description,
-                'longDescription' => $beach->detail->long_description ?? null,
-                'longDescription2' => $beach->detail->long_description2 ?? null,
-                'highlightQuote' => $beach->detail->highlight_quote ?? null,
+                'short_description' => $beach->short_description,
+                'long_description' => $beach->detail->long_description ?? null,
+                'long_description_2' => $beach->detail->long_description2 ?? null,
+                'highlight_quote' => $beach->detail->highlight_quote ?? null,
                 'tags' => $beach->detail ? json_decode($beach->detail->tags, true) : [],
             ];
         });
-        return response()->json($beaches);
     }
+
     public function show(Beach $beach)
     {
         $detail = $beach->detail;
@@ -44,7 +45,7 @@ class BeachController extends Controller
     // Hiển thị danh sách bãi biển cho admin
     public function index()
     {
-        $beaches = Beach::all();
+        $beaches = $this->getBeachesData();
         return view('admin.beaches.index', compact('beaches'));
     }
 
@@ -59,7 +60,7 @@ class BeachController extends Controller
     {
         $validated = $request->validate([
             'region' => 'required|string|max:255',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => 'required|string|max:255',
             'short_description' => 'required|string',
             'long_description' => 'nullable|string',
@@ -67,20 +68,32 @@ class BeachController extends Controller
             'highlight_quote' => 'nullable|string',
             'tags' => 'nullable',
         ]);
-        $beach = Beach::create($validated);
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagepath = $image->store('beaches', 'public');
+            $validated['image'] = $imagepath;
+        }
+        $beach = Beach::create([
+            'region' => $validated['region'],
+            'image' => $imagePath,
+            'title' => $validated['title'],
+            'short_description' => $validated['short_description'],
+        ]);
         $beach->detail()->create([
             'long_description' => $validated['long_description'] ?? null,
             'long_description2' => $validated['long_description2'] ?? null,
             'highlight_quote' => $validated['highlight_quote'] ?? null,
             'tags' => isset($validated['tags']) ? json_encode($validated['tags']) : null,
         ]);
-        return redirect()->route('admin.beaches.index')->with('success', 'Thêm bãi biển thành công!');
+        return redirect()->route('admin.beaches.index')->with('success','Thêm bãi biển thành công!');
     }
 
     // Hiển thị form sửa bãi biển
     public function edit($id)
     {
-        $beach = Beach::findOrFail($id);
+        $beaches = $this->getBeachesData();
+        $beach = $beaches->firstWhere('id', $id);
         return view('admin.beaches.edit', compact('beach'));
     }
 
@@ -89,7 +102,7 @@ class BeachController extends Controller
     {
         $validated = $request->validate([
             'region' => 'required|string|max:255',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => 'required|string|max:255',
             'short_description' => 'required|string',
             'long_description' => 'nullable|string',
@@ -98,7 +111,21 @@ class BeachController extends Controller
             'tags' => 'nullable',
         ]);
         $beach = Beach::findOrFail($id);
-        $beach->update($validated);
+        // Xử lý upload ảnh nếu có file mới
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('beaches', 'public');
+            $validated['image'] = $imagePath;
+        } else {
+            // Nếu không upload ảnh mới, giữ nguyên ảnh cũ
+            $validated['image'] = $beach->image;
+        }
+        $beach->update([
+            'region' => $validated['region'],
+            'image' => $validated['image'],
+            'title' => $validated['title'],
+            'short_description' => $validated['short_description'],
+        ]);
         $beach->detail()->updateOrCreate(
             ['beach_id' => $beach->id],
             [

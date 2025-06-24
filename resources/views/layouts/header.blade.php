@@ -54,7 +54,7 @@
         <!-- Phần 3: Đăng nhập/Đăng ký hoặc Dashboard/Logout -->
         <div>
             @auth
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-danger fw-bold me-2">Dashboard</a>
+               
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-link fw-bold text-danger">Logout</button>

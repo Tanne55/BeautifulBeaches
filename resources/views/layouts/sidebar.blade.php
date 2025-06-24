@@ -18,14 +18,32 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/dashboard" class="nav-link">
-                    <div class="nav-icon"><i class="bi bi-person"></i></div>
-                    <span class="nav-text">Bảng điều hành</span>
-                    <div class="dropdown-arrow"><i class="bi bi-chevron-down"></i></div>
-                </a>
+                @auth
+                    @php
+                        $dashboardRoute = '';
+                        if(auth()->user()->isAdmin()) {
+                            $dashboardRoute = route('admin.dashboard');
+                        } elseif(auth()->user()->isCEO()) {
+                            $dashboardRoute = route('ceo.dashboard');
+                        } elseif(auth()->user()->isUser()) {
+                            $dashboardRoute = route('user.dashboard');
+                        }
+                    @endphp
+                    <a href="{{ $dashboardRoute }}" class="nav-link">
+                        <div class="nav-icon"><i class="bi bi-person"></i></div>
+                        <span class="nav-text">Bảng điều hành</span>
+                        <div class="dropdown-arrow"><i class="bi bi-chevron-down"></i></div>
+                    </a>
+                @else
+                    <a href="/login" class="nav-link">
+                        <div class="nav-icon"><i class="bi bi-person"></i></div>
+                        <span class="nav-text">Bảng điều hành</span>
+                        <div class="dropdown-arrow"><i class="bi bi-chevron-down"></i></div>
+                    </a>
+                @endauth
                 <div class="collapse">
                     <div class="px-2 py-1">
-                        <a href="#" class="dropdown-item">Dự án mới</a>
+                        <a href="/admin/beaches" class="dropdown-item">Dự án mới</a> 
                         <a href="#" class="dropdown-item">Dự án đang thực hiện</a>
                         <a href="#" class="dropdown-item">Dự án đã hoàn thành</a>
                         <a href="#" class="dropdown-item">Dự án đã hủy</a>
@@ -65,10 +83,14 @@
         </ul>
 
         <div class="logout-section">
-            <a href="/register" class="logout-link" id="logoutBtn">
-                <div class="logout-icon"><i class="bi bi-box-arrow-right"></i></div>
-                <span class="logout-text">Đăng xuất</span>
-            </a>
+
+            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                @csrf
+                <a href="/register" class="logout-link" id="logoutBtn" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <div class="logout-icon"><i class="bi bi-box-arrow-right"></i></div>
+                    <span class="logout-text">Đăng xuất</span>
+                </a>
+            </form>
         </div>
     </div>
 </div>
