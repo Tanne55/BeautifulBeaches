@@ -23,38 +23,16 @@
     "reviews": 47
     
   },
+  
   {
     "id": 2,
     "region": "Northern Vietnam",
     "image": "/assets/image/2.jpg",
-    "title": "Do Son Beach: Tradition and Tranquility",
-    "shortDescription": "A calm escape close to the city, Do Son Beach is known for its cool waves and relaxing atmosphere.",
-    "longDescription": "Located in Hai Phong, Do Son Beach blends heritage with nature. From temples to ocean walks, it’s a destination filled with peaceful discovery.",
-    "highlightQuote": "Do Son—where history whispers with every wave.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
-    "tags": [
-      "Travel",
-      "Beach",
-      "Hai Phong",
-      "Vietnam",
-      "Family"
-    ],
-    "price": 40.32,
-    "originalPrice": 82.2,
-    "capacity": 40,
-    "duration": "1 DAY",
-    "rating": 3,
-    "reviews": 21
-  },
-  {
-    "id": 3,
-    "region": "Northern Vietnam",
-    "image": "/assets/image/3.jpg",
-    "title": "Co To Island: The Hidden Jewel of the North",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Exploring the Charm of Van Chay Beach",
+    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
+    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
+    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
+    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
     "tags": [
       "Travel",
       "Beach",
@@ -62,12 +40,35 @@
       "Vietnam",
       "Family"
     ],
-    "price": 43.43,
-    "originalPrice": 83.91,
-    "capacity": 50,
+    "price": 44.73,
+    "originalPrice": 91.27,
+    "capacity": 30,
     "duration": "1 DAY",
     "rating": 3,
-    "reviews": 12
+    "reviews": 31
+  },
+  {
+    "id": 3,
+    "region": "Central Vietnam",
+    "image": "/assets/image/3.jpg",
+    "title": "Discovering the Beauty of An Bang Beach",
+    "shortDescription": "A scenic beach with golden sands and gentle waves, perfect for relaxing getaways.",
+    "longDescription": "This beach offers a combination of natural beauty and leisure activities. Visitors can enjoy swimming, sunbathing, and exploring nearby attractions.",
+    "highlightQuote": "Where the sea breeze brings peace to your soul.",
+    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "tags": [
+      "Travel",
+      "Beach",
+      "Hoi An",
+      "Vietnam",
+      "Family"
+    ],
+    "price": 79.56,
+    "originalPrice": 89.82,
+    "capacity": 40,
+    "duration": "1 DAY",
+    "rating": 3,
+    "reviews": 31
   },
   {
     "id": 4,
@@ -94,26 +95,26 @@
   },
   {
     "id": 5,
-    "region": "Northern Vietnam",
+    "region": "Central Vietnam",
     "image": "/assets/image/5.jpg",
-    "title": "Exploring the Charm of Van Chay Beach",
-    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
-    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
-    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
-    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
+    "title": "Discovering the Beauty of Lang Co Beach",
+    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
+    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
+    "highlightQuote": "Every wave carries a new memory.",
+    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
     "tags": [
       "Travel",
       "Beach",
-      "Quang Ninh",
+      "Hue",
       "Vietnam",
       "Family"
     ],
-    "price": 44.73,
-    "originalPrice": 91.27,
+    "price": 81.03,
+    "originalPrice": 93.17,
     "capacity": 30,
     "duration": "1 DAY",
     "rating": 3,
-    "reviews": 31
+    "reviews": 23
   },
   {
     "id": 6,
@@ -255,26 +256,26 @@
   },
   {
     "id": 12,
-    "region": "Central Vietnam",
+    "region": "Northern Vietnam",
     "image": "/assets/image/12.jpg",
-    "title": "Discovering the Beauty of Lang Co Beach",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Do Son Beach: Tradition and Tranquility",
+    "shortDescription": "A calm escape close to the city, Do Son Beach is known for its cool waves and relaxing atmosphere.",
+    "longDescription": "Located in Hai Phong, Do Son Beach blends heritage with nature. From temples to ocean walks, it’s a destination filled with peaceful discovery.",
+    "highlightQuote": "Do Son—where history whispers with every wave.",
+    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
     "tags": [
       "Travel",
       "Beach",
-      "Hue",
+      "Hai Phong",
       "Vietnam",
       "Family"
     ],
-    "price": 81.03,
-    "originalPrice": 93.17,
-    "capacity": 30,
+    "price": 40.32,
+    "originalPrice": 82.2,
+    "capacity": 40,
     "duration": "1 DAY",
     "rating": 3,
-    "reviews": 23
+    "reviews": 21
   },
   {
     "id": 13,
@@ -301,26 +302,26 @@
   },
   {
     "id": 14,
-    "region": "Central Vietnam",
+    "region": "Northern Vietnam",
     "image": "/assets/image/14.jpg",
-    "title": "Discovering the Beauty of An Bang Beach",
-    "shortDescription": "A scenic beach with golden sands and gentle waves, perfect for relaxing getaways.",
-    "longDescription": "This beach offers a combination of natural beauty and leisure activities. Visitors can enjoy swimming, sunbathing, and exploring nearby attractions.",
-    "highlightQuote": "Where the sea breeze brings peace to your soul.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "title": "Co To Island: The Hidden Jewel of the North",
+    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
+    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
+    "highlightQuote": "Every wave carries a new memory.",
+    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
     "tags": [
       "Travel",
       "Beach",
-      "Hoi An",
+      "Quang Ninh",
       "Vietnam",
       "Family"
     ],
-    "price": 79.56,
-    "originalPrice": 89.82,
-    "capacity": 40,
+    "price": 43.43,
+    "originalPrice": 83.91,
+    "capacity": 50,
     "duration": "1 DAY",
     "rating": 3,
-    "reviews": 31
+    "reviews": 12
   },
   {
     "id": 15,

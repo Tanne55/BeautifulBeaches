@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tour;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -12,7 +13,11 @@ use App\Http\Middleware\IsUser;
 
 
 Route::get('/', function () {
-    $beaches = Beach::all();
+    $beaches = Beach::with('detail') // nạp quan hệ 1-1
+        ->select('id', 'region', 'image', 'title') // chỉ lấy cột cần thiết
+        ->take(4)
+        ->get();
+
     return view('welcome', compact('beaches'));
 })->name('home');
 
@@ -55,13 +60,13 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
 // Dashboard & CRUD Ceo
 Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\CeoController::class, 'dashboard'])->name('dashboard');
-    
+
 });
 
 // Dashboard & CRUD User
 Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
-    
+
 });
 
 // Điều hướng của các pages
@@ -82,6 +87,27 @@ Route::get('/explore', function () {
     });
     return view('pages.explore', compact('beaches'));
 })->name('explore');
+Route::get('/tour', function () {
+    $tours = Tour::with('beach')->get()->map(function ($tour) {
+        return [
+            'id' => $tour->id,
+            'title' => $tour->title,
+            'price' => $tour->price,
+            'original_price' => $tour->original_price,
+            'capacity' => $tour->capacity,
+            'duration' => $tour->duration,
+            'status' => $tour->status,
+
+            'beach_id' => $tour->beach_id,
+            'beach_title' => $tour->beach?->title,
+            'beach_region' => $tour->beach?->region,
+            'beach_image' => $tour->beach?->image,
+            'beach_description' => $tour->beach?->short_description,
+        ];
+    });
+
+    return view('pages.tour', compact('tours'));
+})->name('tour');
 Route::view('/queries', 'pages.queries')->name('queries');
 Route::view('/detail', 'pages.detail')->name('detail');
 
@@ -89,3 +115,10 @@ Route::view('/detail', 'pages.detail')->name('detail');
 
 Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
+
+Route::get('/tour/{id}', function ($id) {
+    $tour = Tour::with('beach')->findOrFail($id);
+
+    return view('pages.tourdetail', compact('tour'));
+})->name('tour.show');
+

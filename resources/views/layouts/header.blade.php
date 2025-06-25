@@ -14,55 +14,52 @@
         <div class="collapse navbar-collapse mx-auto" id="navbarNav" style="flex: 0 1 auto;">
             <ul class="navbar-nav d-flex align-items-center gap-3 justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('home') }}">Trang chủ</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-between fw-bold"
-                        href="#" id="navDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
+                        href="{{ route('explore') }}" id="navDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Bãi biển
                         <i class="bi bi-caret-down-fill ms-1 dropdown-icon"></i>
                     </a>
                     <ul class="dropdown-menu border-top-red" aria-labelledby="navDropdown">
-                        <li><a class="dropdown-item" href="{{ route('explore') }}?region=Northern%20Vietnam">Northern
-                                Beaches</a></li>
-                        <li><a class="dropdown-item" href="{{ route('explore') }}?region=Central%20Vietnam">Central
-                                Beaches</a></li>
-                        <li><a class="dropdown-item" href="{{ route('explore') }}?region=Southern%20Vietnam">Southern
-                                Beaches</a></li>
+                        <li><a class="dropdown-item" href="{{ route('explore') }}?region=Northern%20Vietnam">Miền
+                                Bắc</a></li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('explore') }}?region={{ urlencode('Central Vietnam') }}">Miền
+                                Trung</a></li>
+                        <li><a class="dropdown-item" href="{{ route('explore') }}?region=Southern%20Vietnam">Miền
+                                Nam</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('gallery') }}">Gallery</a>
+                    <a class="nav-link fw-bold nav-link-hover" href="{{route('tour')}}">Tour du lịch </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('gallery') }}">Thư viện ảnh </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-between fw-bold"
                         href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Contact
+                        Liên hệ
                         <i class="bi bi-caret-down-fill ms-1 dropdown-icon"></i>
                     </a>
                     <ul class="dropdown-menu border-top-red" aria-labelledby="contactDropdown">
-                        <li><a class="dropdown-item" href="{{ route('contact') }}">Contact Us</a></li>
-                        <li><a class="dropdown-item" href="{{ route('queries') }}">Queries</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contact') }}">Gửi liên hệ</a></li>
+                        <li><a class="dropdown-item" href="{{ route('queries') }}">Gửi thắc mắc</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('about') }}">About Us</a>
+                    <a class="nav-link fw-bold nav-link-hover" href="{{ route('about') }}">Về chúng tôi</a>
                 </li>
             </ul>
         </div>
 
         <!-- Phần 3: Đăng nhập/Đăng ký hoặc Dashboard/Logout -->
         <div>
-            @auth
-               
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-link fw-bold text-danger">Logout</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}" class="btn btn-outline-danger fw-bold me-2">Đăng nhập</a>
-                <a href="{{ route('register') }}" class="btn btn-danger fw-bold">Đăng ký</a>
-            @endauth
+            <a href="{{ route('login') }}" class="btn btn-outline-danger fw-bold me-2">Đăng nhập</a>
+            <a href="{{ route('register') }}" class="btn btn-danger fw-bold">Đăng ký</a>
         </div>
     </div>
 </nav>

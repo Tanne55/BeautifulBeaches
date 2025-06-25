@@ -18,29 +18,30 @@
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="carousel-title">Khám Phá Thiên Đường Nhiệt Đới</h1>
                         <p class="carousel-subtitle">Hít thở làn gió biển và khám phá thiên đường của thiên nhiên.</p>
-                        <a href="/Pages/Beaches/details.html" class="btn btn-primary mb-5">Khám Phá Ngay</a>
+                        <a href="/beaches/14" class="btn btn-primary mb-5">Khám Phá Ngay</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/assets/image/12.jpg" class="d-block w-100" alt="...">
+                    <img src="/assets/image/7.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="carousel-title">Bình Yên Hoàng Hôn Đang Chờ</h1>
                         <p class="carousel-subtitle">Thư giãn trên cát vàng dưới bầu trời tối kỳ diệu.</p>
-                        <a href="/Pages/Beaches/details.html" class="btn btn-primary mb-5">Khám Phá Ngay</a>
+                        <a href="/beaches/7" class="btn btn-primary mb-5">Khám Phá Ngay</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/assets/image/16.jpg" class="d-block w-100" alt="...">
+                    <img src="/assets/image/22.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="carousel-title">Mũi Né: Bãi Biển Gió</h1>
                         <p class="carousel-subtitle">Viên ngọc ven biển với đồi cát, lướt ván diều và không khí tuyệt vời.
                         </p>
-                        <a href="/Pages/Beaches/details.html" class="btn btn-primary mb-5">Khám Phá Ngay</a>
+                        <a href="/beaches/22" class="btn btn-primary mb-5">Khám Phá Ngay</a>
                     </div>
                 </div>
             </div>
 
             <!-- Controls -->
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Trước</span>
@@ -49,6 +50,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Tiếp</span>
             </button>
+
         </div>
 
         <!-- Form tìm kiếm -->
@@ -75,7 +77,9 @@
                     <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-danger btn-lg banner-search-btn">TƯ VẤN NGAY</button>
+                    <a href="{{ route('contact') }}" class="btn btn-danger btn-lg banner-search-btn" role="button">TƯ VẤN
+                        NGAY</a>
+
                 </div>
             </form>
         </div>
@@ -107,107 +111,69 @@
 
 
             <div class="row g-4 mx-5">
-                <div class="col-sm-3">
-                    <div class="position-relative rounded overflow-hidden destination-card"
-                        style="
-                                                                                                                                                                                                        background-image: url('/assets/img2/bien-ha-long.jpg');
-                                                                                                                                                                                                        background-size: cover;
-                                                                                                                                                                                                        background-position: center;
-                                                                                                                                                                                                        height: 500px;
-                                                                                                                                                                                                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                                      ">
+                @foreach ($beaches->slice(0, 2) as $beach)
+                    <div class="col-sm-3">
+                        <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
+                            <div class="position-relative rounded overflow-hidden destination-card"
+                                style="
+                                                                                                                                                                                                                                   background-image: url('{{$beach->image}}');
+                                                                                                                                                                                                                                   background-size: cover;
+                                                                                                                                                                                                                                   background-position: left;
+                                                                                                                                                                                                                                   height: 500px;
+                                                                                                                                                                                                                                   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                                                                                                                                                                                                 ">
+                                <!-- Lớp overlay làm tối nền -->
+                                <div class="position-absolute top-0 start-0 w-100 h-100"
+                                    style="background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
 
-                        <!-- Lớp overlay làm tối nền -->
-                        <div class="position-absolute top-0 start-0 w-100 h-100"
-                            style="background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+                                <!-- Tag span -->
+                                <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
+                                    style="z-index: 2;">
+                                    HẠ LONG
+                                </span>
 
-                        <!-- Tag span -->
-                        <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
-                            style="z-index: 2;">
-                            HẠ LONG
-                        </span>
+                                <!-- Thông tin dưới -->
+                                <div class="position-absolute bottom-0 start-0 w-100 text-white p-3 "
+                                    style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
+                                    <h5 class="m-0 fw-bold">{{$beach->region}}</h5>
+                                    <div class="text-warning mt-1">★★★★☆</div>
+                                </div>
 
-                        <!-- Thông tin dưới -->
-                        <div class="position-absolute bottom-0 start-0 w-100 text-white p-3 "
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                            <h5 class="m-0 fw-bold">Bãi Biển Hạ Long</h5>
-                            <div class="text-warning mt-1">★★★★☆</div>
-                        </div>
-
+                            </div>
+                        </a>
                     </div>
-                </div>
 
-
-                <div class="col-sm-3 ">
-                    <div class="position-relative rounded overflow-hidden destination-card"
-                        style="
-                                                                                                                                                                                                        background-image: url('/assets/img2/bien-sam-son.jpg');
-                                                                                                                                                                                                        background-size: cover;
-                                                                                                                                                                                                        background-position: center;
-                                                                                                                                                                                                        height:  500px;
-                                                                                                                                                                                                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                                      ">
-
-                        <!-- Lớp overlay làm tối nền -->
-                        <div class="position-absolute top-0 start-0 w-100 h-100"
-                            style="background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
-
-                        <!-- Tag span -->
-                        <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
-                            style="z-index: 2;">
-                            THANH HÓA
-                        </span>
-
-                        <!-- Thông tin dưới -->
-                        <div class="position-absolute bottom-0 start-0 w-100 text-white p-3"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                            <h5 class="m-0 fw-bold">Bãi Biển Sầm Sơn</h5>
-                            <div class="text-warning mt-1">★★★★☆</div>
-                        </div>
-
-                    </div>
-                </div>
-
+                @endforeach
                 <div class="col-5 d-flex flex-column" style="height: 500px; gap: 20px;">
-                    <!-- Ảnh 1 -->
-                    <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
-                        style="
-                                                                                                                                                                                                        background-image: url('/assets/img2/cat-ba.jpg');
-                                                                                                                                                                                                        background-size: cover;
-                                                                                                                                                                                                        background-position: center;">
-                        <!-- Overlay -->
-                        <div class="position-absolute top-0 start-0 w-100 h-100"
-                            style="background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
-                        <!-- Tag -->
-                        <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
-                            style="z-index: 2;">HẢI PHÒNG</span>
-                        <!-- Nội dung -->
-                        <div class="position-absolute bottom-0 start-0 w-100 text-white p-3"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                            <h5 class="m-0 fw-bold">Bãi Biển Cát Bà</h5>
-                            <div class="text-warning mt-1">★★★★★</div>
-                        </div>
-                    </div>
+                    @foreach ($beaches->slice(2, 2) as $beach)
+                        <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
+                            <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
+                                style="
+                                                                                                                                background-image: url('{{ $beach->image }}');
+                                                                                                                                background-size: cover;
+                                                                                                                                background-position: center;
+                                                                                                                                height: 240px;">
+                                <!-- thêm height nếu cần cố định -->
 
-                    <!-- Ảnh 2 -->
-                    <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
-                        style="
-                                                                                                                                                                                                        background-image: url('/assets/img2/nha-trang.jpg');
-                                                                                                                                                                                                        background-size: cover;
-                                                                                                                                                                                                        background-position: center;">
-                        <!-- Overlay -->
-                        <div class="position-absolute top-0 start-0 w-100 h-100"
-                            style="background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
-                        <!-- Tag -->
-                        <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
-                            style="z-index: 2;">NHA TRANG</span>
-                        <!-- Nội dung -->
-                        <div class="position-absolute bottom-0 start-0 w-100 text-white p-3"
-                            style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                            <h5 class="m-0 fw-bold">Bãi Biển Nha Trang</h5>
-                            <div class="text-warning mt-1">★★★★★</div>
-                        </div>
-                    </div>
+                                <!-- Overlay -->
+                                <div class="position-absolute top-0 start-0 w-100 h-100"
+                                    style="background: rgba(0, 0, 0, 0.35); z-index: 1;"></div>
+
+                                <!-- Tag -->
+                                <span class="position-absolute top-0 start-0 m-3 px-3 py-1 bg-info text-white fw-bold rounded"
+                                    style="z-index: 2;">HẢI PHÒNG</span>
+
+                                <!-- Nội dung -->
+                                <div class="position-absolute bottom-0 start-0 w-100 text-white p-3"
+                                    style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
+                                    <h5 class="m-0 fw-bold">{{ $beach->region }}</h5>
+                                    <div class="text-warning mt-1">★★★★★</div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+
+
                 </div>
 
             </div>
@@ -215,7 +181,7 @@
 
 
             <div class="text-center mt-4">
-                <a href="/Pages/Explore/explore.html" class="btn btn-danger">THÊM ĐIỂM ĐẾN</a>
+                <a href="{{route('explore')}}" class="btn btn-danger">THÊM ĐIỂM ĐẾN</a>
             </div>
         </div>
     </section>
@@ -372,21 +338,21 @@
     <!-- Quảng cáo giữa trang Home -->
     <div
         style="
-                                                                                                                                                                                                background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
-                                                                                                                                                                                                background-size: cover;
-                                                                                                                                                                                                background-position: center;
-                                                                                                                                                                                                padding: 60px 20px;
-                                                                                                                                                                                                position: relative;
-                                                                                                                                                                                                color: white;
-                                                                                                                                                                                              ">
+                                                                                                                                                                                                                                                                                                                                                                                            background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
+                                                                                                                                                                                                                                                                                                                                                                                            background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                            background-position: center;
+                                                                                                                                                                                                                                                                                                                                                                                            padding: 60px 20px;
+                                                                                                                                                                                                                                                                                                                                                                                            position: relative;
+                                                                                                                                                                                                                                                                                                                                                                                            color: white;
+                                                                                                                                                                                                                                                                                                                                                                                          ">
         <!-- Lớp phủ tối để dễ đọc chữ -->
         <div
             style="
-                                                                                                                                                                                                position: absolute;
-                                                                                                                                                                                                top: 0; left: 0; right: 0; bottom: 0;
-                                                                                                                                                                                                background-color: rgba(0, 0, 0, 0.5);
-                                                                                                                                                                                                z-index: 1;
-                                                                                                                                                                                              ">
+                                                                                                                                                                                                                                                                                                                                                                                            position: absolute;
+                                                                                                                                                                                                                                                                                                                                                                                            top: 0; left: 0; right: 0; bottom: 0;
+                                                                                                                                                                                                                                                                                                                                                                                            background-color: rgba(0, 0, 0, 0.5);
+                                                                                                                                                                                                                                                                                                                                                                                            z-index: 1;
+                                                                                                                                                                                                                                                                                                                                                                                          ">
         </div>
 
         <!-- Nội dung quảng cáo -->

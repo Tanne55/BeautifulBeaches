@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <div class="row justify-content-center">
+    <div class="row justify-content-center m-5">
         <div class="col-md-6 d-flex justify-content-center">
             <div class="card shadow-sm w-75">
                 <div class="card-body p-4">

@@ -42,6 +42,7 @@ class BeachController extends Controller
         return view('pages.detail', compact('beach'));
     }
 
+
     // Hiển thị danh sách bãi biển cho admin
     public function index()
     {
@@ -86,7 +87,7 @@ class BeachController extends Controller
             'highlight_quote' => $validated['highlight_quote'] ?? null,
             'tags' => isset($validated['tags']) ? json_encode($validated['tags']) : null,
         ]);
-        return redirect()->route('admin.beaches.index')->with('success','Thêm bãi biển thành công!');
+        return redirect()->route('admin.beaches.index')->with('success', 'Thêm bãi biển thành công!');
     }
 
     // Hiển thị form sửa bãi biển
