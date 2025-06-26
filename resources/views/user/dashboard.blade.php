@@ -74,7 +74,7 @@
 
                 <!-- Management Cards -->
                 <div class="row g-4">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-5 col-md-6 mx-auto">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
@@ -88,7 +88,8 @@
                                         <small class="text-muted">Đặt tour du lịch mới</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Đặt tour du lịch đến các bãi biển nổi tiếng, trải nghiệm dịch vụ tốt nhất.</p>
+                                <p class="card-text text-muted mb-4">Đặt tour du lịch đến các bãi biển nổi tiếng, trải nghiệm
+                                    dịch vụ tốt nhất.</p>
                                 <a href="#" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
@@ -99,7 +100,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-5 col-md-6">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
@@ -113,53 +114,14 @@
                                         <small class="text-muted">Xem lịch sử đặt tour</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Xem lại các tour đã đặt, trạng thái và chi tiết từng chuyến đi.</p>
+                                <p class="card-text text-muted mb-4">Xem lại các tour đã đặt, trạng thái và chi tiết từng chuyến
+                                    đi.</p>
                                 <a href="#" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #43e97b, #38f9d7); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(67,233,123,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                                     <i class="fas fa-arrow-right me-2"></i>Xem lịch sử
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="card border-0 shadow-lg"
-                            style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold mb-4 text-dark">
-                                    <i class="fas fa-bolt me-2 text-warning"></i>Thao tác nhanh
-                                </h5>
-                                <div class="row g-3">
-                                    <div class="col-lg-3 col-md-6">
-                                        <a href="#" class="btn btn-outline-primary w-100 py-3"
-                                            style="border-radius: 10px; transition: all 0.3s ease;">
-                                            <i class="fas fa-plus me-2"></i>Thêm bãi biển mới
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <a href="#" class="btn btn-outline-success w-100 py-3"
-                                            style="border-radius: 10px; transition: all 0.3s ease;">
-                                            <i class="fas fa-file-export me-2"></i>Xuất báo cáo
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <a href="#" class="btn btn-outline-info w-100 py-3"
-                                            style="border-radius: 10px; transition: all 0.3s ease;">
-                                            <i class="fas fa-envelope me-2"></i>Gửi thông báo
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <a href="#" class="btn btn-outline-warning w-100 py-3"
-                                            style="border-radius: 10px; transition: all 0.3s ease;">
-                                            <i class="fas fa-backup me-2"></i>Sao lưu dữ liệu
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

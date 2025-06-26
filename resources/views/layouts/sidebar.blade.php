@@ -46,10 +46,10 @@
                                         {{-- sidebar cho admin --}}
                                         <div class="collapse">
                                             <div class="px-2 py-1">
-                                                <a href="/admin/beaches" class="dropdown-item">Dự án mới admin</a>
-                                                <a href="#" class="dropdown-item">Dự án đang thực hiện</a>
-                                                <a href="#" class="dropdown-item">Dự án đã hoàn thành</a>
-                                                <a href="#" class="dropdown-item">Dự án đã hủy</a>
+                                                <a href="{{ route('admin.beaches.index') }}" class="dropdown-item">Quản lý bãi biển</a>
+                                                <a href="{{ route('admin.users.index') }}" class="dropdown-item">Quản lý người dùng</a>
+                                                <a href="#" class="dropdown-item">Quản lý thông báo</a>
+                                                <a href="#" class="dropdown-item">Cài đặt hệ thống</a>
                                             </div>
                                         </div>
                                     </li>
@@ -61,11 +61,18 @@
                                         </a>
                                         <div class="collapse">
                                             <div class="px-2 py-1">
-                                                <a href="/admin/beaches" class="dropdown-item">Miền Bắc</a>
-                                                <a href="#" class="dropdown-item">Miền Trung</a>
-                                                <a href="#" class="dropdown-item">Miền Nam</a>
+                                                <a href="{{ route('explore') }}?region=Northern%20Vietnam" class="dropdown-item">Miền Bắc</a>
+                                                <a href="{{ route('explore') }}?region={{ urlencode('Central Vietnam') }}"
+                                                    class="dropdown-item">Miền Trung</a>
+                                                <a href="{{ route('explore') }}?region=Southern%20Vietnam" class="dropdown-item">Miền Nam</a>
                                             </div>
                                         </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('tour')}}" class="nav-link">
+                                            <div class="nav-icon"><i class="bi bi-luggage"></i></div>
+                                            <span class="nav-text">Tour du lịch</span>
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
@@ -98,10 +105,10 @@
                         {{-- sidebar cho CEO --}}
                         <div class="collapse">
                             <div class="px-2 py-1">
-                                <a href="/ceo/beaches" class="dropdown-item">Dự án mới ceo</a>
-                                <a href="#" class="dropdown-item">Dự án đang thực hiện</a>
-                                <a href="#" class="dropdown-item">Dự án đã hoàn thành</a>
-                                <a href="#" class="dropdown-item">Dự án đã hủy</a>
+                                <a href="#" class="dropdown-item">Đơn đặt tour</a>
+                                <a href="{{ route('ceo.tours.index') }}" class="dropdown-item">Quản lý tour</a>
+                                <a href="#" class="dropdown-item">Thống kê báo cáo</a>
+                                <a href="#" class="dropdown-item">Quản lý thông báo</a>
                             </div>
                         </div>
                         </li>
@@ -113,11 +120,18 @@
                             </a>
                             <div class="collapse">
                                 <div class="px-2 py-1">
-                                    <a href="/admin/beaches" class="dropdown-item">Miền Bắc</a>
-                                    <a href="#" class="dropdown-item">Miền Trung</a>
-                                    <a href="#" class="dropdown-item">Miền Nam</a>
+                                    <a href="{{ route('explore') }}?region=Northern%20Vietnam" class="dropdown-item">Miền Bắc</a>
+                                    <a href="{{ route('explore') }}?region={{ urlencode('Central Vietnam') }}"
+                                        class="dropdown-item">Miền Trung</a>
+                                    <a href="{{ route('explore') }}?region=Southern%20Vietnam" class="dropdown-item">Miền Nam</a>
                                 </div>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('tour')}}" class="nav-link">
+                                <div class="nav-icon"><i class="bi bi-luggage"></i></div>
+                                <span class="nav-text">Tour du lịch</span>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -150,10 +164,8 @@
                         {{-- sidebar cho user --}}
                         <div class="collapse">
                             <div class="px-2 py-1">
-                                <a href="/user/beaches" class="dropdown-item">Dự án mới user</a>
-                                <a href="#" class="dropdown-item">Dự án đang thực hiện</a>
-                                <a href="#" class="dropdown-item">Dự án đã hoàn thành</a>
-                                <a href="#" class="dropdown-item">Dự án đã hủy</a>
+                                <a href="#" class="dropdown-item">Đặt tour du lịch</a>
+                                <a href="#" class="dropdown-item">Lịch sử đặt tour</a>
                             </div>
                         </div>
                         </li>
@@ -165,11 +177,18 @@
                             </a>
                             <div class="collapse">
                                 <div class="px-2 py-1">
-                                    <a href="/admin/beaches" class="dropdown-item">Miền Bắc</a>
-                                    <a href="#" class="dropdown-item">Miền Trung</a>
-                                    <a href="#" class="dropdown-item">Miền Nam</a>
+                                    <a href="{{ route('explore') }}?region=Northern%20Vietnam" class="dropdown-item">Miền Bắc</a>
+                                    <a href="{{ route('explore') }}?region={{ urlencode('Central Vietnam') }}"
+                                        class="dropdown-item">Miền Trung</a>
+                                    <a href="{{ route('explore') }}?region=Southern%20Vietnam" class="dropdown-item">Miền Nam</a>
                                 </div>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('tour')}}" class="nav-link">
+                                <div class="nav-icon"><i class="bi bi-luggage"></i></div>
+                                <span class="nav-text">Tour du lịch</span>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
