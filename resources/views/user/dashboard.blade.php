@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                                 <p class="card-text text-muted mb-4">Đặt tour du lịch đến các bãi biển nổi tiếng, trải nghiệm dịch vụ tốt nhất.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{route('tour.index')}}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">

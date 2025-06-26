@@ -90,7 +90,7 @@
                                 </div>
                                 <p class="card-text text-muted mb-4">Quản lý yêu cầu đặt tour, xác nhận và theo dõi
                                     trạng thái đặt chỗ của khách hàng.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{route('ceo.bookings.index')}}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
