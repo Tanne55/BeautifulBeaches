@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                                 <p class="card-text text-muted mb-4">Quản lý thông tin chi tiết về các tour, cập nhật trạng thái và thông tin tour du lịch.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{ route('ceo.tours.index') }}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102,126,234,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">

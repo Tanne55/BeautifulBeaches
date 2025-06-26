@@ -7,7 +7,9 @@
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Sign in to your account</h2>
                     <p class="text-center text-muted mb-4">Welcome back to Beautiful Beaches</p>
-
+                    @if(session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
                     <form action="{{ route('login') }}" method="POST" class="w-100">
                         @csrf
 

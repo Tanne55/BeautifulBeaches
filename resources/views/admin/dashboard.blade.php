@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                                 <p class="card-text text-muted mb-4">Quản lý thông tin người dùng, phân quyền và theo dõi hoạt động của hệ thống.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{ route('admin.users.index') }}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #f093fb, #f5576c); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(240,147,251,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">

@@ -8,11 +8,13 @@ class Tour extends Model
 {
     protected $fillable = [
         'beach_id',
+        'ceo_id',
         'title',
+        'image',
         'price',
         'original_price',
         'capacity',
-        'duration',
+        'duration_days',
         'status',
     ];
 

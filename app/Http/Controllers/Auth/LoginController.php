@@ -26,11 +26,14 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            if (Auth::user()->is_banned) {
+                return redirect()->route('login')->with('error', 'Tài khoản của bạn đã bị khóa, liên hệ với Admin để được hỗ trợ');
+            }
             return redirect()->route('home');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email hoặc mật khẩu không chính xác',
         ])->onlyInput('email');
     }
 

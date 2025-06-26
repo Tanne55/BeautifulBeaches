@@ -31,11 +31,13 @@ class ToursSeeder extends Seeder
                 // Insert vào bảng tours
                 $tourId = DB::table('tours')->insertGetId([
                     'beach_id' => $tour['beach_id'],
+                    'ceo_id' => $tour['ceo_id'],
+                    'image' => $tour['image'],
                     'title' => $tour['title'],
                     'price' => $tour['price'],
                     'original_price' => $tour['original_price'],
                     'capacity' => $tour['capacity'],
-                    'duration' => $tour['duration'],
+                    'duration_days' => $tour['duration_days'],
                     'status' => $tour['status'],
                     'created_at' => $tour['created_at'] ?? now(),
                     'updated_at' => $tour['updated_at'] ?? now(),

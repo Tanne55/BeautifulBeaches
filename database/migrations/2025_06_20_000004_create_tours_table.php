@@ -10,11 +10,13 @@ return new class extends Migration {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->foreignId('beach_id')->constrained('beaches')->onDelete('cascade');
+            $table->foreignId('ceo_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
+            $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
             $table->decimal('original_price', 8, 2)->nullable();
             $table->integer('capacity');
-            $table->string('duration');
+            $table->integer('duration_days')->default(1);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

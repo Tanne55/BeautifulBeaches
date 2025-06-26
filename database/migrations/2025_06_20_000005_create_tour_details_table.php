@@ -10,8 +10,8 @@ return new class extends Migration {
         Schema::create('tour_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id')->constrained('tours')->onDelete('cascade');
-            $table->time('departure_time')->nullable();
-            $table->time('return_time')->nullable();
+            $table->dateTime('departure_time')->nullable();
+            $table->dateTime('return_time')->nullable();
             $table->json('included_services')->nullable();
             $table->json('excluded_services')->nullable();
             $table->json('highlights')->nullable();

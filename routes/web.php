@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeachController;
+use App\Http\Controllers\UserController;
 use App\Models\Beach;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsCeo;
@@ -55,12 +56,29 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
         Route::put('/{beach}', [BeachController::class, 'update'])->name('update');
         Route::delete('/{beach}', [BeachController::class, 'destroy'])->name('destroy');
     });
+     // CRUD của admin về users
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('/{user}', [UserController::class, 'update'])->name('update');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
+        Route::patch('/{user}/ban', [UserController::class, 'ban'])->name('ban');
+    });
 });
 
 // Dashboard & CRUD Ceo
 Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\CeoController::class, 'dashboard'])->name('dashboard');
-
+    // CRUD của admin về users
+    Route::prefix('tours')->name('tours.')->group(function () {
+        Route::get('/', [App\Http\Controllers\TourController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\TourController::class, 'create'])->name('create');
+        Route::post('/', [App\Http\Controllers\TourController::class, 'store'])->name('store');
+        Route::get('/{tour}/edit', [App\Http\Controllers\TourController::class, 'edit'])->name('edit');
+        Route::put('/{tour}', [App\Http\Controllers\TourController::class, 'update'])->name('update');
+    });
 });
 
 // Dashboard & CRUD User
@@ -92,10 +110,11 @@ Route::get('/tour', function () {
         return [
             'id' => $tour->id,
             'title' => $tour->title,
+            'image' => $tour->image,
             'price' => $tour->price,
             'original_price' => $tour->original_price,
             'capacity' => $tour->capacity,
-            'duration' => $tour->duration,
+            'duration_days' => $tour->duration_days,
             'status' => $tour->status,
 
             'beach_id' => $tour->beach_id,
@@ -117,8 +136,18 @@ Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
 
 Route::get('/tour/{id}', function ($id) {
-    $tour = Tour::with('beach')->findOrFail($id);
+    $tour = Tour::with(['beach', 'detail'])->findOrFail($id);
 
-    return view('pages.tourdetail', compact('tour'));
+    // Ưu tiên ảnh tour, fallback sang ảnh beach, cuối cùng là placeholder
+    $image_url = null;
+    if ($tour->image) {
+        $image_url = asset($tour->image);
+    } elseif ($tour->beach && $tour->beach->image) {
+        $image_url = asset($tour->beach->image);
+    } else {
+        $image_url = 'https://via.placeholder.com/600x400?text=No+Image';
+    }
+
+    return view('pages.tourdetail', compact('tour', 'image_url'));
 })->name('tour.show');
 
