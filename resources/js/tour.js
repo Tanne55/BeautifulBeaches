@@ -47,4 +47,3 @@ document.addEventListener("DOMContentLoaded", function () {
     sortSelect.addEventListener('change', filterTours);
     clearBtn.addEventListener('click', clearFilters);
 });
-

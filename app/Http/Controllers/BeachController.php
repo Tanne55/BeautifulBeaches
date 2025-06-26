@@ -73,8 +73,22 @@ class BeachController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagepath = $image->store('beaches', 'public');
-            $validated['image'] = $imagepath;
+            $imagePath = $image->store('beaches', 'public');
+            $validated['image'] = $imagePath;
+        }
+        $tags = $validated['tags'] ?? null;
+        if ($tags) {
+            $tags = trim($tags);
+            if ($tags[0] === '[') {
+                $tagsArray = json_decode($tags, true);
+            } else {
+                $tagsArray = array_map('trim', explode(',', $tags));
+            }
+            if (!is_array($tagsArray)) {
+                $tagsArray = [];
+            }
+        } else {
+            $tagsArray = [];
         }
         $beach = Beach::create([
             'region' => $validated['region'],
@@ -86,7 +100,7 @@ class BeachController extends Controller
             'long_description' => $validated['long_description'] ?? null,
             'long_description2' => $validated['long_description2'] ?? null,
             'highlight_quote' => $validated['highlight_quote'] ?? null,
-            'tags' => isset($validated['tags']) ? json_encode($validated['tags']) : null,
+            'tags' => json_encode($tagsArray),
         ]);
         return redirect()->route('admin.beaches.index')->with('success', 'Thêm bãi biển thành công!');
     }
@@ -122,6 +136,20 @@ class BeachController extends Controller
             // Nếu không upload ảnh mới, giữ nguyên ảnh cũ
             $validated['image'] = $beach->image;
         }
+        $tags = $validated['tags'] ?? null;
+        if ($tags) {
+            $tags = trim($tags);
+            if ($tags[0] === '[') {
+                $tagsArray = json_decode($tags, true);
+            } else {
+                $tagsArray = array_map('trim', explode(',', $tags));
+            }
+            if (!is_array($tagsArray)) {
+                $tagsArray = [];
+            }
+        } else {
+            $tagsArray = [];
+        }
         $beach->update([
             'region' => $validated['region'],
             'image' => $validated['image'],
@@ -134,7 +162,7 @@ class BeachController extends Controller
                 'long_description' => $validated['long_description'] ?? null,
                 'long_description2' => $validated['long_description2'] ?? null,
                 'highlight_quote' => $validated['highlight_quote'] ?? null,
-                'tags' => isset($validated['tags']) ? json_encode($validated['tags']) : null,
+                'tags' => json_encode($tagsArray),
             ]
         );
         return redirect()->route('admin.beaches.index')->with('success', 'Cập nhật bãi biển thành công!');

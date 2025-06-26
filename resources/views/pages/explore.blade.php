@@ -85,7 +85,11 @@
                             data-region="{{ strtolower($beach['region']) }}"
                             data-tags="{{ strtolower(implode(',', $beach['tags'] ?? [])) }}">
                             <div class="tour-image">
-                                <img src="{{ $beach['image'] ?? '/assets/img/default.jpg' }}"
+                                @php
+                                    $img = $beach['image'] ?? '';
+                                    $isAsset = $img && (str_starts_with($img, 'http') || str_starts_with($img, '/assets'));
+                                @endphp
+                                <img src="{{ $img ? ($isAsset ? $img : asset('storage/' . $img)) : '/assets/img/default.jpg' }}"
                                     alt="{{ $beach['title'] ?? 'Tour' }}">
                                 <div class="feature-badge">Feature</div>
                             </div>

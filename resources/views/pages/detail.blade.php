@@ -18,7 +18,12 @@
     <section class=" container">
         <div class="row">
             <div class="content-section col-lg-7 p-5">
-                <img src="{{ $beach->image }}" alt="{{ $beach->title }}" class="img-fluid rounded mb-2">
+                @php
+                    $img = $beach->image ?? '';
+                    $isAsset = $img && (str_starts_with($img, 'http') || str_starts_with($img, '/assets'));
+                @endphp
+                <img src="{{ $img ? ($isAsset ? $img : asset('storage/' . $img)) : '/assets/img/default.jpg' }}"
+                    alt="{{ $beach->title }}" class="img-fluid rounded mb-2">
                 <h2>Discovering the Beauty of {{ $beach->title }}</h2>
                 <p class="short-description">{{ $beach->short_description }}</p>
                 <p class="long-description">{{ $beach->long_description }}</p>

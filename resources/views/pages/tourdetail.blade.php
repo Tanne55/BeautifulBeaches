@@ -11,12 +11,21 @@
 
         <div class="row">
             <div class="col-md-6">
-                @if($tour->image)
-                    <img src="{{ asset($tour->image) }}" class="img-fluid rounded shadow" alt="{{ $tour->title }}">
-                @elseif($tour->beach && $tour->beach->image)
-                    <img src="{{ asset($tour->beach->image) }}" class="img-fluid rounded shadow" alt="{{ $tour->title }}">
+                @php
+                    $img = $tour->image ?? '';
+                    $beachImg = ($tour->beach && $tour->beach->image) ? $tour->beach->image : '';
+                    $isAsset = $img && (str_starts_with($img, 'http') || str_starts_with($img, '/assets'));
+                    $isBeachAsset = $beachImg && (str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets'));
+                @endphp
+                @if($img)
+                    <img src="{{ $isAsset ? $img : asset('storage/' . $img) }}" class="img-fluid rounded shadow"
+                        alt="{{ $tour->title }}">
+                @elseif($beachImg)
+                    <img src="{{ $isBeachAsset ? $beachImg : asset('storage/' . $beachImg) }}" class="img-fluid rounded shadow"
+                        alt="{{ $tour->title }}">
                 @else
-                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded shadow" alt="No image">
+                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded shadow"
+                        alt="No image">
                 @endif
             </div>
             <div class="col-md-6">
@@ -95,7 +104,7 @@
                                 </tr>
                             @endif
                         @endif
-                        
+
                         <tr>
                             <th>CEO</th>
                             <td>{{ $tour->ceo?->name }}</td>
@@ -125,7 +134,7 @@
                 <div class="mb-2">
                     <label class="form-label">Đánh giá:</label>
                     <div id="star-rating" class="d-inline-block">
-                        @for($i=1; $i<=5; $i++)
+                        @for($i = 1; $i <= 5; $i++)
                             <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
                         @endfor
                     </div>
@@ -140,7 +149,7 @@
                 <button type="submit" class="btn btn-primary">Gửi bình luận</button>
             </form>
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function () {
                     const stars = document.querySelectorAll('#star-rating .star-icon');
                     const ratingInput = document.getElementById('rating-input');
                     let currentRating = 5;
@@ -155,10 +164,10 @@
                     }
                     setStars(currentRating);
                     stars.forEach((star, idx) => {
-                        star.addEventListener('mouseenter', () => setStars(idx+1));
+                        star.addEventListener('mouseenter', () => setStars(idx + 1));
                         star.addEventListener('mouseleave', () => setStars(currentRating));
                         star.addEventListener('click', () => {
-                            currentRating = idx+1;
+                            currentRating = idx + 1;
                             ratingInput.value = currentRating;
                             setStars(currentRating);
                         });
@@ -184,7 +193,7 @@
                             @endif
                         @endif
                         <span class="ms-2 text-warning">
-                            @for($i=1; $i<=5; $i++)
+                            @for($i = 1; $i <= 5; $i++)
                                 <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o' }}"></i>
                             @endfor
                         </span>
