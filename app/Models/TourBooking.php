@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TourBooking extends Model
 {
-    protected $fillable = ['tour_id', 'user_id', 'full_name', 'phone', 'date', 'status'];
+    protected $fillable = [
+        'user_id',
+        'tour_id',
+        'full_name',
+        'contact_phone',
+        'contact_email',
+        'booking_date',
+        'status',
+        'note',
+    ];
 
     public function tour()
     {

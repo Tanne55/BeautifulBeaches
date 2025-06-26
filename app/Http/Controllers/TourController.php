@@ -17,6 +17,13 @@ class TourController extends Controller
             $query->where('ceo_id', $user->id);
         }
         $tours = $query->get();
+        // Cập nhật trạng thái 'outdated' nếu departure_time đã qua
+        foreach ($tours as $tour) {
+            if ($tour->detail && $tour->detail->departure_time && now()->gt($tour->detail->departure_time) && $tour->status !== 'outdated') {
+                $tour->status = 'outdated';
+                $tour->save();
+            }
+        }
         return view('ceo.tours.index', compact('tours'));
     }
 

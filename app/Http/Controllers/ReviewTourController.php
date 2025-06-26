@@ -25,7 +25,8 @@ class ReviewTourController extends Controller
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable',
         ]);
-        return ReviewTour::create($data);
+        ReviewTour::create($data);
+        return redirect()->route('tour.show', $data['tour_id'])->with('success', 'Bình luận của bạn đã được gửi!');
     }
 
     public function update(Request $request, $id)

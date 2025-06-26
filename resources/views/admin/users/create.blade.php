@@ -47,7 +47,6 @@
                                     <option value="">Chọn vai trò</option>
                                     <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
                                     <option value="ceo" {{ old('role') == 'ceo' ? 'selected' : '' }}>CEO</option>
-                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between">

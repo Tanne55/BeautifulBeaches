@@ -7,9 +7,18 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\UserController;
 use App\Models\Beach;
+use App\Models\ReviewBeach;
+use App\Models\ReviewTour;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsCeo;
 use App\Http\Middleware\IsUser;
+use App\Http\Controllers\ReviewBeachController;
+use App\Http\Controllers\ReviewTourController;
+use App\Http\Controllers\TourBookingController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\CeoController;
+use App\Http\Controllers\AdminController;
+
 
 
 
@@ -58,33 +67,36 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
     });
      // CRUD của admin về users
     Route::prefix('users')->name('users.')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/create', [UserController::class, 'create'])->name('create');
-        Route::post('/', [UserController::class, 'store'])->name('store');
-        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
-        Route::put('/{user}', [UserController::class, 'update'])->name('update');
-        Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
-        Route::patch('/{user}/ban', [UserController::class, 'ban'])->name('ban');
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/create', [AdminController::class, 'create'])->name('create');
+        Route::post('/', [AdminController::class, 'store'])->name('store');
+        Route::get('/{user}/edit', [AdminController::class, 'edit'])->name('edit');
+        Route::put('/{user}', [AdminController::class, 'update'])->name('update');
+        Route::delete('/{user}', [AdminController::class, 'destroy'])->name('destroy');
+        Route::patch('/{user}/ban', [AdminController::class, 'ban'])->name('ban');
     });
 });
 
 // Dashboard & CRUD Ceo
 Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\CeoController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [CeoController::class, 'dashboard'])->name('dashboard');
     // CRUD của admin về users
     Route::prefix('tours')->name('tours.')->group(function () {
-        Route::get('/', [App\Http\Controllers\TourController::class, 'index'])->name('index');
-        Route::get('/create', [App\Http\Controllers\TourController::class, 'create'])->name('create');
-        Route::post('/', [App\Http\Controllers\TourController::class, 'store'])->name('store');
-        Route::get('/{tour}/edit', [App\Http\Controllers\TourController::class, 'edit'])->name('edit');
-        Route::put('/{tour}', [App\Http\Controllers\TourController::class, 'update'])->name('update');
+        Route::get('/', [TourController::class, 'index'])->name('index');
+        Route::get('/create', [TourController::class, 'create'])->name('create');
+        Route::post('/', [TourController::class, 'store'])->name('store');
+        Route::get('/{tour}/edit', [TourController::class, 'edit'])->name('edit');
+        Route::put('/{tour}', [TourController::class, 'update'])->name('update');
     });
+    Route::get('/bookings', [CeoController::class, 'bookings'])->name('bookings.index');
+    Route::patch('/bookings/{booking}/status', [CeoController::class, 'updateBookingStatus'])->name('bookings.updateStatus');
+    Route::get('/reports', [CeoController::class, 'reports'])->name('reports.index');
 });
 
 // Dashboard & CRUD User
 Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
-
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/history', [UserController::class, 'history'])->name('history');
 });
 
 // Điều hướng của các pages
@@ -106,7 +118,7 @@ Route::get('/explore', function () {
     return view('pages.explore', compact('beaches'));
 })->name('explore');
 Route::get('/tour', function () {
-    $tours = Tour::with('beach')->get()->map(function ($tour) {
+    $tours = Tour::with('beach')->where('status', 'active')->get()->map(function ($tour) {
         return [
             'id' => $tour->id,
             'title' => $tour->title,
@@ -116,7 +128,6 @@ Route::get('/tour', function () {
             'capacity' => $tour->capacity,
             'duration_days' => $tour->duration_days,
             'status' => $tour->status,
-
             'beach_id' => $tour->beach_id,
             'beach_title' => $tour->beach?->title,
             'beach_region' => $tour->beach?->region,
@@ -124,7 +135,6 @@ Route::get('/tour', function () {
             'beach_description' => $tour->beach?->short_description,
         ];
     });
-
     return view('pages.tour', compact('tours'));
 })->name('tour');
 Route::view('/queries', 'pages.queries')->name('queries');
@@ -137,8 +147,6 @@ Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.
 
 Route::get('/tour/{id}', function ($id) {
     $tour = Tour::with(['beach', 'detail'])->findOrFail($id);
-
-    // Ưu tiên ảnh tour, fallback sang ảnh beach, cuối cùng là placeholder
     $image_url = null;
     if ($tour->image) {
         $image_url = asset($tour->image);
@@ -147,7 +155,15 @@ Route::get('/tour/{id}', function ($id) {
     } else {
         $image_url = 'https://via.placeholder.com/600x400?text=No+Image';
     }
-
-    return view('pages.tourdetail', compact('tour', 'image_url'));
+    $reviews = ReviewTour::with('user')->where('tour_id', $tour->id)->latest()->get();
+    return view('pages.tourdetail', compact('tour', 'image_url', 'reviews'));
 })->name('tour.show');
+
+// Route cho review/comment
+Route::middleware('auth')->group(function () {
+    Route::post('/beaches/{beach}/review', [ReviewBeachController::class, 'store'])->name('beaches.review');
+    Route::post('/tour/{tour}/review', [ReviewTourController::class, 'store'])->name('tour.review');
+    Route::get('/tour/{id}/booking', [TourBookingController::class, 'showBookingForm'])->name('tour.booking.form');
+    Route::post('/tour/{id}/booking', [TourBookingController::class, 'storeBooking'])->name('tour.booking.store');
+});
 

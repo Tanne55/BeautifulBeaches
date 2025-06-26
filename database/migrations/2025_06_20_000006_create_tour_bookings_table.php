@@ -11,9 +11,12 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('tour_id')->constrained('tours')->onDelete('cascade');
-            $table->integer('number_of_people');
             $table->date('booking_date');
-            $table->enum('status', ['pending', 'approved', 'cancelled'])->default('pending');
+            $table->string('full_name');
+            $table->string('contact_phone')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->text('note')->nullable();
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }
@@ -21,4 +24,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('tour_bookings');
     }
-}; 
+};

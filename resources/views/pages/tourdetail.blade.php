@@ -95,13 +95,106 @@
                                 </tr>
                             @endif
                         @endif
+                        
                         <tr>
                             <th>CEO</th>
-                            <td>{{ $tour->ceo_id ?? '' }}</td>
+                            <td>{{ $tour->ceo?->name }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    {{-- NÚT ĐẶT TOUR --}}
+    <div class="container mb-4">
+        @auth
+            <a href="{{ route('tour.booking.form', $tour->id) }}" class="btn btn-success btn-lg w-100 mb-3">Đặt tour ngay</a>
+        @else
+            <a href="{{ route('login') }}" class="btn btn-success btn-lg w-100 mb-3">Đăng nhập để đặt tour</a>
+        @endauth
+    </div>
+    {{-- COMMENT/REVIEW SECTION --}}
+    <div class="container mb-5">
+        <h4 class="mb-3">Bình luận & Đánh giá</h4>
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @auth
+            <form action="{{ route('tour.review', $tour->id) }}" method="POST" class="mb-4" id="review-form">
+                @csrf
+                <div class="mb-2">
+                    <label class="form-label">Đánh giá:</label>
+                    <div id="star-rating" class="d-inline-block">
+                        @for($i=1; $i<=5; $i++)
+                            <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
+                        @endfor
+                    </div>
+                    <input type="hidden" name="rating" id="rating-input" value="5">
+                </div>
+                <div class="mb-2">
+                    <label for="comment" class="form-label">Bình luận:</label>
+                    <textarea name="comment" id="comment" class="form-control" rows="2" required></textarea>
+                </div>
+                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                <input type="hidden" name="tour_id" value="{{ $tour->id }}">
+                <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+            </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const stars = document.querySelectorAll('#star-rating .star-icon');
+                    const ratingInput = document.getElementById('rating-input');
+                    let currentRating = 5;
+                    function setStars(rating) {
+                        stars.forEach((star, idx) => {
+                            if (idx < rating) {
+                                star.classList.add('text-warning');
+                            } else {
+                                star.classList.remove('text-warning');
+                            }
+                        });
+                    }
+                    setStars(currentRating);
+                    stars.forEach((star, idx) => {
+                        star.addEventListener('mouseenter', () => setStars(idx+1));
+                        star.addEventListener('mouseleave', () => setStars(currentRating));
+                        star.addEventListener('click', () => {
+                            currentRating = idx+1;
+                            ratingInput.value = currentRating;
+                            setStars(currentRating);
+                        });
+                    });
+                });
+            </script>
+        @else
+            <div class="alert alert-info">Vui lòng <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</div>
+        @endauth
+
+        <div class="review-list mt-4">
+            @forelse($reviews as $review)
+                <div class="border-bottom pb-2 mb-2">
+                    <div class="d-flex align-items-center mb-1">
+                        <strong>{{ $review->user->name ?? 'Ẩn danh' }}</strong>
+                        @if(isset($review->user->role))
+                            @if($review->user->role === 'admin')
+                                <span class="badge bg-danger ms-2">Admin</span>
+                            @elseif($review->user->role === 'ceo')
+                                <span class="badge bg-primary ms-2">CEO</span>
+                            @elseif($review->user->role === 'user')
+                                <span class="badge bg-secondary ms-2">User</span>
+                            @endif
+                        @endif
+                        <span class="ms-2 text-warning">
+                            @for($i=1; $i<=5; $i++)
+                                <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o' }}"></i>
+                            @endfor
+                        </span>
+                        <span class="ms-2 text-muted small">{{ $review->created_at->diffForHumans() }}</span>
+                    </div>
+                    <div>{{ $review->comment }}</div>
+                </div>
+            @empty
+                <div class="text-muted">Chưa có bình luận nào.</div>
+            @endforelse
         </div>
     </div>
 @endsection

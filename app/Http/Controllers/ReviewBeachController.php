@@ -25,7 +25,8 @@ class ReviewBeachController extends Controller
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable',
         ]);
-        return ReviewBeach::create($data);
+        ReviewBeach::create($data);
+        return redirect()->route('beaches.show', $data['beach_id'])->with('success', 'Bình luận của bạn đã được gửi!');
     }
 
     public function update(Request $request, $id)

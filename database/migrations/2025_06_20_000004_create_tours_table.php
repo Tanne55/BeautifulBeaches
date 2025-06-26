@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->decimal('original_price', 8, 2)->nullable();
             $table->integer('capacity');
             $table->integer('duration_days')->default(1);
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('status', ['active', 'inactive','outdated'])->default('active');
             $table->timestamps();
         });
     }

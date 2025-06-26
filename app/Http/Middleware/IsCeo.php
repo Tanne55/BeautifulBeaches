@@ -22,7 +22,7 @@ class IsCeo
             } elseif (Auth::user()?->role === 'user') {
                 return redirect('/user/dashboard');
             }
-            abort(403, 'Bạn không có quyền truy cập.');
+            return response()->view('403page');
         }
         return $next($request);
     }

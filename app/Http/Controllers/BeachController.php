@@ -39,7 +39,8 @@ class BeachController extends Controller
             $beach->long_description_2 = null;
             $beach->tags = json_encode([]);
         }
-        return view('pages.detail', compact('beach'));
+        $reviews = \App\Models\ReviewBeach::with('user')->where('beach_id', $beach->id)->latest()->get();
+        return view('pages.detail', compact('beach', 'reviews'));
     }
 
 

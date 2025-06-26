@@ -48,7 +48,6 @@
                                     <option value="">Chọn vai trò</option>
                                     <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
                                     <option value="ceo" {{ old('role', $user->role) == 'ceo' ? 'selected' : '' }}>CEO</option>
-                                    <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between">

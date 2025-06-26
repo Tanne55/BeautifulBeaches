@@ -36,8 +36,8 @@
                                     </small>
                                 @endif
                             </p>
-                            <p class="card-text text-muted mb-1"><strong>CEO:</strong> {{ $tour['ceo_id'] ?? '' }}</p>
                             <p class="card-text">{{ Str::limit($tour['beach_description'], 100) }}</p>
+
 
                             <a href="{{ route('tour.show', $tour['id']) }}" class="btn btn-primary mt-auto">Xem chi tiết</a>
 
