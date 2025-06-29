@@ -178,3 +178,22 @@
 }
 
 /* ----------------------------------------------------------------------------- */
+.search-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ef4444;
+}
+
+.search-sidebar {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 50px;
+}

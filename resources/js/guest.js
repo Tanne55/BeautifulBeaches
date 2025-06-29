@@ -10,5 +10,7 @@ import './contact.js';
 import './explore.js';
 import './queries.js';
 import './detail.js';
+import './tour.js';
+import './tourdetail.js';
 
 

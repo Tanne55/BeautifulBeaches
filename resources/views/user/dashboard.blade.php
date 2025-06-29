@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.guest')
 
 @section('content')
     <div class="min-vh-100" style="background: linear-gradient(135deg, #ffffff 0%, #c2e9fb 100%);">

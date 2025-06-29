@@ -1,7 +1,7 @@
 @php
-    $layout = Auth::check() ? 'layouts.auth' : 'layouts.guest';
+    $user = Auth::user();
+    $layout = (!$user || $user->role === 'user') ? 'layouts.guest' : 'layouts.auth';
 @endphp
-
 
 @extends($layout)
 

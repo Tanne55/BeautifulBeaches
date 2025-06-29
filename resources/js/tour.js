@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const regionSelect = document.getElementById('filter-region');
     const sortSelect = document.getElementById('filter-sort');
     const clearBtn = document.getElementById('clear-filters');
-    const cards = Array.from(document.querySelectorAll('.tour-card'));
+    const cards = Array.from(document.querySelectorAll('.tour-cardd'));
     const container = document.getElementById('tour-list');
 
     function filterTours() {

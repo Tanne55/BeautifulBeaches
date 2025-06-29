@@ -1,7 +1,7 @@
 @php
-    $layout = Auth::check() ? 'layouts.auth' : 'layouts.guest';
+    $user = Auth::user();
+    $layout = (!$user || $user->role === 'user') ? 'layouts.guest' : 'layouts.auth';
 @endphp
-
 
 @extends($layout)
 
@@ -32,44 +32,44 @@
     <section class="container my-5">
         <div class="row">
             <!-- Filter bên trái -->
-            <div class="col-lg-3 mb-4">
-                <div class="card shadow-sm p-3">
-                    <h5 class="fw-bold mb-3">Bộ Lọc Tour</h5>
+            <div class="col-lg-3 mb-4 search-sidebar ">
 
-                    <div class="mb-3">
-                        <label class="form-label">Tìm theo tên</label>
-                        <input type="text" id="filter-title" class="form-control" placeholder="Nhập tên tour...">
-                    </div>
+                <h5 class="fw-bold mb-3 search-title">Bộ Lọc Tour</h5>
 
-                    <div class="mb-3">
-                        <label class="form-label">Khu vực</label>
-                        <select id="filter-region" class="form-select">
-                            <option value="">-- Tất cả --</option>
-                            @foreach($tours->pluck('beach_region')->unique() as $region)
-                                <option value="{{ $region }}">{{ $region }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Sắp xếp giá</label>
-                        <select id="filter-sort" class="form-select">
-                            <option value="">-- Không sắp xếp --</option>
-                            <option value="asc">Tăng dần</option>
-                            <option value="desc">Giảm dần</option>
-                        </select>
-                    </div>
-                    <button id="clear-filters" class="btn btn-outline-secondary w-100 mt-2">Xóa bộ lọc</button>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Tìm theo tên</label>
+                    <input type="text" id="filter-title" class="form-control" placeholder="Nhập tên tour...">
                 </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Khu vực</label>
+                    <select id="filter-region" class="form-select">
+                        <option value="">-- Tất cả --</option>
+                        @foreach($tours->pluck('beach_region')->unique() as $region)
+                            <option value="{{ $region }}">{{ $region }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Sắp xếp giá</label>
+                    <select id="filter-sort" class="form-select">
+                        <option value="">-- Không sắp xếp --</option>
+                        <option value="asc">Tăng dần</option>
+                        <option value="desc">Giảm dần</option>
+                    </select>
+                </div>
+                <button id="clear-filters" class="btn btn-outline-secondary w-100 mt-2">Xóa bộ lọc</button>
+
             </div>
 
             <!-- Danh sách tour -->
             <div class="col-lg-9">
                 <div class="row" id="tour-list">
                     @foreach($tours as $tour)
-                        <div class="col-md-6 mb-4 tour-card" data-title="{{ strtolower($tour['title']) }}"
+                        <div class="col-md-6 mb-5 tour-cardd" data-title="{{ strtolower($tour['title']) }}"
                             data-region="{{ $tour['beach_region'] }}" data-price="{{ $tour['price'] }}">
-                            <div class="card h-100 shadow-sm">
+                            <div class="card h-100 shadow-sm mx-auto">
                                 @php
                                     $img = $tour['image'] ?? '';
                                     $beachImg = $tour['beach_image'] ?? '';

@@ -8,7 +8,7 @@
     <title>Beautiful Beaches</title>
     <!-- Scripts and Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @vite(['resources/css/guest.css', 'resources/js/guest.js'])
+    @vite('resources/css/guest.css')
 
 </head>
 
@@ -33,6 +33,8 @@
     @include('layouts.footer')
 
 
+    {{-- Load JS ở cuối body --}}
+    @vite('resources/js/guest.js')
 </body>
 
 </html>

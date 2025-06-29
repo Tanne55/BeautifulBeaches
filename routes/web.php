@@ -65,7 +65,7 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
         Route::put('/{beach}', [BeachController::class, 'update'])->name('update');
         Route::delete('/{beach}', [BeachController::class, 'destroy'])->name('destroy');
     });
-     // CRUD của admin về users
+    // CRUD của admin về users
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/create', [AdminController::class, 'create'])->name('create');
@@ -146,7 +146,7 @@ Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
 
 Route::get('/tour/{id}', function ($id) {
-    $tour = Tour::with(['beach', 'detail'])->findOrFail($id);
+    $tour = Tour::with(['beach.detail', 'detail'])->findOrFail($id);
     $image_url = null;
     if ($tour->image) {
         $image_url = asset($tour->image);

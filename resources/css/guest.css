@@ -7,10 +7,12 @@
 @import './explore.css';
 @import './admin.css';
 @import './detail.css';
+@import './tour.css';
+@import './tourdetail.css';
 
 /* Custom CSS ở đây nếu muốn */
 body {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 
@@ -85,7 +87,7 @@ body {
 
 /* Đổi màu chữ khi hover vào buy now */
 .btn-danger:hover {
-  background-color: #1d0aee ;
+  background-color: #1d0aee;
 }
 
 nav.navbar {
@@ -123,125 +125,125 @@ nav.navbar {
 /* --------------------------------------------------------------------------------------- */
 /* css phần footer */
 .footer-section {
-    background-color: #33373a;
-    /* Màu nền tối tương tự ảnh */
-    color: #fff;
-  }
-  
+  background-color: #33373a;
+  /* Màu nền tối tương tự ảnh */
+  color: #fff;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #fff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 50px;
+  /* Độ dài đường gạch dưới */
+  background-color: var(--bs-primary);
+  /* Sử dụng màu primary của Bootstrap */
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-contact-list li,
+.footer-latest-post li {
+  margin-bottom: 10px;
+}
+
+.footer-contact-list li i {
+  color: var(--bs-primary);
+  /* Màu icon tương tự ảnh */
+}
+
+.footer-latest-post a {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.3s ease;
+}
+
+.footer-latest-post a:hover {
+  color: var(--bs-primary);
+  /* Màu hover */
+}
+
+.footer-latest-post .text-muted {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.footer-subscribe-form .form-control {
+  border-radius: 4px;
+  /* Bo tròn input */
+  border: none;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+}
+
+.footer-subscribe-form .btn-subscribe {
+  background-color: #e84133;
+  /* Màu nút subscribe */
+  border-color: #e84133;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.footer-subscribe-form .btn-subscribe:hover {
+  background-color: #c83125;
+  /* Màu hover nút subscribe */
+  border-color: #c83125;
+}
+
+.btn-link:hover {
+  background-color: var(--bs-danger) !important;
+  color: white !important;
+}
+
+.footer-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-links li a {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: var(--bs-primary);
+  /* Màu hover */
+}
+
+.footer-links li {
+  vertical-align: middle;
+}
+
+@media (max-width: 767.98px) {
   .footer-title {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #fff;
-    position: relative;
-    padding-bottom: 10px;
-  }
-  
-  .footer-title::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 50px;
-    /* Độ dài đường gạch dưới */
-    background-color: var(--bs-primary);
-    /* Sử dụng màu primary của Bootstrap */
-  }
-  
-  .footer-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .footer-contact-list li,
-  .footer-latest-post li {
-    margin-bottom: 10px;
-  }
-  
-  .footer-contact-list li i {
-    color: var(--bs-primary);
-    /* Màu icon tương tự ảnh */
-  }
-  
-  .footer-latest-post a {
-    color: rgba(255, 255, 255, 0.9);
-    transition: color 0.3s ease;
-  }
-  
-  .footer-latest-post a:hover {
-    color: var(--bs-primary);
-    /* Màu hover */
-  }
-  
-  .footer-latest-post .text-muted {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6) !important;
-  }
-  
-  .footer-subscribe-form .form-control {
-    border-radius: 4px;
-    /* Bo tròn input */
-    border: none;
-    padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-  
-  .footer-subscribe-form .btn-subscribe {
-    background-color: #e84133;
-    /* Màu nút subscribe */
-    border-color: #e84133;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .footer-subscribe-form .btn-subscribe:hover {
-    background-color: #c83125;
-    /* Màu hover nút subscribe */
-    border-color: #c83125;
+    margin-top: 20px;
   }
 
-  .btn-link:hover{
-    background-color: var(--bs-danger) !important;
-    color: white !important;
+  .footer-badges img {
+    max-width: 60px !important;
   }
-  
-  .footer-divider {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .footer-links li a {
-    color: rgba(255, 255, 255, 0.9);
-    transition: color 0.3s ease;
-  }
-  
-  .footer-links li a:hover {
-    color: var(--bs-primary);
-    /* Màu hover */
-  }
-  
-  .footer-links li {
-    vertical-align: middle;
-  }
-  
-  @media (max-width: 767.98px) {
-    .footer-title {
-      margin-top: 20px;
-    }
-  
-    .footer-badges img {
-      max-width: 60px !important;
-    }
-  }
-  
-  .botron {
-    border-radius: 50%;
-    width: 50px;
-    /* Chiều rộng của logo */
-    height: 50px;
-    /* Chiều cao của logo */
-    overflow: hidden;
-    /* Đảm bảo nội dung không tràn ra ngoài */
-  }
+}
+
+.botron {
+  border-radius: 50%;
+  width: 50px;
+  /* Chiều rộng của logo */
+  height: 50px;
+  /* Chiều cao của logo */
+  overflow: hidden;
+  /* Đảm bảo nội dung không tràn ra ngoài */
+}

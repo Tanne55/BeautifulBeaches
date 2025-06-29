@@ -160,7 +160,7 @@
                         </li>
                         </ul>
 
-                    @elseif(auth()->user()->isUser())
+
                         {{-- sidebar cho user --}}
                         <div class="collapse">
                             <div class="px-2 py-1">

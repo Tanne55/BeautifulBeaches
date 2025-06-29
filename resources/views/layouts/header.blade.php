@@ -4,7 +4,7 @@
         <!-- Phần 1: Logo + brand + toggler -->
         <div class="d-flex align-items-center">
             <img src="/assets/img1/logo_beach.jpg" alt="Logo" width="50" class="botron me-2" />
-            <a class="navbar-brand fw-bold custom-hover me-3" href="#">Beautiful Beaches</a>
+            <a class="navbar-brand fw-bold custom-hover me-3" href="/">Beautiful Beaches</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,9 +57,35 @@
         </div>
 
         <!-- Phần 3: Đăng nhập/Đăng ký hoặc Dashboard/Logout -->
+
         <div>
-            <a href="{{ route('login') }}" class="btn btn-outline-danger fw-bold me-2">Đăng nhập</a>
-            <a href="{{ route('register') }}" class="btn btn-danger fw-bold">Đăng ký</a>
+            @auth
+                @php
+                    $user = Auth::user();
+                    $dashboardRoute = '';
+
+                    if ($user->role === 'admin') {
+                        $dashboardRoute = route('admin.dashboard');
+                    } elseif ($user->role === 'ceo') {
+                        $dashboardRoute = route('ceo.dashboard');
+                    } elseif ($user->role === 'user') {
+                        $dashboardRoute = route('user.dashboard');
+                    }
+                @endphp
+
+                @if ($dashboardRoute)
+                    <a href="{{ $dashboardRoute }}" class="btn btn-outline-danger fw-bold me-2">Dashboard</a>
+                @endif
+
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-danger fw-bold">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-outline-danger fw-bold me-2">Đăng nhập</a>
+                <a href="{{ route('register') }}" class="btn btn-danger fw-bold">Đăng ký</a>
+            @endauth
         </div>
+
     </div>
 </nav>
