@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const titleInput = document.getElementById('filter-title');
     const regionSelect = document.getElementById('filter-region');
@@ -32,6 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         container.innerHTML = "";
         filtered.forEach(card => container.appendChild(card));
+
+        const noResultDiv = document.getElementById('no-result-tour');
+        if (noResultDiv) {
+            if (filtered.length === 0) {
+                noResultDiv.style.display = 'block';
+            } else {
+                noResultDiv.style.display = 'none';
+            }
+        }
     }
 
     function clearFilters() {

@@ -123,6 +123,12 @@
                     @endforeach
 
                 </div>
+                <div id="no-result-explore" class="no-results"
+                    style="display:none; text-align:center; color:#888; font-size:1.2rem; margin-top:2rem;">
+                    <i class="fas fa-search"></i>
+                    <h3>Không tìm thấy bãi biển phù hợp</h3>
+                    <p>Hãy thử từ khóa khác hoặc kiểm tra lại bộ lọc.</p>
+                </div>
             </div>
         </div>
     </section>

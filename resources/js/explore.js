@@ -9,6 +9,7 @@ function filterTours() {
     const tag = document.getElementById('search-tag').value.toLowerCase();
 
     const tours = document.querySelectorAll('.tour-card');
+    let visibleCount = 0;
 
     tours.forEach(tour => {
         const tourTitle = tour.dataset.title;
@@ -21,10 +22,20 @@ function filterTours() {
 
         if (matchTitle && matchRegion && matchTag) {
             tour.classList.remove('hidden');
+            visibleCount++;
         } else {
             tour.classList.add('hidden');
         }
     });
+
+    const noResultDiv = document.getElementById('no-result-explore');
+    if (noResultDiv) {
+        if (visibleCount === 0) {
+            noResultDiv.style.display = 'block';
+        } else {
+            noResultDiv.style.display = 'none';
+        }
+    }
 }
 
 function clearFilters() {

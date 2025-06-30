@@ -89,7 +89,7 @@
                                         <div class="collapse">
                                             <div class="px-2 py-1">
                                                 <a href="{{ route('contact') }}" class="dropdown-item">Liên hệ với chúng tôi</a>
-                                                <a href="{{ route('queries') }}" class="dropdown-item">Gửi thắc mắc</a>
+                                                <a href="{{ route('queries') }}" class="dropdown-item">Câu hỏi thường gặp</a>
                                             </div>
                                         </div>
                                     </li>
@@ -148,7 +148,7 @@
                             <div class="collapse">
                                 <div class="px-2 py-1">
                                     <a href="{{ route('contact') }}" class="dropdown-item">Liên hệ với chúng tôi</a>
-                                    <a href="{{ route('queries') }}" class="dropdown-item">Gửi thắc mắc</a>
+                                    <a href="{{ route('queries') }}" class="dropdown-item">Câu hỏi thường gặp</a>
                                 </div>
                             </div>
                         </li>

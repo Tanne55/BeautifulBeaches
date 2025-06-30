@@ -281,51 +281,6 @@
         </div>
     </section>
 
-    {{-- Câu hỏi hay gặp --}}
-    <section class="content-section container">
-        <div class="section-header">
-            ❓ Câu hỏi thường gặp
-        </div>
-        <div class="section-content">
-            <div class="faq-item">
-                <div class="faq-question">
-                    Tour có phù hợp với trẻ em không? <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Tour phù hợp với trẻ em từ 5 tuổi trở lên. Chúng tôi có áo phao an toàn và hướng dẫn viên chuyên
-                    nghiệp để đảm bảo an toàn cho các bé.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Chính sách hủy tour như thế nào? <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Hủy trước 7 ngày: hoàn 100% | Hủy trước 3 ngày: hoàn 70% | Hủy trước 1 ngày: hoàn 30% | Hủy
-                    trong ngày: không hoàn tiền.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Nếu thời tiết xấu sẽ xử lý như thế nào? <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Chúng tôi sẽ liên hệ để dời lịch hoặc hoàn tiền 100%. An toàn của khách hàng là ưu tiên hàng
-                    đầu.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Có cần mang theo gì đặc biệt không? <span>+</span>
-                </div>
-                <div class="faq-answer">
-                    Mang theo CMND/CCCD, đồ bơi, kem chống nắng, mũ, áo khoác nhẹ. Các thiết bị thể thao nước đã
-                    được cung cấp.
-                </div>
-            </div>
-        </div>
-    </section>
-
     {{-- Thông tin quan trọng --}}
     <section class="content-section container">
         <div class="section-header">
