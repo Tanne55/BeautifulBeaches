@@ -15,12 +15,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // Seed theo thứ tự: Users -> Beaches -> Tours -> Reviews
+        // Seed theo thứ tự: Users -> Beaches -> Tours -> Reviews -> Support
         $this->call([
             UserSeeder::class,
             BeachesSeeder::class,
             ToursSeeder::class,
-            // ReviewsSeeder::class,    // Uncomment khi có
+            TourBookingSeeder::class,
+            TicketSeeder::class,
+            ReviewBeachSeeder::class,
+            ReviewTourSeeder::class,
+            SupportRequestSeeder::class,
         ]);
     }
 }

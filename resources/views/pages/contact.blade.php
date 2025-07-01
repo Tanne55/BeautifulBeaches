@@ -30,15 +30,39 @@
                         We are always ready to listen and assist you in planning your perfect beach vacation.
                         Contact us for detailed consultation about our beach tours and services.
                     </p>
-                    <form>
+                    
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('support.store') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name*" required>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name*" value="{{ old('name') }}" {{ Auth::check() ? 'readonly' : '' }}>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email*" required>
+                            <input type="email" name="email" class="form-control" placeholder="Your Email*" value="{{ old('email', Auth::user()->email ?? '') }}" required>
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Your Message*" required></textarea>
+                            <input type="text" name="phone" class="form-control" placeholder="Your Phone" value="{{ old('phone') }}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="title" class="form-control" placeholder="Subject*" value="{{ old('title') }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="message" class="form-control" rows="5" placeholder="Your Message*" required>{{ old('message') }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-danger w-20">SUBMIT MESSAGE</button>
                     </form>

@@ -4,16 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReviewTour extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'review_tour';
     protected $fillable = [
         'user_id',
         'tour_id',
         'rating',
         'comment',
+        'guest_name',
+        'guest_email',
     ];
 
     public function user()

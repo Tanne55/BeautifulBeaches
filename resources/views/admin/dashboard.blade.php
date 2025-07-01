@@ -152,8 +152,32 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card border-0 shadow-lg h-100 management-card"
+                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="icon-wrapper me-3"
+                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff9a9e, #fecfef); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-headset fa-lg text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý hỗ trợ</h5>
+                                        <small class="text-muted">Xử lý yêu cầu hỗ trợ</small>
+                                    </div>
+                                </div>
+                                <p class="card-text text-muted mb-4">Quản lý các yêu cầu hỗ trợ từ khách hàng, phản hồi và giải quyết vấn đề một cách hiệu quả.</p>
+                                <a href="{{ route('admin.support.index') }}" class="btn w-100 text-white fw-semibold"
+                                    style="background: linear-gradient(45deg, #ff9a9e, #fecfef); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
+                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(255,154,158,0.4)'"
+                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fas fa-arrow-right me-2"></i>Quản lý hỗ trợ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="col-lg-4 col-md-6">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">

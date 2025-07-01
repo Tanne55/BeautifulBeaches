@@ -8,10 +8,12 @@
     <title>Beautiful Beaches</title>
     <!-- Scripts and Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite('resources/css/auth.css')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-</head>
+
 
 <body>
 
@@ -33,6 +35,8 @@
 
     {{-- Load JS ở cuối body --}}
     @vite('resources/js/auth.js')
+    @stack('scripts')
+    @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

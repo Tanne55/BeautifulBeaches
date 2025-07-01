@@ -12,7 +12,8 @@ class TourBookingController extends Controller
     public function showBookingForm($id)
     {
         $tour = Tour::findOrFail($id);
-        return view('user.tour_booking', compact('tour'));
+        $totalBooked = TourBooking::where('tour_id', $tour->id)->sum('number_of_people');
+        return view('user.tour_booking', compact('tour', 'totalBooked'));
     }
 
     public function storeBooking(Request $request, $id)
@@ -22,23 +23,28 @@ class TourBookingController extends Controller
             'full_name' => 'required|string|max:255',
             'contact_email' => 'required|email|max:255',
             'contact_phone' => 'required|string|max:20',
+            'number_of_people' => 'required|integer|min:1|max:20',
             'note' => 'nullable|string|max:1000',
         ]);
-        $booked = TourBooking::where('tour_id', $tour->id)->count();
-        if ($booked >= $tour->capacity) {
-            return back()->with('error', 'Số lượng vé đã hết!')->withInput();
+
+        // Kiểm tra tổng số người đã đặt
+        $totalBooked = TourBooking::where('tour_id', $tour->id)->sum('number_of_people');
+        if ($totalBooked + $validated['number_of_people'] > $tour->capacity) {
+            return back()->with('error', 'Số lượng vé còn lại không đủ!')->withInput();
         }
+
         $booking = TourBooking::create([
             'user_id' => Auth::id(),
             'tour_id' => $tour->id,
             'full_name' => $validated['full_name'],
             'contact_email' => $validated['contact_email'],
             'contact_phone' => $validated['contact_phone'],
+            'number_of_people' => $validated['number_of_people'],
             'booking_date' => now(),
             'status' => 'pending',
             'note' => $validated['note'] ?? null,
         ]);
-        $booking->save();
+
         return redirect()->route('user.history')->with('success', 'Đặt tour thành công! Vui lòng chờ CEO xác nhận.');
     }
 }

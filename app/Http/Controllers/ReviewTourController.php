@@ -20,11 +20,22 @@ class ReviewTourController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable|exists:users,id',
             'tour_id' => 'required|exists:tours,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable',
+            'guest_name' => 'nullable|string|max:255',
+            'guest_email' => 'nullable|email|max:255',
         ]);
+        
+        // Nếu không có user_id (khách), yêu cầu thông tin khách
+        if (!$data['user_id']) {
+            $request->validate([
+                'guest_name' => 'required|string|max:255',
+                'guest_email' => 'required|email|max:255',
+            ]);
+        }
+        
         ReviewTour::create($data);
         return redirect()->route('tour.show', $data['tour_id'])->with('success', 'Bình luận của bạn đã được gửi!');
     }
@@ -38,7 +49,8 @@ class ReviewTourController extends Controller
 
     public function destroy($id)
     {
-        ReviewTour::destroy($id);
+        $review = ReviewTour::findOrFail($id);
+        $review->delete();
         return response()->noContent();
     }
 } 

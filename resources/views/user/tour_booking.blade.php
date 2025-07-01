@@ -41,6 +41,17 @@
                                     value="{{ old('contact_phone') }}" required>
                             </div>
                             <div class="mb-3">
+                                <label for="number_of_people" class="form-label">Số lượng người</label>
+                                <input type="number" name="number_of_people" id="number_of_people" class="form-control"
+                                    value="{{ old('number_of_people', 1) }}"
+                                    min="1"
+                                    max="{{ $tour->capacity - $tour->bookings->sum('number_of_people') }}"
+                                    required>
+                                <small class="text-muted">
+                                    Số vé còn lại: {{ $tour->capacity - $tour->bookings->sum('number_of_people') }}
+                                </small>
+                            </div>
+                            <div class="mb-3">
                                 <label for="note" class="form-label">Ghi chú (tuỳ chọn)</label>
                                 <textarea name="note" id="note" class="form-control" rows="2">{{ old('note') }}</textarea>
                             </div>

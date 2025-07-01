@@ -28,11 +28,13 @@
                         alt="No image">
                 @endif
                 <div class="my-5">
-                    <h3 class="mb-3">{{ $tour->beach->short_description }}</h3>
-                    <div class="fst-italic">
-                        <p>{{ $tour->beach->detail->long_description }}</p>
-                        <p>{{ $tour->beach->detail->long_description2 }}</p>
-                    </div>
+                    @if($tour->beach)
+                        <h3 class="mb-3">{{ $tour->beach->short_description }}</h3>
+                        <div class="fst-italic">
+                            <p>{{ $tour->beach->detail->long_description ?? '' }}</p>
+                            <p>{{ $tour->beach->detail->long_description2 ?? '' }}</p>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-6">
@@ -133,45 +135,89 @@
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-        @auth
-            <form action="{{ route('tour.review', $tour->id) }}" method="POST" class="mb-4" id="review-form">
-                @csrf
-                <div class="mb-2">
-                    <label class="form-label">Đánh giá:</label>
-                    <div id="star-rating" class="d-inline-block">
-                        @for($i = 1; $i <= 5; $i++)
-                            <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
-                        @endfor
-                    </div>
-                    <input type="hidden" name="rating" id="rating-input" value="5">
+        
+        <form action="{{ route('tour.review', $tour->id) }}" method="POST" class="mb-4" id="review-form">
+            @csrf
+            <div class="mb-2">
+                <label class="form-label">Đánh giá:</label>
+                <div id="star-rating" class="d-inline-block">
+                    @for($i = 1; $i <= 5; $i++)
+                        <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
+                    @endfor
                 </div>
-                <div class="mb-2">
-                    <label for="comment" class="form-label">Bình luận:</label>
-                    <textarea name="comment" id="comment" class="form-control" rows="2" required></textarea>
-                </div>
+                <input type="hidden" name="rating" id="rating-input" value="5">
+            </div>
+            
+            @auth
                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                <input type="hidden" name="tour_id" value="{{ $tour->id }}">
-                <button type="submit" class="btn btn-primary">Gửi bình luận</button>
-            </form>
+            @else
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label for="guest_name" class="form-label">Tên của bạn:</label>
+                        <input type="text" name="guest_name" id="guest_name" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="guest_email" class="form-label">Email:</label>
+                        <input type="email" name="guest_email" id="guest_email" class="form-control" required>
+                    </div>
+                </div>
+            @endauth
+            
+            <div class="mb-2">
+                <label for="comment" class="form-label">Bình luận:</label>
+                <textarea name="comment" id="comment" class="form-control" rows="2" required></textarea>
+            </div>
+            
+            <input type="hidden" name="tour_id" value="{{ $tour->id }}">
+            <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+        </form>
 
-        @else
-            <div class="alert alert-info">Vui lòng <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</div>
-        @endauth
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const stars = document.querySelectorAll('#star-rating .star-icon');
+                const ratingInput = document.getElementById('rating-input');
+                let currentRating = 5;
+                function setStars(rating) {
+                    stars.forEach((star, idx) => {
+                        if (idx < rating) {
+                            star.classList.add('text-warning');
+                        } else {
+                            star.classList.remove('text-warning');
+                        }
+                    });
+                }
+                setStars(currentRating);
+                stars.forEach((star, idx) => {
+                    star.addEventListener('mouseenter', () => setStars(idx + 1));
+                    star.addEventListener('mouseleave', () => setStars(currentRating));
+                    star.addEventListener('click', () => {
+                        currentRating = idx + 1;
+                        ratingInput.value = currentRating;
+                        setStars(currentRating);
+                    });
+                });
+            });
+        </script>
 
         <div class="review-list mt-4">
             @forelse($reviews as $review)
                 <div class="border-bottom pb-2 mb-2">
                     <div class="d-flex align-items-center mb-1">
-                        <strong>{{ $review->user->name ?? 'Ẩn danh' }}</strong>
-                        @if(isset($review->user->role))
-                            @if($review->user->role === 'admin')
-                                <span class="badge bg-danger ms-2">Admin</span>
-                            @elseif($review->user->role === 'ceo')
-                                <span class="badge bg-primary ms-2">CEO</span>
-                            @elseif($review->user->role === 'user')
-                                <span class="badge bg-secondary ms-2">User</span>
+                        <strong>
+                            @if($review->user)
+                                {{ $review->user->name }}
+                                @if($review->user->role === 'admin')
+                                    <span class="badge bg-danger ms-2">Admin</span>
+                                @elseif($review->user->role === 'ceo')
+                                    <span class="badge bg-primary ms-2">CEO</span>
+                                @elseif($review->user->role === 'user')
+                                    <span class="badge bg-secondary ms-2">User</span>
+                                @endif
+                            @else
+                                {{ $review->guest_name ?? 'Khách' }}
+                                <span class="badge bg-info ms-2">Khách</span>
                             @endif
-                        @endif
+                        </strong>
                         <span class="ms-2 text-warning">
                             @for($i = 1; $i <= 5; $i++)
                                 <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o' }}"></i>

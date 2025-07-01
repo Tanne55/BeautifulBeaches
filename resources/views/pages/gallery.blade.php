@@ -99,9 +99,9 @@
         </div>
 
         <!-- Modal -->
-        <div id="imageModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
+        <div id="imageModal" class="gallery-modal">
+            <div class="gallery-modal-content">
+                <span class="gallery-close">&times;</span>
                 <img id="modalImage" src="" alt="">
             </div>
         </div>

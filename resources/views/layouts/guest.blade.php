@@ -8,7 +8,8 @@
     <title>Beautiful Beaches</title>
     <!-- Scripts and Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @vite('resources/css/guest.css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 </head>
 
@@ -36,5 +37,5 @@
     {{-- Load JS ở cuối body --}}
     @vite('resources/js/guest.js')
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
