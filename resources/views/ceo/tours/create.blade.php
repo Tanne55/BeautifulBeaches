@@ -2,7 +2,8 @@
 @section('content')
     <div class="container py-4">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <!-- Form bên trái -->
+            <div class="col-lg-6">
                 <div class="card shadow-sm">
                     <div class="card-body p-2">
                         @if ($errors->any())
@@ -14,7 +15,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('ceo.tours.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('ceo.tours.store') }}" method="POST" enctype="multipart/form-data" id="tourForm">
                             @csrf
                             <!-- Ảnh preview -->
                             <div class="mb-4 text-center">
@@ -49,8 +50,8 @@
                             </div>
                             <!-- Giá -->
                             <div class="mb-3">
-                                <label for="price" class="form-label">Giá (đơn vị triệu đồng)</label>
-                                <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá" required value="{{ old('price') }}" min="0" step="0.5" oninput="updateOriginalPrice()">
+                                <label for="price" class="form-label">Giá (triệu đồng)</label>
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá" required value="{{ old('price') }}" min="0" step="0.1" oninput="updateOriginalPrice()">
                             </div>
                             <!-- Giá gốc (ẩn) = 1.1 giá -->
                             <input type="hidden" id="original_price" name="original_price" value="{{ old('original_price') }}">
@@ -70,17 +71,18 @@
                             <!-- Sức chứa -->
                             <div class="mb-3">
                                 <label for="capacity" class="form-label">Sức chứa</label>
-                                <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Nhập sức chứa" required value="{{ old('capacity')}}" min="10" step="1">
+                                <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Nhập sức chứa" required value="{{ old('capacity')}}" min="1" step="1">
                             </div>
                             <!-- Thời lượng (số ngày) -->
                             <div class="mb-3">
                                 <label for="duration_days" class="form-label">Thời lượng (số ngày)</label>
-                                <input type="number" class="form-control" id="duration_days" name="duration_days" placeholder="Nhập số ngày" required value="{{ old('duration_days', 1) }}" min="1" step="1" oninput="updateReturnTime()">
+                                <input type="number" class="form-control" id="duration_days" name="duration_days" placeholder="Nhập số ngày" required value="{{ old('duration_days', 1) }}" min="1" max="30" step="1" oninput="updateReturnTime()">
                             </div>
                             <!-- Ngày giờ khởi hành -->
                             <div class="mb-3">
                                 <label for="departure_time" class="form-label">Ngày giờ khởi hành</label>
-                                <input type="datetime-local" class="form-control" id="departure_time" name="departure_time" value="{{ old('departure_time') }}" required oninput="updateReturnTime()">
+                                <input type="datetime-local" class="form-control" id="departure_time" name="departure_time" value="{{ old('departure_time') }}" required oninput="updateReturnTime()" min="{{ date('Y-m-d\TH:i') }}">
+                                <div class="form-text">Ngày khởi hành phải từ hôm nay trở đi</div>
                             </div>
                             <!-- Ngày giờ trở về (ẩn) -->
                             <input type="hidden" id="return_time" name="return_time" value="{{ old('return_time') }}">
@@ -88,13 +90,22 @@
                                 function updateReturnTime() {
                                     var dep = document.getElementById('departure_time').value;
                                     var days = parseInt(document.getElementById('duration_days').value);
-                                    if(dep && !isNaN(days)) {
+                                    if(dep && !isNaN(days) && days > 0) {
                                         var depDate = new Date(dep);
                                         var retDate = new Date(depDate.getTime() + (days * 24 * 60 * 60 * 1000));
-                                        // Giữ nguyên giờ phút giây của departure_time
                                         document.getElementById('return_time').value = retDate.toISOString().slice(0,16);
+                                        
+                                        // Cập nhật preview
+                                        document.getElementById('previewReturn').textContent = formatDateTime(retDate);
                                     }
                                 }
+                                
+                                // Hàm format datetime cho preview
+                                function formatDateTime(date) {
+                                    if (!date) return '-';
+                                    return date.toLocaleDateString('vi-VN') + ' ' + date.toLocaleTimeString('vi-VN', {hour: '2-digit', minute: '2-digit'});
+                                }
+                                
                                 document.addEventListener('DOMContentLoaded', function() {
                                     updateReturnTime();
                                 });
@@ -130,6 +141,71 @@
                     </div>
                 </div>
             </div>
+            <!-- Preview bên phải -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body p-3">
+                        <div class="text-center mb-3">
+                            <img id="previewImageShow" src="https://via.placeholder.com/900x350?text=Preview+Image" alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
+                        </div>
+                        <table class="table table-bordered table-striped mb-3">
+                            <tbody>
+                                <tr>
+                                    <th>Khu vực</th>
+                                    <td id="previewRegion">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Tên tour</th>
+                                    <td id="previewTitle">Tên tour</td>
+                                </tr>
+                                <tr>
+                                    <th>Bãi biển</th>
+                                    <td id="previewBeach">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Trạng thái</th>
+                                    <td id="previewStatus">-</td>
+                                </tr>
+                                <tr>
+                                    <th>Thời lượng</th>
+                                    <td><span id="previewDuration">1</span> ngày</td>
+                                </tr>
+                                <tr>
+                                    <th>Sức chứa</th>
+                                    <td><span id="previewCapacity">0</span> người</td>
+                                </tr>
+                                <tr>
+                                    <th>Giá</th>
+                                    <td>
+                                        <span class="text-danger fw-bold" id="previewPrice">0</span> triệu đồng
+                                        <span class="text-decoration-line-through text-muted" id="previewOriginalPrice"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Giờ khởi hành</th>
+                                    <td id="previewDeparture"></td>
+                                </tr>
+                                <tr>
+                                    <th>Giờ trở về</th>
+                                    <td id="previewReturn"></td>
+                                </tr>
+                                <tr>
+                                    <th>Dịch vụ bao gồm</th>
+                                    <td><ul class="mb-0" id="previewIncludedServices"></ul></td>
+                                </tr>
+                                <tr>
+                                    <th>Không bao gồm</th>
+                                    <td><ul class="mb-0" id="previewExcludedServices"></ul></td>
+                                </tr>
+                                <tr>
+                                    <th>Điểm nổi bật</th>
+                                    <td><ul class="mb-0" id="previewHighlights"></ul></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -137,7 +213,7 @@
         const dropArea = document.getElementById('drop-area');
         const imageInput = document.getElementById('image');
         const imagePreview = document.getElementById('imagePreview');
-        const dropText = document.getElementById('drop-text');
+        const previewImageShow = document.getElementById('previewImageShow');
 
         dropArea.addEventListener('click', () => imageInput.click());
         dropArea.addEventListener('dragover', (e) => {
@@ -162,7 +238,102 @@
             }
         });
         function previewImageFile(file) {
-            imagePreview.src = URL.createObjectURL(file);
+            const url = URL.createObjectURL(file);
+            imagePreview.src = url;
+            previewImageShow.src = url;
         }
+
+        // Live preview các trường form
+        function formatMoney(val) {
+            if (!val) return '0';
+            return parseFloat(val).toLocaleString('vi-VN', {maximumFractionDigits: 2});
+        }
+        document.getElementById('title').addEventListener('input', function() {
+            document.getElementById('previewTitle').textContent = this.value || 'Tên tour';
+        });
+        document.getElementById('beach_id').addEventListener('change', function() {
+            const selected = this.options[this.selectedIndex];
+            document.getElementById('previewBeach').textContent = selected.text || '-';
+            document.getElementById('previewRegion').textContent = selected.dataset.region || '-';
+        });
+        // Gán data-region cho option
+        Array.from(document.getElementById('beach_id').options).forEach(opt => {
+            @foreach($beaches as $beach)
+                if (opt.value == '{{ $beach->id }}') opt.dataset.region = '{{ $beach->region }}';
+            @endforeach
+        });
+        document.getElementById('status').addEventListener('change', function() {
+            document.getElementById('previewStatus').textContent = this.options[this.selectedIndex].text || '-';
+        });
+        document.getElementById('price').addEventListener('input', function() {
+            document.getElementById('previewPrice').textContent = formatMoney(this.value);
+            const original = document.getElementById('original_price').value;
+            document.getElementById('previewOriginalPrice').textContent = (original && original > this.value) ? '(' + formatMoney(original) + ')' : '';
+        });
+        document.getElementById('original_price').addEventListener('input', function() {
+            const price = document.getElementById('price').value;
+            document.getElementById('previewOriginalPrice').textContent = (this.value && this.value > price) ? '(' + formatMoney(this.value) + ')' : '';
+        });
+        document.getElementById('capacity').addEventListener('input', function() {
+            document.getElementById('previewCapacity').textContent = this.value || '0';
+        });
+        document.getElementById('duration_days').addEventListener('input', function() {
+            document.getElementById('previewDuration').textContent = this.value || '1';
+        });
+        document.getElementById('departure_time').addEventListener('input', function() {
+            const depDate = this.value ? new Date(this.value) : null;
+            document.getElementById('previewDeparture').textContent = depDate ? formatDateTime(depDate) : '-';
+            updateReturnTime();
+        });
+        document.getElementById('return_time').addEventListener('input', function() {
+            const retDate = this.value ? new Date(this.value) : null;
+            document.getElementById('previewReturn').textContent = retDate ? formatDateTime(retDate) : '-';
+        });
+        document.getElementById('included_services').addEventListener('input', function() {
+            const ul = document.getElementById('previewIncludedServices');
+            ul.innerHTML = '';
+            this.value.split('\n').forEach(line => {
+                if(line.trim()) {
+                    const li = document.createElement('li');
+                    li.textContent = line.trim();
+                    ul.appendChild(li);
+                }
+            });
+        });
+        document.getElementById('excluded_services').addEventListener('input', function() {
+            const ul = document.getElementById('previewExcludedServices');
+            ul.innerHTML = '';
+            this.value.split('\n').forEach(line => {
+                if(line.trim()) {
+                    const li = document.createElement('li');
+                    li.textContent = line.trim();
+                    ul.appendChild(li);
+                }
+            });
+        });
+        document.getElementById('highlights').addEventListener('input', function() {
+            const ul = document.getElementById('previewHighlights');
+            ul.innerHTML = '';
+            this.value.split('\n').forEach(line => {
+                if(line.trim()) {
+                    const li = document.createElement('li');
+                    li.textContent = line.trim();
+                    ul.appendChild(li);
+                }
+            });
+        });
+        // Initial trigger for preview
+        document.getElementById('title').dispatchEvent(new Event('input'));
+        document.getElementById('beach_id').dispatchEvent(new Event('change'));
+        document.getElementById('status').dispatchEvent(new Event('change'));
+        document.getElementById('price').dispatchEvent(new Event('input'));
+        document.getElementById('original_price').dispatchEvent(new Event('input'));
+        document.getElementById('capacity').dispatchEvent(new Event('input'));
+        document.getElementById('duration_days').dispatchEvent(new Event('input'));
+        document.getElementById('departure_time').dispatchEvent(new Event('input'));
+        document.getElementById('return_time').dispatchEvent(new Event('input'));
+        document.getElementById('included_services').dispatchEvent(new Event('input'));
+        document.getElementById('excluded_services').dispatchEvent(new Event('input'));
+        document.getElementById('highlights').dispatchEvent(new Event('input'));
     </script>
 @endsection

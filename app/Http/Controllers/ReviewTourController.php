@@ -28,6 +28,9 @@ class ReviewTourController extends Controller
             'guest_email' => 'nullable|email|max:255',
         ]);
         
+        // Ensure user_id is set to null if not provided
+        $data['user_id'] = $data['user_id'] ?? null;
+        
         // Nếu không có user_id (khách), yêu cầu thông tin khách
         if (!$data['user_id']) {
             $request->validate([

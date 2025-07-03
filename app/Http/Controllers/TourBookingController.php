@@ -11,14 +11,14 @@ class TourBookingController extends Controller
 {
     public function showBookingForm($id)
     {
-        $tour = Tour::findOrFail($id);
+        $tour = Tour::with('detail')->findOrFail($id);
         $totalBooked = TourBooking::where('tour_id', $tour->id)->sum('number_of_people');
         return view('user.tour_booking', compact('tour', 'totalBooked'));
     }
 
     public function storeBooking(Request $request, $id)
     {
-        $tour = Tour::findOrFail($id);
+        $tour = Tour::with('detail')->findOrFail($id);
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
             'contact_email' => 'required|email|max:255',
@@ -26,6 +26,11 @@ class TourBookingController extends Controller
             'number_of_people' => 'required|integer|min:1|max:20',
             'note' => 'nullable|string|max:1000',
         ]);
+
+        // Kiểm tra tour đã khởi hành chưa
+        if ($tour->detail && $tour->detail->departure_time && now()->gt($tour->detail->departure_time)) {
+            return back()->with('error', 'Không thể đặt tour đã qua thời gian khởi hành!')->withInput();
+        }
 
         // Kiểm tra tổng số người đã đặt
         $totalBooked = TourBooking::where('tour_id', $tour->id)->sum('number_of_people');

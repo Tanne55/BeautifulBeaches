@@ -66,20 +66,25 @@
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Số Khách*</label>
                     <input type="number" class="form-control" placeholder="Số Người"
-                        style="background-color:#F8F8F8; border:none;">
+                        style="background-color:#F8F8F8; border:none;" min="1" max="10">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Ngày Đến*</label>
-                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                    <input type="date" class="form-control" id="arrival-date" name="arrival_date" 
+                           style="background-color:#F8F8F8; border:none;" 
+                           min="{{ date('Y-m-d') }}" 
+                           required>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Ngày Về*</label>
-                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                    <input type="date" class="form-control" id="departure-date" name="departure_date" 
+                           style="background-color:#F8F8F8; border:none;" 
+                           min="{{ date('Y-m-d') }}" 
+                           required>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <a href="{{ route('contact') }}" class="btn btn-danger btn-lg banner-search-btn" role="button">TƯ VẤN
-                        NGAY</a>
-
+                        NGAY</a> 
                 </div>
             </form>
         </div>
@@ -591,3 +596,87 @@
 
 
 @endsection
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const arrivalDateInput = document.getElementById('arrival-date');
+    const departureDateInput = document.getElementById('departure-date');
+    
+    // Lấy ngày hiện tại
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Set min date cho cả hai trường
+    arrivalDateInput.min = today;
+    departureDateInput.min = today;
+    
+    // Khi ngày đến thay đổi, cập nhật min date cho ngày về
+    arrivalDateInput.addEventListener('change', function() {
+        const arrivalDate = this.value;
+        if (arrivalDate) {
+            departureDateInput.min = arrivalDate;
+            
+            // Nếu ngày về đã được chọn và nhỏ hơn ngày đến, reset ngày về
+            if (departureDateInput.value && departureDateInput.value < arrivalDate) {
+                departureDateInput.value = '';
+            }
+        }
+    });
+    
+    // Validation khi submit form
+    const searchForm = document.querySelector('.banner-search-form');
+    searchForm.addEventListener('submit', function(e) {
+        const arrivalDate = arrivalDateInput.value;
+        const departureDate = departureDateInput.value;
+        
+        // Kiểm tra ngày đến không được trong quá khứ
+        if (arrivalDate && arrivalDate < today) {
+            e.preventDefault();
+            alert('Ngày đến không thể là ngày trong quá khứ!');
+            arrivalDateInput.focus();
+            return false;
+        }
+        
+        // Kiểm tra ngày về phải sau ngày đến
+        if (arrivalDate && departureDate && departureDate <= arrivalDate) {
+            e.preventDefault();
+            alert('Ngày về phải sau ngày đến!');
+            departureDateInput.focus();
+            return false;
+        }
+        
+        // Kiểm tra ngày về không được trong quá khứ
+        if (departureDate && departureDate < today) {
+            e.preventDefault();
+            alert('Ngày về không thể là ngày trong quá khứ!');
+            departureDateInput.focus();
+            return false;
+        }
+    });
+    
+    // Thêm validation real-time
+    arrivalDateInput.addEventListener('blur', function() {
+        const selectedDate = this.value;
+        if (selectedDate && selectedDate < today) {
+            this.setCustomValidity('Ngày đến không thể là ngày trong quá khứ!');
+            this.reportValidity();
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+    
+    departureDateInput.addEventListener('blur', function() {
+        const selectedDate = this.value;
+        const arrivalDate = arrivalDateInput.value;
+        
+        if (selectedDate && selectedDate < today) {
+            this.setCustomValidity('Ngày về không thể là ngày trong quá khứ!');
+            this.reportValidity();
+        } else if (selectedDate && arrivalDate && selectedDate <= arrivalDate) {
+            this.setCustomValidity('Ngày về phải sau ngày đến!');
+            this.reportValidity();
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+});
+</script>
