@@ -4,7 +4,7 @@
     <div class="container my-5">
         <h2 class="mb-4 text-center">Đặt tour: {{ $tour->title }}</h2>
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-3">
                 <div class="card shadow">
                     <div class="card-body">
                         @if(session('error'))

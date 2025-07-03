@@ -29,7 +29,7 @@
 
         </div>
     </div>
-    <section class="container my-5">
+    <section class="container my-5 container-custom">
         <div class="row">
             <!-- Filter bên trái -->
             <div class="col-lg-3 mb-4 search-sidebar ">

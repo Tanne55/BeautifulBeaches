@@ -24,10 +24,8 @@
 
 
     {{-- Nội dung động của từng trang --}}
-    <main class="">
-        <div class="">
-            @yield('content')
-        </div>
+    <main>
+        @yield('content')
     </main>
 
     {{-- Footer --}}

@@ -10,7 +10,7 @@
 @section('content')
     <!-- banner container -->
     <section class="contact-banner mb-5 ">
-        <h1 id="banner-title">Explore Beaches</h1>
+        <h1 id="banner-title">Trải nghiệm bãi biển</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>
 

@@ -15,18 +15,15 @@
 
 
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     {{-- sidebar --}}
     @include('layouts.sidebar')
 
 
-
     {{-- Nội dung động của từng trang --}}
-    <main>
-        <div>
-            @yield('content')
-        </div>
+    <main class="flex-grow-1">
+        @yield('content')
     </main>
 
     {{-- Footer --}}
@@ -39,4 +36,5 @@
     @yield('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

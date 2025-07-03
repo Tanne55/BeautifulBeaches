@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="container">
+    <div class="container container-custom">
         <h1>Danh sách bãi biển</h1>
         <a href="{{ route('admin.beaches.create') }}" class="btn btn-primary mb-3">Thêm bãi biển mới</a>
         @if(session('success'))

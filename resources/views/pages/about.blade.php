@@ -18,7 +18,7 @@
 
 
     <!-- Main1 content -->
-    <main class="container">
+    <main class="container container-custom">
         <div class="text-center mb-5 row">
             <div class="col-6">
                 <div class="d-flex align-items-center mb-4 mx-5">

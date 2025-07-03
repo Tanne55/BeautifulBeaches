@@ -9,7 +9,7 @@
 
 @section('content')
     <!-- banner contact -->
-    <section class="contact-banner">
+    <section class="contact-banner mb-5">
         <h1 id="banner-title">Câu hỏi thường gặp</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>

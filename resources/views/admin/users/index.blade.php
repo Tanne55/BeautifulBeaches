@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="container">
+    <div class="container container-custom py-4">
         <h1>Danh sách người dùng</h1>
         <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-3">Thêm người dùng mới</a>
         @if(session('success'))
@@ -46,12 +46,14 @@
                                 <span class="badge bg-danger">Không hành động nào được thực thi</span>
                             @else
                                 <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-warning btn-sm">Sửa</a>
-                                
+
                                 <!-- Ban/Unban button -->
-                                <form action="{{ route('admin.users.ban', $user->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('admin.users.ban', $user->id) }}" method="POST"
+                                    style="display:inline-block;">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn {{ isset($user->is_banned) && $user->is_banned ? 'btn-success' : 'btn-danger' }} btn-sm"
+                                    <button type="submit"
+                                        class="btn {{ isset($user->is_banned) && $user->is_banned ? 'btn-success' : 'btn-danger' }} btn-sm"
                                         onclick="return confirm('{{ isset($user->is_banned) && $user->is_banned ? 'Bạn có chắc muốn mở ban người dùng này?' : 'Bạn có chắc muốn ban người dùng này?' }}')">
                                         {{ isset($user->is_banned) && $user->is_banned ? 'Mở ban' : 'Ban' }}
                                     </button>

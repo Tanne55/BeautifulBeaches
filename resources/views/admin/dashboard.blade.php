@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="min-vh-100" style="background: linear-gradient(135deg, #ffffff 0%, #c2e9fb 100%);">
-        <div class="container py-5">
+        <div class="container container-custom py-5">
             <!-- Header Section -->
             <div class="text-center mb-5">
                 <h1 class="display-4 fw-bold text-black-75 mb-3">
@@ -132,32 +132,6 @@
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #43e97b, #38f9d7); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-chart-bar fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Cài đặt hệ thống</h5>
-                                        <small class="text-muted">Cấu hình và thiết lập</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Cấu hình các thiết lập chung của hệ thống, email template
-                                    và các tùy chọn khác.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #43e97b, #38f9d7); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(67,233,123,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Cài đặt hệ thống
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
                                         style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff9a9e, #fecfef); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
                                         <i class="fas fa-headset fa-lg text-white"></i>
                                     </div>
@@ -166,7 +140,8 @@
                                         <small class="text-muted">Xử lý yêu cầu hỗ trợ</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Quản lý các yêu cầu hỗ trợ từ khách hàng, phản hồi và giải quyết vấn đề một cách hiệu quả.</p>
+                                <p class="card-text text-muted mb-4">Quản lý các yêu cầu hỗ trợ từ khách hàng, phản hồi và giải
+                                    quyết vấn đề một cách hiệu quả.</p>
                                 <a href="{{ route('admin.support.index') }}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #ff9a9e, #fecfef); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(255,154,158,0.4)'"
@@ -177,7 +152,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 mx-auto">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">

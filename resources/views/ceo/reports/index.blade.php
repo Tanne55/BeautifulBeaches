@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="container my-5">
+    <div class="container my-5 container-custom">
         <h2 class="mb-4 text-center">Thống kê doanh thu tháng {{ $now->format('m/Y') }}</h2>
 
         <!-- KPI Widgets -->
@@ -55,7 +55,8 @@
             <form id="bookingFilterForm" class="row g-2 mb-3 align-items-end" method="GET">
                 <div class="col-md-4">
                     <label class="form-label mb-1">Tìm kiếm tour</label>
-                    <input type="text" name="tour" class="form-control" placeholder="Nhập tên tour..." value="{{ request('tour') }}">
+                    <input type="text" name="tour" class="form-control" placeholder="Nhập tên tour..."
+                        value="{{ request('tour') }}">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label mb-1">Số vé</label>

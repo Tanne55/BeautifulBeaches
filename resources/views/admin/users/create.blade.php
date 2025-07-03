@@ -1,9 +1,10 @@
 @extends('layouts.auth')
 @section('content')
     <div class="container py-4">
+        <h2 class="text-center mb-4 fw-bold">Thêm người dùng mới</h2>
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-sm">
+            <div class="col-lg-3">
+                <div class="shadow-sm bg-light p-2 rounded">
                     <div class="card-body p-2">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -25,8 +26,8 @@
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Nhập email" required value="{{ old('email') }}">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email"
+                                    required value="{{ old('email') }}">
                             </div>
                             <!-- Mật khẩu -->
                             <div class="mb-3">
@@ -37,8 +38,8 @@
                             <!-- Xác nhận mật khẩu -->
                             <div class="mb-3">
                                 <label for="password_confirmation" class="form-label">Xác nhận mật khẩu</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
-                                    placeholder="Nhập lại mật khẩu" required>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" placeholder="Nhập lại mật khẩu" required>
                             </div>
                             <!-- Vai trò -->
                             <div class="mb-4">

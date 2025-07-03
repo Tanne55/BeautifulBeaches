@@ -10,12 +10,12 @@
 @section('content')
 
     <!-- banner container -->
-    <section class="contact-banner ">
+    <section class="contact-banner mb-5">
         <h1 id="banner-title">Chi tiết bãi biển</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>
 
-    <section class=" container">
+    <section class=" container container-custom ">
         <div class="row">
             <div class="content-section col-lg-7 p-5">
                 @php
@@ -153,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 p-5">
+            <div class="col-lg-5 px-5">
 
                 <!-- Author Card -->
                 <div class="author-card mb-4">

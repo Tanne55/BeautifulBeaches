@@ -1,10 +1,10 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="container py-4" style="padding-left: 80px;">
-        <div class="row justify-content-center">
+    <div class="container py-5 container-custom">
+        <div class="row justify-content-center ">
             <!-- Form bên trái -->
-            <div class="col-lg-6">
-                <div class="card shadow-sm mb-3">
+            <div class="col-lg-5">
+                <div class=" shadow-sm mb-3 bg-light">
                     <div class="card-body p-2">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -15,7 +15,8 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('admin.beaches.store') }}" method="POST" enctype="multipart/form-data" id="beachForm">
+                        <form action="{{ route('admin.beaches.store') }}" method="POST" enctype="multipart/form-data"
+                            id="beachForm">
                             @csrf
                             <!-- Ảnh preview -->
                             <div class="mb-4 text-center">
@@ -85,17 +86,19 @@
                 </div>
             </div>
             <!-- Preview bên phải -->
-            <div class="col-lg-6">
-                <div class="card shadow-sm mb-3">
+            <div class="col-lg-5">
+                <div class=" shadow-sm mb-3 bg-light">
                     <div class="card-body p-3">
                         <div class="text-center mb-3">
-                            <img id="previewImageShow" src="https://via.placeholder.com/900x350?text=Preview+Image" alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
+                            <img id="previewImageShow" src="https://via.placeholder.com/900x350?text=Preview+Image"
+                                alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
                         </div>
                         <h2 id="previewTitle">Tiêu đề bãi biển</h2>
                         <span class="badge bg-primary mb-2" id="previewRegion">Vùng</span>
                         <p class="short-description" id="previewShortDescription"></p>
                         <p class="long-description" id="previewLongDescription"></p>
-                        <div class="highlight-quote bg-light p-2 rounded fst-italic border-start border-3 border-primary mb-2">
+                        <div
+                            class="highlight-quote bg-light p-2 rounded fst-italic border-start border-3 border-primary mb-2">
                             <p id="previewHighlightQuote"></p>
                         </div>
                         <p class="long-description-2" id="previewLongDescription2"></p>
@@ -141,25 +144,25 @@
         }
 
         // Live preview các trường form
-        document.getElementById('title').addEventListener('input', function() {
+        document.getElementById('title').addEventListener('input', function () {
             document.getElementById('previewTitle').textContent = this.value || 'Tiêu đề bãi biển';
         });
-        document.getElementById('region').addEventListener('change', function() {
+        document.getElementById('region').addEventListener('change', function () {
             document.getElementById('previewRegion').textContent = this.value || 'Vùng';
         });
-        document.getElementById('short_description').addEventListener('input', function() {
+        document.getElementById('short_description').addEventListener('input', function () {
             document.getElementById('previewShortDescription').textContent = this.value;
         });
-        document.getElementById('long_description').addEventListener('input', function() {
+        document.getElementById('long_description').addEventListener('input', function () {
             document.getElementById('previewLongDescription').textContent = this.value;
         });
-        document.getElementById('highlight_quote').addEventListener('input', function() {
+        document.getElementById('highlight_quote').addEventListener('input', function () {
             document.getElementById('previewHighlightQuote').textContent = this.value;
         });
-        document.getElementById('long_description_2').addEventListener('input', function() {
+        document.getElementById('long_description_2').addEventListener('input', function () {
             document.getElementById('previewLongDescription2').textContent = this.value;
         });
-        document.getElementById('tags').addEventListener('input', function() {
+        document.getElementById('tags').addEventListener('input', function () {
             const tagsContainer = document.getElementById('previewTags');
             tagsContainer.innerHTML = '';
             let tags = [];

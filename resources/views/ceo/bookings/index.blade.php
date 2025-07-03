@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container my-5">
+<div class="container my-5 container-custom">
     <h2 class="mb-4 text-center">Quản lý booking các tour của bạn</h2>
     @if($bookings->isEmpty())
         <div class="alert alert-info text-center">Chưa có booking nào cho các tour của bạn.</div>
