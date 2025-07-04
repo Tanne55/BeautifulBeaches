@@ -319,7 +319,7 @@
   }
   
   /* Modal styles */
-  .modal {
+  .gallery-modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -331,20 +331,20 @@
     backdrop-filter: blur(10px);
   }
   
-  .modal-content {
+  .gallery-modal-content {
     position: relative;
     margin: 5% auto;
     max-width: 80%;
     max-height: 80%;
   }
   
-  .modal img {
+  .gallery-modal img {
     width: 100%;
     height: auto;
     border-radius: 10px;
   }
   
-  .close {
+  .gallery-close {
     position: absolute;
     top: -40px;
     right: 0;

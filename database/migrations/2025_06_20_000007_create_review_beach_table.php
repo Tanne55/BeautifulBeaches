@@ -9,11 +9,14 @@ return new class extends Migration {
     {
         Schema::create('review_beach', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('beach_id')->constrained('beaches')->onDelete('cascade');
             $table->integer('rating');
             $table->text('comment')->nullable();
+            $table->string('guest_name')->nullable();
+            $table->string('guest_email')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void

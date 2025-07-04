@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->integer('duration_days')->default(1);
             $table->enum('status', ['active', 'inactive','outdated'])->default('active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('region');
             $table->text('short_description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void

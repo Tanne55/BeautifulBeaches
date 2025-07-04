@@ -66,20 +66,21 @@
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Số Khách*</label>
                     <input type="number" class="form-control" placeholder="Số Người"
-                        style="background-color:#F8F8F8; border:none;">
+                        style="background-color:#F8F8F8; border:none;" min="1" max="10">
                 </div>
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Ngày Đến*</label>
-                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                    <input type="date" class="form-control" id="arrival-date" name="arrival_date"
+                        style="background-color:#F8F8F8; border:none;" min="{{ date('Y-m-d') }}" required>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label fw-semibold">Ngày Về*</label>
-                    <input type="date" class="form-control" style="background-color:#F8F8F8; border:none;">
+                    <input type="date" class="form-control" id="departure-date" name="departure_date"
+                        style="background-color:#F8F8F8; border:none;" min="{{ date('Y-m-d') }}" required>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <a href="{{ route('contact') }}" class="btn btn-danger btn-lg banner-search-btn" role="button">TƯ VẤN
                         NGAY</a>
-
                 </div>
             </form>
         </div>
@@ -116,12 +117,12 @@
                         <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden destination-card"
                                 style="
-                                                                                                                                                                                                                                                   background-image: url('{{$beach->image}}');
-                                                                                                                                                                                                                                                   background-size: cover;
-                                                                                                                                                                                                                                                   background-position: left;
-                                                                                                                                                                                                                                                   height: 500px;
-                                                                                                                                                                                                                                                   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                                                                                 ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-image: url('{{$beach->image}}');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-position: left;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   height: 500px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ">
                                 <!-- Lớp overlay làm tối nền -->
                                 <div class="position-absolute top-0 start-0 w-100 h-100"
                                     style="background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
@@ -144,15 +145,15 @@
                     </div>
 
                 @endforeach
-                <div class="col-5 d-flex flex-column" style="height: 500px; gap: 20px;">
+                <div class="col-6 d-flex flex-column" style="height: 500px; gap: 20px;">
                     @foreach ($beaches->slice(2, 2) as $beach)
                         <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
                                 style="
-                                                                                                                                                background-image: url('{{ $beach->image }}');
-                                                                                                                                                background-size: cover;
-                                                                                                                                                background-position: center;
-                                                                                                                                                height: 240px;">
+                                                                                                                                                                                                                                                                                                                                                                                background-image: url('{{ $beach->image }}');
+                                                                                                                                                                                                                                                                                                                                                                                background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                background-position: center;
+                                                                                                                                                                                                                                                                                                                                                                                height: 240px;">
                                 <!-- thêm height nếu cần cố định -->
 
                                 <!-- Overlay -->
@@ -181,7 +182,7 @@
 
 
             <div class="text-center mt-4">
-                <a href="{{route('explore')}}" class="btn btn-danger">THÊM ĐIỂM ĐẾN</a>
+                <a href="{{route('explore')}}" class="btn btn-danger">KHÁM PHÁ THÊM</a>
             </div>
         </div>
     </section>
@@ -209,7 +210,7 @@
                         <div class="price-tag">$95.00 <span>/ mỗi người</span></div>
                         <div class="card-meta">
                             <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 5</span>
+                            <span><i class="bi bi-people"></i> Số người: 40</span>
                             <span><i class="bi bi-geo-alt"></i> Đà Nẵng</span>
                         </div>
                     </div>
@@ -233,14 +234,11 @@
                             trong vắt,
                             và không khí trong lành.
                         </p>
-                        <div class="card-actions">
-                            <a href="/Pages/Explore/explore.html"
-                                class="btn custom-btn fw-bold d-flex align-items-center">Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i></a>
-                            <a href="#" class="btn custom-btn fw-bold d-flex align-items-center"> Yêu Thích
-                                <i class="bi bi-heart ms-2 icon-red"></i>
+                        <div class="card-actions d-flex justify-content-center">
+                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
+                                Đặt Ngay
+                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
                             </a>
-
                         </div>
 
                     </div>
@@ -250,13 +248,13 @@
                         <div class="price-tag">$299.0 <span>/ mỗi người</span></div>
                         <div class="card-meta">
                             <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 5</span>
+                            <span><i class="bi bi-people"></i> Số người: 40</span>
                             <span><i class="bi bi-geo-alt"></i> Nha Trang</span>
                         </div>
                     </div>
                     <div class="card-info mt-4">
 
-                        <h3 class="card-title mb-4"><a href="#" class="card-title">Hoàng Hôn Tuyệt Vời Tại Bãi Biển Nha
+                        <h3 class="card-title"><a href="#" class="card-title">Hoàng Hôn Tuyệt Vời Tại Bãi Biển Nha
                                 Trang</a></h3>
                         <div class="card-reviews">
                             <span>(25 đánh giá)</span>
@@ -269,18 +267,14 @@
                             </div>
                         </div>
                         <p class="card-description">
-                            Bãi biển Nha Trang mang đến khung cảnh tuyệt vời, sóng nhẹ nhàng và không khí yên bình, làm cho
-                            nó
+                            Bãi biển Nha Trang mang đến khung cảnh tuyệt vời, sóng nhẹ nhàng và không khí yên bình,
                             hoàn hảo cho một chuyến thoát khỏi bên bờ biển.
                         </p>
-                        <div class="card-actions">
-                            <a href="/Pages/Explore/explore.html"
-                                class="btn custom-btn fw-bold d-flex align-items-center">Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i></a>
-                            <a href="#" class="btn custom-btn fw-bold d-flex align-items-center"> Yêu Thích
-                                <i class="bi bi-heart ms-2 icon-red"></i>
+                        <div class="card-actions d-flex justify-content-center">
+                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
+                                Đặt Ngay
+                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
                             </a>
-
                         </div>
 
                     </div>
@@ -290,7 +284,7 @@
                         <div class="price-tag">$95.00<span>/ mỗi người</span></div>
                         <div class="card-meta">
                             <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 5</span>
+                            <span><i class="bi bi-people"></i> Số người: 40</span>
                             <span><i class="bi bi-geo-alt"></i> Phú Quốc</span>
                         </div>
                     </div>
@@ -313,14 +307,11 @@
                             nó hoàn hảo
                             cho một chuyến thoát khỏi bên bờ biển.
                         </p>
-                        <div class="card-actions">
-                            <a href="/Pages/Explore/explore.html"
-                                class="btn custom-btn fw-bold d-flex align-items-center">Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i></a>
-                            <a href="#" class="btn custom-btn fw-bold d-flex align-items-center"> Yêu Thích
-                                <i class="bi bi-heart ms-2 icon-red"></i>
+                        <div class="card-actions d-flex justify-content-center">
+                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
+                                Đặt Ngay
+                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
                             </a>
-
                         </div>
 
                     </div>
@@ -328,7 +319,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <a href="{{route('tour')}}" class="btn btn-danger">THÊM ĐIỂM ĐẾN</a>
+                <a href="{{route('tour')}}" class="btn btn-danger">KHÁM PHÁ THÊM</a>
             </div>
         </div>
 
@@ -338,21 +329,21 @@
     <!-- Quảng cáo giữa trang Home -->
     <div
         style="
-                                                                                                                                                                                                                                                                                                                                                                                                    background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
-                                                                                                                                                                                                                                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                                                                                                                                                                                                                                    background-position: center;
-                                                                                                                                                                                                                                                                                                                                                                                                    padding: 60px 20px;
-                                                                                                                                                                                                                                                                                                                                                                                                    position: relative;
-                                                                                                                                                                                                                                                                                                                                                                                                    color: white;
-                                                                                                                                                                                                                                                                                                                                                                                                  ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-position: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 60px 20px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: relative;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color: white;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
         <!-- Lớp phủ tối để dễ đọc chữ -->
         <div
             style="
-                                                                                                                                                                                                                                                                                                                                                                                                    position: absolute;
-                                                                                                                                                                                                                                                                                                                                                                                                    top: 0; left: 0; right: 0; bottom: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                    background-color: rgba(0, 0, 0, 0.5);
-                                                                                                                                                                                                                                                                                                                                                                                                    z-index: 1;
-                                                                                                                                                                                                                                                                                                                                                                                                  ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    top: 0; left: 0; right: 0; bottom: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: rgba(0, 0, 0, 0.5);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    z-index: 1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
         </div>
 
         <!-- Nội dung quảng cáo -->
@@ -591,3 +582,87 @@
 
 
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const arrivalDateInput = document.getElementById('arrival-date');
+        const departureDateInput = document.getElementById('departure-date');
+
+        // Lấy ngày hiện tại
+        const today = new Date().toISOString().split('T')[0];
+
+        // Set min date cho cả hai trường
+        arrivalDateInput.min = today;
+        departureDateInput.min = today;
+
+        // Khi ngày đến thay đổi, cập nhật min date cho ngày về
+        arrivalDateInput.addEventListener('change', function () {
+            const arrivalDate = this.value;
+            if (arrivalDate) {
+                departureDateInput.min = arrivalDate;
+
+                // Nếu ngày về đã được chọn và nhỏ hơn ngày đến, reset ngày về
+                if (departureDateInput.value && departureDateInput.value < arrivalDate) {
+                    departureDateInput.value = '';
+                }
+            }
+        });
+
+        // Validation khi submit form
+        const searchForm = document.querySelector('.banner-search-form');
+        searchForm.addEventListener('submit', function (e) {
+            const arrivalDate = arrivalDateInput.value;
+            const departureDate = departureDateInput.value;
+
+            // Kiểm tra ngày đến không được trong quá khứ
+            if (arrivalDate && arrivalDate < today) {
+                e.preventDefault();
+                alert('Ngày đến không thể là ngày trong quá khứ!');
+                arrivalDateInput.focus();
+                return false;
+            }
+
+            // Kiểm tra ngày về phải sau ngày đến
+            if (arrivalDate && departureDate && departureDate <= arrivalDate) {
+                e.preventDefault();
+                alert('Ngày về phải sau ngày đến!');
+                departureDateInput.focus();
+                return false;
+            }
+
+            // Kiểm tra ngày về không được trong quá khứ
+            if (departureDate && departureDate < today) {
+                e.preventDefault();
+                alert('Ngày về không thể là ngày trong quá khứ!');
+                departureDateInput.focus();
+                return false;
+            }
+        });
+
+        // Thêm validation real-time
+        arrivalDateInput.addEventListener('blur', function () {
+            const selectedDate = this.value;
+            if (selectedDate && selectedDate < today) {
+                this.setCustomValidity('Ngày đến không thể là ngày trong quá khứ!');
+                this.reportValidity();
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        departureDateInput.addEventListener('blur', function () {
+            const selectedDate = this.value;
+            const arrivalDate = arrivalDateInput.value;
+
+            if (selectedDate && selectedDate < today) {
+                this.setCustomValidity('Ngày về không thể là ngày trong quá khứ!');
+                this.reportValidity();
+            } else if (selectedDate && arrivalDate && selectedDate <= arrivalDate) {
+                this.setCustomValidity('Ngày về phải sau ngày đến!');
+                this.reportValidity();
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
+</script>

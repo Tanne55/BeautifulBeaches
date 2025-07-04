@@ -38,7 +38,8 @@ class BeachDetailController extends Controller
 
     public function destroy($id)
     {
-        BeachDetail::destroy($id);
+        $beachDetail = BeachDetail::findOrFail($id);
+        $beachDetail->delete();
         return response()->noContent();
     }
 } 

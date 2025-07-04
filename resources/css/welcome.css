@@ -176,6 +176,7 @@ body {
 
 .card-reviews .stars {
   margin-left: 5px;
+  margin-top: 15px !important;
 }
 
 .card-description {

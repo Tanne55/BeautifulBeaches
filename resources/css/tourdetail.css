@@ -13,26 +13,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .content-section {
     background: white;
     margin-bottom: 2rem;
@@ -125,24 +105,4 @@ body {
 .weather-temp {
     font-weight: bold;
     color: #667eea;
-}
-
-.faq-item {
-    border-bottom: 1px solid #ecf0f1;
-    padding: 20px 0;
-}
-
-.faq-question {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.faq-answer {
-    color: #555;
-    line-height: 1.6;
 }

@@ -18,7 +18,7 @@
 
 
     <!-- Main1 content -->
-    <main class="container">
+    <main class="container container-custom">
         <div class="text-center mb-5 row">
             <div class="col-6">
                 <div class="d-flex align-items-center mb-4 mx-5">
@@ -217,10 +217,10 @@
         <div class="content-wrapper">
             <img src="/assets/img2/bien-sam-son.jpg" alt="Beach" />
             <div class="ad-text">
-                <p>🌴 <strong>Get 20% off today!</strong></p>
-                <p>Book your dream beach vacation now and enjoy exclusive savings.</p>
+                <p>🌴 <strong>Giảm giá 20% ngay hôm nay!</strong></p>
+                <p>Đặt tour du lịch mơ ước của bạn ngay hôm nay và tận hưởng ưu đãi độc quyền.</p>
             </div>
-            <a href="/Pages/Explore/explore.html" class="book-now">Book Now</a>
+            <a href="{{route('tour')}}" class="book-now">Book Now</a>
 
         </div>
     </div>

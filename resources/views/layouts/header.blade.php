@@ -47,7 +47,7 @@
                     </a>
                     <ul class="dropdown-menu border-top-red" aria-labelledby="contactDropdown">
                         <li><a class="dropdown-item" href="{{ route('contact') }}">Gửi liên hệ</a></li>
-                        <li><a class="dropdown-item" href="{{ route('queries') }}">Gửi thắc mắc</a></li>
+                        <li><a class="dropdown-item" href="{{ route('queries') }}">Câu hỏi thường gặp</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

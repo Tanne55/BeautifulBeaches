@@ -18,6 +18,8 @@ use App\Http\Controllers\TourBookingController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\CeoController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\SupportRequestController;
 
 
 
@@ -75,6 +77,13 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
         Route::delete('/{user}', [AdminController::class, 'destroy'])->name('destroy');
         Route::patch('/{user}/ban', [AdminController::class, 'ban'])->name('ban');
     });
+    // CRUD của admin về support requests
+    Route::prefix('support')->name('support.')->group(function () {
+        Route::get('/', [SupportRequestController::class, 'index'])->name('index');
+        Route::get('/{supportRequest}', [SupportRequestController::class, 'show'])->name('show');
+        Route::patch('/{supportRequest}/status', [SupportRequestController::class, 'updateStatus'])->name('updateStatus');
+        Route::delete('/{supportRequest}', [SupportRequestController::class, 'destroy'])->name('destroy');
+    });
 });
 
 // Dashboard & CRUD Ceo
@@ -88,9 +97,20 @@ Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(fu
         Route::get('/{tour}/edit', [TourController::class, 'edit'])->name('edit');
         Route::put('/{tour}', [TourController::class, 'update'])->name('update');
     });
+    // CRUD của CEO về tickets
+    Route::prefix('tickets')->name('tickets.')->group(function () {
+        Route::get('/', [TicketController::class, 'index'])->name('index');
+        Route::get('/{ticket}', [TicketController::class, 'show'])->name('show');
+        Route::get('/{ticket}/edit', [TicketController::class, 'edit'])->name('edit');
+        Route::put('/{ticket}', [TicketController::class, 'update'])->name('update');
+        Route::patch('/{ticket}/status', [TicketController::class, 'updateStatus'])->name('updateStatus');
+        Route::delete('/{ticket}', [TicketController::class, 'destroy'])->name('destroy');
+    });
     Route::get('/bookings', [CeoController::class, 'bookings'])->name('bookings.index');
     Route::patch('/bookings/{booking}/status', [CeoController::class, 'updateBookingStatus'])->name('bookings.updateStatus');
+    Route::post('/bookings/{tourBooking}/tickets', [TicketController::class, 'generateTickets'])->name('bookings.generateTickets');
     Route::get('/reports', [CeoController::class, 'reports'])->name('reports.index');
+    Route::patch('/bookings/{booking}/confirm', [CeoController::class, 'confirmBooking'])->name('bookings.confirm');
 });
 
 // Dashboard & CRUD User
@@ -159,11 +179,16 @@ Route::get('/tour/{id}', function ($id) {
     return view('pages.tourdetail', compact('tour', 'image_url', 'reviews'));
 })->name('tour.show');
 
-// Route cho review/comment
+// Route cho review/comment (cho phép khách comment)
+Route::post('/beaches/{beach}/review', [ReviewBeachController::class, 'store'])->name('beaches.review');
+Route::post('/tour/{tour}/review', [ReviewTourController::class, 'store'])->name('tour.review');
+
+// Route cho booking (cần đăng nhập)
 Route::middleware('auth')->group(function () {
-    Route::post('/beaches/{beach}/review', [ReviewBeachController::class, 'store'])->name('beaches.review');
-    Route::post('/tour/{tour}/review', [ReviewTourController::class, 'store'])->name('tour.review');
     Route::get('/tour/{id}/booking', [TourBookingController::class, 'showBookingForm'])->name('tour.booking.form');
     Route::post('/tour/{id}/booking', [TourBookingController::class, 'storeBooking'])->name('tour.booking.store');
 });
+
+// Public support request route
+Route::post('/support', [SupportRequestController::class, 'store'])->name('support.store');
 

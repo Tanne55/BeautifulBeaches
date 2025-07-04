@@ -9,6 +9,7 @@
 @import './detail.css';
 @import './tour.css';
 @import './tourdetail.css';
+@import './queries.css';
 
 
 /* --------------------------------------------------------------------------------- */
@@ -20,12 +21,17 @@ body {
     overflow-x: hidden;
 }
 
+.container-custom {
+    padding-left: 50px !important;
+    padding-right: 30px !important;
+}
+
 /* Sidebar styling */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 80px;
+    width: 70px;
     height: 100vh;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);

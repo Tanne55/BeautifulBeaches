@@ -39,7 +39,8 @@ class TourDetailController extends Controller
 
     public function destroy($id)
     {
-        TourDetail::destroy($id);
+        $tourDetail = TourDetail::findOrFail($id);
+        $tourDetail->delete();
         return response()->noContent();
     }
 } 

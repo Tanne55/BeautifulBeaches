@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Beach extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'region',
         'image',
@@ -30,5 +34,19 @@ class Beach extends Model
 
     public function get(){
         
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($beach) {
+            if ($beach->isForceDeleting()) {
+                $beach->tours()->forceDelete();
+            } else {
+                $beach->tours()->delete();
+            }
+        });
+        static::restoring(function ($beach) {
+            $beach->tours()->withTrashed()->restore();
+        });
     }
 }

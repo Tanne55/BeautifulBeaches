@@ -16,8 +16,10 @@ return new class extends Migration {
             $table->string('contact_phone')->nullable();
             $table->string('contact_email')->nullable();
             $table->text('note')->nullable();
+            $table->integer('number_of_people')->default(1);
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     public function down(): void

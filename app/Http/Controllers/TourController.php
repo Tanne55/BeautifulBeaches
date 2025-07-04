@@ -12,19 +12,32 @@ class TourController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = Tour::with(['beach', 'detail']);
+        $query = Tour::with(['beach', 'detail', 'ceo']);
         if ($user && $user->role === 'ceo') {
             $query->where('ceo_id', $user->id);
         }
-        $tours = $query->get();
+        
         // Cập nhật trạng thái 'outdated' nếu departure_time đã qua
-        foreach ($tours as $tour) {
+        $toursToUpdate = $query->get();
+        foreach ($toursToUpdate as $tour) {
             if ($tour->detail && $tour->detail->departure_time && now()->gt($tour->detail->departure_time) && $tour->status !== 'outdated') {
                 $tour->status = 'outdated';
                 $tour->save();
             }
         }
-        return view('ceo.tours.index', compact('tours'));
+        
+        // Paginate với 10 tours mỗi trang
+        $tours = $query->orderBy('created_at', 'desc')->paginate(10);
+        
+        // Thống kê từ toàn bộ dữ liệu
+        $stats = [
+            'total' => $query->count(),
+            'active' => $query->where('status', 'active')->count(),
+            'inactive' => $query->where('status', 'inactive')->count(),
+            'outdated' => $query->where('status', 'outdated')->count(),
+        ];
+        
+        return view('ceo.tours.index', compact('tours', 'stats'));
     }
 
     public function create()

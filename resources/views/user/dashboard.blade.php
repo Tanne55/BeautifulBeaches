@@ -116,7 +116,7 @@
                                 </div>
                                 <p class="card-text text-muted mb-4">Xem lại các tour đã đặt, trạng thái và chi tiết từng chuyến
                                     đi.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{ route('user.history') }}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #43e97b, #38f9d7); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(67,233,123,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">

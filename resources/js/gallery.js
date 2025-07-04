@@ -27,7 +27,7 @@ filterBtns.forEach(btn => {
 // Modal functionality
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImage');
-const closeBtn = document.querySelector('.close');
+const closeBtn = document.querySelector('.gallery-close');
 
 galleryItems.forEach(item => {
     item.addEventListener('click', () => {

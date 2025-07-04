@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="min-vh-100" style="background: linear-gradient(135deg, #ffffff 0%, #c2e9fb 100%);">
-        <div class="container py-5">
+        <div class="container py-5 container-custom">
             <!-- Header Section -->
             <div class="text-center mb-5">
                 <h1 class="display-4 fw-bold text-black-75 mb-3">
@@ -142,7 +142,7 @@
                                 </div>
                                 <p class="card-text text-muted mb-4">Xem các báo cáo chi tiết về doanh thu, lượt truy cập và
                                     hiệu suất hệ thống.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
+                                <a href="{{ route('ceo.reports.index') }}" class="btn w-100 text-white fw-semibold"
                                     style="background: linear-gradient(45deg, #43e97b, #38f9d7); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
                                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(67,233,123,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
@@ -158,25 +158,26 @@
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #a8edea, #fed6e3); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-bell fa-lg text-white"></i>
+                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #ffecd2, #fcb69f); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-ticket-alt fa-lg text-white"></i>
                                     </div>
                                     <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Thông báo</h5>
-                                        <small class="text-muted">Quản lý thông báo hệ thống</small>
+                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý vé</h5>
+                                        <small class="text-muted">Quản lý vé tour du lịch</small>
                                     </div>
                                 </div>
-                                <p class="card-text text-muted mb-4">Gửi thông báo đến người dùng và quản lý các thông báo quan
-                                    trọng của hệ thống.</p>
-                                <a href="#" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #a8edea, #fed6e3); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(168,237,234,0.4)'"
+                                <p class="card-text text-muted mb-4">Quản lý vé tour, kiểm tra trạng thái và xử lý các vấn đề
+                                    liên quan đến vé của khách hàng.</p>
+                                <a href="{{ route('ceo.tickets.index') }}" class="btn w-100 text-white fw-semibold"
+                                    style="background: linear-gradient(45deg, #ffecd2, #fcb69f); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
+                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(255,236,210,0.4)'"
                                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý thông báo
+                                    <i class="fas fa-arrow-right me-2"></i>Quản lý vé
                                 </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             @else
                 <div class="row justify-content-center">

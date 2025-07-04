@@ -10,12 +10,12 @@
 @section('content')
 
     <!-- banner container -->
-    <section class="contact-banner ">
+    <section class="contact-banner mb-5">
         <h1 id="banner-title">Chi tiết bãi biển</h1>
         <img src="/assets/img1/aa.png" alt="" class="brush-bottom" />
     </section>
 
-    <section class=" container">
+    <section class=" container container-custom ">
         <div class="row">
             <div class="content-section col-lg-7 p-5">
                 @php
@@ -54,70 +54,89 @@
                     @if(session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-                    @auth
-                        <form action="{{ route('beaches.review', $beach->id) }}" method="POST" class="mb-4" id="review-form">
-                            @csrf
-                            <div class="mb-2">
-                                <label class="form-label">Đánh giá:</label>
-                                <div id="star-rating" class="d-inline-block">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
-                                    @endfor
-                                </div>
-                                <input type="hidden" name="rating" id="rating-input" value="5">
+                    
+                    <form action="{{ route('beaches.review', $beach->id) }}" method="POST" class="mb-4" id="review-form">
+                        @csrf
+                        <div class="mb-2">
+                            <label class="form-label">Đánh giá:</label>
+                            <div id="star-rating" class="d-inline-block">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star star-icon" data-value="{{ $i }}"></i>
+                                @endfor
                             </div>
-                            <div class="mb-2">
-                                <label for="comment" class="form-label">Bình luận:</label>
-                                <textarea name="comment" id="comment" class="form-control" rows="2" required></textarea>
-                            </div>
+                            <input type="hidden" name="rating" id="rating-input" value="5">
+                        </div>
+                        
+                        @auth
                             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                            <input type="hidden" name="beach_id" value="{{ $beach->id }}">
-                            <button type="submit" class="btn btn-primary">Gửi bình luận</button>
-                        </form>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const stars = document.querySelectorAll('#star-rating .star-icon');
-                                const ratingInput = document.getElementById('rating-input');
-                                let currentRating = 5;
-                                function setStars(rating) {
-                                    stars.forEach((star, idx) => {
-                                        if (idx < rating) {
-                                            star.classList.add('text-warning');
-                                        } else {
-                                            star.classList.remove('text-warning');
-                                        }
-                                    });
-                                }
-                                setStars(currentRating);
+                        @else
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="guest_name" class="form-label">Tên của bạn:</label>
+                                    <input type="text" name="guest_name" id="guest_name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="guest_email" class="form-label">Email:</label>
+                                    <input type="email" name="guest_email" id="guest_email" class="form-control" required>
+                                </div>
+                            </div>
+                        @endauth
+                        
+                        <div class="mb-2">
+                            <label for="comment" class="form-label">Bình luận:</label>
+                            <textarea name="comment" id="comment" class="form-control" rows="2" required></textarea>
+                        </div>
+                        
+                        <input type="hidden" name="beach_id" value="{{ $beach->id }}">
+                        <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                    </form>
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const stars = document.querySelectorAll('#star-rating .star-icon');
+                            const ratingInput = document.getElementById('rating-input');
+                            let currentRating = 5;
+                            function setStars(rating) {
                                 stars.forEach((star, idx) => {
-                                    star.addEventListener('mouseenter', () => setStars(idx + 1));
-                                    star.addEventListener('mouseleave', () => setStars(currentRating));
-                                    star.addEventListener('click', () => {
-                                        currentRating = idx + 1;
-                                        ratingInput.value = currentRating;
-                                        setStars(currentRating);
-                                    });
+                                    if (idx < rating) {
+                                        star.classList.add('text-warning');
+                                    } else {
+                                        star.classList.remove('text-warning');
+                                    }
+                                });
+                            }
+                            setStars(currentRating);
+                            stars.forEach((star, idx) => {
+                                star.addEventListener('mouseenter', () => setStars(idx + 1));
+                                star.addEventListener('mouseleave', () => setStars(currentRating));
+                                star.addEventListener('click', () => {
+                                    currentRating = idx + 1;
+                                    ratingInput.value = currentRating;
+                                    setStars(currentRating);
                                 });
                             });
-                        </script>
-                    @else
-                        <div class="alert alert-info">Vui lòng <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</div>
-                    @endauth
+                        });
+                    </script>
 
                     <div class="review-list mt-4">
                         @forelse($reviews as $review)
                             <div class="border-bottom pb-2 mb-2">
                                 <div class="d-flex align-items-center mb-1">
-                                    <strong>{{ $review->user->name ?? 'Ẩn danh' }}</strong>
-                                    @if(isset($review->user->role))
-                                        @if($review->user->role === 'admin')
-                                            <span class="badge bg-danger ms-2">Admin</span>
-                                        @elseif($review->user->role === 'ceo')
-                                            <span class="badge bg-primary ms-2">CEO</span>
-                                        @elseif($review->user->role === 'user')
-                                            <span class="badge bg-secondary ms-2">User</span>
+                                    <strong>
+                                        @if($review->user)
+                                            {{ $review->user->name }}
+                                            @if($review->user->role === 'admin')
+                                                <span class="badge bg-danger ms-2">Admin</span>
+                                            @elseif($review->user->role === 'ceo')
+                                                <span class="badge bg-primary ms-2">CEO</span>
+                                            @elseif($review->user->role === 'user')
+                                                <span class="badge bg-secondary ms-2">User</span>
+                                            @endif
+                                        @else
+                                            {{ $review->guest_name ?? 'Khách' }}
+                                            <span class="badge bg-info ms-2">Khách</span>
                                         @endif
-                                    @endif
+                                    </strong>
                                     <span class="ms-2 text-warning">
                                         @for($i = 1; $i <= 5; $i++)
                                             <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o' }}"></i>
@@ -134,7 +153,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 p-5">
+            <div class="col-lg-5 px-5">
 
                 <!-- Author Card -->
                 <div class="author-card mb-4">
@@ -162,54 +181,57 @@
                     </div>
                 </div>
 
-                <!-- Recent Posts -->
+                <!-- Related Tours -->
                 <div class="bg-white p-3 rounded shadow-sm mb-4">
-                    <h6 class="border-bottom pb-2 mb-3">RECENT POSTS</h6>
+                    <h6 class="border-bottom pb-2 mb-3">RELATED TOURS</h6>
 
-                    <div class="recent-post-item">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=120&h=90&fit=crop"
-                            alt="Post" class="recent-post-img">
-                        <div>
-                            <h6 class="mb-1 fs-6">Normally I'm going to be free and available to plan.</h6>
-                            <small class="text-muted">August 17, 2020 | by Demokeam19</small>
-                        </div>
-                    </div>
+                    @php
+                        $relatedTours = \App\Models\Tour::with('beach')
+                            ->where('beach_id', $beach->id)
+                            ->where('status', 'active')
+                            ->take(5)
+                            ->get();
+                    @endphp
 
-                    <div class="recent-post-item">
-                        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=120&h=90&fit=crop" alt="Post"
-                            class="recent-post-img">
-                        <div>
-                            <h6 class="mb-1 fs-6">Exploring the beauty of the great nature</h6>
-                            <small class="text-muted">August 17, 2020 | by Demokeam19</small>
+                    @forelse($relatedTours as $tour)
+                        <div class="recent-post-item {{ $loop->last ? 'border-0' : '' }}">
+                            @php
+                                $img = $tour->image ?? '';
+                                $beachImg = ($tour->beach && $tour->beach->image) ? $tour->beach->image : '';
+                                $isAsset = $img && (str_starts_with($img, 'http') || str_starts_with($img, '/assets'));
+                                $isBeachAsset = $beachImg && (str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets'));
+                            @endphp
+                            
+                            @if($img)
+                                <img src="{{ $isAsset ? $img : asset('storage/' . $img) }}" 
+                                     alt="{{ $tour->title }}" class="recent-post-img">
+                            @elseif($beachImg)
+                                <img src="{{ $isBeachAsset ? $beachImg : asset('storage/' . $beachImg) }}" 
+                                     alt="{{ $tour->title }}" class="recent-post-img">
+                            @else
+                                <img src="https://via.placeholder.com/120x90?text=No+Image" 
+                                     alt="No image" class="recent-post-img">
+                            @endif
+                            
+                            <div>
+                                <h6 class="mb-1 fs-6">
+                                    <a href="{{ route('tour.show', $tour->id) }}" class="text-decoration-none text-dark">
+                                        {{ $tour->title }}
+                                    </a>
+                                </h6>
+                                <small class="text-muted">
+                                    {{ number_format($tour->price, 0, ',', '.') }} đ | 
+                                    {{ $tour->duration_days }} ngày | 
+                                    {{ $tour->ceo->name ?? 'Unknown' }}
+                                </small>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="recent-post-item">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=120&h=90&fit=crop"
-                            alt="Post" class="recent-post-img">
-                        <div>
-                            <h6 class="mb-1 fs-6">Let's start adventure with local tour guide</h6>
-                            <small class="text-muted">August 17, 2020 | by Demokeam19</small>
+                    @empty
+                        <div class="text-muted text-center py-3">
+                            <i class="fas fa-info-circle"></i>
+                            <br>Chưa có tour nào cho bãi biển này
                         </div>
-                    </div>
-
-                    <div class="recent-post-item">
-                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=120&h=90&fit=crop"
-                            alt="Post" class="recent-post-img">
-                        <div>
-                            <h6 class="mb-1 fs-6">Planning to go ideal measured to new places</h6>
-                            <small class="text-muted">August 17, 2020 | by Demokeam19</small>
-                        </div>
-                    </div>
-
-                    <div class="recent-post-item border-0">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=120&h=90&fit=crop"
-                            alt="Post" class="recent-post-img">
-                        <div>
-                            <h6 class="mb-1 fs-6">Take only memories, leave only footprints</h6>
-                            <small class="text-muted">August 17, 2020 | by Demokeam19</small>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
 
                 <!-- Social Links -->

@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container my-5">
+<div class="container my-5 container-custom">
     <h2 class="mb-4 text-center">Quản lý booking các tour của bạn</h2>
     @if($bookings->isEmpty())
         <div class="alert alert-info text-center">Chưa có booking nào cho các tour của bạn.</div>
@@ -18,7 +18,7 @@
                         <th>Ngày đặt</th>
                         <th>Trạng thái</th>
                         <th>Ghi chú</th>
-                        <th>Số vé đã đặt / Sức chứa</th>
+                        <th>Số vé thực tế của tour / Tổng số vé</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,19 +31,31 @@
                             <td>{{ $booking->contact_phone }}</td>
                             <td>{{ $booking->booking_date ? \Carbon\Carbon::parse($booking->booking_date)->format('d/m/Y') : '' }}</td>
                             <td>
-                                <form action="{{ route('ceo.bookings.updateStatus', $booking->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PATCH')
-                                    <select name="status" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
-                                        <option value="pending" @if($booking->status==='pending') selected @endif>Chờ xác nhận</option>
-                                        <option value="confirmed" @if($booking->status==='confirmed') selected @endif>Đã xác nhận</option>
-                                        <option value="cancelled" @if($booking->status==='cancelled') selected @endif>Đã hủy</option>
-                                    </select>
-                                </form>
+                                @if($booking->status === 'pending')
+                                    <form action="{{ route('ceo.bookings.confirm', $booking->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Xác nhận booking này và sinh vé?')">
+                                            <i class="fas fa-check me-1"></i> Xác nhận & sinh vé
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('ceo.bookings.updateStatus', $booking->id) }}" method="POST" class="d-inline ms-1">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="hidden" name="status" value="cancelled">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn chắc chắn muốn hủy booking này?')">
+                                            <i class="fas fa-times me-1"></i> Hủy booking
+                                        </button>
+                                    </form>
+                                @elseif($booking->status === 'confirmed')
+                                    <span class="badge bg-success">Đã xác nhận</span>
+                                @elseif($booking->status === 'cancelled')
+                                    <span class="badge bg-danger">Đã hủy</span>
+                                @endif
                             </td>
                             <td>{{ $booking->note }}</td>
                             <td>
-                                {{ $booking->tour->bookings->count() ?? 0 }} / {{ $booking->tour->capacity ?? '?' }}
+                                {{ $booking->tickets->where('status', 'valid')->count() }} / {{ $booking->tour->capacity }}
                             </td>
                         </tr>
                     @endforeach

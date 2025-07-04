@@ -9,10 +9,16 @@
 @import './detail.css';
 @import './tour.css';
 @import './tourdetail.css';
+@import './queries.css';
 
 /* Custom CSS ở đây nếu muốn */
 body {
   background-color: #f8f9fa;
+}
+
+.container-custom {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 
