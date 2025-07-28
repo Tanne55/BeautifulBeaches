@@ -34,11 +34,8 @@
                     <label class="search-label" for="search-region">Region</label>
                     <select id="search-region" class="search-select" onchange="filterTours()">
                         <option value="">All Regions</option>
-                        @php
-                            $regions = collect($beaches)->pluck('region')->filter()->unique();
-                        @endphp
                         @foreach($regions as $region)
-                            <option value="{{ strtolower($region) }}">{{ $region }}</option>
+                            <option value="{{ strtolower($region->name) }}">{{ $region->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -82,7 +79,7 @@
                     <!-- Tours will be rendered here -->
                     @foreach($beaches as $beach)
                         <div class="tour-card" data-title="{{ strtolower($beach['title']) }}"
-                            data-region="{{ strtolower($beach['region']) }}"
+                            data-region="{{ strtolower($beach['region_name']) }}"
                             data-tags="{{ strtolower(implode(',', $beach['tags'] ?? [])) }}">
                             <div class="tour-image">
                                 @php
@@ -101,7 +98,7 @@
                                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                             <circle cx="12" cy="10" r="3" />
                                         </svg>
-                                        {{ $beach['region'] ?? 'Unknown Region' }}
+                                        {{ $beach['region_name'] ?? 'Unknown Region' }}
                                     </div>
                                     <p class="tour-description my-3">
                                         {{ $beach['short_description'] ?? '' }}

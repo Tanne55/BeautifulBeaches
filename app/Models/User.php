@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Review;
+use App\Models\UserProfile;
+use App\Models\UserBan;
 
 class User extends Authenticatable
 {
@@ -25,7 +27,12 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'is_banned',
+        'phone',
+        'address',
+        'avatar',
+        'language',
+        'last_login',
+        'email_verified',
     ];
 
     /**
@@ -48,7 +55,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_banned' => 'boolean',
+            'last_login' => 'datetime',
+            'email_verified' => 'boolean',
         ];
     }
 
@@ -90,5 +98,23 @@ class User extends Authenticatable
     public function reviewTours()
     {
         return $this->hasMany(\App\Models\ReviewTour::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function bans()
+    {
+        return $this->hasMany(UserBan::class);
+    }
+
+    public function isCurrentlyBanned()
+    {
+        $now = now();
+        return $this->bans()->where('start_date', '<=', $now)->where(function($q) use ($now) {
+            $q->whereNull('end_date')->orWhere('end_date', '>=', $now);
+        })->exists();
     }
 }

@@ -25,10 +25,19 @@ use App\Http\Controllers\SupportRequestController;
 
 
 Route::get('/', function () {
-    $beaches = Beach::with('detail') // nạp quan hệ 1-1
-        ->select('id', 'region', 'image', 'title') // chỉ lấy cột cần thiết
+    $beaches = Beach::with(['detail', 'region']) // nạp quan hệ 1-1 và region
+        ->select('id', 'region_id', 'image', 'title') // chỉ lấy cột cần thiết
         ->take(4)
-        ->get();
+        ->get()
+        ->map(function ($beach) {
+            return [
+                'id' => $beach->id,
+                'region' => $beach->region_name,
+                'image' => $beach->image,
+                'title' => $beach->title,
+                'short_description' => $beach->short_description,
+            ];
+        });
 
     return view('welcome', compact('beaches'));
 })->name('home');
@@ -88,8 +97,10 @@ Route::prefix('admin')->middleware(['auth', IsAdmin::class])->name('admin.')->gr
 
 // Dashboard & CRUD Ceo
 Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(function () {
+    Route::get('/cancellation-requests', [CeoController::class, 'cancellationRequests'])->name('cancellation_requests.index');
+    Route::post('/cancellation-requests/{id}/update', [\App\Http\Controllers\CancellationRequestController::class, 'update'])->name('cancellation_requests.update');
     Route::get('/dashboard', [CeoController::class, 'dashboard'])->name('dashboard');
-    // CRUD của admin về users
+    // CRUD của CEO về tours
     Route::prefix('tours')->name('tours.')->group(function () {
         Route::get('/', [TourController::class, 'index'])->name('index');
         Route::get('/create', [TourController::class, 'create'])->name('create');
@@ -107,7 +118,10 @@ Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(fu
         Route::delete('/{ticket}', [TicketController::class, 'destroy'])->name('destroy');
     });
     Route::get('/bookings', [CeoController::class, 'bookings'])->name('bookings.index');
+    Route::get('/bookings/groups', [CeoController::class, 'bookingGroups'])->name('bookings.groups');
     Route::patch('/bookings/{booking}/status', [CeoController::class, 'updateBookingStatus'])->name('bookings.updateStatus');
+    Route::post('/bookings/create-group', [CeoController::class, 'createBookingGroup'])->name('bookings.createGroup');
+    Route::post('/bookings/groups/{group}/generate-tickets', [CeoController::class, 'generateTicketsForGroup'])->name('bookings.generateTicketsForGroup');
     Route::post('/bookings/{tourBooking}/tickets', [TicketController::class, 'generateTickets'])->name('bookings.generateTickets');
     Route::get('/reports', [CeoController::class, 'reports'])->name('reports.index');
     Route::patch('/bookings/{booking}/confirm', [CeoController::class, 'confirmBooking'])->name('bookings.confirm');
@@ -117,6 +131,9 @@ Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(fu
 Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/history', [UserController::class, 'history'])->name('history');
+    Route::get('/cancellation-requests', [\App\Http\Controllers\CancellationRequestController::class, 'myRequests'])->name('cancellation_requests');
+    Route::get('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'showCancelForm'])->name('booking.cancel.form');
+    Route::post('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'store'])->name('booking.cancel.submit');
 });
 
 // Điều hướng của các pages
@@ -125,36 +142,22 @@ Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/contact', 'pages.contact')->name('contact');
 // Route::view('/explore', 'pages.explore')->name('explore');
 Route::get('/explore', function () {
-    $beaches = Beach::with('detail')->get()->map(function ($beach) {
+    $beaches = Beach::with(['detail', 'region'])->get()->map(function ($beach) {
         return [
             'id' => $beach->id,
-            'region' => $beach->region,
+            'region_name' => $beach->region_name,
             'image' => $beach->image,
             'title' => $beach->title,
             'short_description' => $beach->short_description,
             'tags' => $beach->detail ? json_decode($beach->detail->tags, true) : [],
         ];
     });
-    return view('pages.explore', compact('beaches'));
+    $regions = \App\Models\Region::all();
+    return view('pages.explore', compact('beaches', 'regions'));
 })->name('explore');
+
 Route::get('/tour', function () {
-    $tours = Tour::with('beach')->where('status', 'active')->get()->map(function ($tour) {
-        return [
-            'id' => $tour->id,
-            'title' => $tour->title,
-            'image' => $tour->image,
-            'price' => $tour->price,
-            'original_price' => $tour->original_price,
-            'capacity' => $tour->capacity,
-            'duration_days' => $tour->duration_days,
-            'status' => $tour->status,
-            'beach_id' => $tour->beach_id,
-            'beach_title' => $tour->beach?->title,
-            'beach_region' => $tour->beach?->region,
-            'beach_image' => $tour->beach?->image,
-            'beach_description' => $tour->beach?->short_description,
-        ];
-    });
+    $tours = Tour::with(['beach', 'prices'])->where('status', 'confirmed')->get();
     return view('pages.tour', compact('tours'));
 })->name('tour');
 Route::view('/queries', 'pages.queries')->name('queries');
@@ -183,11 +186,11 @@ Route::get('/tour/{id}', function ($id) {
 Route::post('/beaches/{beach}/review', [ReviewBeachController::class, 'store'])->name('beaches.review');
 Route::post('/tour/{tour}/review', [ReviewTourController::class, 'store'])->name('tour.review');
 
-// Route cho booking (cần đăng nhập)
-Route::middleware('auth')->group(function () {
-    Route::get('/tour/{id}/booking', [TourBookingController::class, 'showBookingForm'])->name('tour.booking.form');
-    Route::post('/tour/{id}/booking', [TourBookingController::class, 'storeBooking'])->name('tour.booking.store');
-});
+// Route cho booking (cho phép không đăng nhập)
+Route::get('/tour/{id}/booking', [TourBookingController::class, 'showBookingForm'])->name('tour.booking.form');
+Route::post('/tour/{id}/booking', [TourBookingController::class, 'storeBooking'])->name('tour.booking.store');
+Route::get('/bookings/track', [TourBookingController::class, 'trackBooking'])->name('bookings.track');
+Route::get('/bookings/result', [TourBookingController::class, 'showBookingResult'])->name('bookings.result');
 
 // Public support request route
 Route::post('/support', [SupportRequestController::class, 'store'])->name('support.store');

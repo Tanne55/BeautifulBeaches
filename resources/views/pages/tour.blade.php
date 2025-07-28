@@ -45,7 +45,7 @@
                     <label class="form-label fw-semibold">Khu vực</label>
                     <select id="filter-region" class="form-select">
                         <option value="">-- Tất cả --</option>
-                        @foreach($tours->pluck('beach_region')->unique() as $region)
+                        @foreach($tours->pluck('beach.region.name')->unique() as $region)
                             <option value="{{ $region }}">{{ $region }}</option>
                         @endforeach
                     </select>
@@ -67,46 +67,57 @@
             <div class="col-lg-9">
                 <div class="row" id="tour-list">
                     @foreach($tours as $tour)
-                        <div class="col-md-6 mb-5 tour-cardd" data-title="{{ strtolower($tour['title']) }}"
-                            data-region="{{ $tour['beach_region'] }}" data-price="{{ $tour['price'] }}">
+                        <div class="col-md-6 mb-5 tour-cardd" data-title="{{ strtolower($tour->title) }}"
+                            data-region="{{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}" data-price="{{ $tour->current_price }}">
                             <div class="card h-100 shadow-sm mx-auto">
                                 @php
-                                    $img = $tour['image'] ?? '';
-                                    $beachImg = $tour['beach_image'] ?? '';
-                                    $isAsset = $img && (str_starts_with($img, 'http') || str_starts_with($img, '/assets'));
-                                    $isBeachAsset = $beachImg && (str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets'));
+                                    $img = $tour->image ?? '';
+                                    $beachImg = $tour->beach ? $tour->beach->image ?? '' : '';
                                 @endphp
                                 @if($img)
-                                    <img src="{{ $isAsset ? $img : asset('storage/' . $img) }}" class="card-img-top"
-                                        alt="{{ $tour['title'] }}">
+                                    <img src="{{ str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'tours/') ? $img : 'tours/' . $img)) }}" 
+                                        class="card-img-top" alt="{{ $tour->title }}">
                                 @elseif($beachImg)
-                                    <img src="{{ $isBeachAsset ? $beachImg : asset('storage/' . $beachImg) }}" class="card-img-top"
-                                        alt="{{ $tour['title'] }}">
+                                    <img src="{{ str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets') ? $beachImg : asset('storage/beaches/' . $beachImg) }}" 
+                                        class="card-img-top" alt="{{ $tour->title }}">
                                 @else
-                                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top"
-                                        alt="No image">
+                                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top" alt="No image">
                                 @endif
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $tour['title'] }}</h5>
-                                    <p class="card-text text-muted mb-1"><strong>Khu vực:</strong> {{ $tour['beach_region'] }}
+                                    <h5 class="card-title">{{ $tour->title }}</h5>
+                                    <p class="card-text text-muted mb-1"><strong>Khu vực:</strong> {{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}
                                     </p>
                                     <p class="card-text text-muted mb-1"><strong>Thời lượng:</strong>
-                                        {{ $tour['duration_days'] ?? $tour['duration'] }} ngày</p>
-                                    <p class="card-text text-muted mb-1"><strong>Sức chứa:</strong> {{ $tour['capacity'] }}
+                                        {{ $tour->duration_days ?? $tour->duration }} ngày</p>
+                                    <p class="card-text text-muted mb-1"><strong>Sức chứa:</strong> {{ $tour->capacity }}
                                         người</p>
                                     <p class="card-text text-muted mb-1"><strong>Giá:</strong>
-                                        <span class="text-danger fw-bold">{{ number_format($tour['price'], 0, ',', '.') }}
-                                            đ</span>
-                                        @if($tour['original_price'] > $tour['price'])
+                                        @php
+                                            $today = now()->format('Y-m-d');
+                                            $price = $tour->prices->where('start_date', '<=', $today)
+                                                ->where('end_date', '>=', $today)
+                                                ->first();
+                                            if (!$price) {
+                                                $price = $tour->prices->first();
+                                            }
+                                    @endphp
+                                    @if($price)
+                                        @if($price->discount && $price->discount > 0)
+                                            <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }} đ</span>
                                             <small class="text-decoration-line-through text-muted">
-                                                {{ number_format($tour['original_price'], 0, ',', '.') }} đ
+                                                {{ number_format($price->price, 0, ',', '.') }} đ
                                             </small>
+                                        @else
+                                            <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} đ</span>
                                         @endif
+                                    @else
+                                        <span class="text-danger fw-bold">Liên hệ</span>
+                                    @endif
                                     </p>
-                                    <p class="card-text">{{ Str::limit($tour['beach_description'], 100) }}</p>
+                                    <p class="card-text">{{ $tour->beach && $tour->beach->short_description ? Str::limit($tour->beach->short_description, 100) : '' }}</p>
 
-                                    <a href="{{ route('tour.show', $tour['id']) }}" class="btn btn-primary mt-auto">Xem chi
+                                    <a href="{{ route('tour.show', $tour->id) }}" class="btn btn-primary mt-auto">Xem chi
                                         tiết</a>
                                 </div>
                             </div>

@@ -10,10 +10,11 @@ class BeachController extends Controller
     // Hàm xử lý dữ liệu bãi biển, dùng cho view
     protected function getBeachesData()
     {
-        return Beach::with('detail')->get()->map(function ($beach) {
+        return Beach::with(['detail', 'region'])->get()->map(function ($beach) {
             return (object) [
                 'id' => $beach->id,
-                'region' => $beach->region,
+                'region_id' => $beach->region_id,
+                'region' => $beach->region_name,
                 'image' => $beach->image,
                 'title' => $beach->title,
                 'short_description' => $beach->short_description,
@@ -54,14 +55,15 @@ class BeachController extends Controller
     // Hiển thị form thêm mới bãi biển
     public function create()
     {
-        return view('admin.beaches.create');
+        $regions = \App\Models\Region::all();
+        return view('admin.beaches.create', compact('regions'));
     }
 
     // Lưu bãi biển mới
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'region' => 'required|string|max:255',
+            'region_id' => 'required|exists:regions,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => 'required|string|max:255',
             'short_description' => 'required|string',
@@ -74,7 +76,7 @@ class BeachController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->store('beaches', 'public');
-            $validated['image'] = $imagePath;
+            $validated['image'] = 'beaches/' . basename($imagePath);
         }
         $tags = $validated['tags'] ?? null;
         if ($tags) {
@@ -91,7 +93,7 @@ class BeachController extends Controller
             $tagsArray = [];
         }
         $beach = Beach::create([
-            'region' => $validated['region'],
+            'region_id' => $validated['region_id'],
             'image' => $imagePath,
             'title' => $validated['title'],
             'short_description' => $validated['short_description'],
@@ -108,16 +110,16 @@ class BeachController extends Controller
     // Hiển thị form sửa bãi biển
     public function edit($id)
     {
-        $beaches = $this->getBeachesData();
-        $beach = $beaches->firstWhere('id', $id);
-        return view('admin.beaches.edit', compact('beach'));
+        $beach = Beach::with(['detail', 'region'])->findOrFail($id);
+        $regions = \App\Models\Region::all();
+        return view('admin.beaches.edit', compact('beach', 'regions'));
     }
 
     // Cập nhật bãi biển
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'region' => 'required|string|max:255',
+            'region_id' => 'required|exists:regions,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => 'required|string|max:255',
             'short_description' => 'required|string',
@@ -131,7 +133,7 @@ class BeachController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->store('beaches', 'public');
-            $validated['image'] = $imagePath;
+            $validated['image'] = 'beaches/' . basename($imagePath);
         } else {
             // Nếu không upload ảnh mới, giữ nguyên ảnh cũ
             $validated['image'] = $beach->image;
@@ -151,7 +153,7 @@ class BeachController extends Controller
             $tagsArray = [];
         }
         $beach->update([
-            'region' => $validated['region'],
+            'region_id' => $validated['region_id'],
             'image' => $validated['image'],
             'title' => $validated['title'],
             'short_description' => $validated['short_description'],

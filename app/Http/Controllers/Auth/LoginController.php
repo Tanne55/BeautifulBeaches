@@ -26,9 +26,26 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if (Auth::user()->is_banned) {
-                return redirect()->route('login')->with('error', 'Tài khoản của bạn đã bị khóa, liên hệ với Admin để được hỗ trợ');
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+            
+            // Kiểm tra xem user có đang bị ban không
+            $userId = $user->id;
+            $now = now();
+            $isBanned = \App\Models\UserBan::where('user_id', $userId)
+                ->where('start_date', '<=', $now)
+                ->where(function($q) use ($now) {
+                    $q->whereNull('end_date')->orWhere('end_date', '>=', $now);
+                })
+                ->exists();
+                
+            if ($isBanned) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->route('login')->with('error', 'Tài khoản của bạn đã bị khóa, vui lòng liên hệ Admin để được hỗ trợ');
             }
+            
             return redirect()->route('home');
         }
 

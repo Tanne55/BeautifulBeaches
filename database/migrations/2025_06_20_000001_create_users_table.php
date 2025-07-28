@@ -1,5 +1,6 @@
 <?php
 
+// Updated 2024-06-21: Refactored user profile fields and ban system (see User_Profiles, User_Bans)
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,6 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Updated: Added phone, address, avatar, language, last_login, email_verified. Removed is_banned.
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -18,10 +20,35 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['user', 'admin', 'ceo'])->default('user'); 
-            $table->boolean('is_banned')->default(false);
+            $table->string('phone', 20)->nullable();
+            $table->text('address')->nullable();
+            $table->string('avatar', 255)->nullable();
+            $table->string('language', 10)->default('vi');
+            $table->timestamp('last_login')->nullable();
+            $table->boolean('email_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        // New: User Profiles Table
+        Schema::create('user_profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->date('dob')->nullable();
+            $table->string('nationality')->nullable();
+            $table->json('preferences')->nullable();
+            $table->timestamps();
+        });
+
+        // New: User Bans Table
+        Schema::create('user_bans', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('reason')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -45,6 +72,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('user_bans');
+        Schema::dropIfExists('user_profiles');
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');

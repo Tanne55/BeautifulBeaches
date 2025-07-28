@@ -12,61 +12,105 @@
             </div>
 
             @if(auth()->user() && auth()->user()->isUser())
-                <!-- Stats Cards -->
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card border-0 shadow-lg h-100"
-                            style="background: linear-gradient(45deg, #667eea, #764ba2); transform: translateY(0); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-10px)'"
-                            onmouseout="this.style.transform='translateY(0)'">
-                            <div class="card-body text-white text-center p-4">
-                                <div class="mb-3">
-                                    <i class="fas fa-users fa-3x opacity-75"></i>
+                <!-- User Profile Card -->
+                <div class="row mb-5">
+                    <div class="col-lg-12">
+                        <div class=" border-0 shadow-lg"
+                            style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <!-- Avatar Column -->
+                                    <div class="col-md-3 text-center mb-4 mb-md-0">
+                                        <div class="avatar-container mb-3">
+                                            @if($user->avatar)
+                                                <img src="{{ asset($user->avatar) }}" alt="User Avatar" 
+                                                    class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4facfe;">
+                                            @else
+                                                <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 150px; height: 150px; background: linear-gradient(45deg, #4facfe, #00f2fe); margin: 0 auto;">
+                                                    <span class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <h5 class="fw-bold">{{ $user->name }}</h5>
+                                        <span class="badge" 
+                                            style="background: {{ $user->role === 'admin' ? '#764ba2' : ($user->role === 'ceo' ? '#f5576c' : '#4facfe') }};">
+                                            {{ ucfirst($user->role) }}
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- User Info Column -->
+                                    <div class="col-md-9">
+                                        <h4 class="fw-bold mb-4">Thông tin cá nhân</h4>
+                                        
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>Email:</label>
+                                                    <p class="mb-0 fw-medium">{{ $user->email }}</p>
+                                                </div>
+                                                
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện thoại:</label>
+                                                    <p class="mb-0 fw-medium">{{ $user->phone ?? 'Chưa cập nhật' }}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày sinh:</label>
+                                                    <p class="mb-0 fw-medium">
+                                                        {{ $profile && $profile->dob ? date('d/m/Y', strtotime($profile->dob)) : 'Chưa cập nhật' }}
+                                                    </p>
+                                                </div>
+                                                
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-calendar-check me-2"></i>Tham gia:</label>
+                                                    <p class="mb-0 fw-medium">{{ $user->created_at->format('d/m/Y') }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="info-item mb-3">
+                                            <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa chỉ:</label>
+                                            <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
+                                        </div>
+                                        
+                                        <div class="info-item mb-3">
+                                            <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc tịch:</label>
+                                            <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
+                                        </div>
+
+                                        @if($profile && $profile->preferences)
+                                        <div class="info-item mt-4">
+                                            <label class="text-muted mb-1"><i class="fas fa-cog me-2"></i>Tùy chọn:</label>
+                                            <p class="mb-0 fw-medium">
+                                                @if(is_array($profile->preferences))
+                                                    @if(isset($profile->preferences['favorite_beaches']))
+                                                        <span class="badge bg-info me-1">Bãi biển yêu thích: {{ implode(', ', $profile->preferences['favorite_beaches']) }}</span>
+                                                    @endif
+                                                    @if(isset($profile->preferences['theme']))
+                                                        <span class="badge bg-secondary me-1">Theme: {{ $profile->preferences['theme'] }}</span>
+                                                    @endif
+                                                @endif
+                                            </p>
+                                        </div>
+                                        @endif
+                                        
+                                        <div class="mt-4 pt-3 border-top">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-4">
+                                                    <span class="d-block text-muted small">Tour đã đặt</span>
+                                                    <h5 class="mb-0 fw-bold">{{ $bookingCount }}</h5>
+                                                </div>
+                                                <a href="{{ route('user.history') }}" class="btn btn-sm text-white"
+                                                    style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; border-radius: 10px;">
+                                                    <i class="fas fa-history me-2"></i>Xem lịch sử
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h2 class="display-6 fw-bold mb-1">1,234</h2>
-                                <p class="mb-0 opacity-75">Tổng người dùng</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card border-0 shadow-lg h-100"
-                            style="background: linear-gradient(45deg, #f093fb, #f5576c); transform: translateY(0); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-10px)'"
-                            onmouseout="this.style.transform='translateY(0)'">
-                            <div class="card-body text-white text-center p-4">
-                                <div class="mb-3">
-                                    <i class="fas fa-umbrella-beach fa-3x opacity-75"></i>
-                                </div>
-                                <h2 class="display-6 fw-bold mb-1">56</h2>
-                                <p class="mb-0 opacity-75">Bãi biển</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card border-0 shadow-lg h-100"
-                            style="background: linear-gradient(45deg, #4facfe, #00f2fe); transform: translateY(0); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-10px)'"
-                            onmouseout="this.style.transform='translateY(0)'">
-                            <div class="card-body text-white text-center p-4">
-                                <div class="mb-3">
-                                    <i class="fas fa-calendar-check fa-3x opacity-75"></i>
-                                </div>
-                                <h2 class="display-6 fw-bold mb-1">789</h2>
-                                <p class="mb-0 opacity-75">Đặt chỗ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card border-0 shadow-lg h-100"
-                            style="background: linear-gradient(45deg, #43e97b, #38f9d7); transform: translateY(0); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-10px)'"
-                            onmouseout="this.style.transform='translateY(0)'">
-                            <div class="card-body text-white text-center p-4">
-                                <div class="mb-3">
-                                    <i class="fas fa-dollar-sign fa-3x opacity-75"></i>
-                                </div>
-                                <h2 class="display-6 fw-bold mb-1">₫25M</h2>
-                                <p class="mb-0 opacity-75">Doanh thu</p>
                             </div>
                         </div>
                     </div>

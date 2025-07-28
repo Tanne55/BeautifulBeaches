@@ -126,9 +126,10 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Trạng thái</label>
                                 <select class="form-control" id="status" name="status" required>
-                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Hoạt động
+                                    <option value="confirmed" {{ old('status') == 'confirmed' ? 'selected' : '' }}>Hoạt động
                                     </option>
-                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Ẩn</option>
+                                    <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Chờ</option>
+                                    <option value="cancelled" {{ old('status') == 'cancelled' ? 'selected' : '' }}>Hết hạn</option>
                                 </select>
                             </div>
                             <!-- Dịch vụ bao gồm -->
@@ -266,6 +267,7 @@
             const url = URL.createObjectURL(file);
             imagePreview.src = url;
             previewImageShow.src = url;
+            document.getElementById('drop-text').style.display = 'none';
         }
 
         // Live preview các trường form
@@ -284,9 +286,9 @@
         // Gán data-region cho option
         Array.from(document.getElementById('beach_id').options).forEach(opt => {
             @foreach($beaches as $beach)
-                if (opt.value == '{{ $beach->id }}') opt.dataset.region = '{{ $beach->region }}';
+                if (opt.value == '{{ $beach->id }}') opt.dataset.region = '{{ $beach->region->name }}';
             @endforeach
-                    });
+        });
         document.getElementById('status').addEventListener('change', function () {
             document.getElementById('previewStatus').textContent = this.options[this.selectedIndex].text || '-';
         });

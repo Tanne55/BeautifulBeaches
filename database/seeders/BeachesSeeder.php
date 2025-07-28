@@ -32,7 +32,6 @@ class BeachesSeeder extends Seeder
                 $beachId = DB::table('beaches')->insertGetId([
                     'title' => $beach['title'],
                     'image' => $beach['image'],
-                    'region' => $beach['region'],
                     'short_description' => $beach['shortDescription'],
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -55,5 +54,25 @@ class BeachesSeeder extends Seeder
         }
 
         $this->command->info('Đã seed ' . $insertedCount . ' beaches và beach_details thành công.');
+
+        // Get all unique regions from beach_data.json (not from beaches table)
+        $json = File::get($jsonPath);
+        $beaches = json_decode($json, true);
+        $regions = collect($beaches)->pluck('region')->unique()->filter();
+        $regionIds = [];
+        foreach ($regions as $region) {
+            $regionIds[$region] = DB::table('regions')->insertGetId([
+                'name' => $region,
+                'country' => 'Vietnam',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        // Update each beach with region_id by matching title
+        foreach ($beaches as $beach) {
+            DB::table('beaches')->where('title', $beach['title'])->update([
+                'region_id' => $regionIds[$beach['region']] ?? null,
+            ]);
+        }
     }
 }

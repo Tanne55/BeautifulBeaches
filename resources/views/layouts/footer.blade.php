@@ -43,17 +43,18 @@
                 </ul>
             </div>
 
-            <!-- Subscribe Us -->
+            <!-- Track Your Booking -->
             <div class="col-md-3">
-                <h5 class="footer-title">SUBSCRIBE US</h5>
+                <h5 class="footer-title">TRACK YOUR BOOKING</h5>
                 <p class="footer-text">
-                    Stay updated with our latest travel offers and blog posts.
+                    Check your booking status by entering the booking code.
                 </p>
-                <form class="footer-subscribe-form">
+                <form class="footer-booking-form" action="{{ route('bookings.track') }}" method="GET">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email.." aria-label="Your Email..">
+                        <input type="text" name="booking_code" class="form-control" placeholder="Enter Booking Code" aria-label="Booking Code" required>
                     </div>
-                    <button class="btn btn-subscribe w-100" type="submit">SUBSCRIBE NOW</button>
+                    <button class="btn btn-subscribe w-100" type="submit">TRACK BOOKING</button>
                 </form>
             </div>
         </div>

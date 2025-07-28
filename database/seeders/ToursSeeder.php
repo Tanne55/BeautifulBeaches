@@ -28,17 +28,24 @@ class ToursSeeder extends Seeder
         $insertedCount = 0;
         foreach ($tours as $tour) {
             try {
-                // Insert vào bảng tours
+                // Insert vào bảng tours (KHÔNG có price, original_price)
                 $tourId = DB::table('tours')->insertGetId([
                     'beach_id' => $tour['beach_id'],
                     'ceo_id' => $tour['ceo_id'],
                     'image' => $tour['image'],
                     'title' => $tour['title'],
-                    'price' => $tour['price'],
-                    'original_price' => $tour['original_price'],
                     'capacity' => $tour['capacity'],
                     'duration_days' => $tour['duration_days'],
                     'status' => $tour['status'],
+                    'created_at' => $tour['created_at'] ?? now(),
+                    'updated_at' => $tour['updated_at'] ?? now(),
+                ]);
+
+                // Insert vào bảng tour_prices
+                DB::table('tour_prices')->insert([
+                    'tour_id' => $tourId,
+                    'price' => $tour['price'] ?? 0,
+                    'discount' => $tour['original_price'] ?? null,
                     'created_at' => $tour['created_at'] ?? now(),
                     'updated_at' => $tour['updated_at'] ?? now(),
                 ]);
@@ -59,6 +66,8 @@ class ToursSeeder extends Seeder
                 $this->command->error('Lỗi khi insert tour hoặc tour_details cho "' . $tour['title'] . '": ' . $e->getMessage());
             }
         }
+
+        // XÓA đoạn migrate price/discount từ bảng tours sang tour_prices (không còn cần thiết)
 
         $this->command->info('Đã seed ' . $insertedCount . ' tours và tour_details thành công.');
     }

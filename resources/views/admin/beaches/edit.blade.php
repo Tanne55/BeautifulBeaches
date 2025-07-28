@@ -24,8 +24,11 @@
                                 <div id="drop-area"
                                     class="p-4 mb-3 border border-2 border-primary border-dashed rounded bg-light position-relative"
                                     style="cursor:pointer;">
+                                    @php
+                                        $img = $beach->image ?? '';
+                                    @endphp
                                     <img id="imagePreview"
-                                        src="{{ $beach->image ? asset($beach->image) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
+                                        src="{{ $img ? (str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'beaches/') ? $img : 'beaches/' . $img))) : 'https://via.placeholder.com/900x350?text=Beach+Preview' }}"
                                         alt="Preview" class="img-fluid rounded mb-2"
                                         style="max-height:350px;object-fit:cover;">
                                     <div id="drop-text" class="text-secondary">
@@ -41,13 +44,15 @@
                                 <input type="text" class="form-control form-control-lg fw-bold" id="title" name="title"
                                     placeholder="Tiêu đề bãi biển" required value="{{ old('title', $beach->title) }}">
                             </div>
-                            <!-- Khu vực (enum) -->
+                            <!-- Khu vực -->
                             <div class="mb-3">
-                                <select class="form-control" id="region" name="region" required>
+                                <select class="form-control" id="region_id" name="region_id" required>
                                     <option value="">Chọn vùng</option>
-                                    <option value="Northern Vietnam" {{ (old('region', $beach->region) == 'Northern Vietnam') ? 'selected' : '' }}>Bắc Bộ</option>
-                                    <option value="Central Vietnam" {{ (old('region', $beach->region) == 'Central Vietnam') ? 'selected' : '' }}>Trung Bộ</option>
-                                    <option value="Southern Vietnam" {{ (old('region', $beach->region) == 'Southern Vietnam') ? 'selected' : '' }}>Nam Bộ</option>
+                                    @foreach($regions as $region)
+                                        <option value="{{ $region->id }}" {{ (old('region_id', $beach->region_id) == $region->id) ? 'selected' : '' }}>
+                                            {{ $region->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- Mô tả ngắn -->
@@ -59,25 +64,25 @@
                             <!-- Mô tả chi tiết -->
                             <div class="mb-3">
                                 <textarea class="form-control" id="long_description" name="long_description" rows="3"
-                                    placeholder="Mô tả chi tiết về bãi biển">{{ old('long_description', $beach->long_description) }}</textarea>
+                                    placeholder="Mô tả chi tiết về bãi biển">{{ old('long_description', $beach->detail->long_description) }}</textarea>
                             </div>
                             <!-- Trích dẫn nổi bật -->
                             <div class="mb-3">
                                 <div class="p-3 border-start border-3 border-primary bg-light rounded mb-2">
                                     <textarea class="form-control border-0 bg-transparent fst-italic" id="highlight_quote"
                                         name="highlight_quote" rows="2"
-                                        placeholder="Trích dẫn nổi bật (ví dụ: Let Bai Chay's breeze renew your soul.)">{{ old('highlight_quote', $beach->highlight_quote) }}</textarea>
+                                        placeholder="Trích dẫn nổi bật (ví dụ: Let Bai Chay's breeze renew your soul.)">{{ old('highlight_quote', $beach->detail->highlight_quote) }}</textarea>
                                 </div>
                             </div>
                             <!-- Mô tả chi tiết 2 -->
                             <div class="mb-3">
                                 <textarea class="form-control" id="long_description_2" name="long_description_2" rows="2"
-                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description_2', $beach->long_description_2) }}</textarea>
+                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description_2', $beach->detail->long_description2) }}</textarea>
                             </div>
                             <!-- Tags -->
                             <div class="mb-4">
                                 <input type="text" class="form-control" id="tags" name="tags"
-                                    value="{{ old('tags', is_array($beach->tags) ? implode(', ', $beach->tags) : $beach->tags) }}"
+                                    value="{{ old('tags', is_array($beach->detail->tags) ? implode(', ', $beach->detail->tags) : $beach->detail->tags) }}"
                                     placeholder='Tags (ví dụ: ["Travel","Beach","Quang Ninh","Vietnam","Family"])'>
                                 <div class="form-text">Hint: Nhập tags dạng chuỗi json hoặc cách nhau bởi dấu phẩy.</div>
                             </div>
@@ -94,22 +99,26 @@
                 <div class="card shadow-sm mb-3">
                     <div class="card-body p-3">
                         <div class="text-center mb-3">
+                            @php
+                                $img = $beach->image ?? '';
+                            @endphp
                             <img id="previewImageShow"
-                                src="{{ $beach->image ? asset($beach->image) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
-                                alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
+                                src="{{ $img ? (str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'beaches/') ? $img : 'beaches/' . $img))) : 'https://via.placeholder.com/900x350?text=Beach+Preview' }}"
+                                alt="Preview" class="img-fluid rounded"
+                                style="max-height:350px;width:100%;object-fit:cover;">
                         </div>
                         <h2 id="previewTitle">{{ $beach->title }}</h2>
-                        <span class="badge bg-primary mb-2" id="previewRegion">{{ $beach->region }}</span>
+                        <span class="badge bg-primary mb-2" id="previewRegion">{{ $beach->region->name }}</span>
                         <p class="short-description" id="previewShortDescription">{{ $beach->short_description }}</p>
-                        <p class="long-description" id="previewLongDescription">{{ $beach->long_description }}</p>
+                        <p class="long-description" id="previewLongDescription">{{ $beach->detail->long_description }}</p>
                         <div
                             class="highlight-quote bg-light p-2 rounded fst-italic border-start border-3 border-primary mb-2">
-                            <p id="previewHighlightQuote">{{ $beach->highlight_quote }}</p>
+                            <p id="previewHighlightQuote">{{ $beach->detail->highlight_quote }}</p>
                         </div>
-                        <p class="long-description-2" id="previewLongDescription2">{{ $beach->long_description_2 }}</p>
+                        <p class="long-description-2" id="previewLongDescription2">{{ $beach->detail->long_description2 }}</p>
                         <div class="tags-container" id="previewTags">
                             @php
-                                $tags = is_array($beach->tags) ? $beach->tags : (json_decode($beach->tags) ?: explode(',', $beach->tags));
+                                $tags = is_array($beach->detail->tags) ? $beach->detail->tags : (json_decode($beach->detail->tags) ?: explode(',', $beach->detail->tags));
                             @endphp
                             @foreach ($tags as $tag)
                                 <span class="tag badge bg-secondary me-1"><i class="fas fa-tag"></i>
@@ -160,8 +169,9 @@
         document.getElementById('title').addEventListener('input', function () {
             document.getElementById('previewTitle').textContent = this.value || 'Tiêu đề bãi biển';
         });
-        document.getElementById('region').addEventListener('change', function () {
-            document.getElementById('previewRegion').textContent = this.value || 'Vùng';
+        document.getElementById('region_id').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            document.getElementById('previewRegion').textContent = selectedOption.textContent || 'Vùng';
         });
         document.getElementById('short_description').addEventListener('input', function () {
             document.getElementById('previewShortDescription').textContent = this.value;

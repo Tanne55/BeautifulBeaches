@@ -18,14 +18,29 @@ class AdminController extends Controller
                 'role' => $user->role,
                 'created_at' => $user->created_at,
                 'email_verified_at' => $user->email_verified_at,
-                'is_banned' => $user->is_banned ?? false,
+                'is_banned' => $user->isCurrentlyBanned(),
             ];
         });
     }
     public function dashboard()
     {
-        // Trả về view dashboard cho admin
-        return view('admin.dashboard');
+        // Lấy thông tin admin hiện tại và profile của họ
+        $user = Auth::user();
+        $profile = \App\Models\UserProfile::where('user_id', $user->id)->first();
+        
+        // Lấy số lượng user trong hệ thống
+        $userCount = User::count();
+        
+        // Lấy số lượng bãi biển
+        $beachCount = \App\Models\Beach::count();
+        
+        // Lấy số lượng tour booking
+        $bookingCount = \App\Models\TourBooking::count();
+        
+        // Lấy tổng doanh thu từ các vé đã sử dụng
+        $totalRevenue = \App\Models\Ticket::where('status', 'used')->sum('unit_price');
+        
+        return view('admin.dashboard', compact('user', 'profile', 'userCount', 'beachCount', 'bookingCount', 'totalRevenue'));
     }
 
     // Hiển thị danh sách users cho admin
@@ -130,8 +145,23 @@ class AdminController extends Controller
         if (Auth::id() && $user->role === "admin") {
             return redirect()->route('admin.users.index')->with('error', 'Không thể ban tài khoản của admin khác!');
         }
-        $user->update(['is_banned' => !$user->is_banned]);
-        $status = $user->is_banned ? 'ban' : 'mở ban';
+        if ($user->isCurrentlyBanned()) {
+            // Unban: set end_date to now for the latest ban
+            $ban = $user->bans()->whereNull('end_date')->latest('start_date')->first();
+            if ($ban) {
+                $ban->end_date = now();
+                $ban->save();
+            }
+            $status = 'mở ban';
+        } else {
+            // Ban: create new ban record
+            $user->bans()->create([
+                'reason' => 'Banned by admin '. Auth::user()->name,
+                'start_date' => now(),
+                'end_date' => null,
+            ]);
+            $status = 'ban';
+        }
         return redirect()->route('admin.users.index')->with('success', "Đã {$status} người dùng {$user->name} thành công!");
     }
 } 

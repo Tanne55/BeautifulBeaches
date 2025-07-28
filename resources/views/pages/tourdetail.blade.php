@@ -18,11 +18,11 @@
                     $isBeachAsset = $beachImg && (str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets'));
                 @endphp
                 @if($img)
-                    <img src="{{ $isAsset ? $img : asset('storage/' . $img) }}" class="img-fluid rounded shadow"
-                        alt="{{ $tour->title }}">
+                    <img src="{{ str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'tours/') ? $img : 'tours/' . $img)) }}"
+                        class="img-fluid rounded shadow" alt="{{ $tour->title }}">
                 @elseif($beachImg)
-                    <img src="{{ $isBeachAsset ? $beachImg : asset('storage/' . $beachImg) }}" class="img-fluid rounded shadow"
-                        alt="{{ $tour->title }}">
+                    <img src="{{ str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets') ? $beachImg : asset('storage/beaches/' . $beachImg) }}"
+                        class="img-fluid rounded shadow" alt="{{ $tour->title }}">
                 @else
                     <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded shadow"
                         alt="No image">
@@ -42,7 +42,7 @@
                     <tbody>
                         <tr>
                             <th>Khu vực</th>
-                            <td>{{ $tour->beach?->region }}</td>
+                            <td>{{ $tour->beach?->region->name }}</td>
                         </tr>
                         <tr>
                             <th>Thời lượng</th>
@@ -55,11 +55,27 @@
                         <tr>
                             <th>Giá</th>
                             <td>
-                                <span class="text-danger fw-bold">{{ number_format($tour->price, 0, ',', '.') }} đ</span>
-                                @if($tour->original_price > $tour->price)
-                                    <small class="text-decoration-line-through text-muted">
-                                        {{ number_format($tour->original_price, 0, ',', '.') }} đ
-                                    </small>
+                                @php
+                                    $today = now()->format('Y-m-d');
+                                    $price = $tour->prices->where('start_date', '<=', $today)
+                                        ->where('end_date', '>=', $today)
+                                        ->first();
+                                    if (!$price) {
+                                        $price = $tour->prices->first();
+                                    }
+                                @endphp
+                                @if($price)
+                                    @if($price->discount && $price->discount > 0)
+                                        <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }}
+                                            đ</span>
+                                        <small class="text-decoration-line-through text-muted">
+                                            {{ number_format($price->price, 0, ',', '.') }} đ
+                                        </small>
+                                    @else
+                                        <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} đ</span>
+                                    @endif
+                                @else
+                                    <span class="text-danger fw-bold">Liên hệ</span>
                                 @endif
                             </td>
                         </tr>
@@ -118,12 +134,8 @@
                 </table>
                 {{-- NÚT ĐẶT TOUR --}}
                 <div class="mb-4">
-                    @auth
-                        <a href="{{ route('tour.booking.form', $tour->id) }}" class="btn btn-success btn-lg w-100 mb-3">Đặt tour
-                            ngay</a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-success btn-lg w-100 mb-3">Đăng nhập để đặt tour</a>
-                    @endauth
+                    <a href="{{ route('tour.booking.form', $tour->id) }}" class="btn btn-success btn-lg w-100 mb-3">Đặt tour
+                        ngay</a>
                 </div>
             </div>
         </div>

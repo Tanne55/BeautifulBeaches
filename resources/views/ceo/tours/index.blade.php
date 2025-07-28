@@ -43,14 +43,20 @@
                                     <td>{{ $tour->beach ? $tour->beach->title : '' }}</td>
                                     <td>{{ $tour->detail->departure_time ? \Carbon\Carbon::parse($tour->detail->departure_time)->format('d/m/Y H:i') : '' }}</td>
                                     <td>{{ $tour->detail->return_time ? \Carbon\Carbon::parse($tour->detail->return_time)->format('d/m/Y H:i') : '' }}</td>
-                                    <td>{{ number_format($tour->price, 0, ',', '.') }}</td>
+                                    <td><span class="text-danger fw-bold">{{ number_format($tour->prices->first()->price, 0, ',', '.') }}
+                                            đ</span>
+                                        @if($tour->prices && $tour->prices->first() && $tour->prices->first()->discount && $tour->prices->first()->discount < $tour->current_price)
+                                            <small class="text-decoration-line-through text-muted">
+                                                {{ number_format($tour->prices->first()->discount, 0, ',', '.') }} đ
+                                            </small>
+                                        @endif </td>
                                     <td>{{ $tour->capacity }}</td>
                                     <td>
-                                        @if($tour->status === 'active')
+                                        @if($tour->status === 'confirmed')
                                             <span class="badge px-3 py-2 bg-success">Hoạt động</span>
-                                        @elseif($tour->status === 'inactive')
+                                        @elseif($tour->status === 'pending')
                                             <span class="badge px-3 py-2 bg-secondary">Ẩn</span>
-                                        @elseif($tour->status === 'outdated')
+                                        @elseif($tour->status === 'cancelled')
                                             <span class="badge px-3 py-2 bg-danger">Hết hạn</span>
                                         @else
                                             <span class="badge px-3 py-2 bg-dark">Không xác định</span>

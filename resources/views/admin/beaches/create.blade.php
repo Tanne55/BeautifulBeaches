@@ -23,29 +23,31 @@
                                 <div id="drop-area"
                                     class="p-4 mb-3 border border-2 border-primary border-dashed rounded bg-light position-relative"
                                     style="cursor:pointer;">
-                                    <img id="imagePreview" src="https://via.placeholder.com/900x350?text=Preview+Image"
+                                    <img id="imagePreview" src="https://via.placeholder.com/900x350?text=Beach+Preview"
                                         alt="Preview" class="img-fluid rounded mb-2"
-                                        style="max-height:350px;object-fit:cover;">
-                                    <div id="drop-text" class="text-secondary">
+                                        style="max-height:350px;width:100%;object-fit:cover;">
+                                    <div id="drop-text" class="text-secondary position-absolute top-50 start-50 translate-middle w-100">
                                         <i class="bi bi-upload" style="font-size:2rem;"></i><br>
-                                        <span>Kéo & thả ảnh vào đây hoặc bấm để chọn ảnh từ máy</span>
+                                        <span>Kéo & thả ảnh bãi biển vào đây<br>hoặc bấm để chọn ảnh từ máy</span>
                                     </div>
                                     <input type="file" class="form-control d-none" id="image" name="image" accept="image/*">
                                 </div>
-                                <div class="form-text">Chỉ nhận file ảnh (jpg, png, webp...)</div>
+                                <div class="form-text">Chấp nhận: JPG, PNG, WEBP. Kích thước tối ưu: 1920x1080px</div>
                             </div>
                             <!-- Tiêu đề -->
                             <div class="mb-3">
                                 <input type="text" class="form-control form-control-lg fw-bold" id="title" name="title"
                                     placeholder="Tiêu đề bãi biển" required value="{{ old('title') }}">
                             </div>
-                            <!-- Khu vực (enum) -->
+                            <!-- Khu vực -->
                             <div class="mb-3">
-                                <select class="form-control" id="region" name="region" required>
+                                <select class="form-control" id="region_id" name="region_id" required>
                                     <option value="">Chọn vùng</option>
-                                    <option value="Northern Vietnam">Bắc Bộ</option>
-                                    <option value="Central Vietnam">Trung Bộ</option>
-                                    <option value="Southern Vietnam">Nam Bộ</option>
+                                    @foreach($regions as $region)
+                                        <option value="{{ $region->id }}" {{ old('region_id') == $region->id ? 'selected' : '' }}>
+                                            {{ $region->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- Mô tả ngắn -->
@@ -90,8 +92,8 @@
                 <div class=" shadow-sm mb-3 bg-light">
                     <div class="card-body p-3">
                         <div class="text-center mb-3">
-                            <img id="previewImageShow" src="https://via.placeholder.com/900x350?text=Preview+Image"
-                                alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
+                            <img id="previewImageShow" src="https://via.placeholder.com/900x350?text=Beach+Preview"
+                                alt="Preview" class="img-fluid rounded" style="max-height:350px;width:100%;object-fit:cover;">
                         </div>
                         <h2 id="previewTitle">Tiêu đề bãi biển</h2>
                         <span class="badge bg-primary mb-2" id="previewRegion">Vùng</span>
@@ -147,8 +149,9 @@
         document.getElementById('title').addEventListener('input', function () {
             document.getElementById('previewTitle').textContent = this.value || 'Tiêu đề bãi biển';
         });
-        document.getElementById('region').addEventListener('change', function () {
-            document.getElementById('previewRegion').textContent = this.value || 'Vùng';
+        document.getElementById('region_id').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            document.getElementById('previewRegion').textContent = selectedOption.textContent || 'Vùng';
         });
         document.getElementById('short_description').addEventListener('input', function () {
             document.getElementById('previewShortDescription').textContent = this.value;

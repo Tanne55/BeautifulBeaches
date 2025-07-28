@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->enum('status', ['valid', 'used', 'cancelled'])->default('valid');
+            $table->decimal('unit_price', 10, 2)->default(0); // Thêm cột giá vé đơn vị
             $table->timestamps();
             $table->softDeletes();
         });

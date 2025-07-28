@@ -26,10 +26,14 @@
                                     class="p-4 mb-3 border border-2 border-primary border-dashed rounded bg-light position-relative"
                                     style="cursor:pointer;">
                                     <img id="imagePreview"
-                                        src="{{ $tour->image ? asset($tour->image) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
+                                        src="{{ $tour->image ? (
+                                            str_starts_with($tour->image, 'http') ? $tour->image :
+                                            (str_starts_with($tour->image, 'assets/') || str_starts_with($tour->image, '/assets/') ? asset($tour->image) :
+                                            asset('storage/' . (str_starts_with($tour->image, 'tours/') ? $tour->image : 'tours/' . $tour->image)))
+                                        ) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
                                         alt="Preview" class="img-fluid rounded mb-2"
                                         style="max-height:350px;object-fit:cover;">
-                                    <div id="drop-text" class="text-secondary">
+                                    <div id="drop-text" class="text-secondary position-absolute top-50 start-50 translate-middle text-center" style="{{ $tour->image ? 'display:none;' : '' }}">
                                         <i class="bi bi-upload" style="font-size:2rem;"></i><br>
                                         <span>Kéo & thả ảnh vào đây hoặc bấm để chọn ảnh từ máy</span>
                                     </div>
@@ -43,7 +47,7 @@
                                 <select class="form-control" id="beach_id" name="beach_id" required>
                                     <option value="">Chọn bãi biển</option>
                                     @foreach($beaches as $beach)
-                                        <option value="{{ $beach->id }}" data-region="{{ $beach->region }}" {{ old('beach_id', $tour->beach_id) == $beach->id ? 'selected' : '' }}>{{ $beach->title }}</option>
+                                        <option value="{{ $beach->id }}" data-region="{{ $beach->region->name }}" {{ old('beach_id', $tour->beach_id) == $beach->id ? 'selected' : '' }}>{{ $beach->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -96,9 +100,11 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Trạng thái</label>
                                 <select class="form-control" id="status" name="status" required>
-                                    <option value="active" {{ old('status', $tour->status) == 'active' ? 'selected' : '' }}>
-                                        Hoạt động</option>
-                                    <option value="inactive" {{ old('status', $tour->status) == 'inactive' ? 'selected' : '' }}>Ẩn</option>
+                                    <option value="">-- Chọn trạng thái --</option>
+                                    <option value="draft" {{ old('status', $tour->status) == 'draft' ? 'selected' : '' }}>Nháp</option>
+                                    <option value="pending" {{ old('status', $tour->status) == 'pending' ? 'selected' : '' }}>Chờ duyệt</option>
+                                    <option value="confirmed" {{ old('status', $tour->status) == 'confirmed' ? 'selected' : '' }}>Đã duyệt</option>
+                                    <option value="cancelled" {{ old('status', $tour->status) == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
                                 </select>
                             </div>
                             <!-- Dịch vụ bao gồm -->
@@ -131,29 +137,42 @@
             <!-- Preview bên phải -->
             <div class="col-lg-6">
                 <div class="shadow-sm mb-3 bg-light p-2">
-                    <div class="card-body p-3">
-                        <div class="text-center mb-3">
+                    <div class="card-body p-3">                            <div class="text-center mb-3">
+                            @php
+                                $img = $tour->image ?? '';
+                            @endphp
                             <img id="previewImageShow"
-                                src="{{ $tour->image ? asset($tour->image) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
+                                src="{{ $img ? (str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'tours/') ? $img : 'tours/' . $img))) : 'https://via.placeholder.com/900x350?text=Preview+Image' }}"
                                 alt="Preview" class="img-fluid rounded" style="max-height:350px;object-fit:cover;">
                         </div>
                         <table class="table table-bordered table-striped mb-3">
                             <tbody>
                                 <tr>
                                     <th>Khu vực</th>
-                                    <td id="previewRegion">{{ $tour->beach->region ?? '-' }}</td>
+                                    <td id="previewRegion">{{ $tour->beach?->region?->name ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tên tour</th>
-                                    <td id="previewTitle">{{ $tour->title }}</td>
+                                    <td id="previewTitle">{{ $tour->title ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Bãi biển</th>
-                                    <td id="previewBeach">{{ $tour->beach->title ?? '-' }}</td>
+                                    <td id="previewBeach">{{ $tour->beach?->title ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Trạng thái</th>
-                                    <td id="previewStatus">{{ $tour->status == 'active' ? 'Hoạt động' : 'Ẩn' }}</td>
+                                    <td id="previewStatus">
+                                        @php
+                                            $statusText = match($tour->status) {
+                                                'draft' => 'Nháp',
+                                                'pending' => 'Chờ duyệt',
+                                                'confirmed' => 'Đã duyệt',
+                                                'cancelled' => 'Đã hủy',
+                                                default => '-'
+                                            };
+                                        @endphp
+                                        {{ $statusText }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Thời lượng</th>
@@ -251,7 +270,10 @@
             }
         });
         function previewImageFile(file) {
-            imagePreview.src = URL.createObjectURL(file);
+            const url = URL.createObjectURL(file);
+            imagePreview.src = url;
+            document.getElementById('previewImageShow').src = url;
+            document.getElementById('drop-text').style.display = 'none';
         }
 
         // Cải thiện hàm tính toán thời gian trở về

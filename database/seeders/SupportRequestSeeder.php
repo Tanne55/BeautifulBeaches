@@ -97,10 +97,9 @@ class SupportRequestSeeder extends Seeder
         ];
 
         foreach ($supportRequests as $index => $requestData) {
-            // Randomly assign a user or leave user_id as null for anonymous requests
+            // Gán user_id nếu có user, hoặc để null cho yêu cầu ẩn danh
             $user = $users->random();
-            $requestData['user_id'] = $user->id;
-            
+            $requestData['user_id'] = $user ? $user->id : null;
             SupportRequest::create($requestData);
         }
     }

@@ -114,10 +114,10 @@
             <div class="row g-4 mx-5">
                 @foreach ($beaches->slice(0, 2) as $beach)
                     <div class="col-sm-3">
-                        <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
+                        <a href="{{ route('beaches.show', $beach['id']) }}" class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden destination-card"
                                 style="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-image: url('{{$beach->image}}');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-image: url('{{$beach['image']}}');
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-size: cover;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-position: left;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 500px;
@@ -136,7 +136,7 @@
                                 <!-- Thông tin dưới -->
                                 <div class="position-absolute bottom-0 start-0 w-100 text-white p-3 "
                                     style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                                    <h5 class="m-0 fw-bold">{{$beach->region}}</h5>
+                                    <h5 class="m-0 fw-bold">{{$beach['region']}}</h5>
                                     <div class="text-warning mt-1">★★★★☆</div>
                                 </div>
 
@@ -147,10 +147,10 @@
                 @endforeach
                 <div class="col-6 d-flex flex-column" style="height: 500px; gap: 20px;">
                     @foreach ($beaches->slice(2, 2) as $beach)
-                        <a href="{{ route('beaches.show', $beach->id) }}" class="text-decoration-none text-white d-block h-100">
+                        <a href="{{ route('beaches.show', $beach['id']) }}" class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
                                 style="
-                                                                                                                                                                                                                                                                                                                                                                                background-image: url('{{ $beach->image }}');
+                                                                                                                                                                                                                                                                                                                                                                                background-image: url('{{ $beach['image'] }}');
                                                                                                                                                                                                                                                                                                                                                                                 background-size: cover;
                                                                                                                                                                                                                                                                                                                                                                                 background-position: center;
                                                                                                                                                                                                                                                                                                                                                                                 height: 240px;">
@@ -167,7 +167,7 @@
                                 <!-- Nội dung -->
                                 <div class="position-absolute bottom-0 start-0 w-100 text-white p-3"
                                     style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 2;">
-                                    <h5 class="m-0 fw-bold">{{ $beach->region }}</h5>
+                                    <h5 class="m-0 fw-bold">{{ $beach['region'] }}</h5>
                                     <div class="text-warning mt-1">★★★★★</div>
                                 </div>
                             </div>

@@ -188,7 +188,7 @@
                     @php
                         $relatedTours = \App\Models\Tour::with('beach')
                             ->where('beach_id', $beach->id)
-                            ->where('status', 'active')
+                            ->where('status', 'confirmed')
                             ->take(5)
                             ->get();
                     @endphp
@@ -220,7 +220,13 @@
                                     </a>
                                 </h6>
                                 <small class="text-muted">
-                                    {{ number_format($tour->price, 0, ',', '.') }} đ | 
+                                   <span class="text-danger fw-bold">{{ number_format($tour->current_price, 0, ',', '.') }} đ
+                                            </span>
+                                        @if($tour->prices && $tour->prices->first() && $tour->prices->first()->discount && $tour->prices->first()->discount < $tour->current_price)
+                                            <small class="text-decoration-line-through text-muted">
+                                                {{ number_format($tour->prices->first()->discount, 0, ',', '.') }} đ
+                                            </small>
+                                        @endif  | 
                                     {{ $tour->duration_days }} ngày | 
                                     {{ $tour->ceo->name ?? 'Unknown' }}
                                 </small>

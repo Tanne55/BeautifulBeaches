@@ -14,6 +14,37 @@
       </div>
     @endif
 
+      <!-- Bộ lọc tìm kiếm và chọn tháng -->
+      <form class="row g-2 mb-3 align-items-end" method="GET">
+        <div class="col-md-2">
+          <label class="form-label mb-1">Chọn tháng</label>
+          <input type="month" name="month" class="form-control" value="{{ request('month', now()->format('Y-m')) }}" placeholder="Theo ngày booking">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label mb-1">Tìm tour</label>
+          <input type="text" name="tour" class="form-control" placeholder="Tên tour..." value="{{ request('tour') }}">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label mb-1">Người đặt</label>
+          <input type="text" name="user" class="form-control" placeholder="Tên người đặt..." value="{{ request('user') }}">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label mb-1">Email</label>
+          <input type="text" name="email" class="form-control" placeholder="Email..." value="{{ request('email') }}">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label mb-1">Trạng thái</label>
+          <select name="status" class="form-select">
+            <option value="">Tất cả</option>
+            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Chờ xác nhận</option>
+            <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Đã xác nhận</option>
+            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Lọc</button>
+        </div>
+      </form>
       <div class="table-responsive">
       <table class="table table-bordered align-middle">
         <thead class="table-light">
@@ -63,7 +94,7 @@
       </div>
 
       <div class="d-flex justify-content-center mt-3">
-      {{ $bookings->links() }}
+        {{ $bookings->withQueryString()->links('pagination::bootstrap-4') }}
       </div>
     </div>
     </div>

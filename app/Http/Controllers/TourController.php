@@ -21,7 +21,7 @@ class TourController extends Controller
         $toursToUpdate = $query->get();
         foreach ($toursToUpdate as $tour) {
             if ($tour->detail && $tour->detail->departure_time && now()->gt($tour->detail->departure_time) && $tour->status !== 'outdated') {
-                $tour->status = 'outdated';
+                $tour->status = 'cancelled';
                 $tour->save();
             }
         }
@@ -32,9 +32,9 @@ class TourController extends Controller
         // Thống kê từ toàn bộ dữ liệu
         $stats = [
             'total' => $query->count(),
-            'active' => $query->where('status', 'active')->count(),
-            'inactive' => $query->where('status', 'inactive')->count(),
-            'outdated' => $query->where('status', 'outdated')->count(),
+            'pending' => $query->where('status', 'pending')->count(),
+            'confirmed' => $query->where('status', 'confirmed')->count(),
+            'cancelled' => $query->where('status', 'cancelled')->count(),
         ];
         
         return view('ceo.tours.index', compact('tours', 'stats'));
@@ -53,10 +53,10 @@ class TourController extends Controller
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'price' => 'required|numeric',
-            'original_price' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
             'capacity' => 'required|integer',
             'duration_days' => 'required|integer|min:1',
-            'status' => 'required|in:active,inactive',
+            'status' => 'required|in:pending,confirmed,cancelled',
             'departure_time' => 'required',
             'return_time' => 'required',
             'included_services' => 'nullable',
@@ -74,11 +74,13 @@ class TourController extends Controller
             'ceo_id' => Auth::id(),
             'title' => $validated['title'],
             'image' => $validated['image'] ?? null,
-            'price' => $validated['price'],
-            'original_price' => $validated['original_price'] ?? null,
             'capacity' => $validated['capacity'],
             'duration_days' => $validated['duration_days'],
             'status' => $validated['status'],
+        ]);
+        $tour->prices()->create([
+            'price' => $validated['price'],
+            'discount' => $validated['discount'] ?? null,
         ]);
         $tour->detail()->create([
             'departure_time' => $validated['departure_time'],
@@ -105,7 +107,7 @@ class TourController extends Controller
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'price' => 'required|numeric',
-            'original_price' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
             'capacity' => 'required|integer',
             'duration_days' => 'required|integer|min:1',
             'status' => 'required|in:active,inactive',
@@ -127,11 +129,14 @@ class TourController extends Controller
             'ceo_id' => $tour->ceo_id ?? Auth::id(),
             'title' => $validated['title'],
             'image' => $validated['image'],
-            'price' => $validated['price'],
-            'original_price' => $validated['original_price'] ?? null,
             'capacity' => $validated['capacity'],
             'duration_days' => $validated['duration_days'],
             'status' => $validated['status'],
+        ]);
+        // Update or create price (for simplicity, just create new)
+        $tour->prices()->create([
+            'price' => $validated['price'],
+            'discount' => $validated['discount'] ?? null,
         ]);
         $tour->detail()->updateOrCreate(
             ['tour_id' => $tour->id],

@@ -11,7 +11,7 @@ class Beach extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'region',
+        'region_id',
         'image',
         'title',
         'short_description',
@@ -30,6 +30,16 @@ class Beach extends Model
     public function detail()
     {
         return $this->hasOne(BeachDetail::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function getRegionNameAttribute()
+    {
+        return $this->region ? $this->region->name : null;
     }
 
     public function get(){
