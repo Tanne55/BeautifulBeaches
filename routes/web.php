@@ -134,6 +134,10 @@ Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group
     Route::get('/cancellation-requests', [\App\Http\Controllers\CancellationRequestController::class, 'myRequests'])->name('cancellation_requests');
     Route::get('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'showCancelForm'])->name('booking.cancel.form');
     Route::post('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'store'])->name('booking.cancel.submit');
+    
+    // Thêm routes cho chức năng chỉnh sửa profile
+    Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
+    Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
 });
 
 // Điều hướng của các pages

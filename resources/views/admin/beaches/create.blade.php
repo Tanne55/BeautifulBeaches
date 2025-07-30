@@ -21,10 +21,10 @@
                             <!-- Ảnh preview -->
                             <div class="mb-4 text-center">
                                 <div id="drop-area"
-                                    class="p-4 mb-3 border border-2 border-primary border-dashed rounded bg-light position-relative"
+                                    class="p-5 mb-3 border border-2 border-primary border-dashed rounded bg-light position-relative"
                                     style="cursor:pointer;">
                                     <img id="imagePreview" src="https://via.placeholder.com/900x350?text=Beach+Preview"
-                                        alt="Preview" class="img-fluid rounded mb-2"
+                                        alt="" class="img-fluid rounded mb-2"
                                         style="max-height:350px;width:100%;object-fit:cover;">
                                     <div id="drop-text" class="text-secondary position-absolute top-50 start-50 translate-middle w-100">
                                         <i class="bi bi-upload" style="font-size:2rem;"></i><br>
@@ -70,8 +70,8 @@
                             </div>
                             <!-- Mô tả chi tiết 2 -->
                             <div class="mb-3">
-                                <textarea class="form-control" id="long_description_2" name="long_description_2" rows="2"
-                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description_2') }}</textarea>
+                                <textarea class="form-control" id="long_description2" name="long_description2" rows="2"
+                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description2') }}</textarea>
                             </div>
                             <!-- Tags -->
                             <div class="mb-4">
@@ -162,7 +162,7 @@
         document.getElementById('highlight_quote').addEventListener('input', function () {
             document.getElementById('previewHighlightQuote').textContent = this.value;
         });
-        document.getElementById('long_description_2').addEventListener('input', function () {
+        document.getElementById('long_description2').addEventListener('input', function () {
             document.getElementById('previewLongDescription2').textContent = this.value;
         });
         document.getElementById('tags').addEventListener('input', function () {
@@ -177,7 +177,7 @@
             }
             tags.forEach(tag => {
                 const span = document.createElement('span');
-                span.className = 'tag badge bg-secondary me-1';
+                span.className = 'tag badge bg-white me-1';
                 span.innerHTML = '<i class="fas fa-tag"></i> ' + tag;
                 tagsContainer.appendChild(span);
             });

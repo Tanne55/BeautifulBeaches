@@ -92,18 +92,21 @@ class BeachController extends Controller
         } else {
             $tagsArray = [];
         }
+        
         $beach = Beach::create([
             'region_id' => $validated['region_id'],
             'image' => $imagePath,
             'title' => $validated['title'],
             'short_description' => $validated['short_description'],
         ]);
-        $beach->detail()->create([
+        $detailData = [
             'long_description' => $validated['long_description'] ?? null,
             'long_description2' => $validated['long_description2'] ?? null,
             'highlight_quote' => $validated['highlight_quote'] ?? null,
             'tags' => json_encode($tagsArray),
-        ]);
+        ];
+        
+        $beachDetail = $beach->detail()->create($detailData);
         return redirect()->route('admin.beaches.index')->with('success', 'Thêm bãi biển thành công!');
     }
 
@@ -158,14 +161,17 @@ class BeachController extends Controller
             'title' => $validated['title'],
             'short_description' => $validated['short_description'],
         ]);
-        $beach->detail()->updateOrCreate(
+        
+        $detailData = [
+            'long_description' => $validated['long_description'] ?? null,
+            'long_description2' => $validated['long_description2'] ?? null,
+            'highlight_quote' => $validated['highlight_quote'] ?? null,
+            'tags' => json_encode($tagsArray),
+        ];
+        
+        $beachDetail = $beach->detail()->updateOrCreate(
             ['beach_id' => $beach->id],
-            [
-                'long_description' => $validated['long_description'] ?? null,
-                'long_description2' => $validated['long_description2'] ?? null,
-                'highlight_quote' => $validated['highlight_quote'] ?? null,
-                'tags' => json_encode($tagsArray),
-            ]
+            $detailData
         );
         return redirect()->route('admin.beaches.index')->with('success', 'Cập nhật bãi biển thành công!');
     }

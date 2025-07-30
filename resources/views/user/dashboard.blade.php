@@ -10,6 +10,14 @@
                 </h1>
                 <p class="lead text-black-50">Quản lý hệ thống một cách hiệu quả và chuyên nghiệp</p>
             </div>
+            
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert"
+                     style="border-radius: 10px; background-color: rgba(25, 135, 84, 0.15); border-color: rgba(25, 135, 84, 0.4); color: #155724;">
+                    <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
             @if(auth()->user() && auth()->user()->isUser())
                 <!-- User Profile Card -->
@@ -23,7 +31,14 @@
                                     <div class="col-md-3 text-center mb-4 mb-md-0">
                                         <div class="avatar-container mb-3">
                                             @if($user->avatar)
-                                                <img src="{{ asset($user->avatar) }}" alt="User Avatar" 
+                                                @php
+                                                    // Check if avatar path contains "avatars/" which means it was uploaded by the user
+                                                    // Otherwise it's a seeded image, so use the direct path
+                                                    $avatarPath = strpos($user->avatar, 'avatars/') !== false ? 
+                                                        asset('storage/' . $user->avatar) : 
+                                                        asset($user->avatar);
+                                                @endphp
+                                                <img src="{{ $avatarPath }}" alt="User Avatar" 
                                                     class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4facfe;">
                                             @else
                                                 <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
@@ -41,7 +56,15 @@
                                     
                                     <!-- User Info Column -->
                                     <div class="col-md-9">
-                                        <h4 class="fw-bold mb-4">Thông tin cá nhân</h4>
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h4 class="fw-bold mb-0">Thông tin cá nhân</h4>
+                                            <a href="{{ route('user.profile.edit') }}" class="btn btn-sm text-white fw-semibold"
+                                                style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; border-radius: 10px; padding: 8px 16px; transition: all 0.3s ease;"
+                                                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102,126,234,0.4)'"
+                                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                                <i class="fas fa-user-edit me-2"></i>Chỉnh sửa thông tin
+                                            </a>
+                                        </div>
                                         
                                         <div class="row mb-3">
                                             <div class="col-md-6">
@@ -89,9 +112,7 @@
                                                     @if(isset($profile->preferences['favorite_beaches']))
                                                         <span class="badge bg-info me-1">Bãi biển yêu thích: {{ implode(', ', $profile->preferences['favorite_beaches']) }}</span>
                                                     @endif
-                                                    @if(isset($profile->preferences['theme']))
-                                                        <span class="badge bg-secondary me-1">Theme: {{ $profile->preferences['theme'] }}</span>
-                                                    @endif
+                                                    <!-- Theme display temporarily removed -->
                                                 @endif
                                             </p>
                                         </div>

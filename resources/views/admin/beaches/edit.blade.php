@@ -76,8 +76,8 @@
                             </div>
                             <!-- Mô tả chi tiết 2 -->
                             <div class="mb-3">
-                                <textarea class="form-control" id="long_description_2" name="long_description_2" rows="2"
-                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description_2', $beach->detail->long_description2) }}</textarea>
+                                <textarea class="form-control" id="long_description2" name="long_description2" rows="2"
+                                    placeholder="Mô tả chi tiết bổ sung">{{ old('long_description2', $beach->detail->long_description2) }}</textarea>
                             </div>
                             <!-- Tags -->
                             <div class="mb-4">
@@ -121,7 +121,7 @@
                                 $tags = is_array($beach->detail->tags) ? $beach->detail->tags : (json_decode($beach->detail->tags) ?: explode(',', $beach->detail->tags));
                             @endphp
                             @foreach ($tags as $tag)
-                                <span class="tag badge bg-secondary me-1"><i class="fas fa-tag"></i>
+                                <span class="tag badge bg-white me-1"><i class="fas fa-tag"></i>
                                     {{ trim($tag, ' "') }}</span>
                             @endforeach
                         </div>
@@ -182,7 +182,7 @@
         document.getElementById('highlight_quote').addEventListener('input', function () {
             document.getElementById('previewHighlightQuote').textContent = this.value;
         });
-        document.getElementById('long_description_2').addEventListener('input', function () {
+        document.getElementById('long_description2').addEventListener('input', function () {
             document.getElementById('previewLongDescription2').textContent = this.value;
         });
         document.getElementById('tags').addEventListener('input', function () {
