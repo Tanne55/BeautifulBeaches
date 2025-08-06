@@ -497,8 +497,7 @@
       "Beach",
       "Mui Ne",
       "Adventure",
-      "Sand Dunes",
-      "Vietnam"
+      "Sand Dunes"
     ],
     "price": 65.0,
     "originalPrice": 80.0,
@@ -520,8 +519,7 @@
       "Beach",
       "Vung Tau",
       "Weekend Trip",
-      "Seafood",
-      "Vietnam"
+      "Seafood"
     ],
     "price": 50.0,
     "originalPrice": 70.0,
@@ -543,8 +541,7 @@
       "Beach",
       "Con Dao",
       "Eco-Tourism",
-      "History",
-      "Vietnam"
+      "History"
     ],
     "price": 120.0,
     "originalPrice": 150.0,
@@ -566,8 +563,7 @@
       "Beach",
       "Nha Trang",
       "Adventure",
-      "Luxury",
-      "Vietnam"
+      "Luxury"
     ],
     "price": 85.0,
     "originalPrice": 110.0,
@@ -589,8 +585,7 @@
       "Beach",
       "Ho Coc",
       "Tranquility",
-      "Nature",
-      "Vietnam"
+      "Nature"
     ],
     "price": 55.0,
     "originalPrice": 70.0,
@@ -635,8 +630,7 @@
       "Beach",
       "Phu Quoc",
       "Paradise",
-      "Snorkeling",
-      "Vietnam"
+      "Snorkeling"
     ],
     "price": 70.0,
     "originalPrice": 85.0,
@@ -658,8 +652,7 @@
       "Beach",
       "Phu Quoc",
       "Secluded",
-      "Nature",
-      "Vietnam"
+      "Nature"
     ],
     "price": 65.0,
     "originalPrice": 80.0,
@@ -682,7 +675,7 @@
       "Nha Trang",
       "Nightlife",
       "Diving",
-      "Vietnam"
+      "Relax"
     ],
     "price": 75.0,
     "originalPrice": 95.0,
