@@ -8,6 +8,8 @@
 @section('title', 'Gallery')
 
 @section('content')
+    
+    
     <!-- Main content -->
     <section class="mt-5">
         <div class="floating-elements">
@@ -99,10 +101,10 @@
         </div>
 
         <!-- Modal -->
-        <div id="imageModal" class="gallery-modal">
-            <div class="gallery-modal-content">
-                <span class="gallery-close">&times;</span>
-                <img id="modalImage" src="" alt="">
+        <div id="imageModal" class="gallery-modal" style="z-index: 9999;">
+            <div class="gallery-modal-content" style="position: relative; z-index: 10000;">
+                <span class="gallery-close" style="position: absolute; top: 15px; right: 25px; z-index: 10001; color: white; font-size: 35px; font-weight: bold; cursor: pointer;">&times;</span>
+                <img id="modalImage" src="" alt="" style="max-width: 100%; max-height: 90vh; object-fit: contain;">
             </div>
         </div>
     </section>

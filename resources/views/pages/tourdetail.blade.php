@@ -187,9 +187,11 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
+                    // Star rating functionality
                     const stars = document.querySelectorAll('#star-rating .star-icon');
                     const ratingInput = document.getElementById('rating-input');
                     let currentRating = 5;
+                    
                     function setStars(rating) {
                         stars.forEach((star, idx) => {
                             if (idx < rating) {
@@ -199,6 +201,7 @@
                             }
                         });
                     }
+                    
                     setStars(currentRating);
                     stars.forEach((star, idx) => {
                         star.addEventListener('mouseenter', () => setStars(idx + 1));
@@ -209,12 +212,55 @@
                             setStars(currentRating);
                         });
                     });
+
+                    // Load more reviews functionality
+                    const loadMoreBtn = document.getElementById('load-more-reviews');
+                    const showLessBtn = document.getElementById('show-less-reviews');
+                    const remainingCountSpan = document.getElementById('remaining-count');
+                    
+                    if (loadMoreBtn) {
+                        loadMoreBtn.addEventListener('click', function() {
+                            const hiddenReviews = document.querySelectorAll('.review-item.d-none');
+                            const showCount = Math.min(5, hiddenReviews.length);
+                            
+                            for (let i = 0; i < showCount; i++) {
+                                hiddenReviews[i].classList.remove('d-none');
+                            }
+                            
+                            const stillHidden = document.querySelectorAll('.review-item.d-none').length;
+                            
+                            if (stillHidden === 0) {
+                                loadMoreBtn.style.display = 'none';
+                            } else {
+                                remainingCountSpan.textContent = stillHidden;
+                            }
+                            
+                            showLessBtn.style.display = 'inline-block';
+                        });
+                    }
+
+                    if (showLessBtn) {
+                        showLessBtn.addEventListener('click', function() {
+                            const allReviews = document.querySelectorAll('.review-item');
+                            
+                            for (let i = 3; i < allReviews.length; i++) {
+                                allReviews[i].classList.add('d-none');
+                            }
+                            
+                            const totalHidden = allReviews.length - 3;
+                            if (totalHidden > 0) {
+                                remainingCountSpan.textContent = totalHidden;
+                                loadMoreBtn.style.display = 'inline-block';
+                            }
+                            showLessBtn.style.display = 'none';
+                        });
+                    }
                 });
             </script>
 
             <div class="review-list mt-4">
                 @forelse($reviews as $review)
-                    <div class="border-bottom pb-2 mb-2">
+                    <div class="border-bottom pb-2 mb-2 review-item {{ $loop->index >= 3 ? 'd-none' : '' }}">
                         <div class="d-flex align-items-center mb-1">
                             <strong>
                                 @if($review->user)
@@ -243,6 +289,19 @@
                 @empty
                     <div class="text-muted">Chưa có bình luận nào.</div>
                 @endforelse
+                
+                @if(count($reviews) > 3)
+                    <div class="text-center mt-3">
+                        <button id="load-more-reviews" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-chevron-down me-1"></i>
+                            Đọc thêm (<span id="remaining-count">{{ count($reviews) - 3 }}</span> bình luận)
+                        </button>
+                        <button id="show-less-reviews" class="btn btn-outline-secondary btn-sm" style="display: none;">
+                            <i class="fas fa-chevron-up me-1"></i>
+                            Thu gọn
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
 
