@@ -1,141 +1,227 @@
 @extends('layouts.guest')
 
 @section('content')
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="mb-0">Kết quả tra cứu đặt tour</h3>
-                </div>
-                <div class="card-body">
-                    @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
+    <link rel="stylesheet" href="{{ asset('css/booking_result.css') }}">
+    <div class="">
+        <div class="container">
+            <div class="">
+                <div class="">
+                    <div class="card booking-card w-75 m-5 mx-auto">
+                        <div class="card-header-custom">
+                            <h2><i class="bi bi-search me-3"></i>Kết quả tra cứu đặt tour</h2>
                         </div>
-                    @endif
 
-                    @if($booking)
-                        <div class="booking-info">
-                            <h4 class="mb-4">Thông tin đặt tour #{{ $booking->booking_code }}</h4>
-                            
-                            <div class="row mb-4">
-                                <div class="col-md-8">
-                                    <div class="booking-status">
-                                        <h5>Trạng thái đặt tour:</h5>
+                        <div class="card-body-custom">
+                            <!-- Error Message -->
+                            @if(session('error'))
+                                <div class="alert alert-danger alert-custom d-none">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            <!-- Booking Found -->
+                            @if($booking)
+                                    <div>
+                                        <div class="booking-header">
+                                            <h3 class="text-primary fw-bold">Thông tin đặt tour #{{ $booking->booking_code }}</h3>
+                                        </div>
+
+                                        <!-- Status -->
+
                                         @php
                                             $statusClass = '';
                                             $statusText = '';
-                                            
-                                            switch($booking->status) {
+                                            $statusIcon = ''; 
+
+                                            switch ($booking->status) {
                                                 case 'pending':
-                                                    $statusClass = 'warning';
-                                                    $statusText = 'Đang chờ xác nhận';
-                                                    break;
-                                                case 'confirmed':
-                                                    $statusClass = 'success';
-                                                    $statusText = 'Đã xác nhận';
-                                                    break;
-                                                case 'cancelled':
-                                                    $statusClass = 'danger';
-                                                    $statusText = 'Đã hủy';
-                                                    break;
-                                                case 'completed':
-                                                    $statusClass = 'info';
-                                                    $statusText = 'Đã hoàn thành';
-                                                    break;
-                                                default:
-                                                    $statusClass = 'secondary';
-                                                    $statusText = $booking->status;
+            $statusClass = 'warning';
+            $statusText = 'Đang chờ xác nhận';
+            $statusIcon = '<i class="bi bi-hourglass-split"></i>';
+            break;
+        case 'confirmed':
+            $statusClass = 'success';
+            $statusText = 'Đã xác nhận';
+            $statusIcon = '<i class="bi bi-check-circle"></i>';
+            break;
+        case 'cancelled':
+            $statusClass = 'danger';
+            $statusText = 'Đã hủy';
+            $statusIcon = '<i class="bi bi-x-circle"></i>';
+            break;
+        case 'completed':
+            $statusClass = 'info';
+            $statusText = 'Đã hoàn thành';
+            $statusIcon = '<i class="bi bi-check2-circle"></i>';
+            break;
+        default:
+            $statusClass = 'secondary';
+            $statusText = $booking->status;
+            $statusIcon = '<i class="bi bi-question-circle"></i>';
                                             }
                                         @endphp
-                                        <div class="alert alert-{{ $statusClass }}">
-                                            <h5 class="alert-heading">{{ $statusText }}</h5>
+                                        <div class="text-center">
+                                            <div class="status-badge status-{{ $statusClass }}">
+                                            
+                                                {{!! $statusIcon !!}}
+                                                {{ $statusText }}
+                                            </div>
+                                        </div>
+
+                                        <!-- Booking Code & QR -->
+                                        <div class="booking-code-section">
+                                            <h4 class="mb-3">Mã đặt tour của bạn</h4>
+                                            <div class="qr-container">
+                                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode(route('bookings.result', ['booking_code' => $booking->booking_code])) }}"
+                                                    alt="QR Code" class="img-fluid mb-3">
+                                                <div class="fw-bold">{{ $booking->booking_code }}</div>
+                                            </div>
+                                            <p class="text-muted mt-3 mb-0">Quét mã QR hoặc sử dụng mã để tra cứu</p>
+                                        </div>
+
+                                        <!-- Customer & Tour Info -->
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="info-section">
+                                                    <h4><i class="bi bi-person-circle me-2"></i>Thông tin khách hàng</h4>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Họ và tên:</span>
+                                                        <span class="info-value">{{ $booking->full_name }}</span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Email:</span>
+                                                        <span class="info-value"> {{ $booking->contact_email }}</span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Điện thoại:</span>
+                                                        <span class="info-value">{{ $booking->contact_phone }}</span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Số người:</span>
+                                                        <span class="info-value">{{ $booking->number_of_people }}</span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Ngày đặt:</span>
+                                                        <span
+                                                            class="info-value">{{ $booking->booking_date->format('d/m/Y') }}</span>
+                                                    </div>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Tổng tiền:</span>
+                                                        <span
+                                                            class="info-value text-primary fw-bold">{{ number_format($booking->total_amount) }}
+                                                            tr vnđ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="info-section">
+                                                    <h4><i class="bi bi-map me-2"></i>Thông tin tour</h4>
+                                                    <div class="info-item">
+                                                        <span class="info-label">Tên tour:</span>
+                                                        <span class="info-value">{{ $booking->tour->title }}</span>
+                                                    </div>
+                                                    @if($booking->tour->detail)
+                                                        <div class="info-item">
+                                                            <span class="info-label">Khởi hành:</span>
+                                                            <span class="info-value">
+                                                                @if($booking->tour->detail->departure_time)
+                                                                    {{ \Carbon\Carbon::parse($booking->tour->detail->departure_time)->format('d/m/Y H:i') }}
+                                                                @else
+                                                                    Chưa xác định
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                        <div class="info-item">
+                                                            <span class="info-label">Thời gian:</span>
+                                                            <span class="info-value">
+                                                                @if($booking->tour->duration_days)
+                                                                    {{ $booking->tour->duration_days }} ngày
+                                                                @else
+                                                                    Chưa xác định
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                        <div class="info-item">
+                                                            <span class="info-label">Về:</span>
+                                                            <span class="info-value">
+                                                                @if($booking->tour->detail->return_time)
+                                                                    {{ \Carbon\Carbon::parse($booking->tour->detail->return_time)->format('d/m/Y H:i') }}
+                                                                @else
+                                                                    Chưa xác định
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <div class="booking-code-qr">
-                                        <h5>Mã đặt tour</h5>
-                                        <div class="p-3 bg-light rounded-3">
-                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode(route('bookings.result', ['booking_code' => $booking->booking_code])) }}" 
-                                                alt="QR Code" class="img-fluid mb-2">
-                                            <div class="fw-bold">{{ $booking->booking_code }}</div>
+
+                                    <!-- Note -->
+                                    @if($booking->note)
+                                        <div class="note-section">
+                                            <h4><i class="bi bi-chat-square-text me-2"></i>Ghi chú</h4>
+                                            <p class="mb-0">{{ $booking->note }}</p>
+                                        </div>
+                                    @endif
+
+                                    <!-- Pending Note -->
+                                    <div class="pending-note d-none" id="pendingNote">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-info-circle fs-4 me-3 text-warning"></i>
+                                            <div>
+                                                <strong>Đặt tour đang được xử lý</strong>
+                                                <p class="mb-0 mt-1">Chúng tôi sẽ liên hệ với bạn qua email hoặc điện thoại
+                                                    để xác nhận trong thời gian sớm nhất.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5>Thông tin khách hàng</h5>
-                                    <ul class="list-unstyled">
-                                        <li><strong>Họ và tên:</strong> {{ $booking->full_name }}</li>
-                                        <li><strong>Email:</strong> {{ $booking->contact_email }}</li>
-                                        <li><strong>Điện thoại:</strong> {{ $booking->contact_phone }}</li>
-                                        <li><strong>Số người:</strong> {{ $booking->number_of_people }}</li>
-                                        <li><strong>Ngày đặt:</strong> {{ $booking->booking_date->format('d/m/Y') }}</li>
-                                        <li><strong>Tổng tiền:</strong> {{ number_format($booking->total_amount) }} VNĐ</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>Thông tin tour</h5>
-                                    <ul class="list-unstyled">
-                                        <li><strong>Tên tour:</strong> {{ $booking->tour->name }}</li>
-                                        @if($booking->tour->detail)
-                                            <li><strong>Ngày khởi hành:</strong> 
-                                                @if($booking->tour->detail->departure_time)
-                                                    {{ \Carbon\Carbon::parse($booking->tour->detail->departure_time)->format('d/m/Y H:i') }}
-                                                @else
-                                                    Chưa xác định
-                                                @endif
-                                            </li>
-                                            <li><strong>Thời gian tour:</strong> {{ $booking->tour->detail->duration ?? 'Chưa xác định' }}</li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            @if($booking->note)
-                                <div class="mt-4">
-                                    <h5>Ghi chú</h5>
-                                    <div class="p-3 bg-light rounded">
-                                        {{ $booking->note }}
+
+                                    <!-- Action Buttons -->
+                                    <div class="action-buttons">
+                                        <a href="{{ route('home') }}" class="btn btn-primary-custom">
+                                            <i class="bi bi-house me-2"></i>Trang chủ
+                                        </a>
+                                        <a href="javascript:void(0)" onclick="window.print()" class="btn btn-outline-custom">
+                                            <i class="bi bi-printer me-2"></i>In thông tin
+                                        </a>
                                     </div>
                                 </div>
-                            @endif
-                            
-                            <div class="mt-4">
-                                <a href="{{ route('home') }}" class="btn btn-primary">Quay lại trang chủ</a>
-                                @if($booking->status == 'pending')
-                                    <p class="text-muted mt-3">
-                                        <i class="bi bi-info-circle"></i> Đặt tour của bạn đang được xử lý. Chúng tôi sẽ liên hệ với bạn qua email hoặc điện thoại để xác nhận.
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                    @else
-                        <div class="text-center py-4">
-                            <div class="mb-4">
-                                <i class="bi bi-search" style="font-size: 3rem; color: #6c757d;"></i>
-                            </div>
-                            <h5>Không tìm thấy thông tin đặt tour</h5>
-                            <p>Vui lòng kiểm tra lại mã đặt tour của bạn.</p>
-                            
-                            <form action="{{ route('bookings.track') }}" method="GET" class="mt-4 mb-4 col-md-8 mx-auto">
-                                <div class="input-group">
-                                    <input type="text" name="booking_code" class="form-control" placeholder="Nhập mã đặt tour" 
-                                           aria-label="Mã đặt tour" required value="{{ request('booking_code') }}">
-                                    <button class="btn btn-primary" type="submit">Tra cứu</button>
+                            @else
+                            <!-- Booking Not Found -->
+                            <div id="bookingNotFound" class="d-none">
+                                <div class="search-section">
+                                    <i class="bi bi-search search-icon"></i>
+                                    <h4 class="text-primary fw-bold mb-3">Không tìm thấy thông tin đặt tour</h4>
+                                    <p class="text-muted mb-4">Vui lòng kiểm tra lại mã đặt tour của bạn hoặc thử tra
+                                        cứu lại.</p>
+
+                                    <form class="search-form" action="{{ route('bookings.track') }}" method="GET">
+                                        <div class="input-group">
+
+                                            <input type="text" name="booking_code" class="form-control search-input"
+                                                placeholder="Nhập mã đặt tour" aria-label="Mã đặt tour" required
+                                                value="{{ request('booking_code') }}">
+                                            <button class="btn btn-primary search-btn" type="submit">
+                                                <i class="bi bi-search me-2"></i>Tra cứu
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <div class="mt-4">
+                                        <a href="{{ route('home') }}" class="btn btn-outline-custom">
+                                            <i class="bi bi-house me-2"></i>Quay lại trang chủ
+                                        </a>
+                                    </div>
                                 </div>
-                            </form>
-                            
-                            <a href="{{ route('home') }}" class="btn btn-outline-primary mt-3">Quay lại trang chủ</a>
-                        </div>
-                    @endif
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 @endsection

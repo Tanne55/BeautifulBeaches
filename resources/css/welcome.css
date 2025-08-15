@@ -142,8 +142,8 @@ body {
 .card-meta {
   position: absolute;
   bottom: -25px;
-  left: 20px;
-  right: 20px;
+  left: 10px;
+  right: 10px;
   background-color: rgba(0, 123, 255, 0.8);
   color: white;
   display: flex;
@@ -171,7 +171,6 @@ body {
 .card-reviews {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .card-reviews .stars {

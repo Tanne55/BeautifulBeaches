@@ -3,16 +3,17 @@
     "id": 1,
     "region": "Northern Vietnam",
     "image": "/assets/image/1.jpg",
-    "title": "Bai Chay: Golden Sands and Scenic Views",
-    "shortDescription": "Bai Chay offers broad golden beaches and clear waters, perfect for family relaxation.",
-    "longDescription": "Nestled in Quang Ninh, Bai Chay Beach invites visitors with a blend of natural charm and vibrant local culture. Enjoy water sports or unwind on the sunny shore.",
-    "highlightQuote": "Let Bai Chay’s breeze renew your soul.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "title": "Bãi Cháy: Cát Vàng và Cảnh Sắc Tuyệt Đẹp",
+"shortDescription": "Bãi Cháy có bãi biển cát vàng rộng và làn nước trong xanh, lý tưởng cho những phút giây thư giãn cùng gia đình.",
+"longDescription": "Nằm ở Quảng Ninh, bãi biển Bãi Cháy chào đón du khách với sự kết hợp giữa vẻ đẹp tự nhiên và nét văn hóa địa phương sôi động. Bạn có thể tham gia các môn thể thao dưới nước hoặc thư giãn trên bãi cát đầy nắng.",
+"highlightQuote": "Hãy để làn gió Bãi Cháy làm mới tâm hồn bạn.",
+"longDescription2": "Buổi tối ở đây yên bình với hoàng hôn tuyệt đẹp và hải sản tươi ngon bên bờ biển."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quang Ninh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 61.41,
@@ -28,16 +29,17 @@
     "id": 2,
     "region": "Northern Vietnam",
     "image": "/assets/image/2.jpg",
-    "title": "Exploring the Charm of Van Chay Beach",
-    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
-    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
-    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
-    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Biển Vàn Chảy",
+"shortDescription": "Một bãi biển sôi động với nhiều hoạt động hấp dẫn, lý tưởng cho nhóm bạn và du khách tìm kiếm sự hứng khởi.",
+"longDescription": "Điểm đến này mang đến sự kết hợp hoàn hảo giữa thư giãn và giải trí. Hãy thử các trò chơi bãi biển, thể thao dưới nước hoặc khám phá văn hóa địa phương qua những điểm tham quan và ẩm thực gần đó.",
+"highlightQuote": "Hãy để nhịp điệu của biển đánh thức tinh thần bạn.",
+"longDescription2": "Khi hoàng hôn buông xuống, hãy thưởng thức đặc sản địa phương và âm nhạc bên bờ biển—một trải nghiệm đọng lại thật lâu sau những con sóng."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quang Ninh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 44.73,
@@ -51,16 +53,17 @@
     "id": 3,
     "region": "Central Vietnam",
     "image": "/assets/image/3.jpg",
-    "title": "Discovering the Beauty of An Bang Beach",
-    "shortDescription": "A scenic beach with golden sands and gentle waves, perfect for relaxing getaways.",
-    "longDescription": "This beach offers a combination of natural beauty and leisure activities. Visitors can enjoy swimming, sunbathing, and exploring nearby attractions.",
-    "highlightQuote": "Where the sea breeze brings peace to your soul.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "title": "Chiêm Ngưỡng Kỳ Quan của Bãi Biển An Bàng",
+"shortDescription": "Một bãi biển thơ mộng với cát vàng và sóng êm, lý tưởng cho những kỳ nghỉ thư giãn.",
+"longDescription": "Bãi biển này mang đến sự kết hợp giữa vẻ đẹp tự nhiên và các hoạt động giải trí. Du khách có thể tắm biển, tắm nắng và khám phá những điểm tham quan gần đó.",
+"highlightQuote": "Nơi làn gió biển mang đến sự bình yên cho tâm hồn bạn.",
+"longDescription2": "Buổi tối ở đây yên bình với hoàng hôn tuyệt đẹp và hải sản tươi ngon bên bờ biển."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hoi An",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 79.56,
@@ -74,16 +77,17 @@
     "id": 4,
     "region": "Northern Vietnam",
     "image": "/assets/image/4.jpg",
-    "title": "Exploring the Charm of Tuan Chau Beach",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Đắm Mình Trong Làn Nước Trong Xanh của Tuần Châu",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi biển này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quang Ninh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 41.42,
@@ -97,16 +101,17 @@
     "id": 5,
     "region": "Central Vietnam",
     "image": "/assets/image/5.jpg",
-    "title": "Discovering the Beauty of Lang Co Beach",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Hành Trình Đến Vùng Biển Xanh Lăng Cô",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hue",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 81.03,
@@ -120,16 +125,17 @@
     "id": 6,
     "region": "Northern Vietnam",
     "image": "/assets/image/6.jpg",
-    "title": "Exploring the Charm of Quang Lang Beach",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Trải Nghiệm Thiên Đường Biển Quang Lang",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Thai Binh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 62.24,
@@ -143,16 +149,17 @@
     "id": 7,
     "region": "Northern Vietnam",
     "image": "/assets/image/7.jpg",
-    "title": "Exploring the Charm of Dong Chau Beach",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Chiêm Ngưỡng Kỳ Quan Biển Đồng Châu",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi biển này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Thai Binh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 75.06,
@@ -166,16 +173,17 @@
     "id": 8,
     "region": "Northern Vietnam",
     "image": "/assets/image/8.jpg",
-    "title": "Exploring the Charm of Hai Hoa Beach",
-    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
-    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
-    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
-    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
+    "title": "Biển Hải Hòa - Nơi Vẻ Đẹp Thiên Nhiên Lên Ngôi",
+"shortDescription": "Một bãi biển sôi động với nhiều hoạt động hấp dẫn, lý tưởng cho nhóm bạn và du khách tìm kiếm sự hứng khởi.",
+"longDescription": "Điểm đến này mang đến sự kết hợp hoàn hảo giữa thư giãn và giải trí. Hãy thử các trò chơi bãi biển, thể thao dưới nước hoặc khám phá văn hóa địa phương qua những điểm tham quan và ẩm thực gần đó.",
+"highlightQuote": "Hãy để nhịp điệu của biển đánh thức tinh thần bạn.",
+"longDescription2": "Khi hoàng hôn buông xuống, hãy thưởng thức đặc sản địa phương và âm nhạc bên bờ biển—một trải nghiệm đọng lại thật lâu sau những con sóng."
+,
     "tags": [
       "Travel",
       "Beach",
       "Thanh Hoa",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 49.96,
@@ -189,16 +197,17 @@
     "id": 9,
     "region": "Northern Vietnam",
     "image": "/assets/image/9.jpg",
-    "title": "Exploring the Charm of Sam Son Beach",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Đắm Mình Trong Làn Nước Trong Xanh Biển Sầm Sơn",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Thanh Hoa",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 50.17,
@@ -212,16 +221,17 @@
     "id": 10,
     "region": "Northern Vietnam",
     "image": "/assets/image/10.jpg",
-    "title": "Exploring the Charm of Bai Tam Tien Sa",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Tắm Tiên Sa",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi tắm này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hai Phong",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 55.06,
@@ -235,16 +245,17 @@
     "id": 11,
     "region": "Central Vietnam",
     "image": "/assets/image/11.jpg",
-    "title": "Discovering the Beauty of My Khe Beach",
-    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
-    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
-    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
-    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
+    "title": "Chiêm Ngưỡng Kỳ Quan Biển Mỹ Khê",
+"shortDescription": "Một bãi biển sôi động với nhiều hoạt động hấp dẫn, lý tưởng cho nhóm bạn và du khách tìm kiếm sự hứng khởi.",
+"longDescription": "Điểm đến này mang đến sự kết hợp hoàn hảo giữa thư giãn và giải trí. Hãy thử các trò chơi bãi biển, thể thao dưới nước hoặc khám phá văn hóa địa phương qua những điểm tham quan và ẩm thực gần đó.",
+"highlightQuote": "Hãy để nhịp điệu của biển đánh thức tinh thần bạn.",
+"longDescription2": "Khi hoàng hôn buông xuống, hãy thưởng thức đặc sản địa phương và âm nhạc bên bờ biển—một trải nghiệm đọng lại thật lâu sau những con sóng."
+,
     "tags": [
       "Travel",
       "Beach",
       "Da Nang",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 80.19,
@@ -258,16 +269,17 @@
     "id": 12,
     "region": "Northern Vietnam",
     "image": "/assets/image/12.jpg",
-    "title": "Do Son Beach: Tradition and Tranquility",
-    "shortDescription": "A calm escape close to the city, Do Son Beach is known for its cool waves and relaxing atmosphere.",
-    "longDescription": "Located in Hai Phong, Do Son Beach blends heritage with nature. From temples to ocean walks, it’s a destination filled with peaceful discovery.",
-    "highlightQuote": "Do Son—where history whispers with every wave.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "title": "Bãi Biển Đồ Sơn: Truyền Thống và Sự Yên Bình",
+"shortDescription": "Một chốn nghỉ ngơi yên tĩnh gần thành phố, Bãi Biển Đồ Sơn nổi tiếng với làn sóng mát lành và bầu không khí thư giãn.",
+"longDescription": "Nằm ở Hải Phòng, Bãi Biển Đồ Sơn là sự kết hợp giữa di sản và thiên nhiên. Từ những ngôi đền đến những con đường dạo biển, đây là điểm đến tràn đầy sự khám phá yên ả.",
+"highlightQuote": "Đồ Sơn — nơi lịch sử thì thầm theo từng con sóng.",
+"longDescription2": "Buổi tối ở đây yên bình với hoàng hôn tuyệt đẹp và hải sản tươi ngon bên bờ biển."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hai Phong",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 40.32,
@@ -281,16 +293,17 @@
     "id": 13,
     "region": "Central Vietnam",
     "image": "/assets/image/13.jpg",
-    "title": "Discovering the Beauty of Cua Dai Beach",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Biển Cửa Đại",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi biển này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hoi An",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 51.14,
@@ -304,16 +317,17 @@
     "id": 14,
     "region": "Northern Vietnam",
     "image": "/assets/image/14.jpg",
-    "title": "Co To Island: The Hidden Jewel of the North",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Đảo Cô Tô: Viên Ngọc Ẩn Của Miền Bắc",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quang Ninh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 43.43,
@@ -327,16 +341,17 @@
     "id": 15,
     "region": "Central Vietnam",
     "image": "/assets/image/15.jpg",
-    "title": "Discovering the Beauty of Quy Hoa Beach",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Trải Nghiệm Thiên Đường Biển Quy Hòa",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quy Nhon",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 73.13,
@@ -350,16 +365,17 @@
     "id": 16,
     "region": "Central Vietnam",
     "image": "/assets/image/16.jpg",
-    "title": "Discovering the Beauty of Ky Co Beach",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Biển Kỳ Co",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi biển này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quy Nhon",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 49.04,
@@ -373,16 +389,17 @@
     "id": 17,
     "region": "Central Vietnam",
     "image": "/assets/image/17.jpg",
-    "title": "Discovering the Beauty of Bai Xep Beach",
-    "shortDescription": "A scenic beach with golden sands and gentle waves, perfect for relaxing getaways.",
-    "longDescription": "This beach offers a combination of natural beauty and leisure activities. Visitors can enjoy swimming, sunbathing, and exploring nearby attractions.",
-    "highlightQuote": "Where the sea breeze brings peace to your soul.",
-    "longDescription2": "Evenings here are serene with stunning sunsets and delicious local seafood to enjoy by the shore.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Biển Bãi Xép",
+"shortDescription": "Một bãi biển thơ mộng với cát vàng và sóng êm, lý tưởng cho những kỳ nghỉ thư giãn.",
+"longDescription": "Bãi biển này mang đến sự kết hợp giữa vẻ đẹp tự nhiên và các hoạt động giải trí. Du khách có thể tắm biển, tắm nắng và khám phá những điểm tham quan gần đó.",
+"highlightQuote": "Nơi làn gió biển mang đến sự bình yên cho tâm hồn bạn.",
+"longDescription2": "Buổi tối ở đây yên bình với hoàng hôn tuyệt đẹp và hải sản tươi ngon bên bờ biển."
+,
     "tags": [
       "Travel",
       "Beach",
       "Phu Yen",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 47.22,
@@ -396,16 +413,17 @@
     "id": 18,
     "region": "Central Vietnam",
     "image": "/assets/image/18.jpg",
-    "title": "Discovering the Beauty of Vung Ro Bay",
-    "shortDescription": "A peaceful coastal destination ideal for families, couples, and solo travelers alike.",
-    "longDescription": "Whether you're looking for quiet time by the waves or a fun beach day with loved ones, this destination has it all—calm waters, soft sands, and a welcoming atmosphere.",
-    "highlightQuote": "Every wave carries a new memory.",
-    "longDescription2": "From sunrise walks to seafood dinners under the stars, your time here promises comfort, beauty, and connection with nature.",
+    "title": "Khám Phá Vẻ Đẹp của Vịnh Vũng Rô",
+"shortDescription": "Một điểm đến ven biển yên bình, lý tưởng cho gia đình, các cặp đôi và cả du khách đi một mình.",
+"longDescription": "Dù bạn muốn tận hưởng những phút giây tĩnh lặng bên sóng biển hay một ngày vui chơi cùng người thân, điểm đến này đều có đủ—nước biển êm ả, bãi cát mịn và bầu không khí chào đón.",
+"highlightQuote": "Mỗi con sóng mang đến một kỷ niệm mới.",
+"longDescription2": "Từ những buổi đi dạo ngắm bình minh đến bữa tối hải sản dưới trời sao, thời gian của bạn ở đây hứa hẹn sự thoải mái, vẻ đẹp và sự gắn kết với thiên nhiên."
+,
     "tags": [
       "Travel",
       "Beach",
       "Phu Yen",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 76.46,
@@ -419,16 +437,17 @@
     "id": 19,
     "region": "Central Vietnam",
     "image": "/assets/image/19.jpg",
-    "title": "Discovering the Beauty of Thuan An Beach",
-    "shortDescription": "An unspoiled beach retreat with clear waters and natural surroundings perfect for explorers.",
-    "longDescription": "Embrace the raw beauty of nature at this beach, where adventure meets serenity. Ideal for swimming, photography, or simply listening to the waves.",
-    "highlightQuote": "Where nature greets you with open arms.",
-    "longDescription2": "Sunsets here paint the sky in hues of gold and purple, while the nights offer quiet moments beneath a canopy of stars.",
+    "title": "Trải Nghiệm Thiên Đường Biển Thuận An",
+"shortDescription": "Một điểm nghỉ dưỡng hoang sơ với làn nước trong xanh và khung cảnh thiên nhiên lý tưởng cho những người ưa khám phá.",
+"longDescription": "Hòa mình vào vẻ đẹp nguyên sơ của thiên nhiên tại bãi biển này, nơi phiêu lưu gặp gỡ sự yên bình. Lý tưởng để tắm biển, chụp ảnh hoặc đơn giản là lắng nghe tiếng sóng.",
+"highlightQuote": "Nơi thiên nhiên dang rộng vòng tay chào đón bạn.",
+"longDescription2": "Hoàng hôn ở đây nhuộm bầu trời sắc vàng và tím, trong khi ban đêm mang đến những khoảnh khắc yên tĩnh dưới bầu trời đầy sao."
+,
     "tags": [
       "Travel",
       "Beach",
       "Hue",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 75.93,
@@ -442,16 +461,17 @@
     "id": 20,
     "region": "Central Vietnam",
     "image": "/assets/image/20.jpg",
-    "title": "Discovering the Beauty of Nhat Le Beach",
-    "shortDescription": "A vibrant beach with lively activities, ideal for groups and travelers seeking excitement.",
-    "longDescription": "This destination offers a perfect mix of relaxation and fun. Try beach games, water sports, or explore local culture through nearby attractions and cuisine.",
-    "highlightQuote": "Let the rhythm of the sea awaken your spirit.",
-    "longDescription2": "When the sun goes down, enjoy local delicacies and music by the shore—an experience that lingers long after the waves.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Biển Nhật Lệ",
+"shortDescription": "Một bãi biển sôi động với nhiều hoạt động hấp dẫn, lý tưởng cho nhóm bạn và du khách tìm kiếm sự hứng khởi.",
+"longDescription": "Điểm đến này mang đến sự kết hợp hoàn hảo giữa thư giãn và giải trí. Hãy thử các trò chơi bãi biển, thể thao dưới nước hoặc khám phá văn hóa địa phương qua những điểm tham quan và ẩm thực gần đó.",
+"highlightQuote": "Hãy để nhịp điệu của biển đánh thức tinh thần bạn.",
+"longDescription2": "Khi hoàng hôn buông xuống, hãy thưởng thức đặc sản địa phương và âm nhạc bên bờ biển—một trải nghiệm đọng lại thật lâu sau những con sóng."
+,
     "tags": [
       "Travel",
       "Beach",
       "Quang Binh",
-      "Vietnam",
+      
       "Family"
     ],
     "price": 69.73,
@@ -465,16 +485,17 @@
     "id": 21,
     "region": "Southern Vietnam",
     "image": "/assets/image/21.jpg",
-    "title": "Discovering the Beauty of Long Beach, Phu Quoc",
-    "shortDescription": "Long Beach in Phu Quoc is famous for its white sand and crystal-clear water, perfect for relaxation and water sports.",
-    "longDescription": "Stretching over 20 km, Long Beach offers breathtaking sunsets and luxury resorts. Visitors can enjoy snorkeling, kayaking, or simply lounging under coconut trees.",
-    "highlightQuote": "Phu Quoc's Long Beach is paradise on Earth.",
-    "longDescription2": "At night, the beach transforms with lively bars and seafood restaurants. Try the local pepper crab, a specialty of the island.",
+    "title": "Khám Phá Vẻ Đẹp của Bãi Dài, Phú Quốc",
+"shortDescription": "Bãi Dài ở Phú Quốc nổi tiếng với bãi cát trắng và làn nước trong vắt, lý tưởng cho việc thư giãn và các môn thể thao dưới nước.",
+"longDescription": "Trải dài hơn 20 km, Bãi Dài mang đến khung cảnh hoàng hôn tuyệt đẹp và những khu nghỉ dưỡng sang trọng. Du khách có thể lặn ngắm san hô, chèo kayak hoặc đơn giản là nghỉ ngơi dưới bóng dừa.",
+"highlightQuote": "Bãi Dài Phú Quốc là thiên đường nơi hạ giới.",
+"longDescription2": "Vào ban đêm, bãi biển trở nên nhộn nhịp với các quán bar và nhà hàng hải sản. Hãy thử món ghẹ tiêu xanh, một đặc sản của đảo."
+,
     "tags": [
       "Beach",
       "Phu Quoc",
       "Luxury",
-      "Vietnam",
+      
       "Island"
     ],
     "price": 75.0,
@@ -488,11 +509,12 @@
     "id": 22,
     "region": "Southern Vietnam",
     "image": "/assets/image/22.jpg",
-    "title": "Relaxing at Mui Ne Beach, Binh Thuan",
-    "shortDescription": "Mui Ne Beach is known for its golden sand dunes, clear waters, and vibrant kite-surfing scene.",
-    "longDescription": "A favorite among adventure seekers, Mui Ne offers windsurfing, sandboarding, and stunning red sand dunes. The beach is lined with resorts and seafood shacks.",
-    "highlightQuote": "Mui Ne—where the desert meets the sea.",
-    "longDescription2": "Don’t miss the Fairy Stream, a shallow river cutting through colorful sandstone formations, just a short walk from the beach.",
+    "title": "Thư Giãn tại Bãi Biển Mũi Né, Bình Thuận",
+"shortDescription": "Bãi biển Mũi Né nổi tiếng với những đồi cát vàng, làn nước trong xanh và khung cảnh lướt ván diều sôi động.",
+"longDescription": "Là điểm đến yêu thích của những người ưa phiêu lưu, Mũi Né mang đến trải nghiệm lướt ván buồm, trượt cát và chiêm ngưỡng những đồi cát đỏ tuyệt đẹp. Dọc bãi biển là các khu nghỉ dưỡng và quán hải sản bình dân.",
+"highlightQuote": "Mũi Né — nơi sa mạc gặp biển cả.",
+"longDescription2": "Đừng bỏ lỡ Suối Tiên, một con suối nông chảy qua những khối đá sa thạch đầy màu sắc, chỉ cách bãi biển một quãng đi bộ ngắn."
+,
     "tags": [
       "Beach",
       "Mui Ne",
@@ -510,11 +532,12 @@
     "id": 23,
     "region": "Southern Vietnam",
     "image": "/assets/image/23.jpg",
-    "title": "Exploring the Serenity of Vung Tau Beach",
-    "shortDescription": "Vung Tau is a popular weekend getaway with sandy beaches, historic landmarks, and fresh seafood.",
-    "longDescription": "Just a short drive from Ho Chi Minh City, Vung Tau offers a mix of relaxation and culture. Visit the Giant Jesus Statue and enjoy panoramic views of the coast.",
-    "highlightQuote": "Vung Tau—a peaceful escape from the city chaos.",
-    "longDescription2": "Back Beach (Bai Sau) is great for swimming, while Front Beach (Bai Truoc) is ideal for dining and sunset walks.",
+    "title": "Khám Phá Sự Yên Bình của Bãi Biển Vũng Tàu",
+"shortDescription": "Vũng Tàu là điểm nghỉ dưỡng cuối tuần nổi tiếng với bãi cát, các địa danh lịch sử và hải sản tươi ngon.",
+"longDescription": "Chỉ cách TP. Hồ Chí Minh một quãng lái xe ngắn, Vũng Tàu mang đến sự kết hợp giữa thư giãn và văn hóa. Hãy ghé thăm tượng Chúa Kitô Vua và ngắm toàn cảnh bờ biển.",
+"highlightQuote": "Vũng Tàu — chốn bình yên tránh xa nhịp sống hối hả nơi thành phố.",
+"longDescription2": "Bãi Sau thích hợp để tắm biển, trong khi Bãi Trước là nơi lý tưởng để thưởng thức ẩm thực và dạo bộ ngắm hoàng hôn."
+,
     "tags": [
       "Beach",
       "Vung Tau",
@@ -532,11 +555,12 @@
     "id": 24,
     "region": "Southern Vietnam",
     "image": "/assets/image/24.jpg",
-    "title": "Tranquility at Con Dao Islands",
-    "shortDescription": "Con Dao is a hidden gem with pristine beaches, turquoise waters, and rich history.",
-    "longDescription": "Once a prison island, Con Dao now attracts travelers with its untouched beauty. Snorkel at Dam Trau Beach or explore the national park’s diverse wildlife.",
-    "highlightQuote": "Con Dao—where nature and history intertwine.",
-    "longDescription2": "The island is also a nesting site for sea turtles. Visit between June and September for a chance to see baby turtles hatching.",
+    "title": "Sự Yên Bình tại Quần Đảo Côn Đảo",
+"shortDescription": "Côn Đảo là viên ngọc ẩn với những bãi biển nguyên sơ, làn nước xanh ngọc và lịch sử phong phú.",
+"longDescription": "Từng là đảo tù, Côn Đảo ngày nay thu hút du khách bởi vẻ đẹp hoang sơ. Hãy lặn ngắm san hô tại Bãi Đầm Trầu hoặc khám phá hệ động thực vật đa dạng của vườn quốc gia.",
+"highlightQuote": "Côn Đảo — nơi thiên nhiên và lịch sử hòa quyện.",
+"longDescription2": "Hòn đảo này cũng là nơi rùa biển làm tổ. Hãy ghé thăm từ tháng 6 đến tháng 9 để có cơ hội chứng kiến rùa con nở và ra biển."
+,
     "tags": [
       "Beach",
       "Con Dao",
@@ -554,11 +578,12 @@
     "id": 25,
     "region": "Southern Vietnam",
     "image": "/assets/image/25.jpg",
-    "title": "Adventure at Hon Tre Island, Nha Trang",
-    "shortDescription": "Hon Tre Island offers luxury resorts, thrilling water sports, and vibrant marine life.",
-    "longDescription": "Home to Vinpearl Land, this island combines entertainment with natural beauty. Try parasailing, jet-skiing, or relax at the private beaches.",
-    "highlightQuote": "Hon Tre—fun in the sun and under the waves.",
-    "longDescription2": "The island is accessible via cable car, providing stunning aerial views of Nha Trang Bay.",
+    "title": "Phiêu Lưu tại Đảo Hòn Tre, Nha Trang",
+"shortDescription": "Đảo Hòn Tre mang đến các khu nghỉ dưỡng sang trọng, môn thể thao dưới nước đầy kịch tính và hệ sinh thái biển sống động.",
+"longDescription": "Là nơi tọa lạc của Vinpearl Land, hòn đảo này kết hợp giải trí với vẻ đẹp thiên nhiên. Hãy thử dù lượn, mô tô nước hoặc thư giãn tại những bãi biển riêng tư.",
+"highlightQuote": "Hòn Tre — niềm vui dưới nắng và dưới làn sóng.",
+"longDescription2": "Hòn đảo có thể được tiếp cận bằng cáp treo, mang đến tầm nhìn toàn cảnh tuyệt đẹp của vịnh Nha Trang."
+,
     "tags": [
       "Beach",
       "Nha Trang",
@@ -576,11 +601,12 @@
     "id": 26,
     "region": "Southern Vietnam",
     "image": "/assets/image/26.jpg",
-    "title": "Peaceful Escape at Ho Coc Beach",
-    "shortDescription": "Ho Coc Beach is a quiet retreat with golden sands, clear waters, and lush coconut groves.",
-    "longDescription": "Less crowded than other beaches, Ho Coc is perfect for those seeking tranquility. Enjoy fresh seafood at local beachfront restaurants.",
-    "highlightQuote": "Ho Coc—where time slows down.",
-    "longDescription2": "Nearby Binh Chau Hot Springs offer a relaxing contrast to the beach’s calm waters.",
+    "title": "Chốn Bình Yên tại Bãi Biển Hồ Cốc",
+"shortDescription": "Bãi biển Hồ Cốc là điểm nghỉ ngơi yên tĩnh với bãi cát vàng, làn nước trong xanh và những rặng dừa xanh mướt.",
+"longDescription": "Ít đông đúc hơn các bãi biển khác, Hồ Cốc rất lý tưởng cho những ai tìm kiếm sự tĩnh lặng. Hãy thưởng thức hải sản tươi ngon tại các nhà hàng ven biển địa phương.",
+"highlightQuote": "Hồ Cốc — nơi thời gian như chậm lại.",
+"longDescription2": "Gần đó là suối nước nóng Bình Châu, mang đến trải nghiệm thư giãn tương phản với làn nước êm đềm của biển."
+,
     "tags": [
       "Beach",
       "Ho Coc",
@@ -598,17 +624,17 @@
     "id": 27,
     "region": "Southern Vietnam",
     "image": "/assets/image/27.jpg",
-    "title": "Romantic Getaway at Doc Let Beach",
-    "shortDescription": "Doc Let Beach boasts powdery white sand and shallow waters, ideal for couples and families.",
-    "longDescription": "Located near Nha Trang, Doc Let offers a more secluded alternative to the city’s busy beaches. The gentle slope makes it safe for children.",
-    "highlightQuote": "Doc Let—soft sand and serenity.",
-    "longDescription2": "Nearby fishing villages provide a glimpse into local life. Try the morning seafood market for the freshest catch.",
+    "title": "Kỳ Nghỉ Lãng Mạn tại Bãi Biển Dốc Lết",
+"shortDescription": "Bãi biển Dốc Lết sở hữu bãi cát trắng mịn và làn nước nông, lý tưởng cho các cặp đôi và gia đình.",
+"longDescription": "Nằm gần Nha Trang, Dốc Lết mang đến sự yên tĩnh hơn so với những bãi biển đông đúc của thành phố. Độ dốc thoải khiến nơi đây an toàn cho trẻ em.",
+"highlightQuote": "Dốc Lết — cát mềm và bình yên.",
+"longDescription2": "Các làng chài gần đó mang đến cái nhìn chân thực về đời sống địa phương. Hãy ghé chợ hải sản buổi sáng để thưởng thức những mẻ cá tươi nhất."
+,
     "tags": [
       "Beach",
       "Doc Let",
       "Romantic",
-      "Family",
-      "Vietnam"
+      "Family"
     ],
     "price": 60.0,
     "originalPrice": 75.0,
@@ -621,11 +647,12 @@
     "id": 28,
     "region": "Southern Vietnam",
     "image": "/assets/image/28.jpg",
-    "title": "Exploring the Untouched Beauty of Bai Sao, Phu Quoc",
-    "shortDescription": "Bai Sao is a postcard-perfect beach with powdery white sand and turquoise waters.",
-    "longDescription": "Often ranked among Vietnam’s most beautiful beaches, Bai Sao is a must-visit in Phu Quoc. The calm waters are ideal for swimming and paddleboarding.",
-    "highlightQuote": "Bai Sao—a slice of heaven on Phu Quoc.",
-    "longDescription2": "Nearby An Thoi Archipelago offers fantastic snorkeling and diving opportunities.",
+    "title": "Khám Phá Vẻ Đẹp Nguyên Sơ của Bãi Sao, Phú Quốc",
+"shortDescription": "Bãi Sao là bãi biển tuyệt đẹp như tranh với cát trắng mịn và làn nước màu ngọc lam.",
+"longDescription": "Thường được xếp hạng là một trong những bãi biển đẹp nhất Việt Nam, Bãi Sao là điểm đến không thể bỏ qua ở Phú Quốc. Nước biển êm dịu, lý tưởng cho bơi lội và chèo ván đứng.",
+"highlightQuote": "Bãi Sao — một lát cắt thiên đường của Phú Quốc.",
+"longDescription2": "Quần đảo An Thới gần đó mang đến cơ hội tuyệt vời cho hoạt động lặn biển ngắm san hô và khám phá đáy biển."
+,
     "tags": [
       "Beach",
       "Phu Quoc",
@@ -643,11 +670,12 @@
     "id": 29,
     "region": "Southern Vietnam",
     "image": "/assets/image/29.jpg",
-    "title": "Serene Beauty at Bai Khem Beach, Phu Quoc",
-    "shortDescription": "Bai Khem Beach offers seclusion and natural beauty, with soft sand and calm waves.",
-    "longDescription": "Once a military zone, Bai Khem is now a peaceful retreat. The beach is less developed, making it perfect for nature lovers.",
-    "highlightQuote": "Bai Khem—where the ocean whispers tranquility.",
-    "longDescription2": "The surrounding jungle adds to the untouched charm. Early mornings are the best time to enjoy the solitude.",
+    "title": "Vẻ Đẹp Thanh Bình tại Bãi Khem, Phú Quốc",
+"shortDescription": "Bãi Khem mang đến sự riêng tư và vẻ đẹp tự nhiên, với cát mịn và sóng êm.",
+"longDescription": "Từng là khu vực quân sự, Bãi Khem nay trở thành điểm nghỉ dưỡng yên bình. Bãi biển ít được khai thác, rất lý tưởng cho những người yêu thiên nhiên.",
+"highlightQuote": "Bãi Khem — nơi đại dương thì thầm sự tĩnh lặng.",
+"longDescription2": "Khu rừng bao quanh càng làm tăng vẻ đẹp nguyên sơ. Sáng sớm là thời điểm lý tưởng nhất để tận hưởng sự tĩnh lặng."
+,
     "tags": [
       "Beach",
       "Phu Quoc",
@@ -665,16 +693,16 @@
     "id": 30,
     "region": "Southern Vietnam",
     "image": "/assets/image/30.jpg",
-    "title": "Vibrant Life at Nha Trang Beach",
-    "shortDescription": "Nha Trang Beach is a bustling coastal city with a long sandy shore, vibrant nightlife, and water activities.",
-    "longDescription": "Famous for its lively atmosphere, Nha Trang offers scuba diving, boat tours, and beachfront bars. The city blends modern comforts with natural beauty.",
-    "highlightQuote": "Nha Trang—where the party meets the ocean.",
-    "longDescription2": "Visit the nearby Ponagar Cham Towers for a cultural experience, then relax at the Thap Ba Hot Springs.",
+    "title": "Cuộc Sống Sôi Động tại Bãi Biển Nha Trang",
+"shortDescription": "Bãi biển Nha Trang là một thành phố ven biển nhộn nhịp với bờ cát dài, cuộc sống về đêm sôi động và nhiều hoạt động trên biển.",
+"longDescription": "Nổi tiếng với bầu không khí sôi động, Nha Trang mang đến trải nghiệm lặn biển, tour du thuyền và các quán bar ven biển. Thành phố kết hợp hài hòa giữa tiện nghi hiện đại và vẻ đẹp thiên nhiên.",
+"highlightQuote": "Nha Trang — nơi bữa tiệc hòa quyện với biển cả.",
+"longDescription2": "Hãy ghé thăm Tháp Bà Ponagar để trải nghiệm văn hóa, sau đó thư giãn tại suối khoáng nóng Tháp Bà."
+,
     "tags": [
       "Beach",
       "Nha Trang",
       "Nightlife",
-      "Diving",
       "Relax"
     ],
     "price": 75.0,

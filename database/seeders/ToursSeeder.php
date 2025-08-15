@@ -46,6 +46,8 @@ class ToursSeeder extends Seeder
                     'tour_id' => $tourId,
                     'price' => $tour['price'] ?? 0,
                     'discount' => $tour['original_price'] ?? null,
+                    'start_date' => now()->subDays(30), // ← Thêm dòng này
+                    'end_date' => now()->addDays(365),
                     'created_at' => $tour['created_at'] ?? now(),
                     'updated_at' => $tour['updated_at'] ?? now(),
                 ]);

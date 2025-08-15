@@ -9,8 +9,8 @@
         "price": 61.41,
         "original_price": 80.18,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -28,8 +28,8 @@
             "Sunset viewing"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -42,8 +42,8 @@
         "price": 70,
         "original_price": 90,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-10T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-19T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -61,8 +61,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -75,8 +75,8 @@
         "price": 40.32,
         "original_price": 82.2,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -94,8 +94,8 @@
             "Ocean walks"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -108,8 +108,8 @@
         "price": 50,
         "original_price": 85,
         "capacity": 35,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -127,8 +127,8 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -141,8 +141,8 @@
         "price": 79.56,
         "original_price": 89.82,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -160,8 +160,8 @@
             "Relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -174,8 +174,8 @@
         "price": 85,
         "original_price": 95,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -193,8 +193,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -207,8 +207,8 @@
         "price": 41.42,
         "original_price": 85.99,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -226,8 +226,8 @@
             "Photography"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -240,8 +240,8 @@
         "price": 55,
         "original_price": 90,
         "capacity": 25,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -259,8 +259,8 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -273,8 +273,8 @@
         "price": 81.03,
         "original_price": 93.17,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -292,8 +292,8 @@
             "Beach meditation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -306,8 +306,8 @@
         "price": 90,
         "original_price": 100,
         "capacity": 25,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -325,8 +325,8 @@
             "Local interaction"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -339,8 +339,8 @@
         "price": 62.24,
         "original_price": 82.06,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -358,8 +358,8 @@
             "Beach activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -372,8 +372,8 @@
         "price": 70,
         "original_price": 85,
         "capacity": 35,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -391,8 +391,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -405,8 +405,8 @@
         "price": 75.06,
         "original_price": 85.92,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -424,8 +424,8 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -438,8 +438,8 @@
         "price": 80,
         "original_price": 90,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -457,8 +457,8 @@
             "Peaceful atmosphere"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -471,8 +471,8 @@
         "price": 49.96,
         "original_price": 98.94,
         "capacity": 50,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -490,8 +490,8 @@
             "Entertainment"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -504,8 +504,8 @@
         "price": 60,
         "original_price": 100,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -523,8 +523,8 @@
             "Beach volleyball"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -537,8 +537,8 @@
         "price": 50.17,
         "original_price": 98.5,
         "capacity": 50,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -556,8 +556,8 @@
             "Family activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -570,8 +570,8 @@
         "price": 65,
         "original_price": 100,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -589,8 +589,8 @@
             "Local interaction"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -603,8 +603,8 @@
         "price": 55.06,
         "original_price": 86.93,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -622,8 +622,8 @@
             "Beach exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -636,8 +636,8 @@
         "price": 70,
         "original_price": 90,
         "capacity": 25,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -655,8 +655,8 @@
             "Exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -669,8 +669,8 @@
         "price": 80.19,
         "original_price": 92.88,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -688,8 +688,8 @@
             "Entertainment"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -702,8 +702,8 @@
         "price": 90,
         "original_price": 100,
         "capacity": 25,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -721,8 +721,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -735,8 +735,8 @@
         "price": 40.32,
         "original_price": 82.2,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -754,8 +754,8 @@
             "Heritage exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -768,8 +768,8 @@
         "price": 55,
         "original_price": 85,
         "capacity": 35,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -787,8 +787,8 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -801,8 +801,8 @@
         "price": 51.14,
         "original_price": 88.34,
         "capacity": 30,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -820,8 +820,8 @@
             "Beach exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -834,8 +834,8 @@
         "price": 65,
         "original_price": 90,
         "capacity": 25,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -853,8 +853,8 @@
             "Peaceful atmosphere"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -867,8 +867,8 @@
         "price": 43.43,
         "original_price": 83.91,
         "capacity": 50,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -886,8 +886,8 @@
             "Exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -900,8 +900,8 @@
         "price": 60,
         "original_price": 85,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -919,8 +919,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -933,8 +933,8 @@
         "price": 73.13,
         "original_price": 89.53,
         "capacity": 40,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-08T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-08-17T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -952,8 +952,8 @@
             "Family activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     },
     {
@@ -966,8 +966,8 @@
         "price": 80,
         "original_price": 95,
         "capacity": 35,
-        "departure_time": "2025-08-07T08:00:00",
-        "return_time": "2025-08-29T08:00:00",
+        "departure_time": "2025-08-16T08:00:00",
+        "return_time": "2025-09-07T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -985,8 +985,8 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-06 16:05:41",
-        "updated_at": "2025-08-06 16:05:41",
+        "created_at": "2025-08-15 06:09:54",
+        "updated_at": "2025-08-15 06:09:54",
         "ceo_id": 2
     }
 ]

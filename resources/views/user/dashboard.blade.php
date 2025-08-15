@@ -10,10 +10,10 @@
                 </h1>
                 <p class="lead text-black-50">Quản lý hệ thống một cách hiệu quả và chuyên nghiệp</p>
             </div>
-            
+
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show mb-4" role="alert"
-                     style="border-radius: 10px; background-color: rgba(25, 135, 84, 0.15); border-color: rgba(25, 135, 84, 0.4); color: #155724;">
+                    style="border-radius: 10px; background-color: rgba(25, 135, 84, 0.15); border-color: rgba(25, 135, 84, 0.4); color: #155724;">
                     <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -22,8 +22,8 @@
             @if(auth()->user() && auth()->user()->isUser())
                 <!-- User Profile Card -->
                 <div class="row mb-5">
-                    <div class="col-lg-12">
-                        <div class=" border-0 shadow-lg"
+                    <div class="col-lg-12 p-0">
+                        <div class=" border-0 shadow-lg rounded-5"
                             style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
                                 <div class="row">
@@ -34,26 +34,27 @@
                                                 @php
                                                     // Check if avatar path contains "avatars/" which means it was uploaded by the user
                                                     // Otherwise it's a seeded image, so use the direct path
-                                                    $avatarPath = strpos($user->avatar, 'avatars/') !== false ? 
-                                                        asset('storage/' . $user->avatar) : 
+                                                    $avatarPath = strpos($user->avatar, 'avatars/') !== false ?
+                                                        asset('storage/' . $user->avatar) :
                                                         asset($user->avatar);
                                                 @endphp
-                                                <img src="{{ $avatarPath }}" alt="User Avatar" 
-                                                    class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4facfe;">
+                                                <img src="{{ $avatarPath }}" alt="User Avatar" class="rounded-circle img-thumbnail"
+                                                    style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #4facfe;">
                                             @else
                                                 <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
                                                     style="width: 150px; height: 150px; background: linear-gradient(45deg, #4facfe, #00f2fe); margin: 0 auto;">
-                                                    <span class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
+                                                    <span
+                                                        class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                                                 </div>
                                             @endif
                                         </div>
                                         <h5 class="fw-bold">{{ $user->name }}</h5>
-                                        <span class="badge" 
+                                        <span class="badge"
                                             style="background: {{ $user->role === 'admin' ? '#764ba2' : ($user->role === 'ceo' ? '#f5576c' : '#4facfe') }};">
                                             {{ ucfirst($user->role) }}
                                         </span>
                                     </div>
-                                    
+
                                     <!-- User Info Column -->
                                     <div class="col-md-9">
                                         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -65,59 +66,64 @@
                                                 <i class="fas fa-user-edit me-2"></i>Chỉnh sửa thông tin
                                             </a>
                                         </div>
-                                        
+
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>Email:</label>
+                                                    <label class="text-muted mb-1"><i
+                                                            class="fas fa-envelope me-2"></i>Email:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->email }}</p>
                                                 </div>
-                                                
+
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện thoại:</label>
+                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện
+                                                        thoại:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->phone ?? 'Chưa cập nhật' }}</p>
                                                 </div>
+
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa
+                                                        chỉ:</label>
+                                                    <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
+                                                </div>
                                             </div>
-                                            
+
                                             <div class="col-md-6">
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày sinh:</label>
+                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày
+                                                        sinh:</label>
                                                     <p class="mb-0 fw-medium">
                                                         {{ $profile && $profile->dob ? date('d/m/Y', strtotime($profile->dob)) : 'Chưa cập nhật' }}
                                                     </p>
                                                 </div>
-                                                
+
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar-check me-2"></i>Tham gia:</label>
+                                                    <label class="text-muted mb-1"><i
+                                                            class="fas fa-calendar-check me-2"></i>Tham gia:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->created_at->format('d/m/Y') }}</p>
+                                                </div>
+
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc
+                                                        tịch:</label>
+                                                    <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa chỉ:</label>
-                                            <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc tịch:</label>
-                                            <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-
                                         @if($profile && $profile->preferences)
-                                        <div class="info-item mt-4">
-                                            <label class="text-muted mb-1"><i class="fas fa-cog me-2"></i>Tùy chọn:</label>
-                                            <p class="mb-0 fw-medium">
-                                                @if(is_array($profile->preferences))
-                                                    @if(isset($profile->preferences['favorite_beaches']))
-                                                        <span class="badge bg-info me-1">Bãi biển yêu thích: {{ implode(', ', $profile->preferences['favorite_beaches']) }}</span>
+                                            <div class="info-item mt-4">
+                                                <p class="mb-0 fw-medium">
+                                                    @if(is_array($profile->preferences))
+                                                        @if(isset($profile->preferences['favorite_beaches']))
+                                                            <span class="badge bg-info me-1">Bãi biển yêu thích:
+                                                                {{ implode(', ', $profile->preferences['favorite_beaches']) }}</span>
+                                                        @endif
+                                                        <!-- Theme display temporarily removed -->
                                                     @endif
-                                                    <!-- Theme display temporarily removed -->
-                                                @endif
-                                            </p>
-                                        </div>
+                                                </p>
+                                            </div>
                                         @endif
-                                        
+
                                         <div class="mt-4 pt-3 border-top">
                                             <div class="d-flex align-items-center">
                                                 <div class="me-4">
@@ -138,8 +144,8 @@
                 </div>
 
                 <!-- Management Cards -->
-                <div class="row g-4">
-                    <div class="col-lg-5 col-md-6 mx-auto">
+                <div class="row g-4 ">
+                    <div class="col-lg-5 col-md-6 mx-auto ">
                         <div class="card border-0 shadow-lg h-100 management-card"
                             style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">

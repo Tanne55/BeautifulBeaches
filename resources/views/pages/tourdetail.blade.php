@@ -67,9 +67,9 @@
                                 @if($price)
                                     @if($price->discount && $price->discount > 0)
                                         <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }}
-                                            đ</span>
+                                            tr vnđ</span>
                                         <small class="text-decoration-line-through text-muted">
-                                            {{ number_format($price->price, 0, ',', '.') }} đ
+                                            {{ number_format($price->price, 0, ',', '.') }} tr vnđ
                                         </small>
                                     @else
                                         <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} đ</span>
@@ -191,7 +191,7 @@
                     const stars = document.querySelectorAll('#star-rating .star-icon');
                     const ratingInput = document.getElementById('rating-input');
                     let currentRating = 5;
-                    
+
                     function setStars(rating) {
                         stars.forEach((star, idx) => {
                             if (idx < rating) {
@@ -201,7 +201,7 @@
                             }
                         });
                     }
-                    
+
                     setStars(currentRating);
                     stars.forEach((star, idx) => {
                         star.addEventListener('mouseenter', () => setStars(idx + 1));
@@ -217,36 +217,36 @@
                     const loadMoreBtn = document.getElementById('load-more-reviews');
                     const showLessBtn = document.getElementById('show-less-reviews');
                     const remainingCountSpan = document.getElementById('remaining-count');
-                    
+
                     if (loadMoreBtn) {
-                        loadMoreBtn.addEventListener('click', function() {
+                        loadMoreBtn.addEventListener('click', function () {
                             const hiddenReviews = document.querySelectorAll('.review-item.d-none');
                             const showCount = Math.min(5, hiddenReviews.length);
-                            
+
                             for (let i = 0; i < showCount; i++) {
                                 hiddenReviews[i].classList.remove('d-none');
                             }
-                            
+
                             const stillHidden = document.querySelectorAll('.review-item.d-none').length;
-                            
+
                             if (stillHidden === 0) {
                                 loadMoreBtn.style.display = 'none';
                             } else {
                                 remainingCountSpan.textContent = stillHidden;
                             }
-                            
+
                             showLessBtn.style.display = 'inline-block';
                         });
                     }
 
                     if (showLessBtn) {
-                        showLessBtn.addEventListener('click', function() {
+                        showLessBtn.addEventListener('click', function () {
                             const allReviews = document.querySelectorAll('.review-item');
-                            
+
                             for (let i = 3; i < allReviews.length; i++) {
                                 allReviews[i].classList.add('d-none');
                             }
-                            
+
                             const totalHidden = allReviews.length - 3;
                             if (totalHidden > 0) {
                                 remainingCountSpan.textContent = totalHidden;
@@ -289,7 +289,7 @@
                 @empty
                     <div class="text-muted">Chưa có bình luận nào.</div>
                 @endforelse
-                
+
                 @if(count($reviews) > 3)
                     <div class="text-center mt-3">
                         <button id="load-more-reviews" class="btn btn-outline-primary btn-sm">

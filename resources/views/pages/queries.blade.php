@@ -128,17 +128,18 @@
             <!-- Right: Support Info -->
             <div class="col-md-5">
                 <div class="support-box text-center p-4 shadow rounded">
-                    <img src="https://demo.bosathemes.com/html/travele/assets/images/img21.jpg" alt="Support Agent"
+                    <img src="{{asset('assets/img1/img_author.jpg')}}" alt="Hỗ trợ khách hàng"
                         class="img-fluid rounded-circle mb-3" width="150" />
-                    <h5>James Watson</h5>
-                    <p class="text-muted mb-1">Customer Support Specialist</p>
-                    <p>"I'm here to help! Feel free to send your questions any time. Our team responds within 24 hours."
-                    </p>
+                    <h5>Phạm Nhân</h5>
+                    <p class="text-muted mb-1">Chuyên viên Hỗ trợ Khách hàng</p>
+                    <p>"Tôi luôn sẵn sàng hỗ trợ! Hãy gửi câu hỏi của bạn bất cứ lúc nào. Chúng tôi sẽ phản hồi trong vòng
+                        24 giờ."</p>
                     <hr />
                     <p class="small mb-1"><strong>Hotline:</strong> 1900 999 888</p>
-                    <p class="small mb-1"><strong>Email:</strong> aptechvn.com</p>
-                    <p class="small"><strong>Working Hours:</strong> Mon - Fri, 9AM - 6PM</p>
+                    <p class="small mb-1"><strong>Email:</strong> support@aptechvn.com</p>
+                    <p class="small"><strong>Giờ làm việc:</strong> Thứ 2 - Thứ 6, 9:00 - 18:00</p>
                 </div>
+
             </div>
         </div>
     </section>

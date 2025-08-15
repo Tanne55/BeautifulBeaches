@@ -218,17 +218,14 @@
                 <div class="author-card mb-4">
                     <div class="text-center">
                         <div class="mb-3">
-                            <a href="#" class="category-tag">ABOUT AUTHOR</a>
+                            <a href="#" class="category-tag">GIỚI THIỆU TÁC GIẢ</a>
                         </div>
-                        <img src="https://demo.bosathemes.com/html/travele/assets/images/img21.jpg" alt="..."
+                        <img src="{{asset('assets/img1/img_author.jpg')}}" alt="..."
                             class="author-avatar mb-3">
-                        <h5>James Watson</h5>
+                        <h5>DUY TÂN</h5>
                         <p class="text-muted small">
-                            James is a travel writer and beach enthusiast who has explored over 50 coastal destinations
-                            across Southeast Asia.
-                            With a passion for storytelling and photography, he shares hidden gems, cultural insights,
-                            and practical travel tips
-                            to help others plan unforgettable seaside adventures!!
+                            TÂN là một nhà văn du lịch và người đam mê biển, đã khám phá hơn 50 điểm đến ven biển khắp Đông Nam Á.
+Với niềm đam mê kể chuyện và nhiếp ảnh, anh chia sẻ những “viên ngọc ẩn”, góc nhìn văn hóa và mẹo du lịch thực tế để giúp mọi người lên kế hoạch cho những chuyến phiêu lưu bên bờ biển khó quên!
                         </p>
                         <div class="d-flex justify-content-center gap-2">
                             <a href="#" class="text-muted social-icon-hover"><i class="fab fa-facebook"></i></a>

@@ -39,11 +39,29 @@ Route::get('/', function () {
             ];
         });
 
-    return view('welcome', compact('beaches'));
+    // Lấy dữ liệu tours với prices
+    $tours = Tour::with(['beach', 'prices', 'detail'])
+        ->where('status', 'confirmed')
+        ->take(3)
+        ->get()
+        ->map(function ($tour) {
+            return [
+                'id' => $tour->id,
+                'title' => $tour->title,
+                'image' => $tour->image,
+                'beach_name' => $tour->beach ? $tour->beach->title : 'N/A',
+                'beach_region' => $tour->beach && $tour->beach->region ? $tour->beach->region->name : 'N/A', // ← Thêm dòng này
+                'duration_days' => $tour->duration_days,
+                'max_people' => $tour->max_people ?? $tour->capacity ?? 'N/A',
+                'current_price' => $tour->current_price,
+                'average_rating' => $tour->average_rating,
+                'total_reviews' => $tour->total_reviews,
+                'short_description' => $tour->beach && $tour->beach->short_description ? $tour->beach->short_description : null,
+            ];
+        });
+
+    return view('welcome', compact('beaches', 'tours'));
 })->name('home');
-
-
-
 
 
 
@@ -134,7 +152,7 @@ Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group
     Route::get('/cancellation-requests', [\App\Http\Controllers\CancellationRequestController::class, 'myRequests'])->name('cancellation_requests');
     Route::get('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'showCancelForm'])->name('booking.cancel.form');
     Route::post('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'store'])->name('booking.cancel.submit');
-    
+
     // Thêm routes cho chức năng chỉnh sửa profile
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');

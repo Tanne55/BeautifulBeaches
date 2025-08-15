@@ -43,7 +43,7 @@ class Tour extends Model
 
     public function prices()
     {
-        return $this->hasMany(TourPrice::class,'tour_id');
+        return $this->hasMany(TourPrice::class, 'tour_id');
     }
 
 
@@ -61,8 +61,8 @@ class Tour extends Model
     {
         $today = now()->format('Y-m-d');
         $price = $this->prices()->where('start_date', '<=', $today)
-                                ->where('end_date', '>=', $today)
-                                ->first();
+            ->where('end_date', '>=', $today)
+            ->first();
         return $price ? $price->price : 0;
     }
 
@@ -71,7 +71,7 @@ class Tour extends Model
         $today = now()->format('Y-m-d');
         $inventory = $this->inventory()->where('date', $today)->first();
         $totalBooked = $this->bookings()->where('booking_date', $today)->sum('number_of_people');
-        
+
         return $inventory ? $inventory->available_slots - $totalBooked : 0;
     }
 

@@ -23,52 +23,60 @@
             <div class="col-6">
                 <div class="d-flex align-items-center mb-4 mx-5">
                     <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                    <p class="text-danger fw-bold m-0">ABOUT OUR JOURNEY</p>
+                    <p class="text-danger fw-bold m-0">VỀ HÀNH TRÌNH CỦA CHÚNG TÔI</p>
                 </div>
 
-                <h1 class="fw-bold">CREATING UNFORGETTABLE BEACH EXPERIENCES</h1>
+                <h1 class="fw-bold">TẠO NÊN NHỮNG TRẢI NGHIỆM BIỂN ĐÁNG NHỚ</h1>
             </div>
             <div class="col-6 d-flex align-items-center text-start text-muted">
-                With years of experience in coastal tourism, we specialize in crafting tailor-made beach holidays that
-                combine natural beauty, vibrant culture, and relaxation. Whether you're dreaming of a tropical escape or
-                a weekend by the sea, we’ve got you covered.
-                Our mission is to bring you closer to the ocean — with curated destinations, affordable packages, and
-                warm, personalized service that makes every moment memorable.
+                Với nhiều năm kinh nghiệm trong du lịch biển, chúng tôi chuyên mang đến những kỳ nghỉ biển được thiết kế
+                riêng,
+                kết hợp giữa vẻ đẹp thiên nhiên, nét văn hóa sống động và sự thư giãn trọn vẹn.
+                Dù bạn mơ ước một chuyến đi nhiệt đới hay chỉ là kỳ nghỉ cuối tuần bên bờ biển, chúng tôi đều sẵn sàng đồng
+                hành.
+                Sứ mệnh của chúng tôi là đưa bạn đến gần hơn với đại dương — thông qua những điểm đến được chọn lọc, gói du
+                lịch
+                giá hợp lý và dịch vụ tận tâm, ấm áp để từng khoảnh khắc đều trở nên đáng nhớ.
             </div>
         </div>
+
 
         <div>
             <div class="row">
                 <div class="col-4 d-flex gap-4">
-                    <div class="bg-primary mb-4 ">
-                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon15.png" alt="About Us"
+                    <div class="bg-primary mb-4">
+                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon15.png" alt="Về Chúng Tôi"
                             class="img-fluid">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <h5 class="fw-bold">Budget-Friendly Trips</h5>
-                        <p class="small">Enjoy amazing beach getaways</br> without breaking the bank.</p>
+                        <h5 class="fw-bold">Chuyến Đi Tiết Kiệm</h5>
+                        <p class="small">Tận hưởng kỳ nghỉ biển tuyệt vời</br> mà không lo vượt ngân sách.</p>
                     </div>
                 </div>
+
                 <div class="col-4 d-flex gap-4">
-                    <div class="bg-primary mb-4 ">
-                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon16.png" alt="About Us"
+                    <div class="bg-primary mb-4">
+                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon16.png" alt="Về Chúng Tôi"
                             class="img-fluid">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <h5 class="fw-bold">Top Coastal Spots</h5>
-                        <p class="small">Discover the most stunning and hidden</br> beach gems around the world.</p>
+                        <h5 class="fw-bold">Điểm Đến Ven Biển Hàng Đầu</h5>
+                        <p class="small">Khám phá những bãi biển tuyệt đẹp</br> và bí ẩn nhất trên khắp thế giới.</p>
                     </div>
                 </div>
+
                 <div class="col-4 d-flex gap-4">
-                    <div class="bg-primary mb-4 ">
-                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon17.png" alt="About Us"
+                    <div class="bg-primary mb-4">
+                        <img src="https://demo.bosathemes.com/html/travele/assets/images/icon17.png" alt="Về Chúng Tôi"
                             class="img-fluid">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <h5 class="fw-bold">Friendly Local Experts</h5>
-                        <p class="small">Our team ensures you feel at home</br> from booking to beach.</p>
+                        <h5 class="fw-bold">Chuyên Gia Địa Phương Thân Thiện</h5>
+                        <p class="small">Đội ngũ của chúng tôi luôn mang đến cảm giác như ở nhà</br> từ lúc đặt tour cho đến
+                            khi ra biển.</p>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -97,30 +105,34 @@
             <div class="col-lg-6">
                 <div class="d-flex align-items-center mb-4">
                     <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                    <p class="text-danger fw-bold m-0">OUR STORY</p>
+                    <p class="text-danger fw-bold m-0">CÂU CHUYỆN CỦA CHÚNG TÔI</p>
                 </div>
-                <h2 class="fw-bold mb-4">FROM DREAM TO REALITY</h2>
+                <h2 class="fw-bold mb-4">TỪ GIẤC MƠ THÀNH HIỆN THỰC</h2>
                 <p class="text-muted mb-4">
-                    Founded in 2015 by a group of passionate travelers, our company began with a simple dream: to make
-                    the world's most beautiful beaches accessible to everyone. What started as a small local tour
-                    operator has grown into a trusted global brand.
+                    Được thành lập vào năm 2015 bởi một nhóm những người đam mê du lịch, công ty chúng tôi bắt đầu từ một
+                    giấc mơ giản đơn:
+                    đưa những bãi biển đẹp nhất thế giới đến gần hơn với mọi người. Từ một đơn vị lữ hành nhỏ tại địa
+                    phương,
+                    chúng tôi đã phát triển thành một thương hiệu toàn cầu đáng tin cậy.
                 </p>
                 <p class="text-muted mb-4">
-                    We believe that every person deserves to experience the tranquility of ocean waves, the warmth of
-                    golden sand, and the joy of discovering new coastal cultures. This philosophy drives everything we
-                    do.
+                    Chúng tôi tin rằng mỗi người đều xứng đáng được tận hưởng sự bình yên của sóng biển, cảm giác ấm áp của
+                    bãi cát vàng
+                    và niềm vui khi khám phá những nền văn hóa ven biển mới. Triết lý đó là động lực cho mọi việc chúng tôi
+                    làm.
                 </p>
                 <div class="row">
                     <div class="col-6">
                         <h4 class="text-danger fw-bold">2015</h4>
-                        <p class="small">Company Founded</p>
+                        <p class="small">Thành lập công ty</p>
                     </div>
                     <div class="col-6">
-                        <h4 class="text-danger fw-bold">50+</h4>
-                        <p class="small">Countries Served</p>
+                        <h4 class="text-danger fw-bold">30+</h4>
+                        <p class="small">Tỉnh thành phục vụ</p>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Our Story" class="img-fluid rounded-3 shadow">
@@ -134,11 +146,13 @@
             <div class="text-center mb-5">
                 <div class="d-flex align-items-center mb-4 justify-content-center">
                     <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                    <p class="text-danger fw-bold m-0">OUR VALUES</p>
+                    <p class="text-danger fw-bold m-0">GIÁ TRỊ CỐT LÕI</p>
                 </div>
-                <h2 class="fw-bold">WHAT DRIVES US FORWARD</h2>
-                <p class="text-muted">These core values guide every decision we make and every experience we create</p>
+                <h2 class="fw-bold">ĐỘNG LỰC ĐƯA CHÚNG TÔI TIẾN BƯỚC</h2>
+                <p class="text-muted">Những giá trị cốt lõi định hướng mọi quyết định và trải nghiệm mà chúng tôi mang đến
+                </p>
             </div>
+
 
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
@@ -146,9 +160,9 @@
                         <div class="value-icon">
                             <i class="bi bi-heart-fill"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Passion for Excellence</h5>
-                        <p class="text-muted">We pour our hearts into every detail, ensuring that each beach experience
-                            exceeds your expectations and creates lasting memories.</p>
+                        <h5 class="fw-bold mb-3">Đam Mê Sự Hoàn Hảo</h5>
+                        <p class="text-muted">Chúng tôi đặt trọn tâm huyết vào từng chi tiết, đảm bảo mỗi trải nghiệm biển
+                            không chỉ đáp ứng mà còn vượt xa mong đợi của bạn, tạo nên những kỷ niệm đáng nhớ.</p>
                     </div>
                 </div>
 
@@ -157,31 +171,33 @@
                         <div class="value-icon">
                             <i class="bi bi-shield-check"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Trust & Safety</h5>
-                        <p class="text-muted">Your safety and peace of mind are our top priorities. We maintain the
-                            highest standards in all our operations and partnerships.</p>
+                        <h5 class="fw-bold mb-3">Tin Cậy & An Toàn</h5>
+                        <p class="text-muted">Sự an toàn và yên tâm của bạn luôn là ưu tiên hàng đầu của chúng tôi. Chúng
+                            tôi duy trì những tiêu chuẩn cao nhất trong mọi hoạt động và quan hệ hợp tác.</p>
                     </div>
                 </div>
+
 
                 <div class="col-lg-4 col-md-6">
                     <div class="value-card">
                         <div class="value-icon">
                             <i class="bi bi-globe-americas"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Environmental Responsibility</h5>
-                        <p class="text-muted">We're committed to preserving the natural beauty of our oceans and beaches
-                            for future generations to enjoy.</p>
+                        <h5 class="fw-bold mb-3">Trách Nhiệm Môi Trường</h5>
+                        <p class="text-muted">Chúng tôi cam kết gìn giữ vẻ đẹp tự nhiên của đại dương và bãi biển để các thế
+                            hệ tương lai vẫn có thể tận hưởng.</p>
                     </div>
                 </div>
+
 
                 <div class="col-lg-4 col-md-6">
                     <div class="value-card">
                         <div class="value-icon">
                             <i class="bi bi-people-fill"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Community Focus</h5>
-                        <p class="text-muted">We support local coastal communities by partnering with local businesses
-                            and promoting authentic cultural experiences.</p>
+                        <h5 class="fw-bold mb-3">Hướng Tới Cộng Đồng</h5>
+                        <p class="text-muted">Chúng tôi hỗ trợ các cộng đồng ven biển bằng cách hợp tác với doanh nghiệp địa
+                            phương và quảng bá những trải nghiệm văn hóa chân thực.</p>
                     </div>
                 </div>
 
@@ -190,9 +206,9 @@
                         <div class="value-icon">
                             <i class="bi bi-lightbulb-fill"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Innovation</h5>
-                        <p class="text-muted">We continuously innovate to provide you with cutting-edge travel
-                            technology and unique beach experiences.</p>
+                        <h5 class="fw-bold mb-3">Đổi Mới</h5>
+                        <p class="text-muted">Chúng tôi không ngừng đổi mới để mang đến cho bạn công nghệ du lịch tiên tiến
+                            và những trải nghiệm biển độc đáo.</p>
                     </div>
                 </div>
 
@@ -201,11 +217,12 @@
                         <div class="value-icon">
                             <i class="bi bi-star-fill"></i>
                         </div>
-                        <h5 class="fw-bold mb-3">Personalized Service</h5>
-                        <p class="text-muted">Every traveler is unique, and we tailor our services to match your
-                            individual preferences and dreams.</p>
+                        <h5 class="fw-bold mb-3">Dịch Vụ Cá Nhân Hóa</h5>
+                        <p class="text-muted">Mỗi du khách là một cá nhân độc nhất, và chúng tôi điều chỉnh dịch vụ để phù
+                            hợp với sở thích cũng như ước mơ của bạn.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -232,16 +249,17 @@
 
             <div class="d-flex align-items-center mb-4 mx-5 justify-content-center">
                 <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                <p class="text-danger fw-bold m-0">OUR ASSOCIATES</p>
+                <p class="text-danger fw-bold m-0">ĐỐI TÁC CỦA CHÚNG TÔI</p>
             </div>
 
-            <h1 class="fw-bold">OUR PARTNERS AND CLIENTS</h1>
+            <h1 class="fw-bold">CÁC ĐỐI TÁC VÀ KHÁCH HÀNG</h1>
 
             <div class="d-flex align-items-center text-muted justify-content-center">
-                We are proud to collaborate with a global network of trusted partners and loyal clients who believe in
-                the value we deliver.</br> Together, we create unforgettable travel experiences with integrity and
-                excellence.
+                Chúng tôi tự hào hợp tác cùng mạng lưới đối tác uy tín và khách hàng trung thành trên toàn thế giới, những
+                người luôn tin tưởng vào giá trị mà chúng tôi mang lại.</br>
+                Cùng nhau, chúng tôi tạo nên những trải nghiệm du lịch khó quên với sự tận tâm và chất lượng vượt trội.
             </div>
+
         </div>
 
         <div class="mb-5">
@@ -273,88 +291,90 @@
         <div class="text-center mb-5">
             <div class="d-flex align-items-center mb-4 justify-content-center">
                 <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                <p class="text-danger fw-bold m-0">WHY CHOOSE US</p>
+                <p class="text-danger fw-bold m-0">VÌ SAO CHỌN CHÚNG TÔI</p>
             </div>
-            <h2 class="fw-bold">THE DIFFERENCE WE MAKE</h2>
-        </div>
+            <h2 class="fw-bold">SỰ KHÁC BIỆT CHÚNG TÔI MANG LẠI</h2>
 
-        <div class="row g-5">
-            <div class="col-lg-6">
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-clock-fill"></i>
+
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Hỗ Trợ 24/7</h5>
+                            <p class="text-muted">Hỗ trợ liên tục mọi lúc, đảm bảo bạn không bao giờ đơn độc trong hành
+                                trình. Đội ngũ hỗ trợ đa ngôn ngữ của chúng tôi luôn sẵn sàng giúp đỡ.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h5 class="fw-bold">24/7 Support</h5>
-                        <p class="text-muted">Round-the-clock assistance ensures you're never alone during your journey.
-                            Our multilingual support team is always ready to help.</p>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Đảm Bảo Giá Tốt Nhất</h5>
+                            <p class="text-muted">Tìm được giá tốt hơn ở nơi khác? Chúng tôi sẽ khớp giá đó và tặng thêm 5%
+                                giảm giá cho lần đặt tiếp theo của bạn.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Am Hiểu Địa Phương</h5>
+                            <p class="text-muted">Các đối tác địa phương của chúng tôi cung cấp kiến thức nội bộ và những
+                                trải nghiệm chân thực mà bạn khó tìm thấy trong sách hướng dẫn.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-shield-check-fill"></i>
+
+                <div class="col-lg-6">
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-credit-card-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Thanh Toán Linh Hoạt</h5>
+                            <p class="text-muted">Thanh toán theo từng đợt, sử dụng nhiều loại tiền tệ và tận hưởng chính
+                                sách hủy tour linh hoạt, phù hợp với nhu cầu của bạn.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h5 class="fw-bold">Best Price Guarantee</h5>
-                        <p class="text-muted">Find a better price elsewhere? We'll match it and give you an additional
-                            5% discount on your next booking.</p>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-phone-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Công Nghệ Thông Minh</h5>
+                            <p class="text-muted">Ứng dụng được hỗ trợ bởi AI của chúng tôi cung cấp cập nhật theo thời gian
+                                thực, gợi ý cá nhân hóa và quản lý chuyến đi mượt mà.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                            style="width: 50px; height: 50px; min-width: 50px;">
+                            <i class="bi bi-recycle"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Ý Thức Bảo Vệ Môi Trường</h5>
+                            <p class="text-muted">Mỗi lần đặt tour đều góp phần vào công tác bảo tồn biển và phát triển du
+                                lịch bền vững tại các cộng đồng địa phương.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold">Local Expertise</h5>
-                        <p class="text-muted">Our local partners provide insider knowledge and authentic experiences you
-                            won't find in guidebooks.</p>
-                    </div>
-                </div>
             </div>
-
-            <div class="col-lg-6">
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-credit-card-fill"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold">Flexible Payments</h5>
-                        <p class="text-muted">Pay in installments, use multiple currencies, and enjoy hassle-free
-                            cancellation policies tailored to your needs.</p>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-phone-fill"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold">Smart Technology</h5>
-                        <p class="text-muted">Our AI-powered app provides real-time updates, personalized
-                            recommendations, and seamless travel management.</p>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-4">
-                    <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                        style="width: 50px; height: 50px; min-width: 50px;">
-                        <i class="bi bi-recycle"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold">Eco-Conscious</h5>
-                        <p class="text-muted">Every booking contributes to marine conservation efforts and sustainable
-                            tourism development in local communities.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
 
@@ -363,26 +383,28 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="fw-bold mb-4">Ready to Start Your Beach Adventure?</h2>
+                    <h2 class="fw-bold mb-4">Sẵn Sàng Bắt Đầu Hành Trình Biển Của Bạn?</h2>
                     <p class="text-muted mb-4 fs-5">
-                        Join thousands of satisfied travelers who have discovered their perfect beach paradise with us.
-                        Your dream coastal getaway is just one click away.
+                        Hãy cùng hàng nghìn du khách hài lòng đã tìm thấy thiên đường biển mơ ước của mình với chúng tôi.
+                        Kỳ nghỉ ven biển trong mơ của bạn chỉ cách một cú nhấp chuột.
                     </p>
                     <div class="d-flex gap-3 justify-content-center flex-wrap">
-                        <button class="btn btn-danger btn-lg px-4 py-2">
+                        <a href="{{route('tour')}}" class="btn btn-danger btn-lg px-4 py-2">
                             <i class="bi bi-airplane-fill me-2"></i>
-                            Plan My Trip
-                        </button>
-                        <button class="btn btn-outline-danger btn-lg px-4 py-2">
+                            Lên Kế Hoạch Chuyến Đi
+                        </a>
+                        <a href="tel:0123456789" class="btn btn-outline-danger btn-lg px-4 py-2">
                             <i class="bi bi-telephone-fill me-2"></i>
-                            Call Us Now
-                        </button>
+                            Gọi Ngay Cho Chúng Tôi
+                        </a>
                     </div>
+
                     <p class="text-muted mt-3 small">
                         <i class="bi bi-shield-check text-success me-1"></i>
-                        Free consultation • No hidden fees • Instant confirmation
+                        Tư vấn miễn phí • Không phí ẩn • Xác nhận ngay lập tức
                     </p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -393,39 +415,41 @@
     <main class="container-fluid footer-banner mt-5">
         <div class="container">
             <div class="text-center m-5">
-                <h2>Thank You for Visiting!</h2>
-                <p>Join us to explore the best travel destinations and unforgettable experiences.</p>
+                <h2>Cảm Ơn Bạn Đã Ghé Thăm!</h2>
+                <p>Hãy cùng chúng tôi khám phá những bãi biển đẹp nhất và trải nghiệm du lịch khó quên.</p>
             </div>
+
             <div class="row text-center text-white m-5">
                 <div class="col-6 col-md-3 bg-red">
                     <div class="stat-box p-3">
                         <i class="bi bi-people-fill display-4"></i>
                         <h3 class="fw-bold mt-2">500K+</h3>
-                        <p>Satisfied Clients</p>
+                        <p>Khách Hàng Hài Lòng</p>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 ">
+                <div class="col-6 col-md-3">
                     <div class="stat-box p-3 bg-red">
                         <i class="bi bi-gem display-4"></i>
                         <h3 class="fw-bold mt-2">250K+</h3>
-                        <p>Awards Achieve</p>
+                        <p>Giải Thưởng Nhận Được</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="stat-box p-3 bg-red">
                         <i class="bi bi-person-plus-fill display-4"></i>
                         <h3 class="fw-bold mt-2">15K+</h3>
-                        <p>Active Members</p>
+                        <p>Thành Viên Hoạt Động</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="stat-box p-3 bg-red">
                         <i class="bi bi-map display-4"></i>
                         <h3 class="fw-bold mt-2">10K+</h3>
-                        <p>Tour Destinations</p>
+                        <p>Điểm Du Lịch</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 

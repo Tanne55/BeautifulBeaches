@@ -22,18 +22,18 @@
         <div class="main-container">
             <!-- Search Sidebar -->
             <div class="search-sidebar">
-                <h2 class="search-title">Search Beachs</h2>
+                <h2 class="search-title">Tìm Kiếm Bãi Biển</h2>
 
                 <div class="search-group">
-                    <label class="search-label" for="search-title">Search by Title</label>
-                    <input type="text" id="search-title" class="search-input" placeholder="Enter tour title..."
+                    <label class="search-label" for="search-title">Tìm theo tên</label>
+                    <input type="text" id="search-title" class="search-input" placeholder="Nhập tên bãi biển..."
                         oninput="filterTours()">
                 </div>
 
                 <div class="search-group">
-                    <label class="search-label" for="search-region">Region</label>
+                    <label class="search-label" for="search-region">Khu vực</label>
                     <select id="search-region" class="search-select" onchange="filterTours()">
-                        <option value="">All Regions</option>
+                        <option value="">--Tất cả--</option>
                         @foreach($regions as $region)
                             <option value="{{ strtolower($region->name) }}">{{ $region->name }}</option>
                         @endforeach
@@ -41,9 +41,9 @@
                 </div>
 
                 <div class="search-group">
-                    <label class="search-label" for="search-tag">Activity</label>
+                    <label class="search-label" for="search-tag">Từ khóa</label>
                     <select id="search-tag" class="search-select" onchange="filterTours()">
-                        <option value="">All Activities</option>
+                        <option value="">--Tất cả--</option>
                         @php
                             $tags = collect($beaches)->pluck('tags')->flatten()->filter()->unique();
                         @endphp
@@ -53,7 +53,7 @@
                     </select>
                 </div>
 
-                <button class="clear-filters" onclick="clearFilters()">Clear Filters</button>
+                <button class="clear-filters" onclick="clearFilters()">Xóa bộ lọc</button>
             </div>
 
             <!-- Tours Container -->
@@ -112,7 +112,8 @@
                                     @endif
                                     <div class="d-flex justify-content-end">
                                         <button class="explore-btn" data-id="{{ $beach['id'] }}"
-                                            onclick="window.location.href='{{ route('beaches.show', $beach['id']) }}'">Explore</button>
+                                            onclick="window.location.href='{{ route('beaches.show', $beach['id']) }}'">Xem chi
+                                            tiết</button>
                                     </div>
                                 </div>
                             </div>

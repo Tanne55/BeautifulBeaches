@@ -18,10 +18,10 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-between fw-bold"
-                        href="{{ route('explore') }}" id="navDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        href="{{ route('explore') }}">
                         Bãi biển
-                        <i class="bi bi-caret-down-fill ms-1 dropdown-icon"></i>
+                        <i class="bi bi-caret-down-fill ms-1 dropdown-icon" id="navDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"></i>
                     </a>
                     <ul class="dropdown-menu border-top-red" aria-labelledby="navDropdown">
                         <li><a class="dropdown-item" href="{{ route('explore') }}?region=Northern%20Vietnam">Miền
@@ -79,7 +79,7 @@
 
                 <form action="{{ route('logout') }}" method="POST" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn btn-danger fw-bold">Logout</button>
+                    <button type="submit" class="btn btn-danger fw-bold">Đăng xuất</button>
                 </form>
             @else
                 <a href="{{ route('login') }}" class="btn btn-outline-danger fw-bold me-2">Đăng nhập</a>

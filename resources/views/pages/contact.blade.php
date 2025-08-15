@@ -20,15 +20,16 @@
         <div class="row">
             <!-- Left Section -->
             <div class="col-md-6">
-                <div class="d-flex align-items-center mb-4">
-                    <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                    <p class="text-danger fw-bold">CONTACT</p>
+                <div class="d-flex align-items-center">
+                    <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;" class="mb-3"></div>
+                    <p class="text-danger fw-bold">LIÊN HỆ</p>
                 </div>
-                <h1 class="fw-bold">GET IN TOUCH WITH US</br> FOR MORE INFORMATION</h1>
+                <h1 class="fw-bold">KẾT NỐI VỚI CHÚNG TÔI</br> ĐỂ BIẾT THÊM THÔNG TIN</h1>
                 <p class="text-muted small">
-                    We are always ready to listen and assist you in planning your perfect beach vacation.
-                    Contact us for detailed consultation about our beach tours and services.
+                    Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn lên kế hoạch cho kỳ nghỉ biển hoàn hảo.
+                    Hãy liên hệ để được tư vấn chi tiết về các tour biển và dịch vụ của chúng tôi.
                 </p>
+
 
                 @if(session('success'))
                     <div class="alert alert-success">
@@ -49,45 +50,44 @@
                 <form action="{{ route('support.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <input type="text" name="name" class="form-control" placeholder="Your Name*"
+                        <input type="text" name="name" class="form-control" placeholder="Tên..."
                             value="{{ old('name') }}" {{ Auth::check() ? 'readonly' : '' }}>
                     </div>
                     <div class="mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Your Email*"
+                        <input type="email" name="email" class="form-control" placeholder="Email..."
                             value="{{ old('email', Auth::user()->email ?? '') }}" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="phone" class="form-control" placeholder="Your Phone"
+                        <input type="text" name="phone" class="form-control" placeholder="Số điện thoại..."
                             value="{{ old('phone') }}">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="title" class="form-control" placeholder="Subject*"
+                        <input type="text" name="title" class="form-control" placeholder="Vấn đề "
                             value="{{ old('title') }}" required>
                     </div>
                     <div class="mb-3">
-                        <textarea name="message" class="form-control" rows="5" placeholder="Your Message*"
+                        <textarea name="message" class="form-control" rows="5" placeholder="Message..."
                             required>{{ old('message') }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger w-20">SUBMIT MESSAGE</button>
+                    <button type="submit" class="btn btn-danger w-20">Gửi Tin nhắn</button>
                 </form>
             </div>
 
             <!-- Right Section -->
             <div class="col-md-6 p-5">
-                <h5 class="fw-bold">Need assistance? Get in touch with us!</h5>
+                <h5 class="fw-bold">Cần hỗ trợ? Liên hệ ngay với chúng tôi!</h5>
                 <p class="text-muted small">
-                    Our support team is always ready to assist you</br>
-                    24/7 to ensure you have a perfect beach holiday.
+                    Đội ngũ hỗ trợ luôn sẵn sàng 24/7 để đảm bảo bạn có một kỳ nghỉ biển hoàn hảo.
                 </p>
                 <p class="text-muted small">
-                    We are committed to bringing you the best experiences</br>
-                    at the most beautiful beaches in Vietnam.
+                    Chúng tôi cam kết mang đến cho bạn những trải nghiệm tuyệt vời nhất tại các bãi biển đẹp nhất Việt Nam.
                 </p>
+
                 <div class="contact-info">
                     <div class="d-flex align-items-center mb-3">
                         <i class="bi bi-geo-alt-fill text-primary fs-4 me-3"></i>
                         <div>
-                            <h6 class="fw-bold">Address</h6>
+                            <h6 class="fw-bold">Địa chỉ</h6>
                             <p class="text-muted m-0"> 175 chuaboc, dongda , hanoi</p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <h6 class="fw-bold mt-4">Follow us on social media..</h6>
+                <h6 class="fw-bold mt-4">Theo dõi chúng tôi trên mạng xã hội..</h6>
                 <div class="social-icons">
                     <a href="#" class="text-danger me-3"><i class="bi bi-facebook fs-4"></i></a>
                     <a href="#" class="text-danger me-3"><i class="bi bi-twitter fs-4"></i></a>

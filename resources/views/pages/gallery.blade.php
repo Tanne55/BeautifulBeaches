@@ -8,8 +8,8 @@
 @section('title', 'Gallery')
 
 @section('content')
-    
-    
+
+
     <!-- Main content -->
     <section class="mt-5">
         <div class="floating-elements">
@@ -20,41 +20,44 @@
 
         <div class="gallery-container">
             <div class="hero-section">
-                <h1 class="hero-title">BEACH PARADISE</h1>
-                <p class="hero-subtitle">Discover the Paradise Beauty of the Sea</p>
+                <h1 class="hero-title">Vùng Biển Mơ Ước</h1>
+                <p class="hero-subtitle">Khám Phá Vẻ Đẹp Thiên Đường Của Biển</p>
                 <div class="hero-description">
-                    Join us on a journey through the most stunning beaches in the world. From romantic sunsets over the
-                    East Sea to the crystal-clear waters of tropical coasts, each photo tells its own story of nature's
-                    wondrous beauty.
+                    Hãy cùng chúng tôi dạo bước qua những bãi biển tuyệt đẹp nhất thế giới.
+                    Từ hoàng hôn lãng mạn trên Biển Đông đến làn nước trong vắt của các bờ biển nhiệt đới,
+                    mỗi khoảnh khắc đều kể một câu chuyện riêng về vẻ đẹp kỳ diệu của thiên nhiên.
                 </div>
-                <p class="hero-quote">The sea is the mirror of the sky, where the soul finds peace</p>
+                <p class="hero-quote">"Biển là tấm gương của bầu trời, nơi tâm hồn tìm thấy sự bình yên."</p>
                 <div class="hero-description">
-                    This collection is curated from the most beautiful beaches across 20 regions, offering you a
-                    breathtaking visual experience and inspiration for your next getaway.
+                    Bộ sưu tập này được tuyển chọn từ những bãi biển đẹp nhất tại 20 khu vực,
+                    mang đến cho bạn trải nghiệm thị giác ngoạn mục và nguồn cảm hứng cho kỳ nghỉ sắp tới.
                 </div>
             </div>
 
+
             <div class="filter-tabs">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="sunset">Sunset</button>
-                <button class="filter-btn" data-filter="tropical">Tropical</button>
-                <button class="filter-btn" data-filter="waves">Waves</button>
-                <button class="filter-btn" data-filter="paradise">Paradise</button>
+                <button class="filter-btn active" data-filter="all">Tất Cả</button>
+                <button class="filter-btn" data-filter="sunset">Hoàng Hôn</button>
+                <button class="filter-btn" data-filter="tropical">Nhiệt Đới</button>
+                <button class="filter-btn" data-filter="waves">Sóng Biển</button>
+                <button class="filter-btn" data-filter="paradise">Thiên Đường</button>
             </div>
+
 
             <div class="stats-section">
                 <div class="stat-item">
                     <span class="stat-number">500+</span>
-                    <span class="stat-label">High-quality photos</span>
+                    <span class="stat-label">Ảnh chất lượng cao</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">50+</span>
-                    <span class="stat-label">Beautiful beaches</span>
+                    <span class="stat-label">Bãi biển tuyệt đẹp</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">20+</span>
-                    <span class="stat-label">Countries</span>
+                    <span class="stat-label">Tỉnh thành</span>
                 </div>
+
             </div>
 
             <div class="gallery-grid" id="gallery">
@@ -103,7 +106,8 @@
         <!-- Modal -->
         <div id="imageModal" class="gallery-modal" style="z-index: 9999;">
             <div class="gallery-modal-content" style="position: relative; z-index: 10000;">
-                <span class="gallery-close" style="position: absolute; top: 15px; right: 25px; z-index: 10001; color: white; font-size: 35px; font-weight: bold; cursor: pointer;">&times;</span>
+                <span class="gallery-close"
+                    style="position: absolute; top: 15px; right: 25px; z-index: 10001; color: white; font-size: 35px; font-weight: bold; cursor: pointer;">&times;</span>
                 <img id="modalImage" src="" alt="" style="max-width: 100%; max-height: 90vh; object-fit: contain;">
             </div>
         </div>

@@ -114,15 +114,16 @@
             <div class="row g-4 mx-5">
                 @foreach ($beaches->slice(0, 2) as $beach)
                     <div class="col-sm-3">
-                        <a href="{{ route('beaches.show', $beach['id']) }}" class="text-decoration-none text-white d-block h-100">
+                        <a href="{{ route('beaches.show', $beach['id']) }}"
+                            class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden destination-card"
                                 style="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-image: url('{{$beach['image']}}');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-size: cover;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-position: left;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   height: 500px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-image: url('{{$beach['image']}}');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   background-position: left;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   height: 500px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ">
                                 <!-- Lớp overlay làm tối nền -->
                                 <div class="position-absolute top-0 start-0 w-100 h-100"
                                     style="background: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
@@ -147,13 +148,14 @@
                 @endforeach
                 <div class="col-6 d-flex flex-column" style="height: 500px; gap: 20px;">
                     @foreach ($beaches->slice(2, 2) as $beach)
-                        <a href="{{ route('beaches.show', $beach['id']) }}" class="text-decoration-none text-white d-block h-100">
+                        <a href="{{ route('beaches.show', $beach['id']) }}"
+                            class="text-decoration-none text-white d-block h-100">
                             <div class="position-relative rounded overflow-hidden shadow-lg flex-fill destination-card"
                                 style="
-                                                                                                                                                                                                                                                                                                                                                                                background-image: url('{{ $beach['image'] }}');
-                                                                                                                                                                                                                                                                                                                                                                                background-size: cover;
-                                                                                                                                                                                                                                                                                                                                                                                background-position: center;
-                                                                                                                                                                                                                                                                                                                                                                                height: 240px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-image: url('{{ $beach['image'] }}');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                background-position: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                height: 240px;">
                                 <!-- thêm height nếu cần cố định -->
 
                                 <!-- Overlay -->
@@ -205,117 +207,53 @@
             </div>
 
             <div class="card-container">
-                <div class="card m-2">
-                    <div class="card-image" style="background-image: url('/assets/image/11.jpg');">
-                        <div class="price-tag">$95.00 <span>/ mỗi người</span></div>
-                        <div class="card-meta">
-                            <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 40</span>
-                            <span><i class="bi bi-geo-alt"></i> Đà Nẵng</span>
-                        </div>
-                    </div>
-                    <div class="card-info mt-4">
-
-                        <h3 class="card-title"><a href="#" class="card-title">Khám Phá Vẻ Đẹp Nguyên Sơ Của Bãi Biển Mỹ
-                                Khê</a>
-                        </h3>
-                        <div class="card-reviews">
-                            <span>(18 đánh giá)</span>
-                            <div class="stars">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-half text-warning"></i>
-                                <i class="bi bi-star text-muted"></i>
+                @forelse ($tours as $tour)
+                    <div class="card m-4">
+                        <div class="card-image"
+                            style="background-image: url('{{ $tour['image'] ? asset($tour['image']) : asset('/assets/image/11.jpg') }}');">
+                            <div class="price-tag">{{ number_format($tour['current_price'], 0, ',', '.') }} VNĐ <span>/ mỗi
+                                    người</span></div>
+                            <div class="card-meta">
+                                <span><i class="bi bi-calendar"></i>
+                                    {{ $tour['duration_days'] }}N</span>
+                                <span><i class="bi bi-people"></i> Số người: {{ $tour['max_people'] ?: 'N/A' }}</span> <span><i
+                                        class="bi bi-geo-alt"></i> {{ $tour['beach_region'] }}</span>
                             </div>
                         </div>
-                        <p class="card-description">
-                            Bãi biển Mỹ Khê là một trong những bãi biển đẹp nhất Việt Nam với cát trắng mịn, nước biển xanh
-                            trong vắt,
-                            và không khí trong lành.
-                        </p>
-                        <div class="card-actions d-flex justify-content-center">
-                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
-                                Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="card m-2">
-                    <div class="card-image" style="background-image: url('/assets/image/25.jpg');">
-                        <div class="price-tag">$299.0 <span>/ mỗi người</span></div>
-                        <div class="card-meta">
-                            <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 40</span>
-                            <span><i class="bi bi-geo-alt"></i> Nha Trang</span>
-                        </div>
-                    </div>
-                    <div class="card-info mt-4">
-
-                        <h3 class="card-title"><a href="#" class="card-title">Hoàng Hôn Tuyệt Vời Tại Bãi Biển Nha
-                                Trang</a></h3>
-                        <div class="card-reviews">
-                            <span>(25 đánh giá)</span>
-                            <div class="stars">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-half text-warning"></i>
-                                <i class="bi bi-star text-muted"></i>
+                        <div class="card-info mt-4">
+                            <h3 class="card-title">
+                                <a href="{{ route('tour.show', $tour['id']) }}" class="card-title">{{ $tour['title'] }}</a>
+                            </h3>
+                            <div class="card-reviews">
+                                <span style="margin-bottom: 5px;">({{ $tour['total_reviews'] }} đánh giá)</span>
+                                <div class="stars">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= floor($tour['average_rating']))
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                        @elseif ($i - 0.5 <= $tour['average_rating'])
+                                            <i class="bi bi-star-half text-warning"></i>
+                                        @else
+                                            <i class="bi bi-star text-muted"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                {{ $tour['short_description'] ?: 'Khám phá vẻ đẹp tuyệt vời của bãi biển với tour được thiết kế hoàn hảo cho chuyến đi của bạn.' }}
+                            </p>
+                            <div class="card-actions d-flex justify-content-center">
+                                <a href="{{ route('tour.booking.form', $tour['id']) }}" class="btn custom-btn fw-bold ">
+                                    Đặt Ngay
+                                    <i class="bi bi-arrow-right ms-2 icon-red"></i>
+                                </a>
                             </div>
                         </div>
-                        <p class="card-description">
-                            Bãi biển Nha Trang mang đến khung cảnh tuyệt vời, sóng nhẹ nhàng và không khí yên bình,
-                            hoàn hảo cho một chuyến thoát khỏi bên bờ biển.
-                        </p>
-                        <div class="card-actions d-flex justify-content-center">
-                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
-                                Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
-                            </a>
-                        </div>
-
                     </div>
-                </div>
-                <div class="card m-2">
-                    <div class="card-image" style="background-image: url('/assets/image/21.jpg');">
-                        <div class="price-tag">$95.00<span>/ mỗi người</span></div>
-                        <div class="card-meta">
-                            <span><i class="bi bi-calendar"></i> 7N/6Đ</span>
-                            <span><i class="bi bi-people"></i> Số người: 40</span>
-                            <span><i class="bi bi-geo-alt"></i> Phú Quốc</span>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Chưa có tour nào được đăng.</p>
                     </div>
-                    <div class="card-info mt-4">
-
-                        <h3 class="card-title"><a href="#" class="card-title">Khám Phá Sự Yên Bình Của Bãi Biển Phú Quốc</a>
-                        </h3>
-                        <div class="card-reviews">
-                            <span>(25 đánh giá)</span>
-                            <div class="stars">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-half text-warning"></i>
-                                <i class="bi bi-star text-muted"></i>
-                            </div>
-                        </div>
-                        <p class="card-description">
-                            Bãi biển Phú Quốc mang đến khung cảnh tuyệt vời, sóng nhẹ nhàng và không khí yên bình, làm cho
-                            nó hoàn hảo
-                            cho một chuyến thoát khỏi bên bờ biển.
-                        </p>
-                        <div class="card-actions d-flex justify-content-center">
-                            <a href="{{route('tour')}}" class="btn custom-btn fw-bold d-flex align-items-center">
-                                Đặt Ngay
-                                <i class="bi bi-arrow-right ms-2 icon-red"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
+                @endforelse
             </div>
 
             <div class="text-center mt-4">
@@ -329,21 +267,21 @@
     <!-- Quảng cáo giữa trang Home -->
     <div
         style="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-size: cover;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-position: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 60px 20px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: relative;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color: white;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-image: url('https://th.bing.com/th/id/R.a1c253924f0b8c174d1b69ad0f1dad1e?rik=fuiE9k6pEIFZGQ&pid=ImgRaw&r=0');
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-size: cover;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-position: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 60px 20px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: relative;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color: white;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
         <!-- Lớp phủ tối để dễ đọc chữ -->
         <div
             style="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: absolute;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    top: 0; left: 0; right: 0; bottom: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: rgba(0, 0, 0, 0.5);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    z-index: 1;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: absolute;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    top: 0; left: 0; right: 0; bottom: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background-color: rgba(0, 0, 0, 0.5);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    z-index: 1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ">
         </div>
 
         <!-- Nội dung quảng cáo -->
@@ -435,46 +373,57 @@
             <div class="text-center mb-5">
                 <div class="d-flex align-items-center mb-4 justify-content-center">
                     <div style="width: 60px; height: 2px; background-color: red; margin-right: 10px;"></div>
-                    <p class="text-danger fw-bold m-0">TỪ BLOG CỦA CHÚNG TÔI</p>
+                    <p class="text-danger fw-bold m-0">TIN TỨC & SỰ KIỆN</p>
                 </div>
-                <h2 class="fw-bold">BÀI VIẾT MỚI NHẤT</h2>
+                <h2 class="fw-bold">CẬP NHẬT MỚI NHẤT</h2>
                 <p class="text-muted">
-                    Khám phá những câu chuyện mới nhất về chuyến thoát khỏi vùng nhiệt đới, những cuộc phiêu lưu bên bờ
-                    biển, và những mẹo du lịch cho
-                    chuyến nghỉ dưỡng ven biển tiếp theo của bạn.
+                    Theo dõi những tin tức, sự kiện và chương trình khuyến mãi mới nhất
+                    từ chúng tôi để không bỏ lỡ cơ hội trải nghiệm tuyệt vời.
                 </p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm">
-                        <img src="/assets/img2/phu-quoc.webp" class="card-img-top" alt="Cuộc phiêu lưu bãi biển">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Cuộc sống tươi đẹp hơn ở bãi biển</h5>
-                            <p class="card-text text-muted">Khám phá tại sao bãi biển là điểm đến tuyệt vời nhất cho
-                                thư giãn và phiêu lưu.</p>
-                            <p class="text-muted small">Bởi Nhóm Bãi Biển | 20 tháng 5, 2025 | Không có bình luận</p>
+                    <div class="text-center p-3">
+                        <div class="bg-light rounded p-4 mb-3 shadow-lg">
+                            <i class="fas fa-calendar-alt text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h5 class="fw-bold text-dark">Lễ Hội Biển 2025</h5>
+                            <p class="text-muted mb-3">15-17 Tháng 9</p>
+                            <p class="text-muted small">
+                                Tham gia lễ hội biển sôi động với các hoạt động văn hóa đa dạng,
+                                biểu diễn âm nhạc sống động và ẩm thực đặc sắc bên bờ biển.
+                                Có gian hàng thủ công mỹ nghệ, trò chơi dân gian và pháo hoa
+                                rực rỡ vào tối chủ nhật. Miễn phí tham gia cho tất cả du khách.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm">
-                        <img src="/assets/img2/phong-nha.jpg" class="card-img-top" alt="Tầm nhìn đại dương">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Top 5 bãi biển nên ghé thăm mùa hè này</h5>
-                            <p class="card-text text-muted">Khám phá những bãi biển tuyệt đẹp nhất để thêm vào danh sách
-                                du lịch của bạn.</p>
-                            <p class="text-muted small">Bởi Nhóm Bãi Biển | 18 tháng 5, 2025 | Không có bình luận</p>
+                    <div class="text-center p-3">
+                        <div class="bg-light rounded p-4 mb-3 shadow-lg">
+                            <i class="fas fa-percent text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h5 class="fw-bold text-dark">Khuyến Mãi Mùa Hè</h5>
+                            <p class="text-muted mb-3">Giảm đến 30%</p>
+                            <p class="text-muted small">
+                                Đặt tour và dịch vụ trong tháng 8 để nhận ưu đãi đặc biệt
+                                lên đến 30% giá trị. Áp dụng cho nhóm từ 4 người trở lên,
+                                bao gồm dịch vụ lặn biển, tour khám phá đảo và thuê dụng cụ
+                                thể thao nước. Thanh toán online nhận thêm 5% khuyến mãi.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm">
-                        <img src="/assets/img2/nha-trang.jpg" class="card-img-top" alt="Thiên đường nhiệt đới">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Mẹo chuẩn bị hành lý cho kỳ nghỉ biển</h5>
-                            <p class="card-text text-muted">Học cách chuẩn bị hành lý thông minh cho chuyến thoát khỏi vùng
-                                nhiệt đới tiếp theo.</p>
-                            <p class="text-muted small">Bởi Nhóm Bãi Biển | 15 tháng 5, 2025 | Không có bình luận</p>
+                    <div class="text-center p-3">
+                        <div class="bg-light rounded p-4 mb-3 shadow-lg">
+                            <i class="fas fa-award text-primary mb-3" style="font-size: 2.5rem;"></i>
+                            <h5 class="fw-bold text-dark">Giải Thưởng Du Lịch</h5>
+                            <p class="text-muted mb-3">Top 10 Bãi Biển</p>
+                            <p class="text-muted small">
+                                Vinh dự được bình chọn vào Top 10 bãi biển đẹp nhất
+                                Việt Nam năm 2025 bởi Travel Awards Vietnam. Đây là
+                                năm thứ 3 liên tiếp chúng tôi nhận được danh hiệu này
+                                nhờ chất lượng dịch vụ xuất sắc và cảnh quan thiên nhiên tuyệt đẹp.
+                            </p>
                         </div>
                     </div>
                 </div>

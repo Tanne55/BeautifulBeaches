@@ -104,12 +104,12 @@
                                     @endphp
                                     @if($price)
                                         @if($price->discount && $price->discount > 0)
-                                            <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }} đ</span>
+                                            <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }} tr vnđ</span>
                                             <small class="text-decoration-line-through text-muted">
-                                                {{ number_format($price->price, 0, ',', '.') }} đ
+                                                {{ number_format($price->price, 0, ',', '.') }} tr vnđ
                                             </small>
                                         @else
-                                            <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} đ</span>
+                                            <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} tr vnđ</span>
                                         @endif
                                     @else
                                         <span class="text-danger fw-bold">Liên hệ</span>

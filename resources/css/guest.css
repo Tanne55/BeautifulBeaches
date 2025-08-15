@@ -10,6 +10,8 @@
 @import './tour.css';
 @import './tourdetail.css';
 @import './queries.css';
+@import './user.css';
+@import './booking_result.css';
 
 /* Custom CSS ở đây nếu muốn */
 body {
@@ -20,7 +22,6 @@ body {
   padding-left: 30px;
   padding-right: 30px;
 }
-
 
 /* --------------------------------------------------------------------------------------- */
 /* css phần media */
@@ -187,7 +188,7 @@ nav.navbar {
   color: rgba(255, 255, 255, 0.6) !important;
 }
 
-.footer-subscribe-form .form-control {
+.footer-booking-form .form-control {
   border-radius: 4px;
   /* Bo tròn input */
   border: none;
@@ -195,9 +196,8 @@ nav.navbar {
   font-size: 0.9rem;
 }
 
-.footer-subscribe-form .btn-subscribe {
+.footer-booking-form .btn-subscribe {
   background-color: #e84133;
-  /* Màu nút subscribe */
   border-color: #e84133;
   color: #fff;
   font-weight: bold;
@@ -205,10 +205,10 @@ nav.navbar {
   transition: background-color 0.3s ease;
 }
 
-.footer-subscribe-form .btn-subscribe:hover {
-  background-color: #c83125;
+.footer-booking-form .btn-subscribe:hover {
+  background-color: #c83125 !important;
   /* Màu hover nút subscribe */
-  border-color: #c83125;
+  border-color: #c83125 !important;
 }
 
 .btn-link:hover {

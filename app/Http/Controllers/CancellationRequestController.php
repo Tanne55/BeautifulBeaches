@@ -66,7 +66,9 @@ class CancellationRequestController extends Controller
             'reason' => $validated['reason'] ?? null,
             'status' => 'pending',
         ]);
-        return redirect('user/history')->with('success', 'Yêu cầu hủy đã được gửi.');
+        return redirect('user/history')->with('success', 'Yêu cầu hủy đã được gửi.Đã gửi thông tin hủy
+                cho CEO trực thuộc, vui lòng chờ
+                duyệt.');
     }
 
     // ceo duyệt/từ chối yêu cầu
@@ -103,7 +105,8 @@ class CancellationRequestController extends Controller
                     // Hủy số vé tương ứng
                     $cancelCount = $cancellation->cancelled_slots;
                     foreach ($tickets as $ticket) {
-                        if ($cancelCount <= 0) break;
+                        if ($cancelCount <= 0)
+                            break;
                         $ticket->status = 'cancelled';
                         $ticket->save();
                         $cancelCount--;

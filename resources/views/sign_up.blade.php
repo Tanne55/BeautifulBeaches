@@ -5,14 +5,15 @@
         <div class="col-md-6 d-flex justify-content-center">
             <div class="card shadow-sm w-75">
                 <div class="card-body p-4">
-                    <h2 class="text-center mb-4">Create your account</h2>
-                    <p class="text-center text-muted mb-4">Join Beautiful Beaches today</p>
+                    <h2 class="text-center mb-4">Tạo tài khoản của bạn</h2>
+                    <p class="text-center text-muted mb-4">Tham gia Beautiful Beaches ngay hôm nay</p>
+
 
                     <form action="{{ route('register') }}" method="POST" class="w-100">
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
+                            <label for="name" class="form-label">Tên đầy đủ</label>
                             <input id="name" name="name" type="text"
                                 class="form-control @error('name') is-invalid @enderror" required value="{{ old('name') }}">
                             @error('name')
@@ -21,7 +22,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                            <label for="email" class="form-label">Email</label>
                             <input id="email" name="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" required autocomplete="email"
                                 value="{{ old('email') }}">
@@ -31,7 +32,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Mật khẩu</label>
                             <input id="password" name="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" required
                                 autocomplete="new-password">
@@ -41,7 +42,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <label for="password_confirmation" class="form-label">Xác nhận Mật khẩu</label>
                             <input id="password_confirmation" name="password_confirmation" type="password"
                                 class="form-control" required autocomplete="new-password">
                         </div>
@@ -49,13 +50,13 @@
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">
-                                Sign up
+                                Đăng kí
                             </button>
                         </div>
 
                         <div class="text-center mt-3">
                             <a href="{{ route('login') }}" class="text-decoration-none">
-                                Already have an account? Log in
+                                Đã có tài khoản? Đăng nhập!
                             </a>
                         </div>
                     </form>
