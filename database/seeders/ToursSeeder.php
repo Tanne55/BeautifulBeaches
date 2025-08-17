@@ -55,7 +55,7 @@ class ToursSeeder extends Seeder
                 // Insert vào bảng tour_details
                 DB::table('tour_details')->insert([
                     'tour_id' => $tourId,
-                    'departure_time' => $tour['departure_time'],
+                    'departure_dates' => json_encode($tour['departure_dates']),
                     'return_time' => $tour['return_time'],
                     'included_services' => json_encode($tour['included_services']),
                     'excluded_services' => json_encode($tour['excluded_services']),

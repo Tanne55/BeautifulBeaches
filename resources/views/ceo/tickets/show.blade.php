@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="mb-3"><i class="fas fa-ticket-alt me-2 text-primary"></i>Ticket Details</h3>
-                <a href="{{ route('ceo.tickets.index', ['open_booking' => $ticket->tour_booking_id]) }}"
+                <a href="{{ route('ceo.bookings.index', ['open_booking' => $ticket->tour_booking_id]) }}"
                     class="btn btn-outline-secondary btn-sm mb-3">
                     <i class="fas fa-arrow-left me-1"></i>Back
                 </a>
@@ -25,6 +25,7 @@
                                 <li><strong>ID:</strong> {{ $ticket->id }}</li>
                                 <li><strong>Code:</strong> <span
                                         class="badge bg-secondary fs-6">{{ $ticket->ticket_code }}</span></li>
+                                <li><strong>Unit Price:</strong> ₫{{ number_format($ticket->unit_price ?? 0) }}</li>
                                 <li><strong>Status:</strong>
                                     @if($ticket->status === 'valid')
                                         <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Valid</span>
@@ -59,8 +60,7 @@
                                 <h5 class="mb-3 text-primary"><i class="fas fa-umbrella-beach me-1"></i>Tour Info</h5>
                                 <ul class="list-unstyled mb-0">
                                     <li><strong>Title:</strong> <span
-                                            class="text-primary">{{ $ticket->tourBooking->tour->title }}</span></li>
-                                    <li><strong>Price:</strong> ₫{{ number_format($ticket->tourBooking->tour->price ?? 0) }}
+                                            class="text-primary">{{ $ticket->tourBooking->tour->title }}</span>
                                     </li>
                                     <li><strong>Booking Date:</strong> {{ $ticket->tourBooking->booking_date ?? 'N/A' }}</li>
                                     <li><strong>People:</strong> {{ $ticket->tourBooking->number_of_people ?? 'N/A' }}</li>

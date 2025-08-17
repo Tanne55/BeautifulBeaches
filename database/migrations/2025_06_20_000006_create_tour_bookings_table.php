@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable();
             $table->foreignId('tour_id');
             $table->date('booking_date');
+            $table->date('selected_departure_date');
             
             // Add foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

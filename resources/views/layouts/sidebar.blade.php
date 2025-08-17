@@ -102,7 +102,6 @@
                                 <a href="{{ route('ceo.bookings.index') }}" class="dropdown-item">Đơn đặt tour</a>
                                 <a href="{{ route('ceo.tours.index') }}" class="dropdown-item">Quản lý tour</a>
                                 <a href="{{route('ceo.reports.index')}}" class="dropdown-item">Thống kê báo cáo</a>
-                                <a href="{{route('ceo.tickets.index')}}" class="dropdown-item">Quản lý vé</a>
                             </div>
                         </div>
                         </li>

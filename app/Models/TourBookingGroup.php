@@ -29,11 +29,13 @@ class TourBookingGroup extends Model
         'total_people',
         'booking_ids',
         'total_amount',
+        'selected_departure_date',
     ];
 
     protected $casts = [
         'booking_ids' => 'array',
         'total_amount' => 'float',
+        'selected_departure_date' => 'date',
     ];
 
     public function tour()
@@ -54,23 +56,26 @@ class TourBookingGroup extends Model
             ->where('id', '0'); // Trả về empty relation để tránh lỗi
     }
 
-    public function getBookingsAttribute()
+    public function getBookingListAttribute()
     {
         $ids = Arr::flatten($this->booking_ids ?? []);
+        if (empty($ids)) {
+            return collect(); // Trả về empty collection
+        }
         return TourBooking::whereIn('id', $ids)->get();
     }
 
     public function getTotalTicketsAttribute()
     {
-        // Sử dụng phương thức getBookings để đảm bảo không lỗi nested array
-        return $this->getBookingsAttribute()->sum(function ($booking) {
+        // Sử dụng booking_list thay vì bookings để tránh conflict
+        return $this->booking_list->sum(function ($booking) {
             return $booking->tickets()->count();
         });
     }
 
     public function getTotalAmountAttribute()
     {
-        // Sử dụng phương thức getBookings để đảm bảo không lỗi nested array
-        return $this->getBookingsAttribute()->sum('total_amount');
+        // Sử dụng booking_list thay vì bookings để tránh conflict  
+        return $this->booking_list->sum('total_amount');
     }
 } 

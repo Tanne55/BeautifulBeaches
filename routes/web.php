@@ -191,7 +191,7 @@ Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
 
 Route::get('/tour/{id}', function ($id) {
-    $tour = Tour::with(['beach.detail', 'detail'])->findOrFail($id);
+    $tour = Tour::with(['beach.detail', 'beach.region', 'detail', 'prices', 'ceo'])->findOrFail($id);
     $image_url = null;
     if ($tour->image) {
         $image_url = asset($tour->image);

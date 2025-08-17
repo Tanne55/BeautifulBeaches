@@ -5,6 +5,10 @@
 
 @extends($layout)
 
+@section('head')
+    @vite('resources/css/calendar.css')
+@endsection
+
 @section('content')
     <div class="container my-5 container-custom">
         <h2 class="mb-4 text-center fw-bold">{{ $tour->title }}</h2>
@@ -80,20 +84,42 @@
                             </td>
                         </tr>
                         @if($tour->detail)
-                            <tr>
-                                <th>Giờ khởi hành</th>
-                                <td>{{ $tour->detail->departure_time }}</td>
-                            </tr>
+                            @if($tour->detail->departure_dates)
+                                <tr>
+                                    <th>Ngày khởi hành</th>
+                                    <td>
+                                        <div class="departure-dates-tags">
+                                            @foreach($tour->detail->departure_dates as $departureDate)
+                                                @php
+                                                    $date = \Carbon\Carbon::parse($departureDate);
+                                                    $isPast = $date->isPast();
+                                                @endphp
+                                                <span class="badge {{ $isPast ? 'bg-secondary' : 'bg-primary' }} me-1 mb-1">
+                                                    <i class="bi bi-calendar-event me-1"></i>
+                                                    {{ $date->format('d/m/Y') }}
+                                                    @if($isPast)
+                                                        <small>(Đã qua)</small>
+                                                    @endif
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                        <small class="text-muted d-block mt-2">
+                                            <i class="bi bi-info-circle me-1"></i>
+                                            Có {{ count($tour->detail->departure_dates) }} ngày khởi hành khả dụ
+                                        </small>
+                                    </td>
+                                </tr>
+                            @endif
                             <tr>
                                 <th>Giờ trở về</th>
-                                <td>{{ $tour->detail->return_time }}</td>
+                                <td>{{ \Carbon\Carbon::parse($tour->detail->return_time)->format('d/m/Y H:i') }}</td>
                             </tr>
                             @if($tour->detail->included_services)
                                 <tr>
                                     <th>Dịch vụ bao gồm</th>
                                     <td>
                                         <ul class="mb-0">
-                                            @foreach(json_decode($tour->detail->included_services, true) ?? [] as $service)
+                                            @foreach($tour->detail->included_services ?? [] as $service)
                                                 <li>{{ $service }}</li>
                                             @endforeach
                                         </ul>
@@ -105,7 +131,7 @@
                                     <th>Không bao gồm</th>
                                     <td>
                                         <ul class="mb-0">
-                                            @foreach(json_decode($tour->detail->excluded_services, true) ?? [] as $service)
+                                            @foreach($tour->detail->excluded_services ?? [] as $service)
                                                 <li>{{ $service }}</li>
                                             @endforeach
                                         </ul>
@@ -117,7 +143,7 @@
                                     <th>Điểm nổi bật</th>
                                     <td>
                                         <ul class="mb-0">
-                                            @foreach(json_decode($tour->detail->highlights, true) ?? [] as $highlight)
+                                            @foreach($tour->detail->highlights ?? [] as $highlight)
                                                 <li>{{ $highlight }}</li>
                                             @endforeach
                                         </ul>
@@ -134,8 +160,14 @@
                 </table>
                 {{-- NÚT ĐẶT TOUR --}}
                 <div class="mb-4">
-                    <a href="{{ route('tour.booking.form', $tour->id) }}" class="btn btn-success btn-lg w-100 mb-3">Đặt tour
-                        ngay</a>
+                    <a href="{{ route('tour.booking.form', $tour->id) }}" 
+                       class="btn btn-success btn-lg w-100 mb-3">
+                        <i class="bi bi-calendar-plus me-2"></i>Đặt tour ngay
+                    </a>
+                    <small class="text-muted d-block text-center">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Bạn sẽ chọn ngày khởi hành cụ thể ở trang tiếp theo
+                    </small>
                 </div>
             </div>
         </div>

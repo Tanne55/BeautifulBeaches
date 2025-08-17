@@ -75,6 +75,30 @@ class Tour extends Model
         return $inventory ? $inventory->available_slots - $totalBooked : 0;
     }
 
+    /**
+     * Get available departure dates for this tour
+     */
+    public function getAvailableDepartureDatesAttribute()
+    {
+        return $this->detail ? $this->detail->available_dates : [];
+    }
+
+    /**
+     * Check if tour has departure on specific date
+     */
+    public function hasDateAvailable($date)
+    {
+        return $this->detail ? $this->detail->isDateAvailable($date) : false;
+    }
+
+    /**
+     * Get departure time for specific date
+     */
+    public function getDepartureTimeForDate($date)
+    {
+        return $this->detail ? $this->detail->getDepartureTimeForDate($date) : null;
+    }
+
     public function getAverageRatingAttribute()
     {
         return $this->reviews()->avg('rating') ?? 0;

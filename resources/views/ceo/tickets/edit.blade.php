@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12 col-lg-8 col-xl-6 mx-auto">
                 <h3 class="mb-3"><i class="fas fa-edit me-2 text-primary"></i>Edit Ticket</h3>
-                <a href="{{ route('ceo.tickets.index') }}" class="btn btn-outline-secondary btn-sm mb-3">
+                <a href="{{ route('ceo.bookings.index') }}" class="btn btn-outline-secondary btn-sm mb-3">
                     <i class="fas fa-arrow-left me-1"></i>Back
                 </a>
                 @if($errors->any())
@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex gap-2 mt-4">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i>Save</button>
-                        <a href="{{ route('ceo.tickets.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                        <a href="{{ route('ceo.bookings.index') }}" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                 </form>
             </div>

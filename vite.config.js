@@ -5,9 +5,11 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
+                'resources/css/calendar.css',
                 'resources/js/guest.js',
-                'resources/js/auth.js'
+                'resources/js/auth.js',
+                'resources/js/booking-calendar.js',
+                'resources/js/tourdetail.js'
             ],
             refresh: true,
         }),

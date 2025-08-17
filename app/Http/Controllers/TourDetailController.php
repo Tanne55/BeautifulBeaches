@@ -21,7 +21,8 @@ class TourDetailController extends Controller
     {
         $data = $request->validate([
             'tour_id' => 'required|exists:tours,id',
-            'departure_time' => 'nullable',
+            'departure_dates' => 'nullable|array',
+            'departure_dates.*' => 'nullable|date',
             'return_time' => 'nullable',
             'included_services' => 'nullable',
             'excluded_services' => 'nullable',

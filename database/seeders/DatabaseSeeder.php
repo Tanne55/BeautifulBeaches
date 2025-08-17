@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             BeachesSeeder::class,
             ToursSeeder::class,
             TourBookingSeeder::class,
+            TourBookingGroupSeeder::class,
             TicketSeeder::class,
             ReviewBeachSeeder::class,
             ReviewTourSeeder::class,

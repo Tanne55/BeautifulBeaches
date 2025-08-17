@@ -64,7 +64,7 @@
                                         <div class="text-center">
                                             <div class="status-badge status-{{ $statusClass }}">
                                             
-                                                {{!! $statusIcon !!}}
+                                                {{ $statusIcon }}
                                                 {{ $statusText }}
                                             </div>
                                         </div>

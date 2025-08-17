@@ -10,6 +10,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('tour_id')->constrained('tours')->onDelete('cascade');
             $table->string('group_code', 50)->unique();
+            $table->date('selected_departure_date');
             $table->integer('total_people');
             $table->decimal('total_amount', 10, 2)->default(0);
             $table->json('booking_ids');

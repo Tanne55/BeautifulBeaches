@@ -10,15 +10,6 @@ class TourBooking extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function isPastTour()
-    {
-        if (!$this->tour || !$this->tour->detail || !$this->tour->detail->departure_time) {
-            return false;
-        }
-        return now()->gt($this->tour->detail->departure_time);
-    }
-    use HasFactory, SoftDeletes;
-
     protected $fillable = [
         'user_id',
         'tour_id',
@@ -26,6 +17,7 @@ class TourBooking extends Model
         'contact_phone',
         'contact_email',
         'booking_date',
+        'selected_departure_date',
         'number_of_people',
         'status',
         'note',
@@ -35,7 +27,8 @@ class TourBooking extends Model
 
     protected $casts = [
         'booking_date' => 'date',
-        'total_amount' => 'float',
+        'selected_departure_date' => 'date',
+        'total_amount' => 'decimal:2',
     ];
 
     public function tour()
@@ -63,6 +56,47 @@ class TourBooking extends Model
         return $this->hasMany(PromotionUsage::class);
     }
 
+    public function cancellationRequests()
+    {
+        return $this->hasMany(CancellationRequest::class, 'booking_id');
+    }
+
+    public function isPastTour()
+    {
+        if (!$this->selected_departure_date) {
+            return false;
+        }
+        return now()->gt($this->selected_departure_date);
+    }
+
+    public function isUpcoming()
+    {
+        if (!$this->selected_departure_date) {
+            return false;
+        }
+        return now()->lt($this->selected_departure_date);
+    }
+
+    public function canBeCancelled()
+    {
+        // Có thể hủy nếu status cho phép và chưa quá ngày khởi hành
+        $allowedStatuses = ['pending', 'confirmed'];
+        $isStatusValid = in_array($this->status, $allowedStatuses);
+        $isNotPast = $this->isUpcoming();
+        
+        return $isStatusValid && $isNotPast;
+    }
+
+    public function getRemainingDaysAttribute()
+    {
+        if (!$this->selected_departure_date) {
+            return null;
+        }
+        
+        $days = now()->diffInDays($this->selected_departure_date, false);
+        return $days > 0 ? $days : 0;
+    }
+
     public function getStatusTextAttribute()
     {
         return match($this->status) {
@@ -87,11 +121,6 @@ class TourBooking extends Model
         };
     }
 
-    public function canBeCancelled()
-    {
-        return in_array($this->status, ['pending', 'confirmed']);
-    }
-
     public function getTotalAmountAttribute()
     {
         // Nếu đã có giá trị trong DB thì ưu tiên lấy
@@ -106,10 +135,5 @@ class TourBooking extends Model
             ->first();
         $basePrice = $price ? $price->price : 0;
         return $basePrice * $this->number_of_people;
-    }
-
-    public function cancellationRequests()
-    {
-        return $this->hasMany(CancellationRequest::class, 'booking_id');
     }
 }

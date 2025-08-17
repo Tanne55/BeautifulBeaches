@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\Beach;
+use App\Models\TourBooking;
 use Illuminate\Support\Facades\Auth;
 
 class TourController extends Controller
@@ -17,12 +18,22 @@ class TourController extends Controller
             $query->where('ceo_id', $user->id);
         }
         
-        // Cập nhật trạng thái 'outdated' nếu departure_time đã qua
+        // Cập nhật trạng thái 'cancelled' nếu tất cả departure_dates đã qua
         $toursToUpdate = $query->get();
         foreach ($toursToUpdate as $tour) {
-            if ($tour->detail && $tour->detail->departure_time && now()->gt($tour->detail->departure_time) && $tour->status !== 'outdated') {
-                $tour->status = 'cancelled';
-                $tour->save();
+            if ($tour->detail && $tour->detail->departure_dates && $tour->status !== 'cancelled') {
+                $allDatesExpired = true;
+                foreach ($tour->detail->departure_dates as $departureDate) {
+                    if (now()->lt(\Carbon\Carbon::parse($departureDate))) {
+                        $allDatesExpired = false;
+                        break;
+                    }
+                }
+                
+                if ($allDatesExpired) {
+                    $tour->status = 'cancelled';
+                    $tour->save();
+                }
             }
         }
         
@@ -57,8 +68,9 @@ class TourController extends Controller
             'capacity' => 'required|integer',
             'duration_days' => 'required|integer|min:1',
             'status' => 'required|in:pending,confirmed,cancelled',
-            'departure_time' => 'required',
-            'return_time' => 'required',
+            'departure_dates' => 'required|array|min:1',
+            'departure_dates.*' => 'required|date',
+            'return_time' => 'required|date',
             'included_services' => 'nullable',
             'excluded_services' => 'nullable',
             'highlights' => 'nullable',
@@ -83,11 +95,11 @@ class TourController extends Controller
             'discount' => $validated['discount'] ?? null,
         ]);
         $tour->detail()->create([
-            'departure_time' => $validated['departure_time'],
+            'departure_dates' => $validated['departure_dates'],
             'return_time' => $validated['return_time'],
-            'included_services' => $request->filled('included_services') ? json_encode(preg_split('/\r?\n/', $validated['included_services'])) : null,
-            'excluded_services' => $request->filled('excluded_services') ? json_encode(preg_split('/\r?\n/', $validated['excluded_services'])) : null,
-            'highlights' => $request->filled('highlights') ? json_encode(preg_split('/\r?\n/', $validated['highlights'])) : null,
+            'included_services' => $request->filled('included_services') ? preg_split('/\r?\n/', $validated['included_services']) : [],
+            'excluded_services' => $request->filled('excluded_services') ? preg_split('/\r?\n/', $validated['excluded_services']) : [],
+            'highlights' => $request->filled('highlights') ? preg_split('/\r?\n/', $validated['highlights']) : [],
         ]);
         return redirect()->route('ceo.tours.index')->with('success', 'Thêm tour thành công!');
     }
@@ -111,8 +123,9 @@ class TourController extends Controller
             'capacity' => 'required|integer',
             'duration_days' => 'required|integer|min:1',
             'status' => 'required|in:active,inactive',
-            'departure_time' => 'required',
-            'return_time' => 'required',
+            'departure_dates' => 'required|array|min:1',
+            'departure_dates.*' => 'required|date',
+            'return_time' => 'required|date',
             'included_services' => 'nullable',
             'excluded_services' => 'nullable',
             'highlights' => 'nullable',
@@ -141,14 +154,55 @@ class TourController extends Controller
         $tour->detail()->updateOrCreate(
             ['tour_id' => $tour->id],
             [
-                'departure_time' => $validated['departure_time'],
+                'departure_dates' => $validated['departure_dates'],
                 'return_time' => $validated['return_time'],
-                'included_services' => $request->filled('included_services') ? json_encode(preg_split('/\r?\n/', $validated['included_services'])) : null,
-                'excluded_services' => $request->filled('excluded_services') ? json_encode(preg_split('/\r?\n/', $validated['excluded_services'])) : null,
-                'highlights' => $request->filled('highlights') ? json_encode(preg_split('/\r?\n/', $validated['highlights'])) : null,
+                'included_services' => $request->filled('included_services') ? preg_split('/\r?\n/', $validated['included_services']) : [],
+                'excluded_services' => $request->filled('excluded_services') ? preg_split('/\r?\n/', $validated['excluded_services']) : [],
+                'highlights' => $request->filled('highlights') ? preg_split('/\r?\n/', $validated['highlights']) : [],
             ]
         );
         return redirect()->route('ceo.tours.index')->with('success', 'Cập nhật tour thành công!');
+    }
+
+    /**
+     * Check tour availability for a specific date
+     */
+    public function checkAvailability(Request $request, $id)
+    {
+        $tour = Tour::findOrFail($id);
+        $date = $request->get('date');
+        
+        if (!$date) {
+            return response()->json(['error' => 'Thiếu ngày khởi hành'], 400);
+        }
+        
+        // Kiểm tra ngày có trong danh sách departure_dates không
+        $tourDetail = $tour->detail;
+        if ($tourDetail && !empty($tourDetail->departure_dates)) {
+            $availableDates = array_map(function($datetime) {
+                return \Carbon\Carbon::parse($datetime)->format('Y-m-d');
+            }, $tourDetail->departure_dates);
+            
+            if (!in_array($date, $availableDates)) {
+                return response()->json(['available' => false, 'message' => 'Ngày này không có tour']);
+            }
+        }
+        
+        // Tính số chỗ đã đặt
+        $bookedPeople = TourBooking::where('tour_id', $tour->id)
+            ->where('selected_departure_date', $date)
+            ->whereIn('status', ['pending', 'confirmed', 'grouped'])
+            ->sum('number_of_people');
+            
+        $remainingCapacity = $tour->capacity - $bookedPeople;
+        
+        return response()->json([
+            'available' => $remainingCapacity > 0,
+            'capacity' => $tour->capacity,
+            'booked' => $bookedPeople,
+            'remaining' => $remainingCapacity,
+            'message' => $remainingCapacity > 0 ? "Còn lại {$remainingCapacity} chỗ" : 'Đã hết chỗ'
+        ]);
     }
 
     

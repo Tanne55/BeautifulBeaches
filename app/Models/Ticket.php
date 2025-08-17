@@ -17,10 +17,12 @@ class Ticket extends Model
         'email',
         'phone',
         'status',
+        'unit_price',
     ];
 
     protected $casts = [
         'status' => 'string',
+        'unit_price' => 'decimal:2',
     ];
 
     public function tourBooking()

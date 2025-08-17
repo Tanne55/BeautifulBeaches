@@ -133,7 +133,7 @@ class TicketController extends Controller
             $this->updateBookingTotalAmount($ticket->tour_booking_id);
         }
         
-        return redirect()->route('ceo.tickets.index', ['open_booking' => $ticket->tour_booking_id])->with('success', 'Cập nhật vé thành công!');
+        return redirect()->route('ceo.bookings.index', ['open_booking' => $ticket->tour_booking_id])->with('success', 'Cập nhật vé thành công!');
     }
 
     public function generateTickets(TourBooking $tourBooking)
@@ -162,7 +162,7 @@ class TicketController extends Controller
         // Cập nhật tổng số tiền booking
         $this->updateBookingTotalAmount($tourBooking->id);
 
-        return redirect()->back()->with('success', 'Tickets generated successfully!');
+        return redirect()->route('ceo.bookings.index', ['open_booking' => $tourBooking->id])->with('success', 'Tickets generated successfully!');
     }
 
     public function updateStatus(Request $request, Ticket $ticket)
@@ -184,7 +184,7 @@ class TicketController extends Controller
             $this->updateBookingTotalAmount($ticket->tour_booking_id);
         }
 
-        return redirect()->route('ceo.tickets.index', ['open_booking' => $ticket->tour_booking_id])->with('success', 'Ticket status updated successfully!');
+        return redirect()->route('ceo.bookings.index', ['open_booking' => $ticket->tour_booking_id])->with('success', 'Ticket status updated successfully!');
     }
 
     public function destroy(Ticket $ticket)
@@ -195,6 +195,6 @@ class TicketController extends Controller
         }
         $bookingId = $ticket->tour_booking_id;
         $ticket->delete();
-        return redirect()->route('ceo.tickets.index', ['open_booking' => $bookingId])->with('success', 'Ticket deleted successfully!');
+        return redirect()->route('ceo.bookings.index', ['open_booking' => $bookingId])->with('success', 'Ticket deleted successfully!');
     }
 } 
