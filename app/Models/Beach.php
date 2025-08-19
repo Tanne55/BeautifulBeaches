@@ -37,13 +37,19 @@ class Beach extends Model
         return $this->belongsTo(Region::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(BeachImage::class);
+    }
+
+    public function primaryImage()
+    {
+        return $this->hasOne(BeachImage::class)->where('is_primary', true);
+    }
+
     public function getRegionNameAttribute()
     {
         return $this->region ? $this->region->name : null;
-    }
-
-    public function get(){
-        
     }
 
     protected static function booted()

@@ -125,6 +125,8 @@ Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(fu
         Route::post('/', [TourController::class, 'store'])->name('store');
         Route::get('/{tour}/edit', [TourController::class, 'edit'])->name('edit');
         Route::put('/{tour}', [TourController::class, 'update'])->name('update');
+        // Route xóa ảnh gallery
+        Route::delete('/{tour}/images/{image}', [TourController::class, 'deleteImage'])->name('images.delete');
     });
     // CRUD của CEO về tickets
     Route::prefix('tickets')->name('tickets.')->group(function () {
@@ -216,4 +218,18 @@ Route::get('/bookings/result', [TourBookingController::class, 'showBookingResult
 
 // Public support request route
 Route::post('/support', [SupportRequestController::class, 'store'])->name('support.store');
+
+// Test gallery route
+Route::get('/test', function () {
+    $beaches = Beach::with(['images' => function($query) {
+        $query->ordered();
+    }])->get();
+    
+    $tours = Tour::with(['images' => function($query) {
+        $query->ordered();
+    }])->get();
+    
+    return view('test', compact('beaches', 'tours'));
+})->name('test');
+
 

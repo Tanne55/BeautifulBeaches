@@ -66,40 +66,41 @@
                                     {{ $statusText }}
                                 </div>
                             </div>
-                                            switch ($booking->status) {
-                                                case 'pending':
-            $statusClass = 'warning';
-            $statusText = 'Đang chờ xác nhận';
-            $statusIcon = '<i class="bi bi-hourglass-split"></i>';
-            break;
-        case 'confirmed':
-            $statusClass = 'success';
-            $statusText = 'Đã xác nhận';
-            $statusIcon = '<i class="bi bi-check-circle"></i>';
-            break;
-        case 'cancelled':
-            $statusClass = 'danger';
-            $statusText = 'Đã hủy';
-            $statusIcon = '<i class="bi bi-x-circle"></i>';
-            break;
-        case 'completed':
-            $statusClass = 'info';
-            $statusText = 'Đã hoàn thành';
-            $statusIcon = '<i class="bi bi-check2-circle"></i>';
-            break;
-        default:
-            $statusClass = 'secondary';
-            $statusText = $booking->status;
-            $statusIcon = '<i class="bi bi-question-circle"></i>';
-                                            }
-                                        @endphp
-                                        <div class="text-center">
-                                            <div class="status-badge status-{{ $statusClass }}">
-                                            
-                                                {{ $statusIcon }}
-                                                {{ $statusText }}
-                                            </div>
-                                        </div>
+                            @php
+                                switch ($booking->status) {
+                                    case 'pending':
+                                        $statusClass = 'warning';
+                                        $statusText = 'Đang chờ xác nhận';
+                                        $statusIcon = '<i class="bi bi-hourglass-split"></i>';
+                                        break;
+                                    case 'confirmed':
+                                        $statusClass = 'success';
+                                        $statusText = 'Đã xác nhận';
+                                        $statusIcon = '<i class="bi bi-check-circle"></i>';
+                                        break;
+                                    case 'cancelled':
+                                        $statusClass = 'danger';
+                                        $statusText = 'Đã hủy';
+                                        $statusIcon = '<i class="bi bi-x-circle"></i>';
+                                        break;
+                                    case 'completed':
+                                        $statusClass = 'info';
+                                        $statusText = 'Đã hoàn thành';
+                                        $statusIcon = '<i class="bi bi-check2-circle"></i>';
+                                        break;
+                                    default:
+                                        $statusClass = 'secondary';
+                                        $statusText = $booking->status;
+                                        $statusIcon = '<i class="bi bi-question-circle"></i>';
+                                }
+                            @endphp
+                            <div class="text-center">
+                                <div class="status-badge status-{{ $statusClass }}">
+
+                                    {{ $statusIcon }}
+                                    {{ $statusText }}
+                                </div>
+                            </div>
 
                             <!-- Booking Code & QR -->
                             <div class="booking-code-section">

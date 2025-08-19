@@ -27,18 +27,9 @@ return new class extends Migration {
             $table->softDeletes();
         });
 
-        // Add soft deletes to promotions
-        Schema::table('promotions', function (Blueprint $table) {
-            $table->softDeletes();
-        });
 
         // Add soft deletes to tour_prices
         Schema::table('tour_prices', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-
-        // Add soft deletes to booking_details
-        Schema::table('booking_details', function (Blueprint $table) {
             $table->softDeletes();
         });
 
@@ -60,11 +51,9 @@ return new class extends Migration {
             'regions',
             'beach_images',
             'tour_images',
-            'promotions',
             'tour_prices',
-            'booking_details',
             'tour_booking_groups',
-            'cancellation_requests'
+            'cancellation_requests',
         ];
 
         foreach ($tables as $table) {

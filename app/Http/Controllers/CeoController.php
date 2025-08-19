@@ -509,10 +509,10 @@ class CeoController extends Controller
         $viewMonth = $now->format('m/Y');
 
         // Tổng quan - tính doanh thu dựa trên giá của từng vé hợp lệ và đã sử dụng
-        $totalRevenue = Ticket::whereIn('status', ['valid', 'used']) // Tính cả vé hợp lệ và đã sử dụng
+        $totalRevenue = Ticket::whereIn('status', ['valid', 'used'])
             ->whereHas('tourBooking.tour', fn($q) => $q->where('ceo_id', $ceoId))
             ->whereHas('tourBooking', fn($q) => $q->whereBetween('booking_date', [$startOfMonth, $endOfMonth]))
-            ->sum('unit_price'); // Tính doanh thu từ unit_price của vé
+            ->sum('unit_price');
 
         $totalBookings = TourBooking::whereHas('tour', fn($q) => $q->where('ceo_id', $ceoId))
             ->where('status', 'confirmed')
@@ -525,29 +525,29 @@ class CeoController extends Controller
 
         $arpu = $totalTickets > 0 ? round($totalRevenue / $totalTickets, 2) : 0;
 
-        // Tăng trưởng doanh thu so với tháng trước - dựa trên unit_price
+        // Tăng trưởng doanh thu so với tháng trước
         $lastMonth = $now->copy()->subMonth();
         $startOfLastMonth = $lastMonth->copy()->startOfMonth();
         $endOfLastMonth = $lastMonth->copy()->endOfMonth();
-        $lastMonthRevenue = Ticket::whereIn('status', ['valid', 'used']) // Tính cả vé hợp lệ và đã sử dụng
+        $lastMonthRevenue = Ticket::whereIn('status', ['valid', 'used'])
             ->whereHas('tourBooking.tour', fn($q) => $q->where('ceo_id', $ceoId))
             ->whereHas('tourBooking', fn($q) => $q->whereBetween('booking_date', [$startOfLastMonth, $endOfLastMonth]))
-            ->sum('unit_price'); // Tính doanh thu từ unit_price của vé
+            ->sum('unit_price');
         $growthRevenue = $lastMonthRevenue > 0 ? round((($totalRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100, 2) : null;
 
-        // Top tour doanh thu cao/thấp - dựa trên unit_price của từng vé
-        $tourRevenue = Ticket::whereIn('status', ['valid', 'used']) // Tính cả vé hợp lệ và đã sử dụng
+        // Top tour doanh thu cao/thấp
+        $tourRevenue = Ticket::whereIn('status', ['valid', 'used'])
             ->whereHas('tourBooking.tour', fn($q) => $q->where('ceo_id', $ceoId))
             ->whereHas('tourBooking', fn($q) => $q->whereBetween('booking_date', [$startOfMonth, $endOfMonth]))
             ->with('tourBooking.tour')
             ->get()
             ->groupBy(fn($ticket) => $ticket->tourBooking->tour->title ?? 'N/A')
             ->map(function ($tickets) {
-                return $tickets->sum('unit_price'); // Tính doanh thu từ unit_price
+                return $tickets->sum('unit_price');
             });
 
-        $topTours = $tourRevenue->sortDesc()->take(5);
-        $bottomTours = $tourRevenue->sort()->take(5);
+        $topTours = $tourRevenue->sortDesc()->take(5)->toArray() ?: [];
+        $bottomTours = $tourRevenue->sort()->take(5)->toArray() ?: [];
 
         // Biểu đồ doanh thu theo tháng (12 tháng gần nhất)
         $monthlyRevenue = collect();
@@ -555,27 +555,24 @@ class CeoController extends Controller
             $month = $now->copy()->subMonths($i);
             $start = $month->copy()->startOfMonth();
             $end = $month->copy()->endOfMonth();
-            $revenue = Ticket::whereIn('status', ['valid', 'used']) // Tính cả vé hợp lệ và đã sử dụng
+            $revenue = Ticket::whereIn('status', ['valid', 'used'])
                 ->whereHas('tourBooking.tour', fn($q) => $q->where('ceo_id', $ceoId))
                 ->whereHas('tourBooking', fn($q) => $q->whereBetween('booking_date', [$start, $end]))
-                ->sum('unit_price'); // Tính doanh thu từ unit_price
+                ->sum('unit_price');
             $monthlyRevenue->prepend([
                 'month' => $month->format('Y-m'),
                 'revenue' => $revenue
             ]);
         }
 
-        // Danh sách booking đã xác nhận (có filter đơn giản)
-        // Filter
+        // Filter parameters
         $from = $request->input('from');
         $to = $request->input('to');
         $tour = $request->input('tour');
         $people = $request->input('people');
 
-        $startOfMonth = $now->copy()->startOfMonth();
-        $endOfMonth = $now->copy()->endOfMonth();
-
-        $bookingsQuery = TourBooking::with(['tour.prices', 'tickets'])
+        // Individual Bookings Query
+        $bookingsQuery = TourBooking::with(['tour', 'tickets'])
             ->whereHas('tour', fn($q) => $q->where('ceo_id', $ceoId))
             ->where('status', 'confirmed')
             ->whereBetween('booking_date', [$startOfMonth, $endOfMonth]);
@@ -599,6 +596,56 @@ class CeoController extends Controller
 
         $bookings = $bookingsQuery->orderByDesc('booking_date')->paginate(5)->withQueryString();
 
+        // Group Bookings Query
+        $groupFrom = $request->input('group_from');
+        $groupTo = $request->input('group_to');
+        $groupTour = $request->input('group_tour');
+        $ticketStatus = $request->input('ticket_status');
+
+        $bookingGroupsQuery = TourBookingGroup::with(['tour', 'bookings'])
+            ->whereHas('tour', fn($q) => $q->where('ceo_id', $ceoId))
+            ->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+
+        if ($groupFrom) {
+            $bookingGroupsQuery->whereDate('created_at', '>=', $groupFrom);
+        }
+        if ($groupTo) {
+            $bookingGroupsQuery->whereDate('created_at', '<=', $groupTo);
+        }
+        if ($groupTour) {
+            $bookingGroupsQuery->whereHas('tour', function ($q) use ($groupTour) {
+                $q->where('title', 'like', '%' . $groupTour . '%');
+            });
+        }
+
+        // Get all groups first, then filter by ticket status
+        $allBookingGroups = $bookingGroupsQuery->orderByDesc('created_at')->get();
+        
+        if ($ticketStatus) {
+            $allBookingGroups = $allBookingGroups->filter(function ($group) use ($ticketStatus) {
+                if ($ticketStatus === 'not_generated') {
+                    return $group->total_tickets == 0;
+                } elseif ($ticketStatus === 'generated') {
+                    return $group->total_tickets > 0;
+                }
+                return true;
+            });
+        }
+
+        // Manual pagination for filtered results
+        $currentPage = \Illuminate\Pagination\Paginator::resolveCurrentPage('groups_page');
+        $perPage = 5;
+        $currentItems = $allBookingGroups->forPage($currentPage, $perPage);
+        
+        $bookingGroups = new \Illuminate\Pagination\LengthAwarePaginator(
+            $currentItems,
+            $allBookingGroups->count(),
+            $perPage,
+            $currentPage,
+            ['path' => request()->url(), 'pageName' => 'groups_page']
+        );
+        $bookingGroups->withQueryString();
+
         return view('ceo.reports.index', [
             'now' => $now,
             'totalRevenue' => $totalRevenue,
@@ -610,6 +657,7 @@ class CeoController extends Controller
             'bottomTours' => $bottomTours,
             'monthlyRevenue' => $monthlyRevenue,
             'bookings' => $bookings,
+            'bookingGroups' => $bookingGroups,
             'viewMonth' => $viewMonth,
         ]);
     }

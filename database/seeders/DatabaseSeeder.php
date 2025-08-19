@@ -20,12 +20,15 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             BeachesSeeder::class,
             ToursSeeder::class,
+            BeachImagesSeeder::class,
+            TourImagesSeeder::class,
             TourBookingSeeder::class,
             TourBookingGroupSeeder::class,
             TicketSeeder::class,
             ReviewBeachSeeder::class,
             ReviewTourSeeder::class,
             SupportRequestSeeder::class,
+
         ]);
     }
 }

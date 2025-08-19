@@ -8,9 +8,77 @@ use Illuminate\Support\Facades\Auth;
 
 class SupportRequestController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $supportRequests = SupportRequest::with('user')->paginate(10);
+        $query = SupportRequest::with('user');
+        
+        // Tìm kiếm
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('title', 'like', "%{$search}%")
+                  ->orWhere('message', 'like', "%{$search}%");
+            });
+        }
+        
+        // Lọc theo status
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('status', $request->status);
+        }
+        
+        // Sắp xếp với ưu tiên: pending > in_progress > resolved > rejected
+        if ($request->filled('sort_by')) {
+            switch ($request->sort_by) {
+                case 'priority':
+                    // Sắp xếp theo độ ưu tiên
+                    $query->orderByRaw("
+                        CASE status 
+                            WHEN 'pending' THEN 1 
+                            WHEN 'in_progress' THEN 2 
+                            WHEN 'resolved' THEN 3 
+                            WHEN 'rejected' THEN 4 
+                        END
+                    ");
+                    break;
+                case 'name':
+                    $order = $request->get('sort_order', 'asc');
+                    $query->orderBy('name', $order);
+                    break;
+                case 'email':
+                    $order = $request->get('sort_order', 'asc');
+                    $query->orderBy('email', $order);
+                    break;
+                case 'created_at':
+                    $order = $request->get('sort_order', 'desc');
+                    $query->orderBy('created_at', $order);
+                    break;
+                default:
+                    // Mặc định sắp xếp theo ưu tiên và ngày tạo
+                    $query->orderByRaw("
+                        CASE status 
+                            WHEN 'pending' THEN 1 
+                            WHEN 'in_progress' THEN 2 
+                            WHEN 'resolved' THEN 3 
+                            WHEN 'rejected' THEN 4 
+                        END
+                    ")->orderBy('created_at', 'desc');
+            }
+        } else {
+            // Mặc định sắp xếp theo ưu tiên và ngày tạo
+            $query->orderByRaw("
+                CASE status 
+                    WHEN 'pending' THEN 1 
+                    WHEN 'in_progress' THEN 2 
+                    WHEN 'resolved' THEN 3 
+                    WHEN 'rejected' THEN 4 
+                END
+            ")->orderBy('created_at', 'desc');
+        }
+        
+        $supportRequests = $query->paginate(5)->withQueryString();
+        
         return view('admin.support.index', compact('supportRequests'));
     }
 

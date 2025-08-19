@@ -10,6 +10,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('beach_id')->constrained('beaches')->onDelete('cascade');
             $table->string('image_url', 255);
+            $table->string('alt_text')->nullable();
+            $table->string('caption')->nullable();
+            $table->boolean('is_primary')->default(false);
+            $table->integer('sort_order')->default(0);
+            $table->string('image_type', 50)->nullable();
             $table->timestamps();
         });
     }

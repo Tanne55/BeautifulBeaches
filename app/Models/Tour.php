@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Tour extends Model
 {
@@ -52,6 +53,11 @@ class Tour extends Model
         return $this->hasMany(TourImage::class);
     }
 
+    public function primaryImage()
+    {
+        return $this->hasOne(TourImage::class)->where('is_primary', true);
+    }
+
     public function reviews()
     {
         return $this->hasMany(ReviewTour::class);
@@ -59,11 +65,104 @@ class Tour extends Model
 
     public function getCurrentPriceAttribute()
     {
+        $today = now();
+        
+        // Lấy price record có discount trong khoảng thời gian hiện tại
+        $discountPrice = $this->prices()
+            ->where('discount', '>', 0)
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->latest()
+            ->first();
+        
+        if ($discountPrice) {
+            // Có discount trong khoảng thời gian: giá = price - (price * discount/100)
+            return $discountPrice->price - ($discountPrice->price * $discountPrice->discount / 100);
+        }
+        
+        // Không có discount hoặc ngoài khoảng thời gian: lấy price gốc
+        $normalPrice = $this->prices()
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->latest()
+            ->first();
+        
+        if (!$normalPrice) {
+            $normalPrice = $this->prices()->latest()->first();
+        }
+        
+        return $normalPrice ? $normalPrice->price : 0;
+    }
+
+    public function getCurrentPriceDetailsAttribute()
+    {
+        $today = now();
+        
+        // Lấy price record có discount trong khoảng thời gian hiện tại
+        $discountPrice = $this->prices()
+            ->where('discount', '>', 0)
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->latest()
+            ->first();
+        
+        if ($discountPrice) {
+            $finalPrice = $discountPrice->price - ($discountPrice->price * $discountPrice->discount / 100);
+            return [
+                'original_price' => $discountPrice->price,
+                'final_price' => $finalPrice,
+                'discount' => $discountPrice->discount,
+                'is_discounted' => true
+            ];
+        }
+        
+        // Không có discount: lấy price gốc
+        $normalPrice = $this->prices()
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->latest()
+            ->first();
+        
+        if (!$normalPrice) {
+            $normalPrice = $this->prices()->latest()->first();
+        }
+        
+        if (!$normalPrice) {
+            return [
+                'original_price' => 0,
+                'final_price' => 0,
+                'discount' => 0,
+                'is_discounted' => false
+            ];
+        }
+        
+        return [
+            'original_price' => $normalPrice->price,
+            'final_price' => $normalPrice->price,
+            'discount' => 0,
+            'is_discounted' => false
+        ];
+    }
+
+    public function getCurrentPriceObjectAttribute()
+    {
         $today = now()->format('Y-m-d');
         $price = $this->prices()->where('start_date', '<=', $today)
             ->where('end_date', '>=', $today)
+            ->latest()
             ->first();
-        return $price ? $price->price : 0;
+        
+        if (!$price) {
+            // Nếu không có giá theo ngày, lấy giá gần nhất
+            $price = $this->prices()->latest()->first();
+        }
+        
+        return $price;
+    }
+
+    public function getPrimaryImageAttribute()
+    {
+        return $this->images()->where('is_primary', true)->first() ?? $this->images()->first();
     }
 
     public function getAvailableSlotsAttribute()
