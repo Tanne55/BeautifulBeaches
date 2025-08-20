@@ -216,6 +216,9 @@
                             <a href="{{ route('home') }}" class="btn btn-primary-custom">
                                 <i class="bi bi-house me-2"></i>Trang chủ
                             </a>
+                            <button type="button" class="btn btn-outline-custom" data-bs-toggle="offcanvas" data-bs-target="#ticketsOffcanvas" aria-controls="ticketsOffcanvas">
+                                <i class="bi bi-ticket-perforated me-2"></i>Xem vé
+                            </button>
                             <a href="javascript:void(0)" onclick="window.print()" class="btn btn-outline-custom">
                                 <i class="bi bi-printer me-2"></i>In thông tin
                             </a>
@@ -253,4 +256,197 @@
         </div>
     </div>
 
+    <!-- Tickets Offcanvas -->
+    @if($booking)
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="ticketsOffcanvas" aria-labelledby="ticketsOffcanvasLabel" data-bs-backdrop="true" data-bs-keyboard="true">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold" id="ticketsOffcanvasLabel">
+                <i class="bi bi-ticket-perforated me-2 text-white"></i>
+                Vé của booking #{{ $booking->booking_code }}
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @include('partials.ticket-display')
+        </div>
+    </div>
+    @endif
+
+    <script>
+        // Load tickets when offcanvas is shown
+        @if($booking)
+        document.addEventListener('DOMContentLoaded', function() {
+            const ticketsOffcanvas = document.getElementById('ticketsOffcanvas');
+            let ticketsLoaded = false;
+
+            // Initialize Bootstrap Offcanvas with default backdrop
+            const offcanvasInstance = new bootstrap.Offcanvas(ticketsOffcanvas, {
+                backdrop: true, // Use default Bootstrap backdrop
+                keyboard: true,
+                scroll: false
+            });
+
+            ticketsOffcanvas.addEventListener('show.bs.offcanvas', function () {
+                if (!ticketsLoaded) {
+                    loadBookingTickets('{{ $booking->booking_code }}');
+                    ticketsLoaded = true;
+                }
+            });
+
+            // Handle escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && ticketsOffcanvas.classList.contains('show')) {
+                    offcanvasInstance.hide();
+                }
+            });
+
+            // Add swipe down to close for mobile
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            ticketsOffcanvas.addEventListener('touchstart', function(e) {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+            });
+
+            ticketsOffcanvas.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                
+                currentY = e.touches[0].clientY;
+                const diffY = currentY - startY;
+                
+                // Only allow downward swipe when at the top of scroll
+                const scrollTop = ticketsOffcanvas.querySelector('.offcanvas-body').scrollTop;
+                
+                if (diffY > 0 && scrollTop === 0) {
+                    e.preventDefault();
+                    const progress = Math.min(diffY / 150, 1);
+                    ticketsOffcanvas.style.transform = `translateY(${diffY}px)`;
+                    ticketsOffcanvas.style.opacity = 1 - progress * 0.3;
+                }
+            });
+
+            ticketsOffcanvas.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                
+                const diffY = currentY - startY;
+                const scrollTop = ticketsOffcanvas.querySelector('.offcanvas-body').scrollTop;
+                
+                if (diffY > 100 && scrollTop === 0) {
+                    // Close if swiped down more than 100px
+                    offcanvasInstance.hide();
+                } else {
+                    // Reset position
+                    ticketsOffcanvas.style.transform = '';
+                    ticketsOffcanvas.style.opacity = '';
+                }
+                
+                isDragging = false;
+                startY = 0;
+                currentY = 0;
+            });
+        });
+
+        function loadBookingTickets(bookingCode) {
+            const container = document.getElementById('ticketContainer');
+            
+            fetch(`/api/bookings/tickets?booking_code=${bookingCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.tickets.length > 0) {
+                        renderTickets(data.tickets);
+                    } else {
+                        showNoTickets();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading tickets:', error);
+                    showTicketError();
+                });
+        }
+
+        function renderTickets(tickets) {
+            const container = document.getElementById('ticketContainer');
+            let html = '';
+            
+            tickets.forEach((ticket, index) => {
+                html += `
+                    <div class="ticket-card mb-3 p-3">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div class="ticket-code">${ticket.ticket_code}</div>
+                                    <span class="status-badge-ticket status-${ticket.status_class}">
+                                        ${ticket.status_text}
+                                    </span>
+                                </div>
+                                
+                                <div class="ticket-divider"></div>
+                                
+                                <div class="ticket-info">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb-2">
+                                            <small class="text-white-50">Họ tên</small>
+                                            <div class="fw-semibold">${ticket.full_name}</div>
+                                        </div>
+                                        <div class="col-md-6 col-12 mb-2">
+                                            <small class="text-white-50">Giá vé</small>
+                                            <div class="fw-semibold">${formatPrice(ticket.unit_price)} VNĐ</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb-2">
+                                            <small class="text-white-50">Email</small>
+                                            <div class="small">${ticket.email || 'N/A'}</div>
+                                        </div>
+                                        <div class="col-md-6 col-12 mb-2">
+                                            <small class="text-white-50">SĐT</small>
+                                            <div class="small">${ticket.phone || 'N/A'}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 text-center">
+                                        <small class="text-white-50">Ngày tạo: ${ticket.created_at}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function showNoTickets() {
+            const container = document.getElementById('ticketContainer');
+            container.innerHTML = `
+                <div class="no-tickets">
+                    <div class="no-tickets-icon">
+                        <i class="bi bi-ticket-perforated"></i>
+                    </div>
+                    <h6 class="text-muted">Chưa có vé nào được tạo</h6>
+                    <p class="text-muted small">Vé sẽ được tạo sau khi booking được xác nhận</p>
+                </div>
+            `;
+        }
+
+        function showTicketError() {
+            const container = document.getElementById('ticketContainer');
+            container.innerHTML = `
+                <div class="no-tickets">
+                    <div class="no-tickets-icon text-danger">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <h6 class="text-danger">Có lỗi xảy ra</h6>
+                    <p class="text-muted small">Không thể tải thông tin vé. Vui lòng thử lại sau.</p>
+                </div>
+            `;
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price);
+        }
+        @endif
+    </script>
 @endsection

@@ -149,4 +149,64 @@ class UserController extends Controller
 
         return redirect()->route('user.dashboard')->with('success', 'Thông tin cá nhân đã được cập nhật thành công!');
     }
+
+    /**
+     * API to get tickets for user's booking
+     */
+    public function getUserBookingTickets(TourBooking $booking)
+    {
+        // Ensure user can only access their own bookings
+        if ($booking->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Access denied'], 403);
+        }
+        
+        $booking->load('tickets');
+        
+        return response()->json([
+            'success' => true,
+            'booking_code' => $booking->booking_code,
+            'tickets' => $booking->tickets->map(function ($ticket) {
+                return [
+                    'id' => $ticket->id,
+                    'ticket_code' => $ticket->ticket_code,
+                    'full_name' => $ticket->full_name,
+                    'email' => $ticket->email,
+                    'phone' => $ticket->phone,
+                    'status' => $ticket->status,
+                    'unit_price' => $ticket->unit_price,
+                    'status_text' => $this->getTicketStatusText($ticket->status),
+                    'status_class' => $this->getTicketStatusClass($ticket->status),
+                    'created_at' => $ticket->created_at->format('d/m/Y H:i')
+                ];
+            })
+        ]);
+    }
+    
+    private function getTicketStatusText($status)
+    {
+        switch ($status) {
+            case 'valid':
+                return 'Hợp lệ';
+            case 'used':
+                return 'Đã sử dụng';
+            case 'cancelled':
+                return 'Đã hủy';
+            default:
+                return ucfirst($status);
+        }
+    }
+    
+    private function getTicketStatusClass($status)
+    {
+        switch ($status) {
+            case 'valid':
+                return 'success';
+            case 'used':
+                return 'warning';
+            case 'cancelled':
+                return 'danger';
+            default:
+                return 'secondary';
+        }
+    }
 }

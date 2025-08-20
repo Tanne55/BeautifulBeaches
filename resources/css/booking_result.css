@@ -239,6 +239,89 @@
     margin-bottom: 30px;
 }
 
+/* Offcanvas styles for tickets */
+.offcanvas.offcanvas-bottom {
+    height: 70vh !important;
+    max-height: 600px !important;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.offcanvas-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+}
+
+.offcanvas-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+.offcanvas-header .btn-close:hover {
+    opacity: 1;
+}
+
+.offcanvas-body {
+    background: #f8f9fa;
+    padding: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(102, 126, 234, 0.3) transparent;
+}
+
+.offcanvas-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.offcanvas-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 3px;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
+}
+
+/* Backdrop enhancement */
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(2px);
+}
+
+/* Ticket cards in offcanvas */
+.offcanvas .ticket-card {
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.offcanvas .ticket-card:last-child {
+    margin-bottom: 0;
+}
+
+.offcanvas .ticket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
 @media (max-width: 768px) {
     .main-container {
         padding: 20px 10px;
@@ -254,5 +337,23 @@
 
     .br-info-section {
         padding: 20px;
+    }
+
+    .offcanvas.offcanvas-bottom {
+        height: 80vh !important;
+    }
+    
+    .offcanvas-body {
+        padding: 15px;
+    }
+
+    /* Better touch handling for mobile */
+    .offcanvas-backdrop {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 }

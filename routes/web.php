@@ -151,6 +151,7 @@ Route::prefix('ceo')->middleware(['auth', IsCeo::class])->name('ceo.')->group(fu
 Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/history', [UserController::class, 'history'])->name('history');
+    Route::get('/booking/{booking}/tickets', [UserController::class, 'getUserBookingTickets'])->name('booking.tickets');
     Route::get('/cancellation-requests', [\App\Http\Controllers\CancellationRequestController::class, 'myRequests'])->name('cancellation_requests');
     Route::get('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'showCancelForm'])->name('booking.cancel.form');
     Route::post('/booking/{booking}/cancel', [\App\Http\Controllers\CancellationRequestController::class, 'store'])->name('booking.cancel.submit');

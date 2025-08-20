@@ -100,7 +100,7 @@ class TourBookingController extends Controller
         }
         
         $bookingCode = $request->input('booking_code');
-        $booking = TourBooking::with(['tour', 'tour.detail'])->where('booking_code', $bookingCode)->first();
+        $booking = TourBooking::with(['tour', 'tour.detail', 'tickets'])->where('booking_code', $bookingCode)->first();
         
         if (!$booking) {
             return view('bookings.result')
@@ -108,6 +108,70 @@ class TourBookingController extends Controller
         }
         
         return view('bookings.result', compact('booking'));
+    }
+
+    /**
+     * API to get tickets for a booking (for guest access)
+     */
+    public function getBookingTickets(Request $request)
+    {
+        $bookingCode = $request->input('booking_code');
+        
+        if (!$bookingCode) {
+            return response()->json(['error' => 'Booking code is required'], 400);
+        }
+        
+        $booking = TourBooking::with('tickets')->where('booking_code', $bookingCode)->first();
+        
+        if (!$booking) {
+            return response()->json(['error' => 'Booking not found'], 404);
+        }
+        
+        return response()->json([
+            'success' => true,
+            'tickets' => $booking->tickets->map(function ($ticket) {
+                return [
+                    'id' => $ticket->id,
+                    'ticket_code' => $ticket->ticket_code,
+                    'full_name' => $ticket->full_name,
+                    'email' => $ticket->email,
+                    'phone' => $ticket->phone,
+                    'status' => $ticket->status,
+                    'unit_price' => $ticket->unit_price,
+                    'status_text' => $this->getTicketStatusText($ticket->status),
+                    'status_class' => $this->getTicketStatusClass($ticket->status),
+                    'created_at' => $ticket->created_at->format('d/m/Y H:i')
+                ];
+            })
+        ]);
+    }
+    
+    private function getTicketStatusText($status)
+    {
+        switch ($status) {
+            case 'valid':
+                return 'Hợp lệ';
+            case 'used':
+                return 'Đã sử dụng';
+            case 'cancelled':
+                return 'Đã hủy';
+            default:
+                return ucfirst($status);
+        }
+    }
+    
+    private function getTicketStatusClass($status)
+    {
+        switch ($status) {
+            case 'valid':
+                return 'success';
+            case 'used':
+                return 'warning';
+            case 'cancelled':
+                return 'danger';
+            default:
+                return 'secondary';
+        }
     }
     
     /**
