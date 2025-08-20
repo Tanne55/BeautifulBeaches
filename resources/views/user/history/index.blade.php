@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container my-5">
-        <h2 class="mb-4 text-center">Lịch sử đặt tour của bạn</h2>
+        <h2 class="mb-4 text-center">Lịch sử đặt tour của bạn</h2> 
 
         @if($bookings->where('status', 'confirmed')->count() > 0)
             <div class="alert alert-info text-center fw-bold mb-4" style="opacity: 0.7;">
