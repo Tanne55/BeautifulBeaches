@@ -50,6 +50,9 @@
                         </div>
 
                         <div class="text-center mt-3">
+                            <a href="{{ route('forgot.password') }}" class="text-decoration-none me-3">
+                                Quên mật khẩu?
+                            </a>
                             <a href="{{ route('register') }}" class="text-decoration-none">
                                 Chưa có tài khoản? Đăng kí!
                             </a>
