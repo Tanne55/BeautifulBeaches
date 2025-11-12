@@ -200,6 +200,8 @@
                         </div>
                     @endif
                 </div>
+
+                
                 <h2>Discovering the Beauty of {{ $beach->title }}</h2>
                 <p class="short-description">{{ $beach->short_description }}</p>
                 <p class="long-description">{{ $beach->long_description }}</p>
@@ -452,11 +454,11 @@ Với niềm đam mê kể chuyện và nhiếp ảnh, anh chia sẻ những “
                                     </a>
                                 </h6>
                                 <small class="text-muted">
-                                   <span class="text-danger fw-bold">{{ number_format($tour->current_price, 0, ',', '.') }} đ
+                                   <span class="text-danger fw-bold">{{ number_format($tour->current_price, 0, ',', '.') }} tr vnđ
                                             </span>
                                         @if($tour->prices && $tour->prices->first() && $tour->prices->first()->discount && $tour->prices->first()->discount < $tour->current_price)
                                             <small class="text-decoration-line-through text-muted">
-                                                {{ number_format($tour->prices->first()->discount, 0, ',', '.') }} đ
+                                                {{ number_format($tour->prices->first()->discount, 0, ',', '.') }} tr vnđ
                                             </small>
                                         @endif  | 
                                     {{ $tour->duration_days }} ngày | 

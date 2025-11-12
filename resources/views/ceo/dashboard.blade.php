@@ -15,7 +15,7 @@
                 <!-- User Profile Card -->
                 <div class="row mb-5">
                     <div class="col-lg-12">
-                        <div class=" border-0 shadow-lg"
+                        <div class=" border-0 shadow-lg rounded-3"
                             style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
                             <div class="card-body p-4">
                                 <div class="row">
@@ -23,83 +23,95 @@
                                     <div class="col-md-3 text-center mb-4 mb-md-0">
                                         <div class="avatar-container mb-3">
                                             @if($user->avatar)
-                                                <img src="{{ asset($user->avatar) }}" alt="CEO Avatar" 
-                                                    class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #f5576c;">
+                                                <img src="{{ asset($user->avatar) }}" alt="CEO Avatar"
+                                                    class="rounded-circle img-thumbnail"
+                                                    style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #f5576c;">
                                             @else
                                                 <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
                                                     style="width: 150px; height: 150px; background: linear-gradient(45deg, #f093fb, #f5576c); margin: 0 auto;">
-                                                    <span class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
+                                                    <span
+                                                        class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                                                 </div>
                                             @endif
                                         </div>
                                         <h5 class="fw-bold">{{ $user->name }}</h5>
-                                        <span class="badge" 
-                                            style="background: #f5576c;">
+                                        <span class="badge" style="background: #f5576c;">
                                             {{ ucfirst($user->role) }}
                                         </span>
                                     </div>
-                                    
+
                                     <!-- CEO Info Column -->
                                     <div class="col-md-9">
                                         <h4 class="fw-bold mb-4">Thông tin cá nhân</h4>
-                                        
+
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>Email:</label>
+                                                    <label class="text-muted mb-1"><i
+                                                            class="fas fa-envelope me-2"></i>Email:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->email }}</p>
                                                 </div>
-                                                
+
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện thoại:</label>
+                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện
+                                                        thoại:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->phone ?? 'Chưa cập nhật' }}</p>
                                                 </div>
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa
+                                                        chỉ:</label>
+                                                    <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
+                                                </div>
                                             </div>
-                                            
+
                                             <div class="col-md-6">
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày sinh:</label>
+                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày
+                                                        sinh:</label>
                                                     <p class="mb-0 fw-medium">
                                                         {{ $profile && $profile->dob ? date('d/m/Y', strtotime($profile->dob)) : 'Chưa cập nhật' }}
                                                     </p>
                                                 </div>
-                                                
+
                                                 <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar-check me-2"></i>Tham gia:</label>
+                                                    <label class="text-muted mb-1"><i
+                                                            class="fas fa-calendar-check me-2"></i>Tham gia:</label>
                                                     <p class="mb-0 fw-medium">{{ $user->created_at->format('d/m/Y') }}</p>
+                                                </div>
+
+                                                <div class="info-item mb-3">
+                                                    <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc
+                                                        tịch:</label>
+                                                    <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa chỉ:</label>
-                                            <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc tịch:</label>
-                                            <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-                                        
+
+
+
+
                                         @if($profile && $profile->preferences)
-                                        <div class="info-item mt-4">
-                                            <label class="text-muted mb-1"><i class="fas fa-cog me-2"></i>Tùy chọn:</label>
-                                            <p class="mb-0 fw-medium">
-                                                @if(is_array($profile->preferences))
-                                                    @if(isset($profile->preferences['theme']))
-                                                        <span class="badge bg-secondary me-1">Theme: {{ $profile->preferences['theme'] }}</span>
+                                            <div class="info-item mt-4">
+                                                <label class="text-muted mb-1"><i class="fas fa-cog me-2"></i>Tùy chọn:</label>
+                                                <p class="mb-0 fw-medium">
+                                                    @if(is_array($profile->preferences))
+                                                        @if(isset($profile->preferences['theme']))
+                                                            <span class="badge bg-secondary me-1">Theme:
+                                                                {{ $profile->preferences['theme'] }}</span>
+                                                        @endif
+                                                        @if(isset($profile->preferences['dashboard_widgets']))
+                                                            <span class="badge bg-info me-1">Widgets:
+                                                                {{ count($profile->preferences['dashboard_widgets']) }}</span>
+                                                        @endif
                                                     @endif
-                                                    @if(isset($profile->preferences['dashboard_widgets']))
-                                                        <span class="badge bg-info me-1">Widgets: {{ count($profile->preferences['dashboard_widgets']) }}</span>
-                                                    @endif
-                                                @endif
-                                            </p>
-                                        </div>
+                                                </p>
+                                            </div>
                                         @endif
-                                        
+
                                         <div class="mt-4 pt-3 border-top">
                                             <div class="d-flex align-items-center">
-                                                <a href="{{ route('ceo.bookings.index') }}" class="btn btn-sm text-white ms-auto"
+                                                <a href="{{ route('ceo.bookings.index') }}"
+                                                    class="btn btn-sm text-white ms-auto"
                                                     style="background: linear-gradient(45deg, #f093fb, #f5576c); border: none; border-radius: 10px;">
                                                     <i class="fas fa-calendar-check me-2"></i>Quản lý booking
                                                 </a>

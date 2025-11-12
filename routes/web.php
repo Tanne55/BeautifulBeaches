@@ -22,9 +22,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\SupportRequestController;
 
-
-
-
 Route::get('/', function () {
     $beaches = Beach::with(['detail', 'region']) // nạp quan hệ 1-1 và region
         ->select('id', 'region_id', 'image', 'title') // chỉ lấy cột cần thiết
@@ -229,14 +226,18 @@ Route::post('/support', [SupportRequestController::class, 'store'])->name('suppo
 
 // Test gallery route
 Route::get('/test', function () {
-    $beaches = Beach::with(['images' => function($query) {
-        $query->ordered();
-    }])->get();
-    
-    $tours = Tour::with(['images' => function($query) {
-        $query->ordered();
-    }])->get();
-    
+    $beaches = Beach::with([
+        'images' => function ($query) {
+            $query->ordered();
+        }
+    ])->get();
+
+    $tours = Tour::with([
+        'images' => function ($query) {
+            $query->ordered();
+        }
+    ])->get();
+
     return view('test', compact('beaches', 'tours'));
 })->name('test');
 

@@ -15,13 +15,13 @@
                     <div class="alert alert-success">
                         <div class="mb-2">{{ session('success') }}</div>
                         @if(session('booking_code'))
-                            <div class="booking-code-display p-3 bg-light text-center rounded mb-2">
-                                <h5 class="text-primary mb-0">Mã đặt tour</h5>
+                            <div class="booking-code-display p-3 text-center rounded mb-2">
+                                <h5 class="text-dark mb-0">Mã đặt tour</h5>
                                 <div class="code-value fw-bold" style="font-size: 1.5rem;">{{ session('booking_code') }}</div>
                             </div>
                             <div class="d-grid gap-2 mb-2">
                                 <a href="{{ route('bookings.result', ['booking_code' => session('booking_code')]) }}"
-                                    class="btn btn-outline-primary">
+                                    class="btn btn-outline-primary text-dark">
                                     <i class="bi bi-search"></i> Xem chi tiết đặt tour
                                 </a>
                             </div>
@@ -30,23 +30,7 @@
                         @endif
                     </div>
 
-                    @if(session('booking_code'))
-                        <div class="card mt-4">
-                            <div class="card-header bg-primary text-white">
-                                <h5 class="mb-0">Thông tin đặt tour đã hoàn tất</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Cảm ơn bạn đã đặt tour! Đơn hàng của bạn đã được ghi nhận và đang chờ xác nhận.</p>
-                                <ul class="list-unstyled">
-                                    <li><strong>Mã đặt tour:</strong> {{ session('booking_code') }}</li>
-                                    <li><strong>Trạng thái:</strong> <span class="badge bg-warning text-dark">Đang chờ xác
-                                            nhận</span></li>
-                                    <li><strong>Bước tiếp theo:</strong> Chúng tôi sẽ liên hệ với bạn qua email hoặc điện thoại để
-                                        xác nhận đặt tour.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
+                   
                 @endif
                 @if(session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>

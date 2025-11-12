@@ -12,209 +12,219 @@
             </div>
 
             @if(auth()->user() && auth()->user()->isAdmin())
-                <!-- User Profile Card -->
-                <div class="row mb-5">
-                    <div class="col-lg-12">
-                        <div class="border-0 shadow-lg"
-                            style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="row">
-                                    <!-- Avatar Column -->
-                                    <div class="col-md-3 text-center mb-4 mb-md-0">
-                                        <div class="avatar-container mb-3">
-                                            @if($user->avatar)
-                                                <img src="{{ asset($user->avatar) }}" alt="Admin Avatar" 
-                                                    class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #764ba2;">
-                                            @else
-                                                <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
-                                                    style="width: 150px; height: 150px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 0 auto;">
-                                                    <span class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
-                                                </div>
-                                            @endif
+                    <!-- User Profile Card -->
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <div class="border-0 shadow-lg rounded-3"
+                                style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <!-- Avatar Column -->
+                                        <div class="col-md-3 text-center mb-4 mb-md-0">
+                                            <div class="avatar-container mb-3">
+                                                @if($user->avatar)
+                                                    <img src="{{ asset($user->avatar) }}" alt="Admin Avatar"
+                                                        class="rounded-circle img-thumbnail"
+                                                        style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #764ba2;">
+                                                @else
+                                                    <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center"
+                                                        style="width: 150px; height: 150px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 0 auto;">
+                                                        <span
+                                                            class="text-white display-4">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <h5 class="fw-bold">{{ $user->name }}</h5>
+                                            <span class="badge" style="background: #764ba2;">
+                                                {{ ucfirst($user->role) }}
+                                            </span>
                                         </div>
-                                        <h5 class="fw-bold">{{ $user->name }}</h5>
-                                        <span class="badge" 
-                                            style="background: #764ba2;">
-                                            {{ ucfirst($user->role) }}
-                                        </span>
-                                    </div>
-                                    
-                                    <!-- Admin Info Column -->
-                                    <div class="col-md-9">
-                                        <h4 class="fw-bold mb-4">Thông tin cá nhân</h4>
-                                        
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>Email:</label>
-                                                    <p class="mb-0 fw-medium">{{ $user->email }}</p>
+
+                                        <!-- Admin Info Column -->
+                                        <div class="col-md-9">
+                                            <h4 class="fw-bold mb-4">Thông tin cá nhân</h4>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i
+                                                                class="fas fa-envelope me-2"></i>Email:</label>
+                                                        <p class="mb-0 fw-medium">{{ $user->email }}</p>
+                                                    </div>
+
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện
+                                                            thoại:</label>
+                                                        <p class="mb-0 fw-medium">{{ $user->phone ?? 'Chưa cập nhật' }}</p>
+                                                    </div>
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa
+                                                            chỉ:</label>
+                                                        <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
+                                                    </div>
                                                 </div>
-                                                
-                                                <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-phone me-2"></i>Số điện thoại:</label>
-                                                    <p class="mb-0 fw-medium">{{ $user->phone ?? 'Chưa cập nhật' }}</p>
+
+                                                <div class="col-md-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày
+                                                            sinh:</label>
+                                                        <p class="mb-0 fw-medium">
+                                                            {{ $profile && $profile->dob ? date('d/m/Y', strtotime($profile->dob)) : 'Chưa cập nhật' }}
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i
+                                                                class="fas fa-calendar-check me-2"></i>Tham gia:</label>
+                                                        <p class="mb-0 fw-medium">{{ $user->created_at->format('d/m/Y') }}</p>
+                                                    </div>
+
+                                                    <div class="info-item mb-3">
+                                                        <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc
+                                                            tịch:</label>
+                                                        <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-md-6">
-                                                <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar me-2"></i>Ngày sinh:</label>
+
+
+
+
+                                            @if($profile && $profile->preferences)
+                                                <div class="info-item mt-4">
                                                     <p class="mb-0 fw-medium">
-                                                        {{ $profile && $profile->dob ? date('d/m/Y', strtotime($profile->dob)) : 'Chưa cập nhật' }}
+                                                        @if(is_array($profile->preferences))
+                                                            @if(isset($profile->preferences['theme']))
+                                                                <span class="badge bg-secondary me-1">Theme:
+                                                                    {{ $profile->preferences['theme'] }}</span>
+                                                            @endif
+                                                            @if(isset($profile->preferences['two_factor_auth']))
+                                                                <span class="badge bg-info me-1">2FA:
+                                                                    {{ $profile->preferences['two_factor_auth'] ? 'Bật' : 'Tắt' }}</span>
+                                                            @endif
+                                                        @endif
                                                     </p>
                                                 </div>
-                                                
-                                                <div class="info-item mb-3">
-                                                    <label class="text-muted mb-1"><i class="fas fa-calendar-check me-2"></i>Tham gia:</label>
-                                                    <p class="mb-0 fw-medium">{{ $user->created_at->format('d/m/Y') }}</p>
+                                            @endif
+
+                                            <div class="mt-1 pt-3 border-top">
+                                                <div class="d-flex align-items-center">
+                                                    <a href="{{ route('admin.users.index') }}" class="btn btn-sm text-white ms-auto"
+                                                        style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; border-radius: 10px;">
+                                                        <i class="fas fa-users me-2"></i>Quản lý người dùng
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-map-marker-alt me-2"></i>Địa chỉ:</label>
-                                            <p class="mb-0 fw-medium">{{ $user->address ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-                                        
-                                        <div class="info-item mb-3">
-                                            <label class="text-muted mb-1"><i class="fas fa-flag me-2"></i>Quốc tịch:</label>
-                                            <p class="mb-0 fw-medium">{{ $profile->nationality ?? 'Chưa cập nhật' }}</p>
-                                        </div>
-                                        
-                                        @if($profile && $profile->preferences)
-                                        <div class="info-item mt-4">
-                                            <label class="text-muted mb-1"><i class="fas fa-cog me-2"></i>Tùy chọn:</label>
-                                            <p class="mb-0 fw-medium">
-                                                @if(is_array($profile->preferences))
-                                                    @if(isset($profile->preferences['theme']))
-                                                        <span class="badge bg-secondary me-1">Theme: {{ $profile->preferences['theme'] }}</span>
-                                                    @endif
-                                                    @if(isset($profile->preferences['two_factor_auth']))
-                                                        <span class="badge bg-info me-1">2FA: {{ $profile->preferences['two_factor_auth'] ? 'Bật' : 'Tắt' }}</span>
-                                                    @endif
-                                                @endif
-                                            </p>
-                                        </div>
-                                        @endif
-                                        
-                                        <div class="mt-4 pt-3 border-top">
-                                            <div class="d-flex align-items-center">
-                                                <a href="{{ route('admin.users.index') }}" class="btn btn-sm text-white ms-auto"
-                                                    style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; border-radius: 10px;">
-                                                    <i class="fas fa-users me-2"></i>Quản lý người dùng
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Management Cards -->
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-umbrella-beach fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý bãi biển</h5>
-                                        <small class="text-muted">Cập nhật thông tin bãi biển</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Quản lý thông tin chi tiết về các bãi biển, cập nhật trạng
-                                    thái và thông tin du lịch.</p>
-                                <a href="{{ route('admin.beaches.index') }}" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #f093fb, #f5576c); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(240,147,251,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý bãi biển
-                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-users fa-lg text-white"></i>
+                    <!-- Management Cards -->
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-lg h-100 management-card"
+                                style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-wrapper me-3"
+                                            style="width: 60px; height: 60px; background: linear-gradient(45deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-umbrella-beach fa-lg text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title mb-1 fw-bold text-dark">Quản lý bãi biển</h5>
+                                            <small class="text-muted">Cập nhật thông tin bãi biển</small>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Quản lý người dùng</h5>
-                                        <small class="text-muted">Quản lý tài khoản người dùng</small>
-                                    </div>
+                                    <p class="card-text text-muted mb-4">Quản lý thông tin chi tiết về các bãi biển, cập nhật trạng
+                                        thái và thông tin du lịch.</p>
+                                    <a href="{{ route('admin.beaches.index') }}" class="btn w-100 text-white fw-semibold"
+                                        style="background: linear-gradient(45deg, #f093fb, #f5576c); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(240,147,251,0.4)'"
+                                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                        <i class="fas fa-arrow-right me-2"></i>Quản lý bãi biển
+                                    </a>
                                 </div>
-                                <p class="card-text text-muted mb-4">Quản lý thông tin người dùng, phân quyền và theo dõi hoạt
-                                    động của hệ thống.</p>
-                                <a href="{{ route('admin.users.index') }}" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102,126,234,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Quản lý người dùng
-                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-lg h-100 management-card"
+                                style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-wrapper me-3"
+                                            style="width: 60px; height: 60px; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-users fa-lg text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title mb-1 fw-bold text-dark">Quản lý người dùng</h5>
+                                            <small class="text-muted">Quản lý tài khoản người dùng</small>
+                                        </div>
+                                    </div>
+                                    <p class="card-text text-muted mb-4">Quản lý người dùng, phân quyền và theo dõi hoạt
+                                        động của hệ thống.</p>
+                                    <a href="{{ route('admin.users.index') }}" class="btn w-100 text-white fw-semibold"
+                                        style="background: linear-gradient(45deg, #667eea, #764ba2); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102,126,234,0.4)'"
+                                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                        <i class="fas fa-arrow-right me-2"></i>Quản lý người dùng
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card border-0 shadow-lg h-100 management-card"
+                                style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-wrapper me-3"
+                                            style="width: 60px; height: 60px; background: linear-gradient(45deg, #4facfe, #00f2fe); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-life-ring fa-lg text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="card-title mb-1 fw-bold text-dark">Hỗ trợ</h5>
+                                            <small class="text-muted">Quản lý yêu cầu hỗ trợ</small>
+                                        </div>
+                                    </div>
+                                    <p class="card-text text-muted mb-4">Quản lý, hỗ trợ từ khách hàng, phản hồi và giải
+                                        quyết vấn đề một cách hiệu quả.</p>
+                                    <a href="{{ route('admin.support.index') }}" class="btn w-100 text-white fw-semibold"
+                                        style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
+                                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                        <i class="fas fa-arrow-right me-2"></i>Xem yêu cầu hỗ trợ
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card border-0 shadow-lg h-100 management-card"
-                            style="transition: all 0.3s ease; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-wrapper me-3"
-                                        style="width: 60px; height: 60px; background: linear-gradient(45deg, #4facfe, #00f2fe); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                                        <i class="fas fa-life-ring fa-lg text-white"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="card-title mb-1 fw-bold text-dark">Hỗ trợ</h5>
-                                        <small class="text-muted">Quản lý yêu cầu hỗ trợ</small>
-                                    </div>
-                                </div>
-                                <p class="card-text text-muted mb-4">Quản lý các yêu cầu hỗ trợ từ khách hàng, phản hồi và giải
-                                    quyết vấn đề một cách hiệu quả.</p>
-                                <a href="{{ route('admin.support.index') }}" class="btn w-100 text-white fw-semibold"
-                                    style="background: linear-gradient(45deg, #4facfe, #00f2fe); border: none; padding: 12px; border-radius: 10px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(79,172,254,0.4)'"
-                                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                                    <i class="fas fa-arrow-right me-2"></i>Xem yêu cầu hỗ trợ
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                
                 </div>
 
 
             @else
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card border-0 shadow-lg"
-                            style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
-                            <div class="card-body text-center p-5">
-                                <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                                <h4 class="fw-bold text-dark mb-3">Không có quyền truy cập</h4>
-                                <p class="text-muted mb-4">Bạn không có quyền truy cập dashboard quản trị. Vui lòng liên hệ quản
-                                    trị viên để được hỗ trợ.</p>
-                                <a href="{{ route('home') }}" class="btn btn-primary px-4 py-2" style="border-radius: 10px;">
-                                    <i class="fas fa-home me-2"></i>Quay về trang chủ
-                                </a>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-lg"
+                        style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                            <h4 class="fw-bold text-dark mb-3">Không có quyền truy cập</h4>
+                            <p class="text-muted mb-4">Bạn không có quyền truy cập dashboard quản trị. Vui lòng liên hệ quản
+                                trị viên để được hỗ trợ.</p>
+                            <a href="{{ route('home') }}" class="btn btn-primary px-4 py-2" style="border-radius: 10px;">
+                                <i class="fas fa-home me-2"></i>Quay về trang chủ
+                            </a>
                         </div>
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
+    </div>
     </div>
 @endsection

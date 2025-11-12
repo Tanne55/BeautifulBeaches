@@ -20,11 +20,11 @@
         <div class="row justify-content-center">
             <!-- Form bên trái -->
             <div class="col-lg-6">
-                <div class="card border-0 shadow-sm mb-4">
+                <div class="card border-0 shadow-sm mb-4 w-100">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Thông tin bãi biển</h5>
                     </div>
-                    <div class="card-body p-4">
+                    <div class="p-4">
                         @if ($errors->any())
                             <div class="alert alert-danger border-0 shadow-sm">
                                 <div class="d-flex align-items-center mb-2">
@@ -193,12 +193,12 @@
             </div>
             <!-- Preview bên phải -->
             <div class="col-lg-6">
-                <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
-                    <div class="card-header bg-gradient" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div class="card border-0 shadow-sm sticky-top w-100" style="top: 20px;">
+                    <div class="card-header bg-gradient text-dark" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                         <h5 class="mb-0"><i class="bi bi-eye me-2"></i>Xem trước</h5>
                         <small class="opacity-75">Giao diện sẽ hiển thị như thế này</small>
                     </div>
-                    <div class="card-body p-4">
+                    <div class=" p-4">
                         <div class="preview-container">
                             <div class="text-center mb-4">
                                 <img id="previewPrimaryImage" src="https://via.placeholder.com/900x350?text=Ảnh+Chính&bg=e3f2fd&color=1976d2"

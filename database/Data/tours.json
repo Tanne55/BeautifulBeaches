@@ -3,7 +3,7 @@
         "id": 1,
         "beach_id": 1,
         "title": "Bai Chay Adventure Tour",
-        "image": "\/assets\/image\/1.jpg",
+        "image": "/assets/image/1.jpg",
         "description": "Explore the beautiful Bai Chay beach with guided tour",
         "duration_days": 1,
         "price": 61.41,
@@ -15,7 +15,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -33,15 +33,16 @@
             "Sunset viewing"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 2,
         "beach_id": 1,
         "title": "Bai Chay Sunset Tour",
-        "image": "\/assets\/image\/1.jpg",
+        "image": "/assets/image/1.jpg",
         "description": "Enjoy the sunset at Bai Chay beach",
         "duration_days": 3,
         "price": 70,
@@ -53,7 +54,7 @@
             "2025-08-24T08:00:00",
             "2025-08-28T08:00:00"
         ],
-        "return_time": "2025-08-19T08:00:00",
+        "return_time": "2025-09-12T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -71,15 +72,16 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 3,
         "beach_id": 2,
         "title": "Do Son Cultural Tour",
-        "image": "\/assets\/image\/2.jpg",
+        "image": "/assets/image/2.jpg",
         "description": "Discover the cultural heritage of Do Son beach",
         "duration_days": 1,
         "price": 40.32,
@@ -91,7 +93,7 @@
             "2025-08-21T08:00:00",
             "2025-08-23T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -109,15 +111,16 @@
             "Ocean walks"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 4,
         "beach_id": 2,
         "title": "Do Son Adventure Tour",
-        "image": "\/assets\/image\/2.jpg",
+        "image": "/assets/image/2.jpg",
         "description": "Adventure activities at Do Son beach",
         "duration_days": 1,
         "price": 50,
@@ -129,7 +132,7 @@
             "2025-08-20T08:00:00",
             "2025-08-22T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -147,15 +150,16 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 5,
         "beach_id": 3,
         "title": "An Bang Beach Discovery",
-        "image": "\/assets\/image\/3.jpg",
+        "image": "/assets/image/3.jpg",
         "description": "Discover the beauty of An Bang Beach",
         "duration_days": 1,
         "price": 79.56,
@@ -167,7 +171,7 @@
             "2025-08-23T08:00:00",
             "2025-08-26T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -185,15 +189,16 @@
             "Relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 6,
         "beach_id": 3,
         "title": "An Bang Sunset Experience",
-        "image": "\/assets\/image\/3.jpg",
+        "image": "/assets/image/3.jpg",
         "description": "Experience the magical sunset at An Bang",
         "duration_days": 1,
         "price": 85,
@@ -205,7 +210,7 @@
             "2025-08-21T16:00:00",
             "2025-08-24T16:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -223,15 +228,16 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 7,
         "beach_id": 4,
         "title": "Tuan Chau Nature Tour",
-        "image": "\/assets\/image\/4.jpg",
+        "image": "/assets/image/4.jpg",
         "description": "Explore the natural beauty of Tuan Chau",
         "duration_days": 1,
         "price": 41.42,
@@ -243,7 +249,7 @@
             "2025-08-24T08:00:00",
             "2025-08-28T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -261,15 +267,16 @@
             "Photography"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 8,
         "beach_id": 4,
         "title": "Tuan Chau Adventure",
-        "image": "\/assets\/image\/4.jpg",
+        "image": "/assets/image/4.jpg",
         "description": "Adventure activities at Tuan Chau Beach",
         "duration_days": 1,
         "price": 55,
@@ -281,7 +288,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -299,15 +306,16 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 9,
         "beach_id": 5,
         "title": "Lang Co Beach Retreat",
-        "image": "\/assets\/image\/5.jpg",
+        "image": "/assets/image/5.jpg",
         "description": "Peaceful retreat at Lang Co Beach",
         "duration_days": 1,
         "price": 81.03,
@@ -319,7 +327,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -337,15 +345,16 @@
             "Beach meditation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 10,
         "beach_id": 5,
         "title": "Lang Co Cultural Experience",
-        "image": "\/assets\/image\/5.jpg",
+        "image": "/assets/image/5.jpg",
         "description": "Cultural experience at Lang Co Beach",
         "duration_days": 1,
         "price": 90,
@@ -357,7 +366,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -375,15 +384,16 @@
             "Local interaction"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 11,
         "beach_id": 6,
         "title": "Quang Lang Beach Tour",
-        "image": "\/assets\/image\/6.jpg",
+        "image": "/assets/image/6.jpg",
         "description": "Explore Quang Lang Beach",
         "duration_days": 1,
         "price": 62.24,
@@ -395,7 +405,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -413,15 +423,16 @@
             "Beach activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 12,
         "beach_id": 6,
         "title": "Quang Lang Sunset Tour",
-        "image": "\/assets\/image\/6.jpg",
+        "image": "/assets/image/6.jpg",
         "description": "Sunset experience at Quang Lang",
         "duration_days": 1,
         "price": 70,
@@ -433,7 +444,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -451,15 +462,16 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 13,
         "beach_id": 7,
         "title": "Dong Chau Beach Adventure",
-        "image": "\/assets\/image\/7.jpg",
+        "image": "/assets/image/7.jpg",
         "description": "Adventure at Dong Chau Beach",
         "duration_days": 1,
         "price": 75.06,
@@ -471,7 +483,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -489,15 +501,16 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 14,
         "beach_id": 7,
         "title": "Dong Chau Nature Walk",
-        "image": "\/assets\/image\/7.jpg",
+        "image": "/assets/image/7.jpg",
         "description": "Nature walk at Dong Chau Beach",
         "duration_days": 1,
         "price": 80,
@@ -509,7 +522,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -527,15 +540,16 @@
             "Peaceful atmosphere"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 15,
         "beach_id": 8,
         "title": "Hai Hoa Beach Experience",
-        "image": "\/assets\/image\/8.jpg",
+        "image": "/assets/image/8.jpg",
         "description": "Experience Hai Hoa Beach",
         "duration_days": 1,
         "price": 49.96,
@@ -547,7 +561,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -565,15 +579,16 @@
             "Entertainment"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 16,
         "beach_id": 8,
         "title": "Hai Hoa Water Sports",
-        "image": "\/assets\/image\/8.jpg",
+        "image": "/assets/image/8.jpg",
         "description": "Water sports at Hai Hoa Beach",
         "duration_days": 1,
         "price": 60,
@@ -585,7 +600,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -603,15 +618,16 @@
             "Beach volleyball"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 17,
         "beach_id": 9,
         "title": "Sam Son Beach Tour",
-        "image": "\/assets\/image\/9.jpg",
+        "image": "/assets/image/9.jpg",
         "description": "Tour Sam Son Beach",
         "duration_days": 1,
         "price": 50.17,
@@ -623,7 +639,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -641,15 +657,16 @@
             "Family activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 18,
         "beach_id": 9,
         "title": "Sam Son Cultural Tour",
-        "image": "\/assets\/image\/9.jpg",
+        "image": "/assets/image/9.jpg",
         "description": "Cultural tour at Sam Son Beach",
         "duration_days": 1,
         "price": 65,
@@ -661,7 +678,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -679,15 +696,16 @@
             "Local interaction"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 19,
         "beach_id": 10,
         "title": "Bai Tam Tien Sa Discovery",
-        "image": "\/assets\/image\/10.jpg",
+        "image": "/assets/image/10.jpg",
         "description": "Discover Bai Tam Tien Sa",
         "duration_days": 1,
         "price": 55.06,
@@ -699,7 +717,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -717,15 +735,16 @@
             "Beach exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 20,
         "beach_id": 10,
         "title": "Bai Tam Tien Sa Adventure",
-        "image": "\/assets\/image\/10.jpg",
+        "image": "/assets/image/10.jpg",
         "description": "Adventure at Bai Tam Tien Sa",
         "duration_days": 1,
         "price": 70,
@@ -737,7 +756,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -755,15 +774,16 @@
             "Exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 21,
         "beach_id": 11,
         "title": "My Khe Beach Experience",
-        "image": "\/assets\/image\/11.jpg",
+        "image": "/assets/image/11.jpg",
         "description": "Experience My Khe Beach",
         "duration_days": 1,
         "price": 80.19,
@@ -775,7 +795,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -793,15 +813,16 @@
             "Entertainment"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 22,
         "beach_id": 11,
         "title": "My Khe Sunset Tour",
-        "image": "\/assets\/image\/11.jpg",
+        "image": "/assets/image/11.jpg",
         "description": "Sunset tour at My Khe Beach",
         "duration_days": 1,
         "price": 90,
@@ -813,7 +834,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -831,15 +852,16 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 23,
         "beach_id": 12,
         "title": "Do Son Heritage Tour",
-        "image": "\/assets\/image\/12.jpg",
+        "image": "/assets/image/12.jpg",
         "description": "Heritage tour at Do Son Beach",
         "duration_days": 1,
         "price": 40.32,
@@ -851,7 +873,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -869,15 +891,16 @@
             "Heritage exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 24,
         "beach_id": 12,
         "title": "Do Son Beach Adventure",
-        "image": "\/assets\/image\/12.jpg",
+        "image": "/assets/image/12.jpg",
         "description": "Adventure at Do Son Beach",
         "duration_days": 1,
         "price": 55,
@@ -889,7 +912,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -907,15 +930,16 @@
             "Team building"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 25,
         "beach_id": 13,
         "title": "Cua Dai Beach Discovery",
-        "image": "\/assets\/image\/13.jpg",
+        "image": "/assets/image/13.jpg",
         "description": "Discover Cua Dai Beach",
         "duration_days": 1,
         "price": 51.14,
@@ -927,7 +951,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -945,15 +969,16 @@
             "Beach exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 26,
         "beach_id": 13,
         "title": "Cua Dai Nature Tour",
-        "image": "\/assets\/image\/13.jpg",
+        "image": "/assets/image/13.jpg",
         "description": "Nature tour at Cua Dai Beach",
         "duration_days": 1,
         "price": 65,
@@ -965,7 +990,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -983,15 +1008,16 @@
             "Peaceful atmosphere"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 27,
         "beach_id": 14,
         "title": "Co To Island Adventure",
-        "image": "\/assets\/image\/14.jpg",
+        "image": "/assets/image/14.jpg",
         "description": "Adventure on Co To Island",
         "duration_days": 1,
         "price": 43.43,
@@ -1003,7 +1029,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -1021,15 +1047,16 @@
             "Exploration"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 28,
         "beach_id": 14,
         "title": "Co To Island Discovery",
-        "image": "\/assets\/image\/14.jpg",
+        "image": "/assets/image/14.jpg",
         "description": "Discover Co To Island",
         "duration_days": 1,
         "price": 60,
@@ -1041,7 +1068,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -1059,15 +1086,16 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 29,
         "beach_id": 15,
         "title": "Quy Hoa Beach Experience",
-        "image": "\/assets\/image\/15.jpg",
+        "image": "/assets/image/15.jpg",
         "description": "Experience Quy Hoa Beach",
         "duration_days": 1,
         "price": 73.13,
@@ -1079,7 +1107,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-08-17T08:00:00",
+        "return_time": "2025-09-10T08:00:00",
         "included_services": [
             "Transportation",
             "Lunch",
@@ -1097,15 +1125,16 @@
             "Family activities"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     },
     {
         "id": 30,
         "beach_id": 15,
         "title": "Quy Hoa Sunset Tour",
-        "image": "\/assets\/image\/15.jpg",
+        "image": "/assets/image/15.jpg",
         "description": "Sunset tour at Quy Hoa Beach",
         "duration_days": 22,
         "price": 80,
@@ -1117,7 +1146,7 @@
             "2025-08-22T08:00:00",
             "2025-08-25T08:00:00"
         ],
-        "return_time": "2025-09-07T08:00:00",
+        "return_time": "2025-10-01T08:00:00",
         "included_services": [
             "Transportation",
             "Dinner",
@@ -1135,8 +1164,9 @@
             "Beach relaxation"
         ],
         "status": "confirmed",
-        "created_at": "2025-08-15 06:09:54",
-        "updated_at": "2025-08-15 06:09:54",
-        "ceo_id": 2
+        "created_at": "2025-09-08 18:29:58",
+        "updated_at": "2025-09-08 18:29:58",
+        "ceo_id": 2,
+        "departure_time": "2025-09-09T08:00:00"
     }
 ]

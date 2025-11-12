@@ -49,7 +49,6 @@
                                                 <a href="{{ route('admin.beaches.index') }}" class="dropdown-item">Quản lý bãi biển</a>
                                                 <a href="{{ route('admin.users.index') }}" class="dropdown-item">Quản lý người dùng</a>
                                                 <a href="{{ route('admin.support.index') }}" class="dropdown-item">Quản lý hỗ trợ</a>
-                                                <a href="#" class="dropdown-item">Thông báo</a>
                                             </div>
                                         </div>
                                     </li>
