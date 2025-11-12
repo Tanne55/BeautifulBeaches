@@ -178,6 +178,6 @@ class BookingService
             ]);
             
             return true;
-        });
+        }); 
     }
 }
