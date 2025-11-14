@@ -139,7 +139,7 @@
                 </div>
 
                 @if($beaches->count() > 0)
-                    <div class="table-responsive">
+                    <div class="table-responsive overflow-hidden">
                         <table class="table table-hover mb-0">
                             <thead class="table-light">
                                 <tr>
@@ -410,12 +410,12 @@
                 toast.className = 'position-fixed top-0 end-0 p-3';
                 toast.style.zIndex = '9999';
                 toast.innerHTML = `
-                                                                                                                                                                                                                                                                                                                            <div class="toast show" role="alert">
-                                                                                                                                                                                                                                                                                                                                <div class="toast-body bg-success text-white rounded">
-                                                                                                                                                                                                                                                                                                                                    <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
-                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                        `;
+                                                                                                                                                                                                                                                                                                                                                                    <div class="toast show" role="alert">
+                                                                                                                                                                                                                                                                                                                                                                        <div class="toast-body bg-success text-white rounded">
+                                                                                                                                                                                                                                                                                                                                                                            <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                `;
                 document.body.appendChild(toast);
                 setTimeout(() => {
                     toast.remove();

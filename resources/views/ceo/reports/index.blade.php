@@ -100,18 +100,26 @@
     <!-- Tab Navigation -->
     <div class="mb-4">
         <div class="">
-            <div class="card-body">
+            <div class="card-body" >
+                <style>
+                    /* Khi tab đang active */
+                    .nav-tabs .nav-link.active {
+                      color: #000 !important;       /* chữ đen */
+                      background-color: #e9ecef;    /* nền xám nhạt */
+                      border-color: #dee2e6 #dee2e6 #fff;
+                    }
+                  </style>
                 <h5 class="card-title">Chi tiết booking tháng {{ $viewMonth }}</h5>
                 
                 <!-- Tabs -->
                 <ul class="nav nav-tabs" id="bookingTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="individual-tab" data-bs-toggle="tab" data-bs-target="#individual" type="button" role="tab">
+                        <button  class="nav-link active text-black" id="individual-tab" data-bs-toggle="tab" data-bs-target="#individual" type="button" role="tab">
                             Booking cá nhân
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups" type="button" role="tab">
+                        <button class="nav-link text-black" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups" type="button" role="tab">
                             Booking nhóm
                         </button>
                     </li>
@@ -149,7 +157,7 @@
                             </div>
                         </form>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-hidden">
                             <table class="table table-bordered table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
@@ -242,7 +250,7 @@
                             </div>
                         </form>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-hidden">
                             <table class="table table-bordered table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
@@ -319,7 +327,7 @@
                                                 <td colspan="10">
                                                     <div class="p-3 bg-light">
                                                         <h6 class="mb-3">Chi tiết booking trong nhóm:</h6>
-                                                        <div class="table-responsive">
+                                                        <div class="table-responsive overflow-hidden">
                                                             <table class="table table-sm table-striped">
                                                                 <thead>
                                                                     <tr>

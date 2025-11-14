@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container-fluid py-4" style="padding-left: 80px "> 
+<div class="container py-4 container-custom"> 
     <!-- Header Section -->
     <div class="row mb-4">
         <div class="col-12">
@@ -250,7 +250,7 @@
                         </h5>
                     </div>
                     <div class="card-body p-0">
-                        <div class="table-responsive">
+                        <div class="table-responsive  overflow-hidden">
                             <table class="table table-hover align-middle mb-0">
                                 <thead class="table-dark">
                                     <tr>
