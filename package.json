@@ -4,7 +4,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "seed": "php artisan migrate:fresh --seed",
+        "update_dates": "powershell -ExecutionPolicy Bypass -File ./update_tours.ps1"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
