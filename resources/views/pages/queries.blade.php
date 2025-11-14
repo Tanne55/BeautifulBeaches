@@ -35,7 +35,7 @@
                                 <span>Tour có phù hợp với trẻ em không?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     Tour phù hợp với trẻ em từ 5 tuổi trở lên. Chúng tôi có áo phao an toàn và hướng dẫn
                                     viên
@@ -49,7 +49,7 @@
                                 <span>Chính sách hủy tour như thế nào?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     <strong>Hủy trước 7 ngày:</strong> hoàn 100% <br>
                                     <strong>Hủy trước 3 ngày:</strong> hoàn 70% <br>
@@ -64,7 +64,7 @@
                                 <span>Nếu thời tiết xấu sẽ xử lý như thế nào?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     Chúng tôi sẽ liên hệ để dời lịch hoặc hoàn tiền 100%. An toàn của khách hàng là ưu tiên
                                     hàng
@@ -78,7 +78,7 @@
                                 <span>Có cần mang theo gì đặc biệt không?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     Mang theo CMND/CCCD, đồ bơi, kem chống nắng, mũ, áo khoác nhẹ. Các thiết bị thể thao
                                     nước đã
@@ -92,7 +92,7 @@
                                 <span>Có thể mang theo thú cưng không?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     Một số tour cho phép mang theo thú cưng nhỏ gọn và đã tiêm phòng đầy đủ. Tuy nhiên, bạn
                                     nên thông báo trước với chúng tôi để được hỗ trợ tốt nhất và tránh ảnh hưởng đến các
@@ -106,7 +106,7 @@
                                 <span> Có chỗ nào check-in đẹp không?</span>
                                 <i class="fas fa-chevron-down faq-icon-toggle"></i>
                             </button>
-                            <div class="faq-answer">
+                            <div class="faq-answer bg-white">
                                 <div class="faq-answer-content">
                                     Tour sẽ đưa bạn đến nhiều địa điểm “sống ảo” như bãi đá tự nhiên, cầu gỗ trên biển, các
                                     quán cà phê ven bờ với view cực chill. Hướng dẫn viên cũng sẽ giới thiệu những góc máy

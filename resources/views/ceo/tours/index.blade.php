@@ -91,7 +91,7 @@
         </div>
         <div class=" border-0 shadow-sm">
             <div class="card-body p-0">
-                <div class="table-responsive">
+                <div class="table-responsive overflow-hidden">
                     <table class="table table-bordered align-middle text-center table-hover mb-0">
                         <thead class="table-primary align-middle">
                             <tr>

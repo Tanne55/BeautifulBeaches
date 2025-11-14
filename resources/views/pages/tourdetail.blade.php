@@ -7,35 +7,36 @@
 
 @section('head')
     @vite('resources/css/calendar.css')
-    
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    
+
     <!-- Gallery Modal CSS -->
     <style>
         .primary-image {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
         }
+
         .primary-image:hover {
             transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* Modal z-index cao hơn header */
         .modal {
             z-index: 9999 !important;
         }
-        
+
         .modal-backdrop {
             z-index: 9998 !important;
         }
-        
+
         .swiper {
             width: 100%;
             height: 70vh;
         }
-        
+
         .swiper-slide {
             text-align: center;
             font-size: 18px;
@@ -44,37 +45,38 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .swiper-slide img {
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
-        .swiper-button-next, .swiper-button-prev {
+
+        .swiper-button-next,
+        .swiper-button-prev {
             color: #fff;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             width: 44px;
             height: 44px;
             border-radius: 50%;
             z-index: 10;
         }
-        
+
         .swiper-pagination {
             z-index: 10;
         }
-        
+
         .swiper-pagination-bullet {
             width: 12px;
             height: 12px;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255, 255, 255, 0.8);
         }
-        
+
         .swiper-pagination-bullet-active {
             background: #fff;
         }
-        
+
         .modal-header {
             border-bottom: none;
             background: #fff;
@@ -82,59 +84,59 @@
             top: 0;
             z-index: 11;
         }
-        
+
         .modal-body {
             padding: 0;
         }
-        
+
         .modal-content {
             border: none;
             border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
         .image-caption {
             position: absolute;
             bottom: 20px;
             left: 20px;
             right: 20px;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 15px;
             border-radius: 8px;
             z-index: 10;
         }
-        
+
         .image-type-badge {
             position: absolute;
             top: 15px;
             right: 15px;
             z-index: 10;
         }
-        
+
         .image-counter {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 8px 15px;
             border-radius: 20px;
             z-index: 10;
             font-size: 14px;
         }
-        
+
         /* Đảm bảo navbar không che modal */
         .navbar {
             z-index: 1030 !important;
         }
-        
+
         /* Animation cho modal */
         .modal.fade .modal-dialog {
             transform: scale(0.8);
             transition: transform 0.3s ease-out;
         }
-        
+
         .modal.show .modal-dialog {
             transform: scale(1);
         }
@@ -153,51 +155,49 @@
                         // Ưu tiên hiển thị: 1) field image trong tours > 2) primaryImage > 3) ảnh đầu tiên
                         $displayImage = null;
                         $altText = $tour->title;
-                        
-                        if($tour->image) {
+
+                        if ($tour->image) {
                             // Ưu tiên 1: Field image trong bảng tours
                             $isAsset = str_starts_with($tour->image, 'http') || str_starts_with($tour->image, '/assets');
                             $displayImage = $isAsset ? $tour->image : asset('storage/' . (str_starts_with($tour->image, 'tours/') ? $tour->image : 'tours/' . $tour->image));
                             $altText = $tour->title;
-                        } elseif($tour->primaryImage) {
+                        } elseif ($tour->primaryImage) {
                             // Ưu tiên 2: Primary image từ tour_images
                             $displayImage = $tour->primaryImage->getFullImageUrlAttribute();
                             $altText = $tour->primaryImage->alt_text ?? $tour->title;
-                        } elseif($tour->images->first()) {
+                        } elseif ($tour->images->first()) {
                             // Ưu tiên 3: Ảnh đầu tiên từ tour_images
                             $displayImage = $tour->images->first()->getFullImageUrlAttribute();
                             $altText = $tour->images->first()->alt_text ?? $tour->title;
-                        } elseif($tour->beach && $tour->beach->primaryImage) {
+                        } elseif ($tour->beach && $tour->beach->primaryImage) {
                             // Fallback: Primary image của beach
                             $displayImage = $tour->beach->primaryImage->getFullImageUrlAttribute();
                             $altText = $tour->beach->primaryImage->alt_text ?? $tour->title;
-                        } elseif($tour->beach && $tour->beach->images->first()) {
+                        } elseif ($tour->beach && $tour->beach->images->first()) {
                             // Fallback: Ảnh đầu tiên của beach
                             $displayImage = $tour->beach->images->first()->getFullImageUrlAttribute();
                             $altText = $tour->beach->images->first()->alt_text ?? $tour->title;
                         }
-                        
+
                         $totalImages = $tour->images->count();
-                        if($tour->image) $totalImages++; // Thêm 1 nếu có field image
+                        if ($tour->image)
+                            $totalImages++; // Thêm 1 nếu có field image
                     @endphp
-                    
+
                     @if($displayImage)
-                        <img src="{{ $displayImage }}" 
-                             class="img-fluid rounded shadow primary-image" 
-                             alt="{{ $altText }}"
-                             onclick="openGallery('tour', {{ $tour->id }}, '{{ $tour->title }}')"
-                             style="cursor: pointer; height: 300px; width: 100%; object-fit: cover;">
+                        <img src="{{ $displayImage }}" class="img-fluid rounded shadow primary-image" alt="{{ $altText }}"
+                            onclick="openGallery('tour', {{ $tour->id }}, '{{ $tour->title }}')"
+                            style="cursor: pointer; height: 300px; width: 100%; object-fit: cover;">
                     @else
-                        <img src="https://via.placeholder.com/600x400?text=No+Image" 
-                             class="img-fluid rounded shadow primary-image"
-                             alt="No image"
-                             style="height: 300px; width: 100%; object-fit: cover;">
+                        <img src="https://via.placeholder.com/600x400?text=No+Image"
+                            class="img-fluid rounded shadow primary-image" alt="No image"
+                            style="height: 300px; width: 100%; object-fit: cover;">
                     @endif
-                    
+
                     @if($totalImages > 0)
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge bg-success fs-6 px-3 py-2" style="cursor: pointer;" 
-                                  onclick="openGallery('tour', {{ $tour->id }}, '{{ $tour->title }}')">
+                            <span class="badge bg-success fs-6 px-3 py-2" style="cursor: pointer;"
+                                onclick="openGallery('tour', {{ $tour->id }}, '{{ $tour->title }}')">
                                 <i class="fas fa-images me-2"></i>{{ $totalImages }} ảnh
                             </span>
                         </div>
@@ -332,8 +332,7 @@
                 </table>
                 {{-- NÚT ĐẶT TOUR --}}
                 <div class="mb-4">
-                    <a href="{{ route('tour.booking.form', $tour->id) }}" 
-                       class="btn btn-success btn-lg w-100 mb-3">
+                    <a href="{{ route('tour.booking.form', $tour->id) }}" class="btn btn-success btn-lg w-100 mb-3">
                         <i class="bi bi-calendar-plus me-2"></i>Đặt tour ngay
                     </a>
                     <small class="text-muted d-block text-center">
@@ -560,37 +559,37 @@
             <div class="section-content">
                 <div class="weather-grid">
                     <div class="weather-day">
-                        <div class="weather-date">T2<br>30/6</div>
+                        <div class="weather-date">T7<br>15/11</div>
                         <div class="weather-icon">☀️</div>
                         <div class="weather-temp">28°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">T3<br>1/7</div>
+                        <div class="weather-date">CN<br>16/11</div>
                         <div class="weather-icon">🌤️</div>
                         <div class="weather-temp">26°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">T4<br>2/7</div>
+                        <div class="weather-date">T2<br>17/11</div>
                         <div class="weather-icon">⛅</div>
                         <div class="weather-temp">25°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">T5<br>3/7</div>
+                        <div class="weather-date">T3<br>18/11</div>
                         <div class="weather-icon">🌧️</div>
                         <div class="weather-temp">24°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">T6<br>4/7</div>
+                        <div class="weather-date">T4<br>19/11</div>
                         <div class="weather-icon">☀️</div>
                         <div class="weather-temp">29°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">T7<br>5/7</div>
+                        <div class="weather-date">T5<br>20/11</div>
                         <div class="weather-icon">☀️</div>
                         <div class="weather-temp">31°C</div>
                     </div>
                     <div class="weather-day">
-                        <div class="weather-date">CN<br>6/7</div>
+                        <div class="weather-date">T6<br>21/11</div>
                         <div class="weather-icon">🌤️</div>
                         <div class="weather-temp">27°C</div>
                     </div>
@@ -675,7 +674,7 @@
                     <div class="image-counter" id="imageCounter">
                         1 / 1
                     </div>
-                    
+
                     <!-- Swiper -->
                     <div class="swiper gallerySwiper">
                         <div class="swiper-wrapper" id="swiperWrapper">
@@ -692,22 +691,22 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    
+
     <script>
         let swiper;
-        
+
         function openGallery(type, id, title) {
             // Set modal title
             document.getElementById('galleryModalTitle').textContent = title;
-            
+
             // Show loading state
             const wrapper = document.getElementById('swiperWrapper');
             wrapper.innerHTML = '<div class="d-flex justify-content-center align-items-center h-100"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>';
-            
+
             // Show modal immediately
             const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
             modal.show();
-            
+
             // Fetch images via AJAX
             fetch(`/api/gallery/${type}/${id}`)
                 .then(response => response.json())
@@ -725,42 +724,42 @@
                     document.getElementById('imageCounter').textContent = '0 / 0';
                 });
         }
-        
+
         function loadGalleryImages(images) {
             const wrapper = document.getElementById('swiperWrapper');
             wrapper.innerHTML = '';
-            
+
             images.forEach((image, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
                 slide.innerHTML = `
-                    <div class="position-relative w-100 h-100">
-                        <img src="${image.image_url}" alt="${image.alt_text || ''}" class="w-100 h-100 object-fit-cover" loading="lazy">
-                        
-                        ${image.image_type ? `
-                        <div class="image-type-badge">
-                            <span class="badge bg-info">${getImageTypeLabel(image.image_type)}</span>
+                        <div class="position-relative w-100 h-100">
+                            <img src="${image.image_url}" alt="${image.alt_text || ''}" class="w-100 h-100 object-fit-cover" loading="lazy">
+
+                            ${image.image_type ? `
+                            <div class="image-type-badge">
+                                <span class="badge bg-info">${getImageTypeLabel(image.image_type)}</span>
+                            </div>
+                            ` : ''}
+
+                            ${image.caption ? `
+                            <div class="image-caption">
+                                <p class="mb-0">${image.caption}</p>
+                            </div>
+                            ` : ''}
                         </div>
-                        ` : ''}
-                        
-                        ${image.caption ? `
-                        <div class="image-caption">
-                            <p class="mb-0">${image.caption}</p>
-                        </div>
-                        ` : ''}
-                    </div>
-                `;
+                    `;
                 wrapper.appendChild(slide);
             });
-            
+
             // Update counter
             updateImageCounter(1, images.length);
-            
+
             // Initialize/Update Swiper
             if (swiper) {
                 swiper.destroy();
             }
-            
+
             swiper = new Swiper('.gallerySwiper', {
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -786,11 +785,11 @@
                 }
             });
         }
-        
+
         function updateImageCounter(current, total) {
             document.getElementById('imageCounter').textContent = `${current} / ${total}`;
         }
-        
+
         function getImageTypeLabel(type) {
             const labels = {
                 'hero': 'Ảnh chính',
@@ -804,7 +803,7 @@
             };
             return labels[type] || type;
         }
-        
+
         // Clean up swiper when modal is closed
         document.getElementById('galleryModal').addEventListener('hidden.bs.modal', function () {
             if (swiper) {
@@ -812,12 +811,12 @@
                 swiper = null;
             }
         });
-        
+
         // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             const modal = document.getElementById('galleryModal');
             if (modal.classList.contains('show')) {
-                switch(e.key) {
+                switch (e.key) {
                     case 'Escape':
                         bootstrap.Modal.getInstance(modal).hide();
                         break;
@@ -831,6 +830,6 @@
             }
         });
     </script>
-    
+
     @vite('resources/js/tourdetail.js')
 @endsection
