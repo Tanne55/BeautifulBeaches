@@ -188,7 +188,7 @@
                 let qty = parseInt(numberInput.value);
                 if (isNaN(qty) || qty < 1) qty = 1;
                 const total = unitPrice * qty;
-                totalAmountDiv.textContent = total.toLocaleString('vi-VN') + ' tr vnđ';
+                totalAmountDiv.textContent = total.toLocaleString('vi-VN') + ' TrVND';
             }
             
             numberInput.addEventListener('input', updateTotal);
@@ -298,7 +298,7 @@
                 let qty = parseInt(numberInput.value);
                 if (isNaN(qty) || qty < 1) qty = 1;
                 const total = unitPrice * qty;
-                totalAmountDiv.textContent = total.toLocaleString('vi-VN') + ' tr vnđ';
+                totalAmountDiv.textContent = total.toLocaleString('vi-VN') + ' TrVND';
             }
             
             numberInput.addEventListener('input', updateTotal);

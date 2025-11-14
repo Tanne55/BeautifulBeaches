@@ -243,9 +243,9 @@
                                 @if($price)
                                     @if($price->discount && $price->discount > 0)
                                         <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }}
-                                            tr vnđ</span>
+                                            TrVND</span>
                                         <small class="text-decoration-line-through text-muted">
-                                            {{ number_format($price->price, 0, ',', '.') }} tr vnđ
+                                            {{ number_format($price->price, 0, ',', '.') }} TrVND
                                         </small>
                                     @else
                                         <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} đ</span>
@@ -733,22 +733,22 @@
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
                 slide.innerHTML = `
-                        <div class="position-relative w-100 h-100">
-                            <img src="${image.image_url}" alt="${image.alt_text || ''}" class="w-100 h-100 object-fit-cover" loading="lazy">
+                            <div class="position-relative w-100 h-100">
+                                <img src="${image.image_url}" alt="${image.alt_text || ''}" class="w-100 h-100 object-fit-cover" loading="lazy">
 
-                            ${image.image_type ? `
-                            <div class="image-type-badge">
-                                <span class="badge bg-info">${getImageTypeLabel(image.image_type)}</span>
-                            </div>
-                            ` : ''}
+                                ${image.image_type ? `
+                                <div class="image-type-badge">
+                                    <span class="badge bg-info">${getImageTypeLabel(image.image_type)}</span>
+                                </div>
+                                ` : ''}
 
-                            ${image.caption ? `
-                            <div class="image-caption">
-                                <p class="mb-0">${image.caption}</p>
+                                ${image.caption ? `
+                                <div class="image-caption">
+                                    <p class="mb-0">${image.caption}</p>
+                                </div>
+                                ` : ''}
                             </div>
-                            ` : ''}
-                        </div>
-                    `;
+                        `;
                 wrapper.appendChild(slide);
             });
 

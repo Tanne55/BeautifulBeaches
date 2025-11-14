@@ -99,7 +99,7 @@
                                 <th class="text-start">Tên tour</th>
                                 <th class="text-center">Bãi biển</th>
                                 <th class="text-center">Ngày đi</th>
-                                <th class="text-center">Giá</th>
+                                <th class="text-center" style="width: 100px;">Giá</th>
                                 <th class="text-center">Sức chứa</th>
                                 <th class="text-center">Trạng thái</th>
                                 <th class="text-center">CEO</th>
@@ -156,12 +156,12 @@
                                             @endphp
                                             <div class="text-center">
                                                 <span class="fw-bold text-danger">
-                                                    {{ number_format($priceDetails['final_price'], 0, ',', '.') }} tr vnđ
+                                                    {{ number_format($priceDetails['final_price'], 0, ',', '.') }} TrVND
                                                 </span>
                                                 @if($priceDetails['is_discounted'])
                                                     <br>
                                                     <small class="text-decoration-line-through text-muted">
-                                                        {{ number_format($priceDetails['original_price'], 0, ',', '.') }} tr vnđ
+                                                        {{ number_format($priceDetails['original_price'], 0, ',', '.') }} TrVND
                                                     </small>
                                                     <br>
                                                     <small class="badge bg-danger">-{{ number_format($priceDetails['discount'], 1) }}%</small>

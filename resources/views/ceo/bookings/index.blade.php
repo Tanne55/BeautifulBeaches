@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="p-3 border rounded">
-                                        <h4 class="text-success mb-1">{{ number_format($totalRevenue, 0, ',', '.') }}đ</h4>
+                                        <h4 class="text-success mb-1">{{ number_format($totalRevenue, 0, ',', '.') }} TrVND</h4>
                                         <small class="text-muted">Tổng Doanh Thu</small>
                                     </div>
                                 </div>
@@ -427,7 +427,8 @@
                                                                                             <br>
                                                                                             <small class="text-muted">
                                                                                                 {{ $booking->number_of_people }} người -
-                                                                                                {{ number_format($booking->total_amount, 0, ',', '.') }}đ
+                                                                                                {{ number_format($booking->total_amount, 0, ',', '.') }}
+                                                                                                TrVND
                                                                                             </small>
                                                                                         </div>
                                                                                         <div class="text-end">
@@ -470,7 +471,8 @@
                                                         <i class="fas fa-coins me-1"></i>
                                                         Tổng tiền chờ xử lý
                                                     </h6>
-                                                    <h4 class="text-warning mb-0">{{ number_format($totalPendingAmount, 0, ',', '.') }}đ
+                                                    <h4 class="text-warning mb-0">{{ number_format($totalPendingAmount, 0, ',', '.') }}
+                                                        TrVND
                                                     </h4>
                                                 </div>
                                             </div>
@@ -482,7 +484,8 @@
                                                         <i class="fas fa-chart-line me-1"></i>
                                                         Tổng doanh thu tour
                                                     </h6>
-                                                    <h4 class="text-info mb-0">{{ number_format($totalGroupAmount, 0, ',', '.') }}đ</h4>
+                                                    <h4 class="text-info mb-0">{{ number_format($totalGroupAmount, 0, ',', '.') }} TrVND
+                                                    </h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -532,7 +535,7 @@
                                                             </td>
                                                             <td>
                                                                 <strong class="text-success">
-                                                                    {{ number_format($booking->total_amount, 0, ',', '.') }}đ
+                                                                    {{ number_format($booking->total_amount, 0, ',', '.') }} TrVND
                                                                 </strong>
                                                             </td>
                                                             <td>

@@ -68,25 +68,28 @@
                 <div class="row" id="tour-list">
                     @foreach($tours as $tour)
                         <div class="col-md-6 mb-5 tour-cardd" data-title="{{ strtolower($tour->title) }}"
-                            data-region="{{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}" data-price="{{ $tour->current_price }}">
+                            data-region="{{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}"
+                            data-price="{{ $tour->current_price }}">
                             <div class="card h-100 shadow-sm mx-auto">
                                 @php
                                     $img = $tour->image ?? '';
                                     $beachImg = $tour->beach ? $tour->beach->image ?? '' : '';
                                 @endphp
                                 @if($img)
-                                    <img src="{{ str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'tours/') ? $img : 'tours/' . $img)) }}" 
+                                    <img src="{{ str_starts_with($img, 'http') || str_starts_with($img, '/assets') ? $img : asset('storage/' . (str_starts_with($img, 'tours/') ? $img : 'tours/' . $img)) }}"
                                         class="card-img-top" alt="{{ $tour->title }}">
                                 @elseif($beachImg)
-                                    <img src="{{ str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets') ? $beachImg : asset('storage/beaches/' . $beachImg) }}" 
+                                    <img src="{{ str_starts_with($beachImg, 'http') || str_starts_with($beachImg, '/assets') ? $beachImg : asset('storage/beaches/' . $beachImg) }}"
                                         class="card-img-top" alt="{{ $tour->title }}">
                                 @else
-                                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top" alt="No image">
+                                    <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top"
+                                        alt="No image">
                                 @endif
 
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $tour->title }}</h5>
-                                    <p class="card-text text-muted mb-1"><strong>Khu vực:</strong> {{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}
+                                    <p class="card-text text-muted mb-1"><strong>Khu vực:</strong>
+                                        {{ $tour->beach && $tour->beach->region ? $tour->beach->region->name : '' }}
                                     </p>
                                     <p class="card-text text-muted mb-1"><strong>Thời lượng:</strong>
                                         {{ $tour->duration_days ?? $tour->duration }} ngày</p>
@@ -101,21 +104,25 @@
                                             if (!$price) {
                                                 $price = $tour->prices->first();
                                             }
-                                    @endphp
-                                    @if($price)
-                                        @if($price->discount && $price->discount > 0)
-                                            <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }} tr vnđ</span>
-                                            <small class="text-decoration-line-through text-muted">
-                                                {{ number_format($price->price, 0, ',', '.') }} tr vnđ
-                                            </small>
+                                        @endphp
+                                        @if($price)
+                                            @if($price->discount && $price->discount > 0)
+                                                <span class="text-danger fw-bold">{{ number_format($price->final_price, 0, ',', '.') }}
+                                                    TrVND</span>
+                                                <small class="text-decoration-line-through text-muted">
+                                                    {{ number_format($price->price, 0, ',', '.') }} TrVND
+                                                </small>
+                                            @else
+                                                <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }}
+                                                    TrVND</span>
+                                            @endif
                                         @else
-                                            <span class="text-danger fw-bold">{{ number_format($price->price, 0, ',', '.') }} tr vnđ</span>
+                                            <span class="text-danger fw-bold">Liên hệ</span>
                                         @endif
-                                    @else
-                                        <span class="text-danger fw-bold">Liên hệ</span>
-                                    @endif
                                     </p>
-                                    <p class="card-text">{{ $tour->beach && $tour->beach->short_description ? Str::limit($tour->beach->short_description, 100) : '' }}</p>
+                                    <p class="card-text">
+                                        {{ $tour->beach && $tour->beach->short_description ? Str::limit($tour->beach->short_description, 100) : '' }}
+                                    </p>
 
                                     <a href="{{ route('tour.show', $tour->id) }}" class="btn btn-primary mt-auto">Xem chi
                                         tiết</a>

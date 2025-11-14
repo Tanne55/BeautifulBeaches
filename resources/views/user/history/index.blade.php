@@ -8,7 +8,7 @@
             <div class="alert alert-info text-center fw-bold mb-4" style="opacity: 0.7;">
                 <span>Thanh toán cần thực hiện (chờ xác nhận): </span>
                 <span class="text-danger fs-4">
-                    {{ number_format($pendingTotalAmount, 0, ',', '.') }} tr vnđ
+                    {{ number_format($pendingTotalAmount, 0, ',', '.') }} TrVND
                 </span>
                 <span>(Đã bao gồm discount)</span>
             </div>
@@ -112,7 +112,7 @@
                                         @php
                                             $priceObj = optional($booking->tour->prices->first());
                                         @endphp
-                                        {{ $priceObj->price ? number_format($priceObj->price, 0, ',', '.') . ' tr vnđ' : 'N/A' }}
+                                        {{ $priceObj->price ? number_format($priceObj->price, 0, ',', '.') . ' TrVND' : 'N/A' }}
                                     </span>
                                 </div>
                             </div>
@@ -347,13 +347,13 @@
         function resetTicketContainer() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                        <div class="text-center py-4">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Đang tải...</span>
-                            </div>
-                            <p class="text-muted mt-2">Đang tải thông tin vé...</p>
-                        </div>
-                    `;
+                                <div class="text-center py-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Đang tải...</span>
+                                    </div>
+                                    <p class="text-muted mt-2">Đang tải thông tin vé...</p>
+                                </div>
+                            `;
         }
 
         function loadUserBookingTickets(bookingId) {
@@ -380,47 +380,47 @@
 
             tickets.forEach((ticket, index) => {
                 html += `
-                            <div class="ticket-card mb-3 p-3">
-                                <div class="row align-items-center">
-                                    <div class="col-12">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <div class="ticket-code">${ticket.ticket_code}</div>
-                                            <span class="status-badge-ticket status-${ticket.status_class}">
-                                                ${ticket.status_text}
-                                            </span>
-                                        </div>
+                                    <div class="ticket-card mb-3 p-3">
+                                        <div class="row align-items-center">
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <div class="ticket-code">${ticket.ticket_code}</div>
+                                                    <span class="status-badge-ticket status-${ticket.status_class}">
+                                                        ${ticket.status_text}
+                                                    </span>
+                                                </div>
 
-                                        <div class="ticket-divider"></div>
+                                                <div class="ticket-divider"></div>
 
-                                        <div class="ticket-info">
-                                            <div class="row">
-                                                <div class="col-md-6 col-12 mb-2">
-                                                    <small class="text-white-50">Họ tên</small>
-                                                    <div class="fw-semibold">${ticket.full_name}</div>
+                                                <div class="ticket-info">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12 mb-2">
+                                                            <small class="text-white-50">Họ tên</small>
+                                                            <div class="fw-semibold">${ticket.full_name}</div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 mb-2">
+                                                            <small class="text-white-50">Giá vé</small>
+                                                            <div class="fw-semibold">${formatPrice(ticket.unit_price)} TrVND</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-12 mb-2">
+                                                            <small class="text-white-50">Email</small>
+                                                            <div class="small">${ticket.email || 'N/A'}</div>
+                                                        </div>
+                                                        <div class="col-md-6 col-12 mb-2">
+                                                            <small class="text-white-50">SĐT</small>
+                                                            <div class="small">${ticket.phone || 'N/A'}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2 text-center">
+                                                        <small class="text-white-50">Ngày tạo: ${ticket.created_at}</small>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6 col-12 mb-2">
-                                                    <small class="text-white-50">Giá vé</small>
-                                                    <div class="fw-semibold">${formatPrice(ticket.unit_price)} VNĐ</div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 col-12 mb-2">
-                                                    <small class="text-white-50">Email</small>
-                                                    <div class="small">${ticket.email || 'N/A'}</div>
-                                                </div>
-                                                <div class="col-md-6 col-12 mb-2">
-                                                    <small class="text-white-50">SĐT</small>
-                                                    <div class="small">${ticket.phone || 'N/A'}</div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 text-center">
-                                                <small class="text-white-50">Ngày tạo: ${ticket.created_at}</small>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        `;
+                                `;
             });
 
             container.innerHTML = html;
@@ -429,27 +429,27 @@
         function showNoTickets() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                        <div class="no-tickets">
-                            <div class="no-tickets-icon">
-                                <i class="bi bi-ticket-perforated"></i>
-                            </div>
-                            <h6 class="text-muted">Chưa có vé nào được tạo</h6>
-                            <p class="text-muted small">Vé sẽ được tạo sau khi booking được xác nhận</p>
-                        </div>
-                    `;
+                                <div class="no-tickets">
+                                    <div class="no-tickets-icon">
+                                        <i class="bi bi-ticket-perforated"></i>
+                                    </div>
+                                    <h6 class="text-muted">Chưa có vé nào được tạo</h6>
+                                    <p class="text-muted small">Vé sẽ được tạo sau khi booking được xác nhận</p>
+                                </div>
+                            `;
         }
 
         function showTicketError() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                        <div class="no-tickets">
-                            <div class="no-tickets-icon text-danger">
-                                <i class="bi bi-exclamation-triangle"></i>
-                            </div>
-                            <h6 class="text-danger">Có lỗi xảy ra</h6>
-                            <p class="text-muted small">Không thể tải thông tin vé. Vui lòng thử lại sau.</p>
-                        </div>
-                    `;
+                                <div class="no-tickets">
+                                    <div class="no-tickets-icon text-danger">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                    </div>
+                                    <h6 class="text-danger">Có lỗi xảy ra</h6>
+                                    <p class="text-muted small">Không thể tải thông tin vé. Vui lòng thử lại sau.</p>
+                                </div>
+                            `;
         }
 
         function formatPrice(price) {

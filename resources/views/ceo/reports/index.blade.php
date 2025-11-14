@@ -11,7 +11,7 @@
             <div class="card shadow-sm border-0 text-center h-100">
                 <div class="card-body">
                     <div class="fs-6 text-muted">Doanh thu tổng</div>
-                    <div class="fs-3 fw-bold text-success">{{ number_format($totalRevenue, 0, ',', '.') }} tr vnđ</div>
+                    <div class="fs-3 fw-bold text-success">{{ number_format($totalRevenue, 0, ',', '.') }} TrVND</div>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="fs-6 text-muted">ARPU</div>
                     <div class="fs-3 fw-bold text-info">
-                        {{ isset($arpu) ? number_format($arpu, 0, ',', '.') . 'tr vnđ' : 'N/A' }}
+                        {{ isset($arpu) ? number_format($arpu, 0, ',', '.') . 'TrVND' : 'N/A' }}
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                             @foreach($topTours as $tour => $revenue)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>{{ $tour }}</span>
-                                    <span class="fw-bold text-success">{{ number_format($revenue, 0, ',', '.') }} tr vnđ</span>
+                                    <span class="fw-bold text-success">{{ number_format($revenue, 0, ',', '.') }} TrVND</span>
                                 </li>
                             @endforeach
                         @else
@@ -85,7 +85,7 @@
                             @foreach($bottomTours as $tour => $revenue)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>{{ $tour }}</span>
-                                    <span class="fw-bold text-danger">{{ number_format($revenue, 0, ',', '.') }} tr vnđ</span>
+                                    <span class="fw-bold text-danger">{{ number_format($revenue, 0, ',', '.') }} TrVND</span>
                                 </li>
                             @endforeach
                         @else
@@ -178,7 +178,7 @@
                                         <tr>
                                             <td>{{ ($bookings->currentPage() - 1) * $bookings->perPage() + $i + 1 }}</td>
                                             <td>{{ $booking->tour->title ?? 'N/A' }}</td>
-                                            <td class="text-info fw-semibold">{{ number_format($booking->tickets->first()->unit_price ?? 0, 0, ',', '.') }} tr vnđ</td>
+                                            <td class="text-info fw-semibold">{{ number_format($booking->tickets->first()->unit_price ?? 0, 0, ',', '.') }} TrVND</td>
                                             <td>
                                                 @if($booking->number_of_people >= 4)
                                                     <span class="badge bg-warning text-dark">{{ $booking->number_of_people }}</span>
@@ -192,7 +192,7 @@
                                                 <span class="badge bg-danger">{{ $booking->tickets->where('status', 'cancelled')->count() }}</span>
                                             </td>
                                             <td class="text-success fw-bold">
-                                                {{ number_format($booking->total_amount, 0, ',', '.') }} tr vnđ
+                                                {{ number_format($booking->total_amount, 0, ',', '.') }} TrVND
                                             </td>
                                             <td>{{ $booking->booking_date ? \Carbon\Carbon::parse($booking->booking_date)->format('d/m/Y') : '' }}</td>
                                             <td>{{ $booking->full_name }}</td>
@@ -285,7 +285,7 @@
                                                             $unitPrice = $firstBooking->tickets->first()->unit_price;
                                                         }
                                                     @endphp
-                                                    {{ number_format($unitPrice ?? 0, 0, ',', '.') }} tr vnđ
+                                                    {{ number_format($unitPrice ?? 0, 0, ',', '.') }} TrVND
                                                 </td>
                                                 <td><span class="badge bg-info">
                                                     @php
@@ -315,7 +315,7 @@
                                                         <span class="badge bg-warning">0</span>
                                                     @endif
                                                 </td>
-                                                <td class="text-success fw-bold">{{ number_format($group->total_amount ?? 0, 0, ',', '.') }} tr vnđ</td>
+                                                <td class="text-success fw-bold">{{ number_format($group->total_amount ?? 0, 0, ',', '.') }} TrVND</td>
                                                 <td>{{ $group->created_at ? \Carbon\Carbon::parse($group->created_at)->format('d/m/Y H:i') : 'N/A' }}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-outline-primary" onclick="toggleGroupDetails({{ $group->id }})">
