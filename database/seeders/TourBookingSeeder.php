@@ -22,92 +22,121 @@ class TourBookingSeeder extends Seeder
             return;
         }
         
-        $year = now()->year;
-        $currentMonth = now()->month;
-        
-        // Tạo booking cho 12 tháng qua và tương lai
-        foreach ($tours as $tour) {
-            // Lấy departure dates từ tour detail
-            $departureDates = [];
-            if ($tour->detail && $tour->detail->departure_dates) {
-                if (is_array($tour->detail->departure_dates)) {
-                    $departureDates = $tour->detail->departure_dates;
-                } elseif (is_string($tour->detail->departure_dates)) {
-                    $departureDates = json_decode($tour->detail->departure_dates, true) ?? [];
-                }
-            }
-            
-            // Nếu không có departure dates, tạo một số ngày mặc định
-            if (empty($departureDates)) {
-                $departureDates = [
-                    now()->addDays(7)->format('Y-m-d H:i:s'),
-                    now()->addDays(14)->format('Y-m-d H:i:s'),
-                    now()->addDays(21)->format('Y-m-d H:i:s'),
-                    now()->addDays(28)->format('Y-m-d H:i:s'),
-                ];
-            }
-            
-            // Lấy giá tour từ prices hoặc fallback
-            $price = 0;
-            if ($tour->prices && $tour->prices->isNotEmpty()) {
-                $priceRecord = $tour->prices->first();
-                $price = $priceRecord->discount && $priceRecord->discount > 0 
-                    ? $priceRecord->final_price 
-                    : $priceRecord->price;
-            } else {
-                $price = $tour->price ?? 500000; // Default price
-            }
-            
-            // Tạo 5-15 booking ngẫu nhiên cho mỗi tour
-            $bookingCount = rand(5, 15);
-            
-            for ($i = 0; $i < $bookingCount; $i++) {
-                $user = $users->random();
-                $numberOfPeople = rand(1, 8);
-                
-                // Chọn ngẫu nhiên một departure date
-                $selectedDepartureDateStr = $departureDates[array_rand($departureDates)];
-                $selectedDepartureDate = Carbon::parse($selectedDepartureDateStr);
-                
-                // Booking date là 1-30 ngày trước departure date
-                $bookingDate = $selectedDepartureDate->copy()->subDays(rand(1, 30));
-                
-                // Đảm bảo booking_date không vượt quá hiện tại
-                if ($bookingDate->isFuture()) {
-                    $bookingDate = now()->subDays(rand(1, 7));
+        // Lặp qua 12 tháng (từ tháng hiện tại về trước 11 tháng)
+        for ($monthOffset = 0; $monthOffset < 12; $monthOffset++) {
+            foreach ($tours as $tour) {
+                // Lấy departure dates gốc từ tour detail
+                $baseDepartureDates = [];
+                if ($tour->detail && $tour->detail->departure_dates) {
+                    if (is_array($tour->detail->departure_dates)) {
+                        $baseDepartureDates = $tour->detail->departure_dates;
+                    } elseif (is_string($tour->detail->departure_dates)) {
+                        $baseDepartureDates = json_decode($tour->detail->departure_dates, true) ?? [];
+                    }
                 }
                 
-                // Tính total amount
-                $totalAmount = $price * $numberOfPeople;
-                
-                // Sinh mã booking_code duy nhất
-                do {
-                    $bookingCode = 'BK-' . strtoupper(Str::random(8));
-                } while (TourBooking::where('booking_code', $bookingCode)->exists());
-                
-                // Random status - phần lớn confirmed/pending để có thể group
-                $statuses = ['pending', 'pending', 'confirmed', 'confirmed', 'cancelled'];
-                $status = $statuses[array_rand($statuses)];
-                
-                // Nếu departure date đã qua, không tạo pending booking
-                if ($selectedDepartureDate->isPast() && $status === 'pending') {
-                    $status = 'confirmed';
+                // Nếu không có departure dates, tạo một số ngày mặc định dựa trên tháng hiện tại
+                if (empty($baseDepartureDates)) {
+                    $baseDate = now()->addDays(7);
+                    $baseDepartureDates = [
+                        $baseDate->format('Y-m-d\TH:i:s'),
+                        $baseDate->copy()->addDays(3)->format('Y-m-d\TH:i:s'),
+                        $baseDate->copy()->addDays(6)->format('Y-m-d\TH:i:s'),
+                        $baseDate->copy()->addDays(9)->format('Y-m-d\TH:i:s'),
+                    ];
                 }
                 
-                TourBooking::create([
-                    'user_id' => $user->id,
-                    'tour_id' => $tour->id,
-                    'booking_code' => $bookingCode,
-                    'full_name' => $user->name,
-                    'contact_email' => $user->email,
-                    'contact_phone' => '09' . rand(10000000, 99999999),
-                    'number_of_people' => $numberOfPeople,
-                    'booking_date' => $bookingDate,
-                    'selected_departure_date' => $selectedDepartureDate,
-                    'status' => $status,
-                    'total_amount' => $totalAmount,
-                    'note' => null,
-                ]);
+                // Điều chỉnh departure_dates về tháng tương ứng (điều chỉnh tháng về trước)
+                $departureDates = [];
+                foreach ($baseDepartureDates as $dateStr) {
+                    try {
+                        $date = Carbon::parse($dateStr);
+                        // Điều chỉnh tháng về trước
+                        $adjustedDate = $date->copy()->subMonths($monthOffset);
+                        $departureDates[] = $adjustedDate->format('Y-m-d\TH:i:s');
+                    } catch (\Exception $e) {
+                        // Nếu không parse được, bỏ qua
+                        continue;
+                    }
+                }
+                
+                if (empty($departureDates)) {
+                    continue; // Bỏ qua tour này nếu không có departure dates hợp lệ
+                }
+                
+                // Lấy giá tour từ prices hoặc fallback
+                $price = 0;
+                if ($tour->prices && $tour->prices->isNotEmpty()) {
+                    $priceRecord = $tour->prices->first();
+                    $price = $priceRecord->discount && $priceRecord->discount > 0 
+                        ? $priceRecord->final_price 
+                        : $priceRecord->price;
+                } else {
+                    $price = $tour->price ?? 500000; // Default price
+                }
+                
+                // Tạo 5-15 booking ngẫu nhiên cho mỗi tour mỗi tháng
+                $bookingCount = rand(5, 15);
+                
+                for ($i = 0; $i < $bookingCount; $i++) {
+                    $user = $users->random();
+                    $numberOfPeople = rand(1, 8);
+                    
+                    // Chọn ngẫu nhiên một departure date
+                    $selectedDepartureDateStr = $departureDates[array_rand($departureDates)];
+                    $selectedDepartureDate = Carbon::parse($selectedDepartureDateStr);
+                    
+                    // Xác định booking date dựa trên departure date
+                    $isPast = $selectedDepartureDate->isPast();
+                    
+                    if ($isPast) {
+                        // Nếu departure date quá khứ: booking_date <= departure_date
+                        // Tạo booking_date trong khoảng 1-30 ngày trước departure_date
+                        $daysBeforeDeparture = rand(1, 30);
+                        $bookingDate = $selectedDepartureDate->copy()->subDays($daysBeforeDeparture);
+                    } else {
+                        // Nếu departure date tương lai: booking_date là 1-30 ngày trước departure date
+                        $bookingDate = $selectedDepartureDate->copy()->subDays(rand(1, 30));
+                        
+                        // Đảm bảo booking_date <= now() (không tạo booking_date quá xa trong tương lai)
+                        if ($bookingDate->gt(now())) {
+                            $bookingDate = now()->copy();
+                        }
+                    }
+                    
+                    // Tính total amount
+                    $totalAmount = $price * $numberOfPeople;
+                    
+                    // Sinh mã booking_code duy nhất
+                    do {
+                        $bookingCode = 'BK-' . strtoupper(Str::random(8));
+                    } while (TourBooking::where('booking_code', $bookingCode)->exists());
+                    
+                    // Xác định status dựa trên departure date (đã xác định $isPast ở trên)
+                    if ($isPast) {
+                        // Bookings quá khứ: chủ yếu confirmed, một ít cancelled
+                        $statuses = ['confirmed', 'confirmed', 'confirmed', 'confirmed', 'cancelled'];
+                    } else {
+                        // Bookings tương lai: pending, confirmed, cancelled
+                        $statuses = ['pending', 'pending', 'confirmed', 'confirmed', 'cancelled'];
+                    }
+                    $status = $statuses[array_rand($statuses)];
+                    
+                    TourBooking::create([
+                        'user_id' => $user->id,
+                        'tour_id' => $tour->id,
+                        'booking_code' => $bookingCode,
+                        'full_name' => $user->name,
+                        'contact_email' => $user->email,
+                        'contact_phone' => '09' . rand(10000000, 99999999),
+                        'number_of_people' => $numberOfPeople,
+                        'booking_date' => $bookingDate,
+                        'selected_departure_date' => $selectedDepartureDate,
+                        'status' => $status,
+                        'total_amount' => $totalAmount,
+                        'note' => null,
+                    ]);
+                }
             }
         }
         
