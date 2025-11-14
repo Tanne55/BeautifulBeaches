@@ -21,7 +21,7 @@
                             </div>
                             <div class="d-grid gap-2 mb-2">
                                 <a href="{{ route('bookings.result', ['booking_code' => session('booking_code')]) }}"
-                                    class="btn btn-outline-primary text-dark">
+                                    class="btn  text-dark">
                                     <i class="bi bi-search"></i> Xem chi tiết đặt tour
                                 </a>
                             </div>

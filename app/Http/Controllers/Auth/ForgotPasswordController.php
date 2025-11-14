@@ -24,7 +24,7 @@ class ForgotPasswordController extends Controller
     public function showResetForm(Request $request)
     {
         $email = $request->query('email');
-        
+
         if (!$email) {
             return redirect()->route('forgot.password')->with('error', 'Email không hợp lệ');
         }
@@ -46,13 +46,13 @@ class ForgotPasswordController extends Controller
 
         if (!$user) {
             return back()->withErrors([
-                'email' => 'Email này không tồn tại trong hệ thống'
+                'email' => 'Email sai hoặc chưa từng đăng kí'
             ])->onlyInput('email');
         }
 
         // Nếu email tồn tại, chuyển hướng đến trang đặt lại mật khẩu
         return redirect()->route('password.reset.form', ['email' => $request->email])
-                        ->with('success', 'Email hợp lệ! Vui lòng nhập mật khẩu mới');
+            ->with('success', 'Email hợp lệ! Vui lòng nhập mật khẩu mới');
     }
 
     /**

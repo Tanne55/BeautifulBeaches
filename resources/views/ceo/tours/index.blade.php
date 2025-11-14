@@ -156,12 +156,12 @@
                                             @endphp
                                             <div class="text-center">
                                                 <span class="fw-bold text-danger">
-                                                    {{ number_format($priceDetails['final_price'], 0, ',', '.') }}đ
+                                                    {{ number_format($priceDetails['final_price'], 0, ',', '.') }} tr vnđ
                                                 </span>
                                                 @if($priceDetails['is_discounted'])
                                                     <br>
                                                     <small class="text-decoration-line-through text-muted">
-                                                        {{ number_format($priceDetails['original_price'], 0, ',', '.') }}đ
+                                                        {{ number_format($priceDetails['original_price'], 0, ',', '.') }} tr vnđ
                                                     </small>
                                                     <br>
                                                     <small class="badge bg-danger">-{{ number_format($priceDetails['discount'], 1) }}%</small>

@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="{{route('tour')}}" class="nav-link">
                                             <div class="nav-icon"><i class="bi bi-luggage"></i></div>
                                             <span class="nav-text">Tour du lịch</span>
@@ -91,7 +91,7 @@
                                             <div class="nav-icon"><i class="bi bi-people"></i></div>
                                             <span class="nav-text">Về chúng tôi</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
 
                             @elseif(auth()->user()->isCEO())
@@ -104,7 +104,14 @@
                             </div>
                         </div>
                         </li>
+
                         <li class="nav-item">
+                            <a href="{{route('tour')}}" class="nav-link">
+                                <div class="nav-icon"><i class="bi bi-luggage"></i></div>
+                                <span class="nav-text">Tour du lịch</span>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
                             <a href="{{ route('explore') }}" class="nav-link">
                                 <div class="nav-icon"><i class="bi bi-compass"></i></div>
                                 <span class="nav-text">Khám phá bãi biển</span>
@@ -118,12 +125,6 @@
                                     <a href="{{ route('explore') }}?region=Southern%20Vietnam" class="dropdown-item">Miền Nam</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('tour')}}" class="nav-link">
-                                <div class="nav-icon"><i class="bi bi-luggage"></i></div>
-                                <span class="nav-text">Tour du lịch</span>
-                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
@@ -143,13 +144,13 @@
                                 <div class="nav-icon"><i class="bi bi-people"></i></div>
                                 <span class="nav-text">Về chúng tôi</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                     @endif
                 @else
             {{-- sidebar rỗng hoặc ẩn --}}
         @endauth
-
+        </ul>
         <div class="logout-section">
 
             <form method="POST" action="{{ route('logout') }}" class="d-inline">

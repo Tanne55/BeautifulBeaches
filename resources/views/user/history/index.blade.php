@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container my-5">
-        <h2 class="mb-4 text-center">Lịch sử đặt tour của bạn</h2> 
+        <h2 class="mb-4 text-center">Lịch sử đặt tour của bạn</h2>
 
         @if($bookings->where('status', 'confirmed')->count() > 0)
             <div class="alert alert-info text-center fw-bold mb-4" style="opacity: 0.7;">
@@ -122,10 +122,8 @@
                             </div>
                         </div>
                         <div class="card-actions">
-                            <button type="button" class="btn btn-info btn-sm rounded-4 p-2 px-4 me-2" 
-                                data-bs-toggle="offcanvas" 
-                                data-bs-target="#ticketsOffcanvas" 
-                                data-booking-id="{{ $booking->id }}"
+                            <button type="button" class="btn btn-info btn-sm rounded-4 p-2 px-4 me-2" data-bs-toggle="offcanvas"
+                                data-bs-target="#ticketsOffcanvas" data-booking-id="{{ $booking->id }}"
                                 data-booking-code="{{ $booking->booking_code }}">
                                 <i class="bi bi-ticket-perforated"></i> Xem vé
                             </button>
@@ -149,7 +147,8 @@
     </div>
 
     <!-- Tickets Offcanvas -->
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="ticketsOffcanvas" aria-labelledby="ticketsOffcanvasLabel" data-bs-backdrop="true" data-bs-keyboard="true">
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="ticketsOffcanvas" aria-labelledby="ticketsOffcanvasLabel"
+        data-bs-backdrop="true" data-bs-keyboard="true">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title fw-bold" id="ticketsOffcanvasLabel">
                 <i class="bi bi-ticket-perforated me-2 text-white"></i>
@@ -230,7 +229,7 @@
             .offcanvas.offcanvas-bottom {
                 height: 80vh !important;
             }
-            
+
             .offcanvas-body {
                 padding: 15px;
             }
@@ -259,7 +258,7 @@
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const ticketsOffcanvas = document.getElementById('ticketsOffcanvas');
             let currentBookingId = null;
 
@@ -272,13 +271,13 @@
 
             // Handle button clicks to load tickets
             document.querySelectorAll('[data-bs-target="#ticketsOffcanvas"]').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     currentBookingId = this.getAttribute('data-booking-id');
                     const bookingCode = this.getAttribute('data-booking-code');
-                    
+
                     // Update title
                     document.getElementById('offcanvas-title-text').textContent = `Vé của booking #${bookingCode}`;
-                    
+
                     // Reset container
                     resetTicketContainer();
                 });
@@ -291,7 +290,7 @@
             });
 
             // Handle escape key
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && ticketsOffcanvas.classList.contains('show')) {
                     offcanvasInstance.hide();
                 }
@@ -302,20 +301,20 @@
             let currentY = 0;
             let isDragging = false;
 
-            ticketsOffcanvas.addEventListener('touchstart', function(e) {
+            ticketsOffcanvas.addEventListener('touchstart', function (e) {
                 startY = e.touches[0].clientY;
                 isDragging = true;
             });
 
-            ticketsOffcanvas.addEventListener('touchmove', function(e) {
+            ticketsOffcanvas.addEventListener('touchmove', function (e) {
                 if (!isDragging) return;
-                
+
                 currentY = e.touches[0].clientY;
                 const diffY = currentY - startY;
-                
+
                 // Only allow downward swipe when at the top of scroll
                 const scrollTop = ticketsOffcanvas.querySelector('.offcanvas-body').scrollTop;
-                
+
                 if (diffY > 0 && scrollTop === 0) {
                     e.preventDefault();
                     const progress = Math.min(diffY / 150, 1);
@@ -324,12 +323,12 @@
                 }
             });
 
-            ticketsOffcanvas.addEventListener('touchend', function(e) {
+            ticketsOffcanvas.addEventListener('touchend', function (e) {
                 if (!isDragging) return;
-                
+
                 const diffY = currentY - startY;
                 const scrollTop = ticketsOffcanvas.querySelector('.offcanvas-body').scrollTop;
-                
+
                 if (diffY > 100 && scrollTop === 0) {
                     // Close if swiped down more than 100px
                     offcanvasInstance.hide();
@@ -338,7 +337,7 @@
                     ticketsOffcanvas.style.transform = '';
                     ticketsOffcanvas.style.opacity = '';
                 }
-                
+
                 isDragging = false;
                 startY = 0;
                 currentY = 0;
@@ -348,18 +347,18 @@
         function resetTicketContainer() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                <div class="text-center py-4">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Đang tải...</span>
-                    </div>
-                    <p class="text-muted mt-2">Đang tải thông tin vé...</p>
-                </div>
-            `;
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Đang tải...</span>
+                            </div>
+                            <p class="text-muted mt-2">Đang tải thông tin vé...</p>
+                        </div>
+                    `;
         }
 
         function loadUserBookingTickets(bookingId) {
             const container = document.getElementById('ticketContainer');
-            
+
             fetch(`/user/booking/${bookingId}/tickets`)
                 .then(response => response.json())
                 .then(data => {
@@ -378,79 +377,79 @@
         function renderTickets(tickets) {
             const container = document.getElementById('ticketContainer');
             let html = '';
-            
+
             tickets.forEach((ticket, index) => {
                 html += `
-                    <div class="ticket-card mb-3 p-3">
-                        <div class="row align-items-center">
-                            <div class="col-12">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <div class="ticket-code">${ticket.ticket_code}</div>
-                                    <span class="status-badge-ticket status-${ticket.status_class}">
-                                        ${ticket.status_text}
-                                    </span>
-                                </div>
-                                
-                                <div class="ticket-divider"></div>
-                                
-                                <div class="ticket-info">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12 mb-2">
-                                            <small class="text-white-50">Họ tên</small>
-                                            <div class="fw-semibold">${ticket.full_name}</div>
+                            <div class="ticket-card mb-3 p-3">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="ticket-code">${ticket.ticket_code}</div>
+                                            <span class="status-badge-ticket status-${ticket.status_class}">
+                                                ${ticket.status_text}
+                                            </span>
                                         </div>
-                                        <div class="col-md-6 col-12 mb-2">
-                                            <small class="text-white-50">Giá vé</small>
-                                            <div class="fw-semibold">${formatPrice(ticket.unit_price)} VNĐ</div>
+
+                                        <div class="ticket-divider"></div>
+
+                                        <div class="ticket-info">
+                                            <div class="row">
+                                                <div class="col-md-6 col-12 mb-2">
+                                                    <small class="text-white-50">Họ tên</small>
+                                                    <div class="fw-semibold">${ticket.full_name}</div>
+                                                </div>
+                                                <div class="col-md-6 col-12 mb-2">
+                                                    <small class="text-white-50">Giá vé</small>
+                                                    <div class="fw-semibold">${formatPrice(ticket.unit_price)} VNĐ</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-12 mb-2">
+                                                    <small class="text-white-50">Email</small>
+                                                    <div class="small">${ticket.email || 'N/A'}</div>
+                                                </div>
+                                                <div class="col-md-6 col-12 mb-2">
+                                                    <small class="text-white-50">SĐT</small>
+                                                    <div class="small">${ticket.phone || 'N/A'}</div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 text-center">
+                                                <small class="text-white-50">Ngày tạo: ${ticket.created_at}</small>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-12 mb-2">
-                                            <small class="text-white-50">Email</small>
-                                            <div class="small">${ticket.email || 'N/A'}</div>
-                                        </div>
-                                        <div class="col-md-6 col-12 mb-2">
-                                            <small class="text-white-50">SĐT</small>
-                                            <div class="small">${ticket.phone || 'N/A'}</div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 text-center">
-                                        <small class="text-white-50">Ngày tạo: ${ticket.created_at}</small>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                `;
+                        `;
             });
-            
+
             container.innerHTML = html;
         }
 
         function showNoTickets() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                <div class="no-tickets">
-                    <div class="no-tickets-icon">
-                        <i class="bi bi-ticket-perforated"></i>
-                    </div>
-                    <h6 class="text-muted">Chưa có vé nào được tạo</h6>
-                    <p class="text-muted small">Vé sẽ được tạo sau khi booking được xác nhận</p>
-                </div>
-            `;
+                        <div class="no-tickets">
+                            <div class="no-tickets-icon">
+                                <i class="bi bi-ticket-perforated"></i>
+                            </div>
+                            <h6 class="text-muted">Chưa có vé nào được tạo</h6>
+                            <p class="text-muted small">Vé sẽ được tạo sau khi booking được xác nhận</p>
+                        </div>
+                    `;
         }
 
         function showTicketError() {
             const container = document.getElementById('ticketContainer');
             container.innerHTML = `
-                <div class="no-tickets">
-                    <div class="no-tickets-icon text-danger">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
-                    <h6 class="text-danger">Có lỗi xảy ra</h6>
-                    <p class="text-muted small">Không thể tải thông tin vé. Vui lòng thử lại sau.</p>
-                </div>
-            `;
+                        <div class="no-tickets">
+                            <div class="no-tickets-icon text-danger">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <h6 class="text-danger">Có lỗi xảy ra</h6>
+                            <p class="text-muted small">Không thể tải thông tin vé. Vui lòng thử lại sau.</p>
+                        </div>
+                    `;
         }
 
         function formatPrice(price) {
