@@ -44,6 +44,22 @@ class BeachController extends Controller
         return view('pages.detail', compact('beach', 'reviews'));
     }
 
+    public function explore()
+    {
+        $beaches = Beach::with(['detail', 'region'])->get()->map(function ($beach) {
+            return [
+                'id' => $beach->id,
+                'region_name' => $beach->region_name,
+                'image' => $beach->image,
+                'title' => $beach->title,
+                'short_description' => $beach->short_description,
+                'tags' => $beach->detail ? json_decode($beach->detail->tags, true) : [],
+            ];
+        });
+        $regions = \App\Models\Region::all();
+        return view('pages.explore', compact('beaches', 'regions'));
+    }
+
 
     // Hiển thị danh sách bãi biển cho admin
     public function index(Request $request)

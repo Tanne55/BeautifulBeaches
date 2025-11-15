@@ -1,15 +1,11 @@
 <?php
 
-use App\Models\Tour;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\UserController;
-use App\Models\Beach;
-use App\Models\ReviewBeach;
-use App\Models\ReviewTour;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsCeo;
 use App\Http\Middleware\IsUser;
@@ -21,45 +17,10 @@ use App\Http\Controllers\CeoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\SupportRequestController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
 
-Route::get('/', function () {
-    $beaches = Beach::with(['detail', 'region']) // nạp quan hệ 1-1 và region
-        ->select('id', 'region_id', 'image', 'title') // chỉ lấy cột cần thiết
-        ->take(4)
-        ->get()
-        ->map(function ($beach) {
-            return [
-                'id' => $beach->id,
-                'region' => $beach->region_name,
-                'image' => $beach->image,
-                'title' => $beach->title,
-                'short_description' => $beach->short_description,
-            ];
-        });
-
-    // Lấy dữ liệu tours với prices
-    $tours = Tour::with(['beach', 'prices', 'detail'])
-        ->where('status', 'confirmed')
-        ->take(3)
-        ->get()
-        ->map(function ($tour) {
-            return [
-                'id' => $tour->id,
-                'title' => $tour->title,
-                'image' => $tour->image,
-                'beach_name' => $tour->beach ? $tour->beach->title : 'N/A',
-                'beach_region' => $tour->beach && $tour->beach->region ? $tour->beach->region->name : 'N/A', // ← Thêm dòng này
-                'duration_days' => $tour->duration_days,
-                'max_people' => $tour->max_people ?? $tour->capacity ?? 'N/A',
-                'current_price' => $tour->current_price,
-                'average_rating' => $tour->average_rating,
-                'total_reviews' => $tour->total_reviews,
-                'short_description' => $tour->beach && $tour->beach->short_description ? $tour->beach->short_description : null,
-            ];
-        });
-
-    return view('welcome', compact('beaches', 'tours'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
@@ -169,26 +130,9 @@ Route::prefix('user')->middleware(['auth', IsUser::class])->name('user.')->group
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/gallery', 'pages.gallery')->name('gallery');
 Route::view('/contact', 'pages.contact')->name('contact');
-// Route::view('/explore', 'pages.explore')->name('explore');
-Route::get('/explore', function () {
-    $beaches = Beach::with(['detail', 'region'])->get()->map(function ($beach) {
-        return [
-            'id' => $beach->id,
-            'region_name' => $beach->region_name,
-            'image' => $beach->image,
-            'title' => $beach->title,
-            'short_description' => $beach->short_description,
-            'tags' => $beach->detail ? json_decode($beach->detail->tags, true) : [],
-        ];
-    });
-    $regions = \App\Models\Region::all();
-    return view('pages.explore', compact('beaches', 'regions'));
-})->name('explore');
+Route::get('/explore', [BeachController::class, 'explore'])->name('explore');
 
-Route::get('/tour', function () {
-    $tours = Tour::with(['beach', 'prices'])->where('status', 'confirmed')->get();
-    return view('pages.tour', compact('tours'));
-})->name('tour');
+Route::get('/tour', [TourController::class, 'publicIndex'])->name('tour');
 Route::view('/queries', 'pages.queries')->name('queries');
 Route::view('/detail', 'pages.detail')->name('detail');
 
@@ -197,19 +141,7 @@ Route::view('/detail', 'pages.detail')->name('detail');
 Route::get('/api/beaches', [BeachController::class, 'getBeaches']);
 Route::get('/beaches/{beach}', [BeachController::class, 'show'])->name('beaches.show');
 
-Route::get('/tour/{id}', function ($id) {
-    $tour = Tour::with(['beach.detail', 'beach.region', 'detail', 'prices', 'ceo'])->findOrFail($id);
-    $image_url = null;
-    if ($tour->image) {
-        $image_url = asset($tour->image);
-    } elseif ($tour->beach && $tour->beach->image) {
-        $image_url = asset($tour->beach->image);
-    } else {
-        $image_url = 'https://via.placeholder.com/600x400?text=No+Image';
-    }
-    $reviews = ReviewTour::with('user')->where('tour_id', $tour->id)->latest()->get();
-    return view('pages.tourdetail', compact('tour', 'image_url', 'reviews'));
-})->name('tour.show');
+Route::get('/tour/{id}', [TourController::class, 'publicShow'])->name('tour.show');
 
 // Route cho review/comment (cho phép khách comment)
 Route::post('/beaches/{beach}/review', [ReviewBeachController::class, 'store'])->name('beaches.review');
@@ -225,20 +157,6 @@ Route::get('/bookings/result', [TourBookingController::class, 'showBookingResult
 Route::post('/support', [SupportRequestController::class, 'store'])->name('support.store');
 
 // Test gallery route
-Route::get('/test', function () {
-    $beaches = Beach::with([
-        'images' => function ($query) {
-            $query->ordered();
-        }
-    ])->get();
-
-    $tours = Tour::with([
-        'images' => function ($query) {
-            $query->ordered();
-        }
-    ])->get();
-
-    return view('test', compact('beaches', 'tours'));
-})->name('test');
+Route::get('/test', [TestController::class, 'index'])->name('test');
 
 

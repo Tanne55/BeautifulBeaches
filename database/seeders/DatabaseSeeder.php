@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             ReviewBeachSeeder::class,
             ReviewTourSeeder::class,
             SupportRequestSeeder::class,
-
         ]);
     }
 }

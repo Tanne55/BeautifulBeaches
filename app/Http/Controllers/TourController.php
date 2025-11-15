@@ -368,4 +368,31 @@ class TourController extends Controller
             'message' => $remainingCapacity > 0 ? "Còn lại {$remainingCapacity} chỗ" : 'Đã hết chỗ'
         ]);
     }
+
+    /**
+     * Hiển thị danh sách tours công khai
+     */
+    public function publicIndex()
+    {
+        $tours = Tour::with(['beach', 'prices'])->where('status', 'confirmed')->get();
+        return view('pages.tour', compact('tours'));
+    }
+
+    /**
+     * Hiển thị chi tiết tour công khai
+     */
+    public function publicShow($id)
+    {
+        $tour = Tour::with(['beach.detail', 'beach.region', 'detail', 'prices', 'ceo'])->findOrFail($id);
+        $image_url = null;
+        if ($tour->image) {
+            $image_url = asset($tour->image);
+        } elseif ($tour->beach && $tour->beach->image) {
+            $image_url = asset($tour->beach->image);
+        } else {
+            $image_url = 'https://via.placeholder.com/600x400?text=No+Image';
+        }
+        $reviews = \App\Models\ReviewTour::with('user')->where('tour_id', $tour->id)->latest()->get();
+        return view('pages.tourdetail', compact('tour', 'image_url', 'reviews'));
+    }
 }
